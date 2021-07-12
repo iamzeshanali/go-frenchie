@@ -1,0 +1,1562 @@
+/* 1-- Font Include + Root values
+2-- General For Multiple pages
+3-- Navbar
+4-- Login page
+5-- stud_listing page
+6-- create_listing
+7-- Breader Dashboard
+8-- Breader Profile Start
+9-- Single Listing Page
+10--Filter Component
+11--Home Page
+12--Resources
+-- footer*/
+
+/*1-- Font Include Start  */
+
+@font-face {
+    font-family: Sailec-Bold;
+    src: 
+    /* Full name */
+    local(Sailec),
+    /* Postscript name */
+    local(Sailec-Bold), 
+    /* otherwise, download it */
+    url(/fonts/Sailec-Bold.ttf);
+}
+
+@font-face {
+    font-family: Sailec-Light;
+    src: url(/fonts/Sailec-Light.ttf);
+}
+
+@font-face {
+    font-family: Sailec-Medium;
+    src: url(/fonts/Sailec-Medium.ttf);
+}
+
+@font-face {
+    font-family: Sailec-Thin;
+    src: url(/fonts/Sailec-Thin.ttf);
+}
+
+@font-face {
+    font-family: Sailec;
+    src: url(/fonts/Sailec.ttf);
+}
+ :root{
+     --font-family: "Sailec";
+ }
+/* Font Include End */
+
+/*2-- General For Multiple pages Start*/
+
+body {
+    background-color: #f9f9f9 !important;
+}
+
+.select-display{
+    display: none !important;
+}
+.btn-fbd {
+    font-family: "Sailec-Medium";
+    border: none !important;
+    background-image: -moz-linear-gradient( 0deg, #8b77fc 0%, #957afe 100%);
+    background-image: -webkit-linear-gradient( 0deg, #8b77fc 0%, #957afe 100%);
+    background-image: -ms-linear-gradient( 0deg, #8b77fc 0%, #957afe 100%);
+}
+
+.btn-fbd:active:focus {
+    box-shadow: none !important;
+}
+
+button:focus {
+    box-shadow: none !important;
+}
+
+.btn-fbd:hover {
+    background-image: -moz-linear-gradient( 0deg, rgba(140, 120, 252, 0.8) 0%, rgba(149, 123, 254, 0.8) 100%);
+    background-image: -webkit-linear-gradient( 0deg, rgba(139, 119, 252, 0.8) 0%, rgba(148, 122, 254, 0.8) 100%);
+    background-image: -ms-linear-gradient( 0deg, rgba(139, 119, 252, 0.8) 0%, rgba(148, 122, 254, 0.8) 100%);
+}
+
+.btn-fbd:focus {
+    box-shadow: none;
+}
+
+.fa-dna {
+    color: #8B77FC;
+}
+
+/* .tooltip .tooltiptext {*/
+/*    width: 120px;*/
+/*    background-color: black;*/
+/*    color: #fff;*/
+/*    text-align: center;*/
+/*    border-radius: 6px;*/
+/*    padding: 5px 0;*/
+/*}*/
+
+/* General For Multiple pages End */
+
+/* 3-- *********** Navbar Start ***************/
+
+nav {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12), inset 0px 0px 0px 0px rgba(218, 220, 224, 0.004);
+    height: 64px;
+    padding-bottom: 0;
+}
+
+.navbar-collapse {
+    background-color: white;
+    z-index: 9999999;
+}
+
+.nav-item .nav-link {
+    font-size: 16px;
+    font-family: "Sailec-Medium";
+    color: #6a7582;
+}
+
+.nav-item {
+    padding: 10px 10px 9px;
+    margin: auto;
+}
+
+.nav-item.active {
+    border-bottom: 2px solid #8b77fc;
+}
+
+.notification-icon {
+    position: relative;
+}
+
+.notification-icon a i::after {
+    content: '3';
+    font-size: 14px;
+    font-family: 'Sailec-Medium';
+    text-align: center;
+    line-height: 16px;
+    color: rgb(255, 255, 255);
+    display: block;
+    position: absolute;
+    right: -10px;
+    bottom: 17px;
+    height: 16px;
+    width: 16px;
+    background-color: rgb(196, 48, 48);
+    border-radius: 50px;
+}
+
+.h-support, .notification-icon {
+    font-size: 24px;
+}
+
+.h-support a, .notification-icon a {
+    color: #455263;
+}
+
+.h-support a:hover, .notification-icon a:hover {
+    color: hsla(214, 18%, 33%, 0.8);
+}
+
+.breeder-db-login-dropdown {
+    left: auto !important;
+    right: 15px;
+}
+
+.breeder-db-login-dropdown p {
+    margin-bottom: 0.3rem;
+}
+
+.breeder-db-login-dropdown p a {
+    text-decoration: none;
+    color: #8B77FC;
+}
+
+.breeder-db-login-dropdown p a:hover {
+    text-decoration: none;
+    color: rgba(140, 120, 252, 0.8);
+}
+
+a#navbarDropdown img {
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+/************ Navbar End ***************/
+
+/* 4-- Login page start */
+
+.fbd-login-form .fbd-login-password span.input-group-btn {
+    border: 1px solid #ced4da;
+    height: calc(1.5em + .75rem + 2px);
+    border-radius: 0px 3px 3px 0px;
+    border-left: none;
+}
+
+/* Login page end */
+
+/*5-- *********** stud_listing page Start ***************/
+
+.page-description {
+    font-family: Sailec;
+    background-color: white;
+    color: #455263;
+    padding: 24px;
+    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
+}
+
+.page-content {
+    /* display: grid;
+    grid-template-columns: 1.1fr 4fr 1fr;
+    grid-gap: 15px;
+    align-items: flex-start; */
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.fbd-filter-area {
+    /* background-color: white; */
+}
+
+.fbd-filter-area select {
+    margin-bottom: 18px;
+}
+
+.fbd-filter-area button {
+    width: 100%;
+}
+
+/* Search Area  */
+
+.fbd-search-area {
+    background-color: white;
+    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
+}
+
+.fbd-search-area select, .fbd-search-area input {
+    margin-bottom: 18px !important;
+}
+
+.locatin-group-btn button {
+    border: 1px solid #ced4da;
+    border-left: none;
+    height: calc(1.5em + .75rem + 2px);
+    border-radius: 0px 3px 3px 0px;
+    background-color: white;
+}
+
+form button[type=submit] {
+    height: calc(1.5em + .75rem + 0px);
+    margin-top: 27px;
+}
+
+/* stud_listing listing area  start*/
+
+.fbd-listing-area {
+    background-color: white;
+    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
+}
+
+.fbd-sponsured-card, .fbd-standard-card {
+    border: 1px solid #e2ecf1;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
+}
+
+.listing-count {
+    font-family: "Sailec-Medium";
+    color: #455263;
+    font-size: 12px;
+}
+
+.listing-type {
+    font-family: "Sailec-Bold";
+}
+
+/* Sponsured card image slider Start*/
+
+.fbd-sp-listing-img {
+    /* border: 3px solid #c0c0c0; */
+    /* border-radius: 10px; */
+    max-width: 100%;
+    width: 200px;
+    margin: auto;
+    transition: 1s ease;
+}
+
+.fbd-sp-listing-img:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+/* .fbd-sp-listing-img::after {
+    font-family: "Font Awesome 5 Pro";
+    content: "\f004";
+    font-size: 24px;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    width: 32px;
+    height: 32px;
+    color: #8b77fc;
+    background-color: #ffffff;
+    border-radius: 36px;
+    padding: 4px;
+    line-height: initial;
+} */
+
+.fbd-sp-listing-liked {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    color: #8b77fc;
+    background-color: #ffffff;
+    border-radius: 22px;
+    padding: 3px;
+    cursor: pointer;
+    font-size: 19px;
+    width: 32px;
+    height: 33px;
+    text-align: center;
+}
+
+.fbd-sp-listing-img img {
+    height: auto;
+    object-fit: contain;
+    max-width: 100%;
+}
+
+.slick-next:before, .slick-prev:before {
+    color: #c0c0c0 !important;
+    font-size: 24px;
+}
+
+.fbd-sp-listing-thumbs {
+    max-width: 300px;
+}
+
+.fbd-sp-listing-thumbs .slick-slide {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.fbd-sp-listing-thumbs .slick-current {
+    opacity: 1;
+}
+
+.fbd-sp-listing-thumbs img {
+    height: 36px;
+    object-fit: contain;
+}
+
+.slick-slider {
+    margin-bottom: 10px !important;
+}
+
+/* Sponsured card image slider End*/
+
+.fbd-sp-list-title-description h5 {
+    color: #242626;
+    font-family: "Sailec-Medium";
+}
+
+/*.fbd-sponsured-listings i.fbd-liked-icon{*/
+/*    color: #c4bfbf;*/
+/*    font-size: 24px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.fbd-sponsured-listings i.fbd-liked-icon.liked {*/
+/*    color: #8b77fc;*/
+/*}*/
+
+/* .fbd-sp-list-title-description i {
+    color: #c4bfbf;
+    font-size: 24px;
+} */
+
+.fbd-sp-list-title-description p {
+    font-family: "Sailec";
+    color: #455263cc;
+}
+
+.fbd-sp-list-detail span {
+    font-family: "Sailec-Medium";
+    color: #455263cc;
+}
+
+.fbd-sp-list-detail i, .fbd-sp-list-kennel i {
+    color: #8b77fc;
+}
+
+.fbd-sp-list-kennel span {
+    font-family: "Sailec-Medium";
+    color: #455263cc;
+}
+
+.fbd-sp-list-social a {
+    margin-right: 20px;
+    color: #8b77fc;
+}
+
+.fbd-sp-list-social a:hover {
+    color: #957AFE;
+}
+
+/* stud_listing listing area  End */
+
+.fbd-adds-area {
+    background-color: white;
+    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
+}
+
+/************ stud_listing page End ***************/
+
+/*6-- *********** create_listing page Start ***************/
+
+.fbd-create-listing-content-area {
+    background-color: white;
+}
+
+.image_one, .image_two, .image_three, .image_four, .image_five {
+    visibility: hidden;
+    position: absolute;
+}
+
+form#create-listing-form label {
+    font-family: Sailec;
+    font-size: 16px;
+}
+
+/************ create_listing page End ***************/
+
+/*7-- *********** Breader Dashboard Start ***************/
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    .breeder-dashboard-page-content {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        grid-gap: 15px;
+        align-items: flex-start;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .breeder-dashboard-page-content {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-gap: 15px;
+        align-items: flex-start;
+    }
+}
+
+@media (min-width: 1920px) {
+    .breeder-dashboard-page-content {
+        grid-template-columns: 1fr 4fr;
+    }
+}
+
+/* Dashboard Menu Area */
+
+.breader-dashboard-menu-area {
+    background-color: white;
+}
+
+.bd-menu-user-panel img {
+    border-radius: 60px;
+}
+
+.bd-menu-user-panel-user {
+    font-size: 16px;
+    font-family: "Sailec-Bold";
+    color: #242626;
+}
+
+.bd-menu-user-panel-email {
+    font-size: 14px;
+    font-family: "Sailec-Medium";
+    color: #455263cc;
+}
+
+.breader-dashboard-menu-area .card-header button::after {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 16px;
+    height: 16px;
+    content: "\f107";
+    font-family: "Font Awesome 5 Pro";
+}
+
+.breader-dashboard-menu-area .card-header button.collapsed::after {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 16px;
+    height: 16px;
+    content: "\f104";
+    font-family: "Font Awesome 5 Pro";
+}
+
+.breader-dashboard-menu-area button.btn-collapse {
+    font-size: 16px;
+    font-family: "Sailec-Bold";
+    color: #8B77FC;
+}
+
+.breader-dashboard-menu-area button.btn-collapse:hover {
+    color: hsla(249, 96%, 73%, 0.8);
+}
+
+.breader-dashboard-menu-area .card-body {
+    padding: 0.25rem 0.25rem;
+}
+
+.breader-dashboard-menu-area .card-body ul li::marker {
+    content: "";
+    font-family: "Font Awesome 5 Pro";
+}
+
+.breader-dashboard-menu-area .card-body a {
+    font-size: 14px;
+    font-family: "Sailec-Bold";
+    padding-left: 12px;
+    text-decoration: none;
+    color: #8B77FC;
+}
+
+.breader-dashboard-menu-area .card-body a:hover {
+    text-decoration: none;
+    color: hsla(249, 96%, 73%, 0.8);
+}
+
+/* Dashboard Content Area */
+
+.breader-dashboard-content {
+    background-color: white;
+}
+
+.table-responsive {
+    margin: 30px 0;
+}
+
+.table-wrapper {
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.table-title {
+    padding-bottom: 15px;
+    background: #ffffff;
+    color: #000000;
+    padding: 16px 30px;
+    min-width: 100%;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+}
+
+.table-title h2 {
+    margin: 5px 0 0;
+    font-size: 24px;
+}
+
+.table-title .btn-group {
+    float: right;
+}
+
+.table-title .btn {
+    color: #fff;
+    float: right;
+    font-size: 13px;
+    border: none;
+    min-width: 50px;
+    border-radius: 2px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
+}
+
+.table-title .btn i {
+    float: left;
+    font-size: 21px;
+    margin-right: 5px;
+}
+
+.table-title .btn span {
+    float: left;
+    margin-top: 2px;
+}
+
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+table.table tr th:first-child {
+    width: 60px;
+}
+
+table.table tr th:last-child {
+    width: 100px;
+}
+
+table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fcfcfc;
+}
+
+table.table-striped.table-hover tbody tr:hover {
+    background: #f5f5f5;
+}
+
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+table.table td, table.table th {
+    white-space: nowrap;
+}
+
+table.table td:last-child i {
+    opacity: 0.9;
+    font-size: 22px;
+    margin: 0 5px;
+}
+
+table.table td a {
+    font-weight: bold;
+    color: #566787;
+    display: inline-block;
+    text-decoration: none;
+    outline: none !important;
+}
+
+table.table td a:hover {
+    color: #2196F3;
+}
+
+table.table td a.view {
+    color: #9ca2bc;
+}
+
+table.table td a.edit {
+    color: #FFC107;
+}
+
+table.table td a.delete {
+    color: #F44336;
+}
+
+table.table td i {
+    font-size: 19px;
+}
+
+table.table .avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.pagination {
+    float: right;
+    margin: 0 0 5px;
+}
+
+.pagination li a {
+    border: none;
+    font-size: 13px;
+    min-width: 30px;
+    min-height: 30px;
+    color: #999;
+    margin: 0 2px;
+    line-height: 30px;
+    border-radius: 2px !important;
+    text-align: center;
+    padding: 0 6px;
+}
+
+.pagination li a:hover {
+    color: #666;
+}
+
+.pagination li.active a, .pagination li.active a.page-link {
+    background: #03A9F4;
+}
+
+.pagination li.active a:hover {
+    background: #0397d6;
+}
+
+.pagination li.disabled i {
+    color: #ccc;
+}
+
+.pagination li i {
+    font-size: 16px;
+    padding-top: 6px
+}
+
+.hint-text {
+    float: left;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+/* Custom checkbox */
+
+.custom-checkbox {
+    position: relative;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    margin: 5px 0 0 3px;
+    z-index: 9;
+}
+
+.custom-checkbox label:before {
+    width: 18px;
+    height: 18px;
+}
+
+.custom-checkbox label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.custom-checkbox input[type="checkbox"]:checked+label:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    transform: inherit;
+    z-index: 3;
+    transform: rotateZ(45deg);
+}
+
+.custom-checkbox input[type="checkbox"]:checked+label:before {
+    border-color: #03A9F4;
+    background: #03A9F4;
+}
+
+.custom-checkbox input[type="checkbox"]:checked+label:after {
+    border-color: #fff;
+}
+
+.custom-checkbox input[type="checkbox"]:disabled+label:before {
+    color: #b8b8b8;
+    cursor: auto;
+    box-shadow: none;
+    background: #ddd;
+}
+
+/* Modal styles */
+
+.modal .modal-dialog {
+    max-width: 400px;
+}
+
+.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+    padding: 20px 30px;
+}
+
+.modal .modal-content {
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.modal .modal-footer {
+    background: #ecf0f1;
+    border-radius: 0 0 3px 3px;
+}
+
+.modal .modal-title {
+    display: inline-block;
+}
+
+.modal .form-control {
+    border-radius: 2px;
+    box-shadow: none;
+    border-color: #dddddd;
+}
+
+.modal textarea.form-control {
+    resize: vertical;
+}
+
+.modal .btn {
+    border-radius: 2px;
+    min-width: 100px;
+}
+
+.modal form label {
+    font-weight: normal;
+}
+
+/************ Breader Dashboard End ***************/
+
+/*8-- *********** Breader Profile Start ***************/
+
+
+.breeder-profile-info{
+    gap: 10px;
+}
+
+.breeder-profile-info a:hover{
+    text-decoration: none;
+    color: #957afe;
+}
+
+.breeder-profile-info i{
+    text-decoration: none;
+    color: #8B77FC;
+    font-size:16px;
+    margin-right: 18px;
+}
+
+.breeder-profile-info h4{
+    color: #8B77FC;
+    font-family: "Sailec-Bold";
+    font-size: 24px;
+}
+
+.breeder-profile-info a, .breeder-profile-info span{
+    color: #242626;
+    font-family: "Sailec";
+    font-size: 14px;
+}
+
+.breeder-profile-name h4{
+    color: #242626;
+    font-family: "Sailec-Bold";
+    font-size: 24px;
+}
+
+.breeder-profile-contact i{
+    margin-right: 18px;
+}
+
+.breeder-profile-contact a{
+    color: #8B77FC;
+    font-family: "Sailec";
+}
+
+.breeder-profile-contact a:hover{
+    color: #957AFE;
+    text-decoration: none;
+}
+
+p.breeder-profile-about{
+    font-family: "Sailec";
+}
+
+
+/* Product Card */
+
+.breeder-resources-card{
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
+}
+.product-card-info h5{
+    color: #957AFE;
+    font-family: "Sailec-Medium";
+}
+
+.product-card-info p{
+    font-family: "Sailec";
+    color: #252727bf;
+    text-align: justify;
+}
+
+.product-card-info a{
+    color: #242626;
+    display: block;
+    font-family: "Sailec-Medium";
+}
+
+.product-card-info i{
+    color: #8B77FC;
+}
+
+.product-card-info a:hover{
+    text-decoration: none;
+    color: #8B77FC;
+}
+
+.product-card-info div.price span{
+    font-size: 20px;
+    font-family: "Sailec-Medium";
+    color: #8B77FC;
+}
+
+
+
+/* --------------------------- */
+
+.breeder-profile-area {
+    background-color: white;
+}
+
+.breeder-profile-title {
+    font-family: "Sailec-Bold";
+    font-size: 22px;
+    color: #242626;
+}
+
+.breeder-profile-location a, .breeder-profile-phone a, .breeder-profile-email a {
+    font-size: 16px;
+    font-family: "Sailec";
+    text-decoration: none;
+    color: #8B77FC;
+}
+
+.breeder-profile-location a:hover, .breeder-profile-phone a:hover, .breeder-profile-email a:hover {
+    text-decoration: none;
+    color: rgba(140, 120, 252, 0.8);
+}
+
+.breeder-profile-description p {
+    font-family: "Sailec";
+    color: #455263cc;
+}
+
+.breeder-profile-social a {
+    font-size: 16px;
+    font-family: "Sailec";
+    text-decoration: none;
+    color: #8B77FC;
+}
+
+.breeder-profile-social a:hover {
+    text-decoration: none;
+    color: rgba(140, 120, 252, 0.8);
+}
+
+/************ Breader Profile End ***************/
+
+/*9-- *********** Single Listing Page Start ***************/
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #242626;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: none;
+}
+
+.fbd-single-listing-img {
+    /* border: 3px solid #c0c0c0; */
+    border-radius: 10px;
+    max-width: 100%;
+    width: 800px;
+    margin: auto;
+}
+
+.fbd-single-listing-img img {
+    height: 360px;
+    object-fit: contain;
+}
+
+.fbd-single-listing-img .slick-next, .fbd-single-listing-img .slick-prev {
+    width: 36px;
+    height: 36px;
+}
+
+.fbd-single-listing-img .slick-prev {
+    left: -50px;
+}
+
+.fbd-single-listing-img .slick-next {
+    right: -50px;
+}
+
+.fbd-single-listing-img .slick-next:before, .fbd-single-listing-img .slick-prev:before {
+    color: #c0c0c0 !important;
+    font-size: 36px;
+}
+
+.fbd-single-listing-thumbs {
+    max-width: 700px;
+}
+
+.fbd-single-listing-thumbs .slick-slide {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.fbd-single-listing-thumbs .slick-current {
+    opacity: 1;
+}
+
+.fbd-single-listing-thumbs img {
+    height: 36px;
+    object-fit: contain;
+}
+
+.slick-slider {
+    margin-bottom: 10px !important;
+}
+
+/* Slick End */
+
+.fbd-single-listing-title {
+    font-family: "Sailec-Bold";
+    font-size: 24px;
+    color: #242626;
+}
+
+.fbd-single-listing-info .breeder-name {
+    text-decoration: none;
+    color: #242626;
+    font-size: 1.5rem;
+    font-family: "Sailec-Bold";
+    line-height: 0;
+}
+
+.fbd-single-listing-info .kennel-name {
+    font-family: "Sailec-Bold";
+    color: #9CA2BC;
+}
+
+.fbd-single-listing-info .contactNo, .fbd-single-listing-info .email, .fbd-single-listing-info .website {
+    text-decoration: none;
+    color: #242626;
+    font-family: "Sailec-Medium";
+}
+
+.fbd-single-listing-info .contactNo i, .fbd-single-listing-info .email i, .fbd-single-listing-info .website i {
+    color: #8B77FC;
+}
+
+.fbd-single-listing-contact-social a {
+    font-size: x-large;
+    color: #8B77FC;
+}
+
+.fbd-single-listing-contact-social a:hover {
+    color: rgba(140, 120, 252, 0.8);
+}
+
+/* .fbd-single-listing-contactForm .card .card-header a.contactNo {
+    font-size: 14px;
+    font-family: "Sailec-Bold";
+    text-decoration: none;
+    color: #8B77FC;
+} */
+
+.fbd-single-listing-features i {
+    color: #8B77FC;
+}
+
+.fbd-single-listing-features span {
+    color: #242626;
+    font-family: "Sailec-Medium";
+    font-size: 1rem;
+}
+
+.fbd-single-listing-social i {
+    color: #242626;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.fbd-single-listing-dna table.table {
+    font-family: "Sailec-Medium";
+}
+
+/************ Single Listing Page End ***************/
+
+/*10--*********** Filter Area component ***************/
+
+
+/*===== Your Search Card ======*/
+#filterLocation span.heading{
+    font-size: 16px;
+    color: #242626;
+    font-family: "Sailec-Bold";
+}
+
+#filterLocation span.results-number{
+    font-family: "Sailec";
+    color: #8B77FC;
+    font-size: 12px;
+}
+
+#collapseSearch ul.tags-list{
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+
+}
+
+#collapseSearch ul.tags-list li{
+    display: inline;
+    background-color: #f8f8f8;
+    padding: 3px 10px;
+    margin-bottom: 5px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: #242626;
+}
+#collapseSearch ul.tags-list li span{
+    margin-left: 4px;
+    background-color: #8B77FC;
+    padding: 0px 4px;
+    width: 20px;
+    height: 20px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* ==================== */
+
+
+.fbd-filter-area .card {
+    border: none;
+    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
+}
+
+.fbd-filter-area .card .card-body {
+    font-family: "Sailec";
+    color: #957AFE;
+}
+
+.fbd-filter-area .card-body {
+    padding: 0px;
+}
+
+.fbd-filter-area .card-body label {
+    position: relative;
+    cursor: pointer;
+}
+
+.fbd-filter-area .card-body input[type="checkbox"] {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    cursor: pointer;
+    display: none;
+    /* visibility: hidden; */
+}
+
+.fbd-filter-area .card-body label::before {
+    content: '';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #957AFE;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 8px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+
+.fbd-filter-area .card-body input:checked+label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 7px;
+    width: 6px;
+    height: 14px;
+    border: solid #957AFE;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.fbd-filter-area .card-body label.parentLabel {
+    display: block;
+}
+.fbd-filter-area .card-body label.parentLabel::before {
+    content: '\f068';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 8px;
+    display: inline-block;
+    position: absolute;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+    font-family: "Font Awesome 5 Pro";
+    right: 5px;
+    top:-8px;
+}
+.fbd-filter-area .card-body label.parentLabel::after{
+    display: none !important;
+}
+
+
+.fbd-filter-area .card .card-header button.btn-collapse {
+    font-size: 16px;
+    font-family: "Sailec-Medium";
+    color: #8B77FC;
+}
+
+.fbd-filter-area .card .card-header button.collapsed::after {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    width: 16px;
+    height: 16px;
+    content: "\f067";
+    font-family: "Font Awesome 5 Pro";
+}
+
+.fbd-filter-area .card .card-header button::after {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    width: 16px;
+    height: 16px;
+    content: "\f068";
+    font-family: "Font Awesome 5 Pro";
+}
+
+/************ Filter Area component ***************/
+
+/*11--*********** Home Page Start ***************/
+
+.home-banner-form {
+    width: 80%;
+    max-width: 1300px;
+    margin: auto;
+}
+
+.home-blurbs, .home-advertisement {
+    width: 80%;
+    max-width: 1080px;
+    margin: auto;
+}
+
+.home-banner-wrapper {
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    background-image: url("/images/banner-bg3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(90vh - 64px);
+}
+
+.home-banner-wrapper form {
+    padding: 40px 15px 15px;
+    background-color: #00000080;
+    border-radius: 7px;
+}
+
+.home-banner-wrapper form h2 {
+    color: white;
+    font-family: "sailec-Bold";
+    margin-bottom: 2rem;
+}
+
+.home-banner-divider {
+    background-image: url("/images/ezgif.png");
+    height: 20px;
+    margin-top: -20px;
+}
+
+.home-intro-wrapper {
+    background-image: url("/images/PawPrints.png");
+    background-repeat: no-repeat;
+    background-position-y: 30px;
+    background-position-x: 0px;
+}
+
+.home-intro h2 {
+    padding-top: 30px;
+    color: #8B77FC;
+    font-family: "Sailec-Bold";
+}
+
+.home-intro p {
+    color: #242626cc;
+    font-family: "Sailec";
+    padding: 0px 10vw;
+    font-size: 1.1rem;
+}
+
+.home-blurbs .row .block {
+    cursor: pointer;
+    /* border: 1px solid rgb(226, 236, 241);  */
+    /* border-radius: 20px; */
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.home-blurbs .row .block:hover {
+    /* transform: scale(1.08); */
+}
+
+.home-blurbs .block a {
+    border-radius: .25rem;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    background-color: #8c78fcb3;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    z-index: -1;
+}
+
+.home-blurbs .block a:hover {
+    opacity: 1;
+}
+
+.home-blurb-name {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    height: 20%;
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(139, 119, 252, 0.5);
+    color: white;
+    border-top: 2px solid #8b77fc;
+    border-radius: 0px 0px .25rem .25rem;
+    transition: all .5s ease-in-out;
+}
+
+.home-blurbs .block img {
+    transition: all 1s ease-in-out;
+}
+
+.home-blurbs .block:hover a {
+    z-index: 1;
+    opacity: 1;
+}
+
+.home-blurbs .block:hover .home-blurb-name {
+    opacity: 0;
+}
+
+.home-blurbs .block:hover img {
+    transform: scale(0.8, 0.8);
+}
+
+.home-blurbs .row .block img, .home-advertisement img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.home-advertisement .row {
+    border-style: solid 1px rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+}
+
+.home-advertisement .slick-next:before, .home-advertisement .slick-prev:before {
+    color: #8b77fc !important;
+    font-size: 36px;
+}
+
+.home-advertisement .slick-prev {
+    left: -62px;
+}
+
+.home-advertisement .slick-next {
+    right: -45px;
+}
+
+/* Home Sponsured Kennel */
+
+.home-sp-kennels h2:first-child {
+    color: #8B77FC;
+    font-family: "Sailec-Bold";
+}
+
+.home-sp-kennels .carousel .carousel-item {
+    /* margin-left: 0.5rem; */
+}
+
+.home-sp-kennels .carousel .carousel-item div {
+    text-align: center
+}
+
+.home-sp-kennels .carousel .carousel-item a span {
+    font-family: "Sailec-Medium";
+    font-size: 18px;
+    text-decoration: none;
+    color: #9ca2bc;
+}
+
+.home-sp-kennels .carousel .carousel-item a:hover {
+    text-decoration: none;
+}
+
+/*********************************************************************/
+
+/* Bootstrap 4 Multiple Item Carousel */
+
+/*********************************************************************/
+
+/* medium - display 2  */
+
+@media (min-width: 768px) {
+    .carousel-inner .carousel-item-right.active, .carousel-inner .carousel-item-next {
+        transform: translateX(50%);
+    }
+    .carousel-inner .carousel-item-left.active, .carousel-inner .carousel-item-prev {
+        transform: translateX(-50%);
+    }
+}
+
+/* large - display 3 */
+
+@media (min-width: 992px) {
+    .carousel-inner .carousel-item-right.active, .carousel-inner .carousel-item-next {
+        transform: translateX(33%);
+    }
+    .carousel-inner .carousel-item-left.active, .carousel-inner .carousel-item-prev {
+        transform: translateX(-33%);
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-inner .carousel-item>div {
+        display: none;
+    }
+    .carousel-inner .carousel-item>div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active, .carousel-inner .carousel-item-next, .carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+.carousel-inner .carousel-item-right, .carousel-inner .carousel-item-left {
+    transform: translateX(0);
+}
+
+/* //////////////////////////////////////////////////////// */
+
+.home-contact-wrapper {
+    background-image: url("/images/PawPrints2.png");
+    background-repeat: no-repeat;
+    background-position-y: 30px;
+    background-position-x: 100%;
+}
+
+.home-contact h2 {
+    padding-top: 30px;
+    color: #8B77FC;
+    font-family: "Sailec-Bold";
+}
+
+.home-contact p {
+    color: #8B77FC;
+    font-family: "Sailec";
+}
+
+.home-contact i {
+    border: 3px solid #8B77FC;
+    border-radius: 100%;
+    padding: 10px;
+    color: #8B77FC;
+    font-size: 1.5rem;
+}
+
+/************ Home Page End ***************/
+
+/*12--*********** Resources Content Start ***************/
+
+.resources-flex-area {}
+
+.resources-content-area{
+    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
+}
+
+.breeder-resource-card{
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
+}
+
+.resources-cards i{
+    color: #8B77FC;
+}
+
+.resource-card-details a{
+    font-size: 14px;
+    font-family: "Sailec-Bold";
+    color: #242626;
+}
+
+.resource-card-details a:hover{
+    text-decoration: none;
+    color: #8B77FC;
+}
+
+.resource-card-details span{
+    font-size: 12px;
+    font-family: "Sailec-Bold";
+    color: #24262680;
+}
+
+
+.resource-card-details h5 a{
+    font-size: 18px;
+    font-family: "Sailec-Medium";
+    color:#8B77FC;
+}
+
+.resource-card-contact{
+    border-width: 1px 0px;
+    border-style: solid;
+    border-color: #25272780;
+}
+
+
+/************ Resources Content End ***************/
+
+/*-- footer start*/
+
+footer {
+    font-family: Sailec-Light;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    color: rgba(0, 0, 0, 0.60);
+}
+
+/* Footer End */
+
