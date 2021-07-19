@@ -31,18 +31,25 @@ class BreederSuppliesController extends Controller
         return $this->breeder_SuppliesRepository->getAll();
     }
 
-    public function showAllBreederSupplies()
+    public function showAllBreederSupplies(Request $request)
     {
-        $page = 0;
+        $page = $request->page;
+        $totalBreederSupplies = $this->breeder_SuppliesRepository->matching(
+            $this->breeder_SuppliesRepository->criteria()
+                ->where(Breeder_Supplies::TRASHED, '=', false)
+                ->orderByAsc(Breeder_Supplies::ID)
+        );
        $breederSupplies = $this->breeder_SuppliesRepository->matching(
            $this->breeder_SuppliesRepository->criteria()
                ->where(Breeder_Supplies::TRASHED, '=', false)
-           ->orderByAsc(Breeder_Supplies::ID)
+               ->orderByAsc(Breeder_Supplies::ID)
+               ->skip(((int) $page - 1) * 5)->limit(5)
        );
 //       dd($breederSupplies);
         return view('pages/dashboard/resources/breeder_supplies/show-breeder_supplies', [
             'Supplies' => $breederSupplies,
-            'page' => $page
+            'total'=>count($totalBreederSupplies),
+            'page'=>$page
         ]);
     }
 
@@ -95,7 +102,7 @@ class BreederSuppliesController extends Controller
 
         if(empty($singleBreederSupplies)){
             $this->breeder_SuppliesRepository->save($breederSupplies);
-            return redirect()->route('showAllBreederSupplies');
+            return redirect()->route('showAllBreederSupplies',1);
         }else{
             return redirect()->back()->with('message', 'The resource with this title already exists');
         }
@@ -157,7 +164,7 @@ class BreederSuppliesController extends Controller
             if($singleBreederSupplies->slug == $request->get('slug'))
             {
                 $this->breeder_SuppliesRepository->save($singleBreederSupplies);
-                return redirect()->route('showAllBreederSupplies');
+                return redirect()->route('showAllBreederSupplies',1);
             }else{
                 $matchedBreederSupplies = $this->breeder_SuppliesRepository->matching(
                     $this->breeder_SuppliesRepository->criteria()
@@ -166,9 +173,8 @@ class BreederSuppliesController extends Controller
                 if(empty($matchedBreederSupplies)){
 
                     $this->breeder_SuppliesRepository->save($singleBreederSupplies);
-                    return redirect()->route('showAllBreederSupplies');
+                    return redirect()->route('showAllBreederSupplies',1);
                 }else{
-                    dd("HOIOFIGDG");
                     return redirect()->back()->with('message', 'The resource with this title already exists');
                 }
             }

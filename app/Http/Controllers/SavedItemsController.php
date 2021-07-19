@@ -190,40 +190,7 @@ class SavedItemsController extends Controller
 
     }
 
-    public function savedStuds(){
-        $savedListings = $this->savedListingsRepository->matching(
-            $this->savedListingsRepository->criteria()
-            ->where(SavedListings::CUSTOMER, '=', Auth::user())
-            ->where(SavedListings::TRASHED, '=', false)
-        );
-        $savedStuds = [];
-        foreach ($savedListings as $savedListing){
-            if($savedListing->listings->type == new ListingsTypeEnum('stud')){
-                array_push($savedStuds,$savedListing);
-            }
-        }
-//        dd($savedStuds);
-        return view('pages/dashboard/SavedItems/savedStuds/saved-studs', [
-            'listings' => $savedStuds
-        ]);
-    }
-    public function trashedSavedStuds(){
-        $savedListings = $this->savedListingsRepository->matching(
-            $this->savedListingsRepository->criteria()
-                ->where(SavedListings::CUSTOMER, '=', Auth::user())
-                ->where(SavedListings::TRASHED, '=', true)
-        );
-        $savedStuds = [];
-        foreach ($savedListings as $savedListing){
-            if($savedListing->listings->type == new ListingsTypeEnum('stud')){
-                array_push($savedStuds,$savedListing);
-            }
-        }
-//        dd($savedStuds);
-        return view('pages/dashboard/SavedItems/savedStuds/recycle-saved-studs', [
-            'listings' => $savedStuds
-        ]);
-    }
+
     public function softDeleteListing($slug){
         $savedListings = $this->getAllListings();
         foreach ($savedListings as $savedListing){
@@ -260,11 +227,52 @@ class SavedItemsController extends Controller
 
         return redirect()->back();
     }
-    public function savedPuppy(){
+    public function savedStuds(Request $request){
+        $page = $request->page;
         $savedListings = $this->savedListingsRepository->matching(
             $this->savedListingsRepository->criteria()
                 ->where(SavedListings::CUSTOMER, '=', Auth::user())
                 ->where(SavedListings::TRASHED, '=', false)
+                ->skip(((int) $page - 1) * 5)->limit(5)
+        );
+        $savedStuds = [];
+        foreach ($savedListings as $savedListing){
+            if($savedListing->listings->type == new ListingsTypeEnum('stud')){
+                array_push($savedStuds,$savedListing);
+            }
+        }
+//        dd($savedStuds);
+        return view('pages/dashboard/SavedItems/savedStuds/saved-studs', [
+            'listings' => $savedStuds,
+            'total'=>count($savedStuds),
+            'page'=>$page
+        ]);
+    }
+    public function trashedSavedStuds(){
+        $savedListings = $this->savedListingsRepository->matching(
+            $this->savedListingsRepository->criteria()
+                ->where(SavedListings::CUSTOMER, '=', Auth::user())
+                ->where(SavedListings::TRASHED, '=', true)
+        );
+        $savedStuds = [];
+        foreach ($savedListings as $savedListing){
+            if($savedListing->listings->type == new ListingsTypeEnum('stud')){
+                array_push($savedStuds,$savedListing);
+            }
+        }
+//        dd($savedStuds);
+        return view('pages/dashboard/SavedItems/savedStuds/recycle-saved-studs', [
+            'listings' => $savedStuds
+        ]);
+    }
+
+    public function savedPuppy(Request $request){
+        $page = $request->page;
+        $savedListings = $this->savedListingsRepository->matching(
+            $this->savedListingsRepository->criteria()
+                ->where(SavedListings::CUSTOMER, '=', Auth::user())
+                ->where(SavedListings::TRASHED, '=', false)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
         $savedPuppy = [];
         foreach ($savedListings as $savedListing){
@@ -274,7 +282,9 @@ class SavedItemsController extends Controller
         }
 //        dd($savedStuds);
         return view('pages/dashboard/SavedItems/savedPuppy/saved-puppy', [
-            'listings' => $savedPuppy
+            'listings' => $savedPuppy,
+            'total'=>count($savedPuppy),
+            'page'=>$page
         ]);
     }
     public function trashedSavedPuppy(){
@@ -294,15 +304,19 @@ class SavedItemsController extends Controller
             'listings' => $savedStuds
         ]);
     }
-    public function savedLitters(){
+    public function savedLitters(Request $request){
+        $page = $request->page;
         $savedLitters = $this->savedLittersRepository->matching(
             $this->savedLittersRepository->criteria()
                 ->where(SavedLitters::CUSTOMER, '=', Auth::user())
                 ->where(SavedLitters::TRASHED, '=', false)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
 //        dd($savedLitters);
         return view('pages/dashboard/SavedItems/savedLitters/saved-litters', [
-            'listings' => $savedLitters
+            'listings' => $savedLitters,
+            'total'=>count($savedLitters),
+            'page'=>$page
         ]);
     }
     public function trashedSavedLitters(){
@@ -352,15 +366,23 @@ class SavedItemsController extends Controller
         return redirect()->back();
     }
 
-    public function searchHistory()
+    public function searchHistory(Request $request)
     {
-        $savedSearch = $this->savedSearchRepository->matching(
+        $page = $request->page;
+        $totaSavedSearch = $this->savedSearchRepository->matching(
             $this->savedSearchRepository->criteria()
             ->where(SavedSearch::USER, '=', Auth::user())
         );
+        $savedSearch = $this->savedSearchRepository->matching(
+            $this->savedSearchRepository->criteria()
+                ->where(SavedSearch::USER, '=', Auth::user())
+                ->skip(((int) $page - 1) * 5)->limit(5)
+        );
 //        dd($savedSearch);
         return view('pages/dashboard/search_history', [
-            'savedSearch' => $savedSearch
+            'savedSearch' => $savedSearch,
+            'total'=>count($totaSavedSearch),
+            'page'=>$page
         ]);
     }
     public function clearAllSearchHistory()

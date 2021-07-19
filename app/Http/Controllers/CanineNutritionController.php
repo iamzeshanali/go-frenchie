@@ -26,18 +26,24 @@ class CanineNutritionController extends Controller
         return $this->canine_nutritionRepository->getAll();
     }
 
-    public function showAllListings()
+    public function showAllListings(Request $request)
     {
-        $page = 0;
+        $page = $request->page;
+        $totalListings = $this->canine_nutritionRepository->matching(
+            $this->canine_nutritionRepository->criteria()
+                ->where(Canine_Nutrition::TRASHED, '=', false)
+        );
         $Listings = $this->canine_nutritionRepository->matching(
             $this->canine_nutritionRepository->criteria()
                 ->where(Canine_Nutrition::TRASHED, '=', false)
                 ->orderByAsc(Canine_Nutrition::ID)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
 //       dd($Listings);
         return view('pages/dashboard/resources/canine_nutrition/show-canine_nutrition', [
             'Supplies' => $Listings,
-            'page' => $page
+            'total'=>count($totalListings),
+            'page'=>$page
         ]);
     }
 
@@ -90,7 +96,7 @@ class CanineNutritionController extends Controller
 
         if(empty($singleListings)){
             $this->canine_nutritionRepository->save($Listings);
-            return redirect()->route('showAllCanineNutrition');
+            return redirect()->route('showAllCanineNutrition',1);
         }else{
             return redirect()->back()->with('message', 'The resource with this title already exists');
         }
@@ -151,7 +157,7 @@ class CanineNutritionController extends Controller
             if($singleListings->slug == $request->get('slug'))
             {
                 $this->canine_nutritionRepository->save($singleListings);
-                return redirect()->route('showAllCanineNutrition');
+                return redirect()->route('showAllCanineNutrition',1);
             }else{
                 $matchedListings = $this->canine_nutritionRepository->matching(
                     $this->canine_nutritionRepository->criteria()
@@ -160,9 +166,8 @@ class CanineNutritionController extends Controller
                 if(empty($matchedListings)){
 
                     $this->canine_nutritionRepository->save($singleListings);
-                    return redirect()->route('showAllCanineNutrition');
+                    return redirect()->route('showAllCanineNutrition',1);
                 }else{
-                    dd("HOIOFIGDG");
                     return redirect()->back()->with('message', 'The resource with this title already exists');
                 }
             }

@@ -57,9 +57,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
                         <ul>
-                            <li><a href="{{ route('showAllBreederSupplies') }}">Breeder Supplies</a></li>
-                            <li><a href="{{ route('showAllCanineGenetics') }}">Cannie Genetics</a></li>
-                            <li><a href="{{ route('showAllCanineNutrition') }}">Cannie Nutrition</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/breeder-supplies')}}/1">Breeder Supplies</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-genetics')}}/1">Cannie Genetics</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-nutrition')}}/1">Cannie Nutrition</a></li>
                         </ul>
                     </div>
                 </div>
@@ -77,9 +77,9 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body">
                         <ul>
-                            <li><a href="{{ route('savedStuds') }}">Saved Studs</a></li>
-                            <li><a href="{{ route('savedPuppy') }}">Saved Puppies</a></li>
-                            <li><a href="{{ route('savedLitters') }}">Saved Litters</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-studs')}}/1">Saved Studs</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-puppy')}}/1">Saved Puppies</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-litters')}}/1">Saved Litters</a></li>
                         </ul>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
             <div class="card border-0 pb-2">
                 <div class="card-header p-0 bg-white border-0" id="headingThree">
                     <h5 class="mb-0">
-                        <button onclick="window.location = '{{  \Illuminate\Support\Facades\URL::route('searchHistory') }}'" class="btn btn-collapse p-0 collapsed" aria-expanded="false">
+                        <button onclick="window.location = '{{\Illuminate\Support\Facades\URL::to('dashboard/saved-search')}}/1'" class="btn btn-collapse p-0 collapsed" aria-expanded="false">
                             <i class="fas fa-history"></i> &emsp;  Search History
                         </button>
                     </h5>

@@ -31,18 +31,24 @@ class CanineGeneticsController extends Controller
         return $this->canine_geneticsRepository->getAll();
     }
 
-    public function showAllListings()
+    public function showAllListings(Request $request)
     {
-        $page = 0;
+        $page = $request->page;
+        $totalListings = $this->canine_geneticsRepository->matching(
+            $this->canine_geneticsRepository->criteria()
+                ->where(Canine_Genetics::TRASHED, '=', false)
+        );
         $Listings = $this->canine_geneticsRepository->matching(
             $this->canine_geneticsRepository->criteria()
                 ->where(Canine_Genetics::TRASHED, '=', false)
                 ->orderByAsc(Canine_Genetics::ID)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
 //       dd($Listings);
         return view('pages/dashboard/resources/canine_genetics/show-canine_genetics', [
             'Supplies' => $Listings,
-            'page' => $page
+            'total'=>count($totalListings),
+            'page'=>$page
         ]);
     }
 
@@ -95,7 +101,7 @@ class CanineGeneticsController extends Controller
 
         if(empty($singleListings)){
             $this->canine_geneticsRepository->save($Listings);
-            return redirect()->route('showAllCanineGenetics');
+            return redirect()->route('showAllCanineGenetics',1);
         }else{
             return redirect()->back()->with('message', 'The resource with this title already exists');
         }
@@ -157,7 +163,7 @@ class CanineGeneticsController extends Controller
             if($singleListings->slug == $request->get('slug'))
             {
                 $this->canine_geneticsRepository->save($singleListings);
-                return redirect()->route('showAllCanineGenetics');
+                return redirect()->route('showAllCanineGenetics',1);
             }else{
                 $matchedListings = $this->canine_geneticsRepository->matching(
                     $this->canine_geneticsRepository->criteria()
@@ -166,7 +172,7 @@ class CanineGeneticsController extends Controller
                 if(empty($matchedListings)){
 
                     $this->canine_geneticsRepository->save($singleListings);
-                    return redirect()->route('showAllCanineGenetics');
+                    return redirect()->route('showAllCanineGenetics',1);
                 }else{
                     return redirect()->back()->with('message', 'The resource with this title already exists');
                 }

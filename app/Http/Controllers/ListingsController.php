@@ -74,13 +74,12 @@ class ListingsController extends Controller
             ->whatsapp()
             ->reddit();
 
-        $page = 1;
         $allPuppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
                 ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->orderByAsc(Listings::ID)
-                ->skip(((int) $page - 1) * 10)->limit(10)
+                ->limit(5)
         );
 
 
