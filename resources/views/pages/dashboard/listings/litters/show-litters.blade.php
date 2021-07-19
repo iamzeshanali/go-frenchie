@@ -102,15 +102,13 @@
                                     </tbody>
                                 </table>
                                 <div class="clearfix">
-                                    <div class="hint-text">Showing <b>{{count($Puppies)}}</b> out of <b>{{count($Puppies)}}</b> entries</div>
+                                    <div class="hint-text">Showing <b>{{count($Puppies)}}</b> out of <b>{{$total}}</b> entries</div>
                                     <ul class="pagination">
-                                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                        <li class="page-item {{$page == 1 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/litters')}}/{{$page-1}}" class="page-link">Previous</a></li>
+                                        @for($i = 1; $i<=($total/5); $i++)
+                                            <li class="page-item {{$page == $i ? 'active' : ''}}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/litters')}}/{{$i}}" class="page-link">{{$i}}</a></li>
+                                        @endfor
+                                        <li class="page-item {{$page >= $total/5 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/litters')}}/{{$page+1}}" class="page-link">Next</a></li>
                                     </ul>
                                 </div>
                             @endif

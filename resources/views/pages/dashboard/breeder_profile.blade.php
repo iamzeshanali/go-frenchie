@@ -7,7 +7,7 @@
     <div class="row align-items-center mb-5">
         <div class="col-md-4">
             <div class="breeder-profile-image text-center">
-                <img src="images/profile.png" alt="Breeder Profile Image" width="200px">
+                <img src="{{asset_file_url(\Illuminate\Support\Facades\Auth::User()->profileImage)}}" alt="Breeder Profile Image" width="200px">
             </div>
         </div>
         <div class="breeder-profile-info col-md-8 d-flex flex-column">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="breeder-profile-name mb-3">
-        <h4 title="Breeder Name">Bella Max Breeder</h4>
+        <h4 title="Breeder Name">{{\Illuminate\Support\Facades\Auth::User()->firstName}} {{\Illuminate\Support\Facades\Auth::User()->lastName}}</h4>
     </div>
 
     <div class="row breeder-profile-contact mb-5">
@@ -35,7 +35,12 @@
 
     <div class="row align-items-center">
         <div class="col-md-3 text-center">
-            <img src="images/kennel-logo.png" alt="Kennel Logo" title="Kennel Logo" width="100px">
+            @if(\Illuminate\Support\Facades\Auth::User()->logo != null)
+                <img src="{{asset_file_url(\Illuminate\Support\Facades\Auth::User()->logo)}}" alt="Kennel Logo" title="Kennel Logo" width="100px">
+            @else
+                <img src="images/kennel-logo.png" alt="Kennel Logo" title="Kennel Logo" width="100px">
+            @endif
+
         </div>
         <div class="col-md-9 text-justify">
             <p class="breeder-profile-about">

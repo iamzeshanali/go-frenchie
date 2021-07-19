@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class FrenchBulldogMigration extends Migration
+class FrenchBullDogSchema extends Migration
 {
     /**
      * Run the migrations.
@@ -36,6 +36,15 @@ class FrenchBulldogMigration extends Migration
             $table->string('website', 2083)->nullable();
             $table->string('logo', 500)->nullable();
             $table->string('logo_file_name', 255)->nullable();
+
+        });
+
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->integer('id')->autoIncrement()->unsigned();
+            $table->string('email', 254);
+            $table->string('token', 255);
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
 
         });
 
@@ -377,6 +386,7 @@ class FrenchBulldogMigration extends Migration
         Schema::drop('breeder__supplies');
         Schema::drop('litters');
         Schema::drop('listings');
+        Schema::drop('password_resets');
         Schema::drop('users');
 
     }

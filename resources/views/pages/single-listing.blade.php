@@ -243,25 +243,6 @@
                         @endif
                     </div>
                     <div class="card rounded">
-                        <!-- <div class="card-header p-0">
-                            <div class="p-2 d-flex justify-content-between align-items-center">
-                                <a class="breeder-name" href="" title="Breeder Name">
-                                    <h4 class="display-inline"> Breeder Name</h4>
-                                </a>
-                                <div class="mb-2 text-right">
-                                    <i class="fa fa-phone-alt"></i><a class="contactNo pl-2" href="tel:+15016727186" title="Phone">+1 (501) 672-7186</a>
-                                </div>
-                            </div>
-                            <div class="px-2 d-flex justify-content-between align-items-center pb-2">
-                                <a href="" title="Breeder Address">1602 Silver Street, Ashland, NE 68003</a>
-                                <div class="float-right fbd-single-listing-contact-social">
-                                    <a class="ml-3" href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="ml-3" href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                                    <a class="ml-3" href="#" title="Website"><i class="fas fa-globe"></i></a>
-                                    <a class="ml-3" href="#" title="Share"><i class="fas fa-share-square"></i></a>
-                                </div>
-                            </div>
-                        </div> -->
 
                         <div class="card-body p-3">
                             <div class="form-group">

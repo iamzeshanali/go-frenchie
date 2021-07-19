@@ -8,7 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+
+
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
@@ -41,11 +43,10 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <?php $routeName = \Illuminate\Support\Facades\Route::currentRouteName();?>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" id="home">
+                        <li class="nav-item {{  request()->routeIs('') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item {{  request()->routeIs('showStuds') ? 'active' : '' }}">
@@ -54,13 +55,13 @@
                         <li class="nav-item {{  request()->routeIs('showPuppies') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('showPuppies') }}">PUPPIES</a>
                         </li>
-                        <li class="nav-item" id="litters">
+                        <li class="nav-item {{  request()->routeIs('showLitters') ? 'active' : '' }}">
                             <a class="nav-link" href="{{route('showLitters')}}">LITTERS</a>
                         </li>
-                        <li class="nav-item" id="resources">
+                        <li class="nav-item {{  request()->routeIs('resources') ? 'active' : '' }}">
                             <a class="nav-link" href="{{route('resources')}}">RESOURCES</a>
                         </li>
-                        <li class="nav-item" id="dnaMachine">
+                        <li class="nav-item {{  request()->routeIs('dnaMachine') ? 'active' : '' }}">
                             <a class="nav-link" href="{{route('dnaMachine')}}">DNA MACHINE</a>
                         </li>
                     </ul>

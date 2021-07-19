@@ -48,19 +48,28 @@ class LittersController extends Controller
         ]);
     }
 
-    public function showLittersInDashboard()
+    public function showLittersInDashboard(Request $request)
     {
+        $page = $request->page;
+        $totalLitters= $this->littersRepository->matching(
+            $this->littersRepository->criteria()
+                ->where(Litters::BREEDER,'=',Auth::user())
+                ->where(Litters::STATUS,'=',new ListingsStatusEnum('active'))
+                ->where(Litters::TRASHED,'=',false)
+        );
         $Litters= $this->littersRepository->matching(
             $this->littersRepository->criteria()
                 ->where(Litters::BREEDER,'=',Auth::user())
                 ->where(Litters::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Litters::TRASHED,'=',false)
                 ->orderByAsc(Listings::ID)
-                ->limit(5)
+                ->skip(((int) $page - 1) * 1)->limit(1)
         );
 //        dd($Puppies);
         return view('pages/dashboard/listings/litters/show-litters', [
             'Puppies' => $Litters,
+            'total'=>count($totalLitters),
+            'page'=>$page
         ]);
     }
     public function showSingleLitter($slug){
@@ -80,6 +89,7 @@ class LittersController extends Controller
             ]);
         }
     }
+
     public function createLitter(Request $request)
     {
         $litter = new Litters();
@@ -119,7 +129,7 @@ class LittersController extends Controller
 
         $this->littersRepository->save($litter);
 
-        return redirect()->route('showAllLitters');
+        return redirect()->route('showAllLitters',1);
     }
 
     public function editLitter($slug)
@@ -210,7 +220,8 @@ class LittersController extends Controller
             return redirect()->route('showAllLitters');
         }
     }
-        public function trashLitter($slug)
+
+    public function trashLitter($slug)
         {
             $singleListing = $this->littersRepository->matching(
                 $this->littersRepository->criteria()
@@ -254,6 +265,7 @@ class LittersController extends Controller
         }
 
     }
+
     public function deleteLitter($slug)
     {
         $singleListing = $this->littersRepository->matching(

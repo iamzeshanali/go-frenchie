@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Domain\Entities\Advertise;
+use App\Domain\Entities\Auth\PasswordReset;
 use App\Domain\Entities\Breeder;
 use App\Domain\Entities\Breeder_Supplies;
 use App\Domain\Entities\Canine_Genetics;
@@ -18,6 +19,7 @@ use App\Domain\Entities\SavedSearch;
 use App\Domain\Entities\Users;
 use App\Infrastructure\Persistence\AdvertiseMapper;
 use App\Infrastructure\Persistence\AdvertisementsMapper;
+use App\Infrastructure\Persistence\Auth\PasswordResetMapper;
 use App\Infrastructure\Persistence\Breeder_SuppliesMapper;
 use App\Infrastructure\Persistence\BreederMapper;
 use App\Infrastructure\Persistence\Canine_GeneticsMapper;
@@ -57,6 +59,7 @@ class AppOrm extends Orm
 
         $orm->entities([
             Users::class => UsersMapper::class,
+            PasswordReset::class => PasswordResetMapper::class,
             Listings::class => ListingsMapper::class,
             Litters::class => LittersMapper::class,
 //

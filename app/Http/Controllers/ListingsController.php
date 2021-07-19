@@ -21,10 +21,14 @@ use App\Domain\Services\Persistence\IListingsRepository;
 use App\Domain\Services\Persistence\ISavedSearchRepository;
 use Dms\Common\Structure\DateTime\Date;
 use Dms\Common\Structure\FileSystem\Image;
+use Dms\Core\Model\Object\Entity;
 use Dms\Core\Model\Object\Enum;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+use Jorenvh\Share\Share;
+use Jorenvh\Share\ShareFacade;
 
 
 class ListingsController extends Controller
@@ -33,7 +37,7 @@ class ListingsController extends Controller
     public $listingsRepository;
     public $savedSearchRepository;
 
-    public $token = 'DemoOnly00VI5ArNccbTBDadtO2dPWD3RGIuwp8dEpI2Ed094sQC8YXZGaG95smG';
+    public $token = 'DemoOnly00YOAZbtgjl0ral75LPVLTRc7xYIjvXKXIV2fC1HH65shpZH6vEdVHf6';
 
     public function __construct(IListingsRepository $listingsRepository, ISavedSearchRepository $savedSearchRepository)
     {
@@ -57,12 +61,28 @@ class ListingsController extends Controller
         $sponsoredPuppies = [];
         $standardPuppies = [];
         $user = Auth::user();
+
+
+        $shareComponent = ShareFacade::page(
+            URL::current(),
+            'The French BullDog',
+        )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp()
+            ->reddit();
+
+        $page = 1;
         $allPuppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
                 ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->orderByAsc(Listings::ID)
+                ->skip(((int) $page - 1) * 10)->limit(10)
         );
+
 
         foreach ($allPuppies as $fp) {
             if($fp->isSponsored){
@@ -88,7 +108,9 @@ class ListingsController extends Controller
             'standardPuppies' => $standardPuppies,
             'data' => null,
             'dataIds' => $dataIds,
-            'matched' => false
+            'matched' => false,
+            'shareComponent' => $shareComponent,
+            'page'=>1
         ]);
     }
 
@@ -103,6 +125,16 @@ class ListingsController extends Controller
         $sponsoredPuppies = [];
         $standardPuppies = [];
         $user = Auth::user();
+        $shareComponent = ShareFacade::page(
+            URL::current(),
+            'The French BullDog',
+        )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp()
+            ->reddit();
         $allStuds = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
@@ -143,8 +175,17 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showPuppiesInDashboard()
+    public function showPuppiesInDashboard(Request $request)
     {
+        $page = !empty($request['page']) ? (int)$request['page'] : 1;
+//        dd($page);
+        $totalPuppies = $this->listingsRepository->matching(
+            $this->listingsRepository->criteria()
+                ->where(Listings::BREEDER,'=',Auth::user())
+                ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
+                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                ->where(Listings::TRASHED,'=',false)
+        );
         $Puppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::BREEDER,'=',Auth::user())
@@ -152,11 +193,13 @@ class ListingsController extends Controller
                 ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Listings::TRASHED,'=',false)
                 ->orderByAsc(Listings::ID)
-                ->limit(5)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
 //        dd($Puppies);
         return view('pages/dashboard/listings/puppies/show-puppies', [
             'Puppies' => $Puppies,
+            'total'=>count($totalPuppies),
+            'page'=>$page
         ]);
     }
 
@@ -165,8 +208,16 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showStudsInDashboard()
+    public function showStudsInDashboard(Request $request)
     {
+        $page = $request->page;
+        $totalStuds = $this->listingsRepository->matching(
+            $this->listingsRepository->criteria()
+                ->where(Listings::BREEDER,'=',Auth::user())
+                ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
+                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                ->where(Listings::TRASHED,'=',false)
+        );
         $Studs = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::BREEDER,'=',Auth::user())
@@ -174,11 +225,13 @@ class ListingsController extends Controller
                 ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Listings::TRASHED,'=',false)
                 ->orderByAsc(Listings::ID)
-                ->limit(5)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
 //        dd($Puppies);
         return view('pages/dashboard/listings/studs/show-studs', [
             'Puppies' => $Studs,
+            'total'=>count($totalStuds),
+            'page'=>$page
         ]);
     }
 
@@ -330,6 +383,7 @@ class ListingsController extends Controller
     public function createListings(Request $request){
 
 
+//        dd($request->all());
         $puppy = new Listings();
         $puppy->breeder = Auth::user();
         $puppy->title = $request->get('title');
@@ -439,10 +493,10 @@ class ListingsController extends Controller
 //        dd($puppy);
         $this->listingsRepository->save($puppy);
         if ($request->get('type') == 'stud'){
-            return redirect()->route('showAllStuds');
+            return redirect()->route('showAllStuds',1);
         }
         else{
-            return redirect()->route('showAllPuppies');
+            return redirect()->route('showAllPuppies',1);
         }
 
     }
@@ -613,20 +667,24 @@ class ListingsController extends Controller
 
         $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
 //        dd($kennels);
-        if (isset($kennels)){
-            $allSavedSearch = $this->savedSearchRepository->getAll();
-            if (count($allSavedSearch) > 4){
-                $this->savedSearchRepository->remove($allSavedSearch[0]);
-            }
-            $savedSearch = new SavedSearch();
-            $savedSearch->user = Auth::user();
-            $savedSearch->dnaColor = $dnaColor;
-            $savedSearch->dnaCoat = $dnaCoat;
-            $savedSearch->zip = $zipCode;
-            $savedSearch->type = $type;
 
-            $this->savedSearchRepository->save($savedSearch);
+        if(Auth::user()){
+            if (isset($kennels)){
+                $allSavedSearch = $this->savedSearchRepository->getAll();
+                if (count($allSavedSearch) > 4){
+                    $this->savedSearchRepository->remove($allSavedSearch[0]);
+                }
+                $savedSearch = new SavedSearch();
+                $savedSearch->user = Auth::user();
+                $savedSearch->dnaColor = $dnaColor;
+                $savedSearch->dnaCoat = $dnaCoat;
+                $savedSearch->zip = $zipCode;
+                $savedSearch->type = $type;
+
+                $this->savedSearchRepository->save($savedSearch);
+            }
         }
+
 
         $allPuppies = [];
         $allListings = [];
@@ -809,13 +867,24 @@ class ListingsController extends Controller
             'dnaCoat' => $dnaCoat,
             'allListings' => $allPuppies
         ];
+        $shareComponent = ShareFacade::page(
+            URL::current(),
+            'The French BullDog',
+        )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp()
+            ->reddit();
 //        dd($data['allListings']);
         if($type == 'all'){
             return view('pages/results-listings', [
                 'sponsoredPuppies' => $sponsoredPuppies,
                 'standardPuppies' => $standardPuppies,
                 'data' => $data,
-                'matched' => false
+                'matched' => false,
+                'shareComponent' => $shareComponent
             ]);
 
         }elseif($type == 'puppy'){
@@ -823,7 +892,8 @@ class ListingsController extends Controller
                 'sponsoredPuppies' => $sponsoredPuppies,
                 'standardPuppies' => $standardPuppies,
                 'data' => $data,
-                'matched' => false
+                'matched' => false,
+                'shareComponent' => $shareComponent
             ]);
 
         }elseif($type == 'stud'){
@@ -831,7 +901,8 @@ class ListingsController extends Controller
                 'sponsoredPuppies' => $sponsoredPuppies,
                 'standardPuppies' => $standardPuppies,
                 'data' => $data,
-                'matched' => false
+                'matched' => false,
+                'shareComponent' => $shareComponent
             ]);
 
         }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\AppCms;
 use App\AppOrm;
+use App\Domain\Services\Persistence\Auth\IPasswordResetRepository;
 use App\Domain\Services\Persistence\IAdvertisementsRepository;
 use App\Domain\Services\Persistence\IAdvertiseRepository;
 use App\Domain\Services\Persistence\IBreeder_SuppliesRepository;
@@ -19,6 +20,7 @@ use App\Domain\Services\Persistence\ISavedListingsRepository;
 use App\Domain\Services\Persistence\ISavedLittersRepository;
 use App\Domain\Services\Persistence\ISavedSearchRepository;
 use App\Domain\Services\Persistence\IUsersRepository;
+use App\Infrastructure\Persistence\Auth\DbPasswordResetRepository;
 use App\Infrastructure\Persistence\DbAdvertisementsRepository;
 use App\Infrastructure\Persistence\DbAdvertiseRepository;
 use App\Infrastructure\Persistence\DbBreeder_SuppliesRepository;
@@ -61,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ICms::class, AppCms::class);
 
         $this->app->singleton(IUsersRepository::class, DbUsersRepository::class);
+        $this->app->singleton(IPasswordResetRepository::class, DbPasswordResetRepository::class);
 
         $this->app->singleton(IListingsRepository::class, DbListingsRepository::class);
         $this->app->singleton(ILittersRepository::class, DbLittersRepository::class);

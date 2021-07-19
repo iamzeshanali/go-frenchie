@@ -10,17 +10,18 @@
 10--Filter Component
 11--Home Page
 12--Resources
+13--Social Links
 -- footer*/
 
 /*1-- Font Include Start  */
 
 @font-face {
     font-family: Sailec-Bold;
-    src: 
+    src:
     /* Full name */
     local(Sailec),
     /* Postscript name */
-    local(Sailec-Bold), 
+    local(Sailec-Bold),
     /* otherwise, download it */
     url(/fonts/Sailec-Bold.ttf);
 }
@@ -1548,6 +1549,23 @@ p.breeder-profile-about{
 
 /************ Resources Content End ***************/
 
+
+/*-- 13 Social Links*/
+div#social-links {
+    margin: 0 auto;
+    max-width: 500px;
+}
+div#social-links ul li {
+    display: inline-block;
+}
+div#social-links ul li a {
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin: 1px;
+    font-size: 20px;
+    color: #222;
+    background-color: #ccc;
+}
 /*-- footer start*/
 
 footer {

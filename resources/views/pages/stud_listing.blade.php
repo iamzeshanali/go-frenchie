@@ -1,5 +1,5 @@
 @extends('./layouts.app')
-
+@section('title', 'Studs')
 @section('content')
 
     <div class="container">
@@ -1550,7 +1550,7 @@
 
         function singlePuppy($slug) {
             // console.log($slug);
-            window.location = "http://frenchbulldog.test/puppy-listing/"+$slug;
+            window.location = "{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug;
         }
 
         function getZip(){

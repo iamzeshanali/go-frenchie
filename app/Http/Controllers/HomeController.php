@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Jorenvh\Share\Share;
 
 class HomeController extends Controller
 {

@@ -5,6 +5,7 @@ namespace App;
 use App\Cms\AdvertisementsPackage;
 use App\Cms\AdvertisePackage;
 use App\Cms\ListingsPackage;
+use App\Cms\PasswordTokenPackage;
 use App\Cms\ResourcesPackage;
 use App\Cms\SavedItemsPackage;
 use App\Cms\UsersPackage;
@@ -40,6 +41,7 @@ class AppCms extends Cms
             'SavedItems' => SavedItemsPackage::class,
             'Listings' => ListingsPackage::class,
             'Advertise' => AdvertisePackage::class,
+            'Password_Token' => PasswordTokenPackage::class,
 
         ]);
     }

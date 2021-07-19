@@ -1,5 +1,5 @@
 @extends('./layouts.app')
-
+@section('title', 'DNA Machine')
 @section('content')
 
 <div class="container-fluid">
@@ -18,7 +18,7 @@
 
             <div class="fbd-single-listing-dna row mt-5">
 
-            
+
 
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>Blue</b></span>
@@ -35,7 +35,7 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>Chocolate</b></span>
                 </div>
@@ -51,7 +51,7 @@
                         </tbody>
                     </table>
                 </div>
-              
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>TestableChocolate</b></span>
                 </div>
@@ -67,7 +67,7 @@
                         </tbody>
                     </table>
                 </div>
-               
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>Fluffy</b></span>
                 </div>
@@ -83,7 +83,7 @@
                         </tbody>
                     </table>
                 </div>
-               
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>Intensity</b></span>
                 </div>
@@ -99,7 +99,7 @@
                         </tbody>
                     </table>
                 </div>
-               
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>Pied</b></span>
                 </div>
@@ -115,7 +115,7 @@
                         </tbody>
                     </table>
                 </div>
-              
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>Brindle</b></span>
                 </div>
@@ -131,7 +131,7 @@
                         </tbody>
                     </table>
                 </div>
-              
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>Merle</b></span>
                 </div>
@@ -147,7 +147,7 @@
                         </tbody>
                     </table>
                 </div>
-              
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>Agouti</b></span>
                 </div>
@@ -175,7 +175,7 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="col-sm-3 my-auto pl-5 text-left">
                     <i class="fa fa-dna"></i> &emsp;<span><b>EMcir</b></span>
                 </div>

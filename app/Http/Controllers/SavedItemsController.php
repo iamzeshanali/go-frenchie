@@ -8,11 +8,13 @@ use App\Domain\Entities\Listings;
 use App\Domain\Entities\Litters;
 use App\Domain\Entities\SavedListings;
 use App\Domain\Entities\SavedLitters;
+use App\Domain\Entities\SavedSearch;
 use App\Domain\Entities\Users;
 use App\Domain\Services\Persistence\IListingsRepository;
 use App\Domain\Services\Persistence\ILittersRepository;
 use App\Domain\Services\Persistence\ISavedListingsRepository;
 use App\Domain\Services\Persistence\ISavedLittersRepository;
+use App\Domain\Services\Persistence\ISavedSearchRepository;
 use App\Domain\Services\Persistence\IUsersRepository;
 use Dms\Common\Structure\Type\StringValueObject;
 use Dms\Common\Structure\Web\EmailAddress;
@@ -30,14 +32,16 @@ class SavedItemsController extends Controller
     public $savedListingsRepository;
     public $savedLittersRepository;
     public $userRepository;
+    public $savedSearchRepository;
 
-    public function __construct(IListingsRepository $listingsRepository,ILittersRepository $littersRepository, IUsersRepository $usersRepository, ISavedLittersRepository $savedLittersRepository, ISavedListingsRepository $savedListingsRepository)
+    public function __construct(IListingsRepository $listingsRepository,ILittersRepository $littersRepository, IUsersRepository $usersRepository, ISavedLittersRepository $savedLittersRepository, ISavedListingsRepository $savedListingsRepository, ISavedSearchRepository $savedSearchRepository)
     {
         $this->listingsRepository = $listingsRepository;
         $this->littersRepository = $littersRepository;
         $this->usersRepository = $usersRepository;
         $this->savedListingsRepository  = $savedListingsRepository;
         $this->savedLittersRepository  = $savedLittersRepository;
+        $this->savedSearchRepository  = $savedSearchRepository;
     }
 
     public function getAllListings(){
@@ -347,4 +351,25 @@ class SavedItemsController extends Controller
 
         return redirect()->back();
     }
+
+    public function searchHistory()
+    {
+        $savedSearch = $this->savedSearchRepository->matching(
+            $this->savedSearchRepository->criteria()
+            ->where(SavedSearch::USER, '=', Auth::user())
+        );
+//        dd($savedSearch);
+        return view('pages/dashboard/search_history', [
+            'savedSearch' => $savedSearch
+        ]);
+    }
+    public function clearAllSearchHistory()
+    {
+        $savedSearch = $this->savedSearchRepository->getAll();
+        $this->savedSearchRepository->removeAll($savedSearch);
+        return view('pages/dashboard/search_history', [
+            'savedSearch' => []
+        ]);
+    }
 }
+

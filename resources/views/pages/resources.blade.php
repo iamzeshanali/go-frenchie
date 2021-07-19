@@ -1,5 +1,5 @@
 @extends('./layouts.app')
-
+@section('title', 'Breeder Resources')
 @section('content')
 
 <div class="container">

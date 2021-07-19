@@ -246,10 +246,10 @@ class ListingsModule extends CrudModule
         $module->removeAction()->deleteFromDataSource();
 
         $module->summaryTable(function (SummaryTableDefinition $table) {
-            $table->mapProperty(Listings::BREEDER)->to(Field::create('breeder', 'Breeder')
-                ->entityFrom($this->usersRepository)
-                ->required()
-                ->labelledBy(Users::USERNAME));
+//            $table->mapProperty(Listings::BREEDER)->to(Field::create('breeder', 'Breeder')
+//                ->entityFrom($this->usersRepository)
+//                ->required()
+//                ->labelledBy(Users::USERNAME));
             $table->mapProperty(Listings::TITLE)->to(Field::create('title', 'Title')->string()->required());
 //            $table->mapProperty(Listings::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
 //            $table->mapProperty(Listings::DESCRIPTION)->to(Field::create('decription', 'Decription')->string()->required());

@@ -37,9 +37,9 @@
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
                         <ul>
-                            <li><a href="{{ route('showAllStuds') }}">Studs</a></li>
-                            <li><a href="{{ route('showAllPuppies') }}">Puppies</a></li>
-                            <li><a href="{{ route('showAllLitters') }}">Litters</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/studs')}}/1">Studs</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/puppies')}}/1">Puppies</a></li>
+                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/litters')}}/1">Litters</a></li>
                         </ul>
                     </div>
                 </div>
@@ -82,6 +82,15 @@
                             <li><a href="{{ route('savedLitters') }}">Saved Litters</a></li>
                         </ul>
                     </div>
+                </div>
+            </div>
+            <div class="card border-0 pb-2">
+                <div class="card-header p-0 bg-white border-0" id="headingThree">
+                    <h5 class="mb-0">
+                        <button onclick="window.location = '{{  \Illuminate\Support\Facades\URL::route('searchHistory') }}'" class="btn btn-collapse p-0 collapsed" aria-expanded="false">
+                            <i class="fas fa-history"></i> &emsp;  Search History
+                        </button>
+                    </h5>
                 </div>
             </div>
         </div>

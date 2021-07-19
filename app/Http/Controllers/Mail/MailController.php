@@ -35,17 +35,17 @@ class MailController extends Controller
             'message' => $request->message
         );
 
-//        dd($listing);
-//        $user['to'] = $listing->breeder->email->asString();
+
         $breederEmail = $listing->breeder->email->asString();
 //        dd($breederEmail);
 //        'to' will be the breeder associated with this entity
+        Mail::to($breederEmail)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
         Mail::to('zeeshanalibenifshi@gmail.com')->send(new ContactBreeder($name,$email,$subject,$data,$listing));
 //        Mail::send('layouts/mail',$data, function ($messages) use ($user){
 //            $messages->to($user['to']);
 //            $messages->subject('Listings Contact');
 //        });
 
-//        return redirect()->back()->with('status','200');
+        return redirect()->back()->with('status','200');
     }
 }
