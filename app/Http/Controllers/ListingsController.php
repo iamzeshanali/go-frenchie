@@ -37,7 +37,7 @@ class ListingsController extends Controller
     public $listingsRepository;
     public $savedSearchRepository;
 
-    public $token = 'DemoOnly00YOAZbtgjl0ral75LPVLTRc7xYIjvXKXIV2fC1HH65shpZH6vEdVHf6';
+    public $token = '3QRH1yb6zYyiwCEizx4Wv4tdqNhWAmU0aq8M5w7SwPgdvEAWCbmXrI4aV3KNaNG2';
 
     public function __construct(IListingsRepository $listingsRepository, ISavedSearchRepository $savedSearchRepository)
     {
@@ -45,10 +45,25 @@ class ListingsController extends Controller
         $this->savedSearchRepository = $savedSearchRepository;
     }
 
-    public function showAllSavedSearch()
+    public function showAllSavedSearchedPuppy()
     {
-        return $this->savedSearchRepository->getAll();
+        $savedSearch = $this->savedSearchRepository->matching(
+            $this->savedSearchRepository->criteria()
+            ->where(SavedSearch::USER, '=', Auth::user())
+            ->where(SavedSearch::TYPE, '=', 'puppy')
+        );
+        return $savedSearch;
     }
+    public function showAllSavedSearchedStuds()
+    {
+        $savedSearch = $this->savedSearchRepository->matching(
+            $this->savedSearchRepository->criteria()
+                ->where(SavedSearch::USER, '=', Auth::user())
+                ->where(SavedSearch::TYPE, '=', 'stud')
+        );
+        return $savedSearch;
+    }
+
 
     /**
      * Displays all the PUPPIES.
@@ -651,15 +666,10 @@ class ListingsController extends Controller
 
     public function findListings(Request $request){
         $type = $request->get('type');
-//        dd($dnaColor);
+        $requestType = $request->get('requestType');
         $dnaColor = $request->get('dnaColor');
         $dnaCoat = $request->get('dnaCoat');
-
         $zipCode = $request->get('zip');
-
-
-//        return Redirect::to('listings/puppy/'.$dnaColor.'/'.$dnaCoat.'/'.$zipCode);
-
         $responseType = 'radius.json';
         $distance = '10';
         $unit = 'km';
@@ -669,9 +679,12 @@ class ListingsController extends Controller
 
         if(Auth::user()){
             if (isset($kennels)){
-                $allSavedSearch = $this->savedSearchRepository->getAll();
-                if (count($allSavedSearch) > 4){
-                    $this->savedSearchRepository->remove($allSavedSearch[0]);
+                $previousSavedSearch = $this->savedSearchRepository->matching(
+                    $this->savedSearchRepository->criteria()
+                        ->where(SavedSearch::USER, '=', Auth::user())
+                );
+                if (count($previousSavedSearch) > 4){
+                    $this->savedSearchRepository->remove($previousSavedSearch[0]);
                 }
                 $savedSearch = new SavedSearch();
                 $savedSearch->user = Auth::user();
@@ -690,9 +703,6 @@ class ListingsController extends Controller
         $finalPuppies = [];
         $standardPuppies = [];
         $sponsoredPuppies = [];
-
-//        dd($kennels);
-
 
         if($type == 'all'){
             foreach ($kennels as $key=>$breeder){
@@ -887,22 +897,33 @@ class ListingsController extends Controller
             ]);
 
         }elseif($type == 'puppy'){
-            return view('pages/puppy_listing', [
-                'sponsoredPuppies' => $sponsoredPuppies,
-                'standardPuppies' => $standardPuppies,
-                'data' => $data,
-                'matched' => false,
-                'shareComponent' => $shareComponent
-            ]);
-
+            if($requestType == 'ajax'){
+                $data = null;
+                $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data'))->render();
+                return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html]);
+            }else{
+                return view('pages/puppy_listing', [
+                    'sponsoredPuppies' => $sponsoredPuppies,
+                    'standardPuppies' => $standardPuppies,
+                    'data' => $data,
+                    'matched' => false,
+                    'shareComponent' => $shareComponent
+                ]);
+            }
         }elseif($type == 'stud'){
-            return view('pages/stud_listing', [
-                'sponsoredPuppies' => $sponsoredPuppies,
-                'standardPuppies' => $standardPuppies,
-                'data' => $data,
-                'matched' => false,
-                'shareComponent' => $shareComponent
-            ]);
+            if($requestType == 'ajax'){
+                $data = null;
+                $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data'))->render();
+                return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html]);
+            }else {
+                return view('pages/stud_listing', [
+                    'sponsoredPuppies' => $sponsoredPuppies,
+                    'standardPuppies' => $standardPuppies,
+                    'data' => $data,
+                    'matched' => false,
+                    'shareComponent' => $shareComponent
+                ]);
+            }
 
         }
 

@@ -385,6 +385,18 @@ class SavedItemsController extends Controller
             'page'=>$page
         ]);
     }
+
+    public function deleteSearchHistory(Request $request)
+    {
+        dd("DONE");
+        $savedSearch = $this->savedSearchRepository->matching(
+            $this->savedSearchRepository->criteria()
+                ->where(SavedSearch::USER, '=', Auth::user())
+                ->where(SavedSearch::TYPE, '=', 'puppy')
+        );
+
+        return $savedSearch;
+    }
     public function clearAllSearchHistory()
     {
         $savedSearch = $this->savedSearchRepository->getAll();

@@ -110,6 +110,8 @@
                             </div>
                         </div>
                     @endif
+
+                    @if(Auth::user())
                     {{--Saved Search--}}
                     <div class="card p-3 mb-4 rounded">
                         <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
@@ -121,18 +123,17 @@
                                 <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
                                 <ul class="tags-list" id="primary-recent-search">
                                     <?php
-                                        $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearch();
+                                        $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedPuppy();
                                     ?>
                                     @foreach($allSavedSearch AS $saved)
-                                            <li> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small> <span aria-hidden="true" title="close" onclick="cancelRecentSearch('{{$saved->getId()}}')">&times;</span></li>
+                                            <li onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small> <span aria-hidden="true" title="close">&times;</span></li>
                                     @endforeach
                                 </ul>
-                                <div id="secondary-recent-search">
-
-                                </div>
                             </div>
                         </div>
                     </div>
+                    @endif
+
                     <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
 
@@ -1018,6 +1019,41 @@
 
                 });
 
+        }
+
+        function previousSearch(color, coat, zip, type){
+            console.log(color, coat, zip,type);
+            $.ajax({
+                    type:'POST',
+                    url: '{{route('findListings')}}',
+                    data: {
+                        type:type,
+                        dnaColor:color,
+                        dnaCoat:coat,
+                        zip:zip,
+                        requestType: 'ajax'
+                    },
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    success: function(data){
+                        console.log(data.success);
+                        document.getElementById("primary-listing-data").style.display = "none";
+                        $('#secondary-listing-data').html(data.html);
+                    },
+                    progress: function(e) {
+                        //make sure we can compute the length
+                        if(e.lengthComputable) {
+                            //calculate the percentage loaded
+                            var pct = (e.loaded / e.total) * 100;
+
+                            //log percentage loaded
+                            console.log(pct);
+                        }
+                        //this usually happens when Content-Length isn't set
+                        else {
+                            console.warn('Content Length not reported!');
+                        }
+                    }
+                });
         }
         function cancelRecentSearch(color,coat){
             console.log("Color:" +color, "DNA:" +coat);

@@ -246,17 +246,17 @@ class ListingsModule extends CrudModule
         $module->removeAction()->deleteFromDataSource();
 
         $module->summaryTable(function (SummaryTableDefinition $table) {
-//            $table->mapProperty(Listings::BREEDER)->to(Field::create('breeder', 'Breeder')
-//                ->entityFrom($this->usersRepository)
-//                ->required()
-//                ->labelledBy(Users::USERNAME));
+            $table->mapProperty(Listings::BREEDER)->to(Field::create('breeder', 'Breeder')
+                ->entityFrom($this->usersRepository)
+                ->required()
+                ->labelledBy(Users::USERNAME));
             $table->mapProperty(Listings::TITLE)->to(Field::create('title', 'Title')->string()->required());
 //            $table->mapProperty(Listings::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
 //            $table->mapProperty(Listings::DESCRIPTION)->to(Field::create('decription', 'Decription')->string()->required());
-//            $table->mapProperty(Listings::TYPE)->to(Field::create('type', 'Type')->enum(ListingsTypeEnum::class, [
-//                ListingsTypeEnum::STUD => 'Stud',
-//                ListingsTypeEnum::PUPPY => 'Puppy',
-//            ])->required());
+            $table->mapProperty(Listings::TYPE)->to(Field::create('type', 'Type')->enum(ListingsTypeEnum::class, [
+                ListingsTypeEnum::STUD => 'Stud',
+                ListingsTypeEnum::PUPPY => 'Puppy',
+            ])->required());
 //            $table->mapProperty(Listings::SEX)->to(Field::create('sex', 'Sex')->enum(ListingsSexEnum::class, [
 //                ListingsSexEnum::MALE => 'Male',
 //                ListingsSexEnum::FEMALE => 'Female',
@@ -299,14 +299,14 @@ class ListingsModule extends CrudModule
                 ChocolateEnum::DOES_NOT_CARRY => 'Doesnotcarry',
                 ChocolateEnum::UNKNOWN => 'Unknown',
             ]));
-            $table->mapProperty(Listings::AGOUTI)->to(Field::create('agouti', 'Agouti')->enum(AgoutiEnum::class, [
-                AgoutiEnum::A_A => '(a,a)',
-                AgoutiEnum::AY_A => '(ay,a)',
-                AgoutiEnum::AY_AT => '(ay,at)',
-                AgoutiEnum::AY_AY => '(ay,ay)',
-                AgoutiEnum::AT_A => '(at,a)',
-                AgoutiEnum::AT_AT => '(at,at)',
-            ]));
+//            $table->mapProperty(Listings::AGOUTI)->to(Field::create('agouti', 'Agouti')->enum(AgoutiEnum::class, [
+//                AgoutiEnum::A_A => '(a,a)',
+//                AgoutiEnum::AY_A => '(ay,a)',
+//                AgoutiEnum::AY_AT => '(ay,at)',
+//                AgoutiEnum::AY_AY => '(ay,ay)',
+//                AgoutiEnum::AT_A => '(at,a)',
+//                AgoutiEnum::AT_AT => '(at,at)',
+//            ]));
             $table->mapProperty(Listings::TESTABLE_CHOCOLATE)->to(Field::create('testable_chocolate', 'Testable Chocolate')->enum(TestableChocolateEnum::class, [
                 TestableChocolateEnum::CARRIES_2COPIES => '2copies(b/b)',
                 TestableChocolateEnum::CARRIES_1COPY => '1copy( B/b)',
@@ -319,14 +319,14 @@ class ListingsModule extends CrudModule
                 FluffyEnum::DOES_NOT_CARRY => 'Doesnotcarry',
                 FluffyEnum::UNKNOWN => 'Unknown',
             ]));
-            $table->mapProperty(Listings::E_MCIR)->to(Field::create('e_mcir', 'E Mcir')->enum(E_mcirEnum::class, [
-                E_mcirEnum::EM_EM => '( E M, E M)',
-                E_mcirEnum::EM_E => '( E M, E)',
-                E_mcirEnum::EM_e => '( E M,e)',
-                E_mcirEnum::E_E => '( E, E)',
-                E_mcirEnum::E_e => '( E,e)',
-                E_mcirEnum::e_e => '(e,e)',
-            ]));
+//            $table->mapProperty(Listings::E_MCIR)->to(Field::create('e_mcir', 'E Mcir')->enum(E_mcirEnum::class, [
+//                E_mcirEnum::EM_EM => '( E M, E M)',
+//                E_mcirEnum::EM_E => '( E M, E)',
+//                E_mcirEnum::EM_e => '( E M,e)',
+//                E_mcirEnum::E_E => '( E, E)',
+//                E_mcirEnum::E_e => '( E,e)',
+//                E_mcirEnum::e_e => '(e,e)',
+//            ]));
             $table->mapProperty(Listings::INTENSITY)->to(Field::create('intensity', 'Intensity')->enum(IntensityEnum::class, [
                 IntensityEnum::CARRIES_2COPIES => '2copies(i/i)',
                 IntensityEnum::CARRIES_1COPY => '1copy( I/i)',

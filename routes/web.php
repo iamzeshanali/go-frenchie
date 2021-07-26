@@ -168,6 +168,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('delete-saved-litters/{slug}',[App\Http\Controllers\SavedItemsController::class, 'permanentlyDeleteLitters'])->name('permanentlyDeleteLitters');
 
         Route::get('saved-search/{page}',[App\Http\Controllers\SavedItemsController::class, 'searchHistory'])->name('searchHistory');
+        Route::get('delete-search/{id}',[App\Http\Controllers\SavedItemsController::class, 'deleteSearchHistory'])->name('deleteSearchHistory');
         Route::get('delete-all-saved-search',[App\Http\Controllers\SavedItemsController::class, 'clearAllSearchHistory'])->name('clearAllSearchHistory');
 
     });
