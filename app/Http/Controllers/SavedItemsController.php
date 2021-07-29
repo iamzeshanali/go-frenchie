@@ -397,12 +397,15 @@ class SavedItemsController extends Controller
 
         return $savedSearch;
     }
-    public function clearAllSearchHistory()
+    public function clearAllSearchHistory(Request $request)
     {
+        $page = $request->page;
         $savedSearch = $this->savedSearchRepository->getAll();
         $this->savedSearchRepository->removeAll($savedSearch);
         return view('pages/dashboard/search_history', [
-            'savedSearch' => []
+            'savedSearch' => [],
+            'total'=>0,
+            'page'=>$page
         ]);
     }
 }

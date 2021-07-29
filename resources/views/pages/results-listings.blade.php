@@ -67,14 +67,14 @@
     <div class="container-fluid">
         <div class="page-content d-lg-flex ">
             {{--Filter area--}}
-            <div class="fbd-filter-area mb-3 rounded">
+            <div class="fbd-filter-area mb-3 rounded col-xl-2">
                 <div id="accordion">
                     <!-- Your Search -->
                     @if($data != null)
                         <div class="card p-3 mb-4 rounded">
                             <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
                                 <span class="heading mb-0">Your Search</span>
-                                <span class="results-number" title="Total Results">3 Results</span>
+                                <span class="results-number" title="Total Results"> Results</span>
                             </div>
                             <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
                                 <div class="card-body">
@@ -106,6 +106,29 @@
                             </div>
                         </div>
                 @endif
+
+                @if(Auth::user())
+                    {{--Saved Search--}}
+                    <div class="card p-3 mb-4 rounded">
+                        <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
+                            <span class="heading mb-0">Search History</span>
+                            <?php
+                            $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();
+                            ?>
+                            <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>
+                        </div>
+                        <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
+                            <div class="card-body">
+                                <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
+                                <ul class="tags-list" id="primary-recent-search">
+                                    @foreach($allSavedSearch AS $saved)
+                                            <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
 
@@ -169,8 +192,8 @@
                                 @if(!empty($data) && count($data['allListings']) > 0)
                                     {{-- Blue --}}
                                     <form>
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' class="{{ $data['dnaColor'] === 'Blue' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Blue' ? 'checked':''}} id="filterBlue" name="filterBlue" value="Blue">
-                                        <label for="filterBlue" class="parentLabel"> Blue</label>
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' class="{{ $data['dnaColor'] === 'Blue' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Blue' ? 'checked':''}} id="filterBlue" name="filterBlue" value="Blue">
+                                        <label for="filterBlue"> Blue</label><br>
                                         <div id="collapseBlue" class="collapse pl-4 {{ $data['dnaColor'] === 'Blue' ? 'show':''}}">
                                             <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)" {{ $data['dnaCoat'] === '2copies(d/d)' ? 'checked': ''}}>
                                             <label for="filterABlue2copy"> 2 copies(d/d) </label><br>
@@ -313,9 +336,8 @@
                                     </form>
                                 @else
                                     {{-- Blue --}}
-                                    <button class="btn btn-collapse p-0 d-block text-left" data-toggle="collapse" data-target="#collapseBlue" id="filterBlue" name="filterBlue" value="Blue">
-                                        Blue
-                                    </button>
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' id="filterBlue" name="filterBlue" value="Blue">
+                                    <label for="filterBlue"> Blue</label><br>
                                     <div id="collapseBlue" class="collapse pl-4">
                                         <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)">
                                         <label for="filterABlue2copy"> 2 copies(d/d) </label><br>
@@ -463,11 +485,11 @@
             </div>
             {{--End Filter area--}}
 
-            <div class="fbd-content-area mb-3 rounded">
+            <div class="fbd-content-area mb-3 rounded col-xl-8">
 
                 <div id="primary-listing-data" class="fbd-listing-area p-3 rounded">
 
-                    <p class="listing-count">0-5 out of {{count($sponsoredPuppies)}} listings</p>
+                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>5</b> listings</p>
                     <span class="listing-type">SPONSORED LISTINGS</span>
                     @if(empty($sponsoredPuppies))
                         <div class="fbd-standard-listing p-3">
@@ -698,7 +720,7 @@
                         @endforeach
 
                     @endif
-
+                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>
                     <span class="listing-type">STANDARD LISTINGS</span>
 
                     @if(empty($standardPuppies))
@@ -989,6 +1011,40 @@
 
             });
 
+        }
+        function previousSearch(color, coat, zip, type){
+            console.log(color, coat, zip,type);
+            $.ajax({
+                    type:'POST',
+                    url: '{{route('findListings')}}',
+                    data: {
+                        type:type,
+                        dnaColor:color,
+                        dnaCoat:coat,
+                        zip:zip,
+                        requestType: 'ajax'
+                    },
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    success: function(data){
+                        console.log(data.success);
+                        document.getElementById("primary-listing-data").style.display = "none";
+                        $('#secondary-listing-data').html(data.html);
+                    },
+                    progress: function(e) {
+                        //make sure we can compute the length
+                        if(e.lengthComputable) {
+                            //calculate the percentage loaded
+                            var pct = (e.loaded / e.total) * 100;
+
+                            //log percentage loaded
+                            console.log(pct);
+                        }
+                        //this usually happens when Content-Length isn't set
+                        else {
+                            console.warn('Content Length not reported!');
+                        }
+                    }
+                });
         }
         function cancelRecentSearch(color,coat){
             console.log("Color:" +color, "DNA:" +coat);

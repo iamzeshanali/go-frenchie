@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Domain\Entities\Advertise;
+use App\Domain\Entities\ApiConfig;
 use App\Domain\Entities\Auth\PasswordReset;
 use App\Domain\Entities\Breeder;
 use App\Domain\Entities\Breeder_Supplies;
@@ -19,6 +20,7 @@ use App\Domain\Entities\SavedSearch;
 use App\Domain\Entities\Users;
 use App\Infrastructure\Persistence\AdvertiseMapper;
 use App\Infrastructure\Persistence\AdvertisementsMapper;
+use App\Infrastructure\Persistence\ApiConfigMapper;
 use App\Infrastructure\Persistence\Auth\PasswordResetMapper;
 use App\Infrastructure\Persistence\Breeder_SuppliesMapper;
 use App\Infrastructure\Persistence\BreederMapper;
@@ -72,6 +74,8 @@ class AppOrm extends Orm
             SavedLitters::class => SavedLittersMapper::class,
 //
             Advertise::class => AdvertiseMapper::class,
+
+            ApiConfig::class => ApiConfigMapper::class,
 
         ]);
 

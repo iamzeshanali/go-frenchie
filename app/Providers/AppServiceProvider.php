@@ -7,6 +7,7 @@ use App\AppOrm;
 use App\Domain\Services\Persistence\Auth\IPasswordResetRepository;
 use App\Domain\Services\Persistence\IAdvertisementsRepository;
 use App\Domain\Services\Persistence\IAdvertiseRepository;
+use App\Domain\Services\Persistence\IApiConfigRepository;
 use App\Domain\Services\Persistence\IBreeder_SuppliesRepository;
 use App\Domain\Services\Persistence\IBreederRepository;
 use App\Domain\Services\Persistence\ICanine_GeneticsRepository;
@@ -23,6 +24,7 @@ use App\Domain\Services\Persistence\IUsersRepository;
 use App\Infrastructure\Persistence\Auth\DbPasswordResetRepository;
 use App\Infrastructure\Persistence\DbAdvertisementsRepository;
 use App\Infrastructure\Persistence\DbAdvertiseRepository;
+use App\Infrastructure\Persistence\DbApiConfigRepository;
 use App\Infrastructure\Persistence\DbBreeder_SuppliesRepository;
 use App\Infrastructure\Persistence\DbBreederRepository;
 use App\Infrastructure\Persistence\DbCanine_GeneticsRepository;
@@ -77,6 +79,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ICanine_NutritionRepository::class, DbCanine_NutritionRepository::class);
 
         $this->app->singleton(IAdvertiseRepository::class, DbAdvertiseRepository::class);
+
+        $this->app->singleton(IApiConfigRepository::class, DbApiConfigRepository::class);
 
     }
 }

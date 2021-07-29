@@ -65,16 +65,16 @@
 
     </div>
     <div class="container-fluid">
-        <div class="page-content d-lg-flex ">
+        <div class="page-content row">
             {{--Filter area--}}
-            <div class="fbd-filter-area mb-3 rounded">
+            <div class="fbd-filter-area mb-3 rounded col-xl-2">
                 <div id="accordion">
                     <!-- Your Search -->
                     @if($data != null)
                         <div class="card p-3 mb-4 rounded">
                             <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
                                 <span class="heading mb-0">Your Search</span>
-                                <span class="results-number" title="Total Results">3 Results</span>
+                                <span class="results-number" title="Total Results"> Results</span>
                             </div>
                             <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
                                 <div class="card-body">
@@ -111,17 +111,17 @@
                     <div class="card p-3 mb-4 rounded">
                         <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
                             <span class="heading mb-0">Search History</span>
-                            <span class="results-number" title="Total Results">5 Results</span>
+                            <?php
+                            $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedStuds();
+                            ?>
+                            <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>
                         </div>
                         <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
                             <div class="card-body">
                                 <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
                                 <ul class="tags-list" id="primary-recent-search">
-                                    <?php
-                                        $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedStuds();
-                                    ?>
                                     @foreach($allSavedSearch AS $saved)
-                                            <li onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small> <span aria-hidden="true" title="close">&times;</span></li>
+                                            <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -192,7 +192,7 @@
                                     {{-- Blue --}}
                                     <form>
                                         <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' class="{{ $data['dnaColor'] === 'Blue' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Blue' ? 'checked':''}} id="filterBlue" name="filterBlue" value="Blue">
-                                        <label for="filterBlue" class="parentLabel"> Blue</label>
+                                        <label for="filterBlue"> Blue</label><br>
                                         <div id="collapseBlue" class="collapse pl-4 {{ $data['dnaColor'] === 'Blue' ? 'show':''}}">
                                             <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)" {{ $data['dnaCoat'] === '2copies(d/d)' ? 'checked': ''}}>
                                             <label for="filterABlue2copy"> 2 copies(d/d) </label><br>
@@ -335,9 +335,8 @@
                                     </form>
                                 @else
                                     {{-- Blue --}}
-                                    <button class="btn btn-collapse p-0 d-block text-left" data-toggle="collapse" data-target="#collapseBlue" id="filterBlue" name="filterBlue" value="Blue">
-                                        Blue
-                                    </button>
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' id="filterBlue" name="filterBlue" value="Blue">
+                                    <label for="filterBlue"> Blue</label><br>
                                     <div id="collapseBlue" class="collapse pl-4">
                                         <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)">
                                         <label for="filterABlue2copy"> 2 copies(d/d) </label><br>
@@ -485,11 +484,11 @@
             </div>
             {{--End Filter area--}}
 
-            <div class="fbd-content-area mb-3 rounded">
+            <div class="fbd-content-area mb-3 rounded col-xl-8">
 
                 <div id="primary-listing-data" class="fbd-listing-area p-3 rounded">
 
-                    <p class="listing-count">0-5 out of {{count($sponsoredPuppies)}} listings</p>
+                <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>5</b> listings</p>
                     <span class="listing-type">SPONSORED LISTINGS</span>
                     @if(empty($sponsoredPuppies))
                         <div class="fbd-standard-listing p-3">
@@ -720,7 +719,7 @@
                         @endforeach
 
                     @endif
-
+                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>
                     <span class="listing-type">STANDARD LISTINGS</span>
 
                     @if(empty($standardPuppies))

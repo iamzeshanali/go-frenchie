@@ -174,7 +174,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // PROFILE
-    Route::get('/profile/', function () {return view('pages/dashboard/breeder_profile');})->name('profile');
+    Route::get('/profile/', function () {return view('pages/dashboard/breeder_profile');})->name('breederProfile');
+    Route::get('/user/profile/', function () {return view('pages/dashboard/customer_profile');})->name('customerProfile');
 });
 
 

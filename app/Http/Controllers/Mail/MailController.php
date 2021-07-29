@@ -6,16 +6,21 @@ use App\Domain\Entities\Listings;
 use App\Domain\Services\Persistence\IListingsRepository;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactBreeder;
+use Dms\Common\Structure\Web\EmailAddress;
+use Dms\Core\Auth\IAdminRepository;
+use Dms\Web\Laravel\Auth\LocalAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
     public $listingsRepository;
+    public $admin;
 
-    public function __construct(IListingsRepository $listingsRepository)
+    public function __construct(IListingsRepository $listingsRepository, IAdminRepository $admin)
     {
         $this->listingsRepository = $listingsRepository;
+        $this->admin = $admin;
     }
     /**
      * send Emails
@@ -34,17 +39,25 @@ class MailController extends Controller
         $data = array(
             'message' => $request->message
         );
-
-
         $breederEmail = $listing->breeder->email->asString();
-//        dd($breederEmail);
+
+        $emailUsers = [];
+        $admins = $this->admin->getAll();
+        foreach ($admins as $user){
+            if(in_array(1,$user->getRoleIds()->getAll()) == true){
+                array_push($emailUsers,$user);
+            }
+
+        }
 //        'to' will be the breeder associated with this entity
         Mail::to($breederEmail)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
-        Mail::to('zeeshanalibenifshi@gmail.com')->send(new ContactBreeder($name,$email,$subject,$data,$listing));
-//        Mail::send('layouts/mail',$data, function ($messages) use ($user){
-//            $messages->to($user['to']);
-//            $messages->subject('Listings Contact');
-//        });
+        foreach($emailUsers as $emailUser){
+            $emailArray = (array)($emailUser);
+            $emailname = (array)$emailArray["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["emailAddress"];
+            $email = $emailname["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["string"];
+            Mail::to($email)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
+        }
+
 
         return redirect()->back()->with('status','200');
     }

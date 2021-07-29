@@ -98,15 +98,11 @@
                             </li> -->
                             <li class="nav-item">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if(empty(Auth::user()->profileImage))
-                                        <img class="float-left" src="images/user.png" alt="" width="30px" height="30px">
-                                    @else
-                                        <img class="float-left" src="{{asset_file_url(Auth::user()->profileImage)}}" alt="" width="30px" height="30px">
-                                    @endif
+                                        <img class="float-left" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="30px" height="30px">
                                 </a>
                                 <div class="breeder-db-login-dropdown dropdown-menu p-3" aria-labelledby="navbarDropdown">
                                     <p>
-                                        <a class="dropdown-item" href="{{ route('profile') }}"><b>{{ ucfirst(Auth::user()->username) }}</b></a></p>
+                                        <a class="dropdown-item" href="{{ Auth::user()->role->getValue() == 'breeder' ? route('breederProfile') : route('customerProfile') }}"><b>{{ ucfirst(Auth::user()->username) }}</b></a></p>
                                     <p><a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></p>
                                     <p><a href=""><i class="fas fa-heart"></i> Liked Items</a></p>
                                     <p><a href=""><i class="fas fa-cog"></i> Settings</a></p>

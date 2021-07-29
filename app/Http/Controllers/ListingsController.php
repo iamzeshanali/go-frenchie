@@ -17,10 +17,12 @@ use App\Domain\Entities\Enums\PiedEnum;
 use App\Domain\Entities\Enums\TestableChocolateEnum;
 use App\Domain\Entities\Listings;
 use App\Domain\Entities\SavedSearch;
+use App\Domain\Services\Persistence\IApiConfigRepository;
 use App\Domain\Services\Persistence\IListingsRepository;
 use App\Domain\Services\Persistence\ISavedSearchRepository;
 use Dms\Common\Structure\DateTime\Date;
 use Dms\Common\Structure\FileSystem\Image;
+use Dms\Core\Auth\IAdminRepository;
 use Dms\Core\Model\Object\Entity;
 use Dms\Core\Model\Object\Enum;
 use Illuminate\Support\Facades\Session;
@@ -29,6 +31,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Jorenvh\Share\Share;
 use Jorenvh\Share\ShareFacade;
+use phpDocumentor\Reflection\Types\True_;
+use function PHPUnit\Framework\isTrue;
 
 
 class ListingsController extends Controller
@@ -36,14 +40,25 @@ class ListingsController extends Controller
 
     public $listingsRepository;
     public $savedSearchRepository;
+    public $token;
 
-    public $token = '3QRH1yb6zYyiwCEizx4Wv4tdqNhWAmU0aq8M5w7SwPgdvEAWCbmXrI4aV3KNaNG2';
-
-    public function __construct(IListingsRepository $listingsRepository, ISavedSearchRepository $savedSearchRepository)
+    public function __construct(IListingsRepository $listingsRepository, ISavedSearchRepository $savedSearchRepository, IApiConfigRepository $apiConfigRepository)
     {
         $this->listingsRepository = $listingsRepository;
         $this->savedSearchRepository = $savedSearchRepository;
+        $this->token = $apiConfigRepository->getAll()[0]->token;
     }
+
+    public function showAllSavedSearchedListings()
+    {
+        $savedSearch = $this->savedSearchRepository->matching(
+            $this->savedSearchRepository->criteria()
+                ->where(SavedSearch::USER, '=', Auth::user())
+                ->where(SavedSearch::TYPE, '=', 'all')
+        );
+        return $savedSearch;
+    }
+
 
     public function showAllSavedSearchedPuppy()
     {
@@ -51,6 +66,7 @@ class ListingsController extends Controller
             $this->savedSearchRepository->criteria()
             ->where(SavedSearch::USER, '=', Auth::user())
             ->where(SavedSearch::TYPE, '=', 'puppy')
+            ->orderByDesc(SavedSearch::ID)
         );
         return $savedSearch;
     }
@@ -77,24 +93,12 @@ class ListingsController extends Controller
         $standardPuppies = [];
         $user = Auth::user();
 
-
-        $shareComponent = ShareFacade::page(
-            URL::current(),
-            'The French BullDog',
-        )
-            ->facebook()
-            ->twitter()
-            ->linkedin()
-            ->telegram()
-            ->whatsapp()
-            ->reddit();
-
         $allPuppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
                 ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->orderByAsc(Listings::ID)
-                ->limit(5)
+                ->limit(10)
         );
 
 
@@ -123,7 +127,6 @@ class ListingsController extends Controller
             'data' => null,
             'dataIds' => $dataIds,
             'matched' => false,
-            'shareComponent' => $shareComponent,
             'page'=>1
         ]);
     }
@@ -139,16 +142,7 @@ class ListingsController extends Controller
         $sponsoredPuppies = [];
         $standardPuppies = [];
         $user = Auth::user();
-        $shareComponent = ShareFacade::page(
-            URL::current(),
-            'The French BullDog',
-        )
-            ->facebook()
-            ->twitter()
-            ->linkedin()
-            ->telegram()
-            ->whatsapp()
-            ->reddit();
+
         $allStuds = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
@@ -443,7 +437,6 @@ class ListingsController extends Controller
         $fullPath5 = $file5->move(public_path('app/listings'), $file5->getClientOriginalName())->getRealPath();
         $puppy->photo5 = new Image($fullPath5);
 
-//        dd($request->get('listing-blue'));
         if ($request->get('listing-blue') == 'none'){
             $puppy->blue = null;
         }else{
@@ -451,55 +444,55 @@ class ListingsController extends Controller
         }
 
         if ($request->get('listing-choclote') == 'none'){
-            $puppy->blue = null;
+            $puppy->chocolate = null;
         }else{
             $puppy->chocolate = new ChocolateEnum($request->get('listing-choclote'));
         }
 
         if ($request->get('listing-agoutie') == 'none'){
-            $puppy->blue = null;
+            $puppy->agouti = null;
         }else{
             $puppy->agouti = new AgoutiEnum($request->get('listing-agoutie'));
         }
 
         if ($request->get('listing-testable') == 'none'){
-            $puppy->blue = null;
+            $puppy->testableChocolate = null;
         }else{
             $puppy->testableChocolate = new TestableChocolateEnum($request->get('listing-testable'));
         }
 
         if ($request->get('listing-fluffy') == 'none'){
-            $puppy->blue = null;
+            $puppy->fluffy = null;
         }else{
             $puppy->fluffy = new FluffyEnum($request->get('listing-fluffy'));
         }
 
         if ($request->get('listing-emcir') == 'none'){
-            $puppy->blue = null;
+            $puppy->eMcir = null;
         }else{
             $puppy->eMcir = new E_mcirEnum($request->get('listing-emcir'));
         }
 
         if ($request->get('listing-intensity') == 'none'){
-            $puppy->blue = null;
+            $puppy->intensity = null;
         }else{
             $puppy->intensity = new IntensityEnum($request->get('listing-intensity'));
         }
 
         if ($request->get('listing-pied') == 'none'){
-            $puppy->blue = null;
+            $puppy->pied = null;
         }else{
             $puppy->pied = new PiedEnum($request->get('listing-pied'));
         }
 
         if ($request->get('listing-brindle') == 'none'){
-            $puppy->blue = null;
+            $puppy->brindle = null;
         }else{
             $puppy->brindle = new BrindleEnum($request->get('listing-brindle'));
         }
 
         if ($request->get('listing-merle') == 'none'){
-            $puppy->blue = null;
+            $puppy->merle = null;
         }else{
             $puppy->merle = new MerleEnum($request->get('listing-merle'));
         }
@@ -650,10 +643,10 @@ class ListingsController extends Controller
 //            dd($singleListing[0]);
             $this->listingsRepository->save($singleListing[0]);
             if ($request->get('type') == 'stud'){
-                return redirect()->route('showAllStuds');
+                return redirect()->route('showAllStuds',1);
             }
             else{
-                return redirect()->route('showAllPuppies');
+                return redirect()->route('showAllPuppies',1);
             }
         }
     }
@@ -665,24 +658,48 @@ class ListingsController extends Controller
      */
 
     public function findListings(Request $request){
+
+//        dd($this->token);
         $type = $request->get('type');
         $requestType = $request->get('requestType');
         $dnaColor = $request->get('dnaColor');
         $dnaCoat = $request->get('dnaCoat');
         $zipCode = $request->get('zip');
+//        dd($zipCode);
         $responseType = 'radius.json';
         $distance = '10';
         $unit = 'km';
+
+        if ($zipCode == null){
+
+        }else{
+
+        }
 
         $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
 //        dd($kennels);
 
         if(Auth::user()){
-            if (isset($kennels)){
-                $previousSavedSearch = $this->savedSearchRepository->matching(
-                    $this->savedSearchRepository->criteria()
-                        ->where(SavedSearch::USER, '=', Auth::user())
-                );
+                $previousSavedSearch = null;
+                if($type == 'all'){
+                    $previousSavedSearch = $this->savedSearchRepository->matching(
+                        $this->savedSearchRepository->criteria()
+                            ->where(SavedSearch::USER, '=', Auth::user())
+                            ->where(SavedSearch::TYPE, '=', 'all')
+                    );
+                }elseif ($type == 'puppy'){
+                    $previousSavedSearch = $this->savedSearchRepository->matching(
+                        $this->savedSearchRepository->criteria()
+                            ->where(SavedSearch::USER, '=', Auth::user())
+                            ->where(SavedSearch::TYPE, '=', 'puppy')
+                    );
+                }elseif ($type == 'stud'){
+                    $previousSavedSearch = $this->savedSearchRepository->matching(
+                        $this->savedSearchRepository->criteria()
+                            ->where(SavedSearch::USER, '=', Auth::user())
+                            ->where(SavedSearch::TYPE, '=', 'stud')
+                    );
+                }
                 if (count($previousSavedSearch) > 4){
                     $this->savedSearchRepository->remove($previousSavedSearch[0]);
                 }
@@ -694,7 +711,6 @@ class ListingsController extends Controller
                 $savedSearch->type = $type;
 
                 $this->savedSearchRepository->save($savedSearch);
-            }
         }
 
 
@@ -710,7 +726,7 @@ class ListingsController extends Controller
                 $allListings = $this->listingsRepository->matching(
 
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
+                        ->where(Listings::BREEDER,'=',$breeder)
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                         ->orderByAsc(Listings::ID)
                 );
@@ -725,7 +741,7 @@ class ListingsController extends Controller
                 $allListings = $this->listingsRepository->matching(
 
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
+                        ->where(Listings::BREEDER,'=',$breeder)
                         ->where(Listings::TYPE,'=',new ListingsTypeEnum($type))
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                         ->orderByAsc(Listings::ID)
@@ -888,13 +904,19 @@ class ListingsController extends Controller
             ->reddit();
 //        dd($data['allListings']);
         if($type == 'all'){
-            return view('pages/results-listings', [
-                'sponsoredPuppies' => $sponsoredPuppies,
-                'standardPuppies' => $standardPuppies,
-                'data' => $data,
-                'matched' => false,
-                'shareComponent' => $shareComponent
-            ]);
+            if($requestType == 'ajax'){
+                $data = null;
+                $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data'))->render();
+                return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html]);
+            }else {
+                return view('pages/results-listings', [
+                    'sponsoredPuppies' => $sponsoredPuppies,
+                    'standardPuppies' => $standardPuppies,
+                    'data' => $data,
+                    'matched' => false,
+                    'shareComponent' => $shareComponent
+                ]);
+            }
 
         }elseif($type == 'puppy'){
             if($requestType == 'ajax'){
@@ -940,6 +962,7 @@ class ListingsController extends Controller
         $zipCode = $request->get('zip');
         $distance = $request->get('distance');
         $unit = 'mile';
+//        return response()->json(['success'=>$type]);
 
         $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
 
@@ -950,7 +973,7 @@ class ListingsController extends Controller
                 $allListings = $this->listingsRepository->matching(
 
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
+                        ->where(Listings::BREEDER,'=',$breeder)
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                         ->orderByAsc(Listings::ID)
                 );
@@ -958,15 +981,13 @@ class ListingsController extends Controller
         }else{
             foreach ($kennels as $key=>$breeder){
                 $allListings = $this->listingsRepository->matching(
-
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
+                        ->where(Listings::BREEDER,'=',$breeder)
                         ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                         ->orderByAsc(Listings::ID)
                 );
             }
-
         }
 
 //        return response()->json(['success'=>count($allListings)]);
@@ -1016,7 +1037,7 @@ class ListingsController extends Controller
                 $allListings = $this->listingsRepository->matching(
 
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
+                        ->where(Listings::BREEDER,'=',$breeder)
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                         ->orderByAsc(Listings::ID)
                 );
@@ -1026,7 +1047,7 @@ class ListingsController extends Controller
                 $allListings = $this->listingsRepository->matching(
 
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
+                        ->where(Listings::BREEDER,'=',$breeder)
                         ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                         ->orderByAsc(Listings::ID)
@@ -1034,7 +1055,7 @@ class ListingsController extends Controller
             }
 
         }
-//        return response()->json(['success'=>count($allListings)]);
+        return response()->json(['success'=>count($allListings)]);
 
         $afterFilters = $this->filterByAttributes($allListings, $request);
 //        return response()->json(['success'=>count($afterFilters)]);

@@ -10,6 +10,7 @@ use Dms\Common\Structure\Money\Currency;
 use Dms\Common\Structure\Money\Money;
 use Dms\Common\Structure\Type\StringValueObject;
 use Dms\Common\Structure\Web\Url;
+use Dms\Core\Auth\IAdminRepository;
 use Dms\Core\Model\Object\Entity;
 use Dms\Core\Model\Object\Enum;
 use Illuminate\Http\Request;
@@ -29,6 +30,17 @@ class BreederSuppliesController extends Controller
     public function getBreederSupplies()
     {
         return $this->breeder_SuppliesRepository->getAll();
+    }
+
+    public function getCurrentBreederResources()
+    {
+        $breederResources = $this->breeder_SuppliesRepository->matching(
+            $this->breeder_SuppliesRepository->criteria()
+                ->where(Breeder_Supplies::TRASHED, '=', false)
+                ->where(Breeder_Supplies::STATUS, '=', new ListingsStatusEnum('active'))
+                ->orderByAsc(Breeder_Supplies::ID)
+        );
+        return $breederResources;
     }
 
     public function showAllBreederSupplies(Request $request)

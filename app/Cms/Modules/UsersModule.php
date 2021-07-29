@@ -149,7 +149,7 @@ class UsersModule extends CrudModule
 //                ->image()
 //                ->moveToPathWithRandomFileName(public_path('app/users')));
 //            $table->mapProperty(Users::ADDRESS)->to(Field::create('address', 'Address')->string()->required());
-//            $table->mapProperty(Users::ZIP)->to(Field::create('zip', 'Zip')->string()->required());
+            $table->mapProperty(Users::ZIP)->to(Field::create('zip', 'Zip')->string()->required());
 //            $table->mapProperty(Users::STATE)->to(Field::create('state', 'State')->string()->required());
 //            $table->mapProperty(Users::CITY)->to(Field::create('city', 'City')->string()->required());
 //            $table->mapProperty(Users::FB_ACCOUNT)->to(Field::create('fb_account_url', 'Fb Account Url')->url());

@@ -214,7 +214,7 @@ a#navbarDropdown img {
     grid-template-columns: 1.1fr 4fr 1fr;
     grid-gap: 15px;
     align-items: flex-start; */
-    gap: 15px;
+    /*gap: 15px;*/
     align-items: flex-start;
 }
 
@@ -412,9 +412,12 @@ form button[type=submit] {
 
 /* stud_listing listing area  End */
 
-.fbd-adds-area {
+.fbd-adds-area img {
     background-color: white;
     box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
+    padding: 15px;
+    width: 100%;
+    object-fit: contain;
 }
 
 /************ stud_listing page End ***************/
@@ -1560,19 +1563,21 @@ div#social-links ul li {
 }
 div#social-links ul li a {
     padding: 8px;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     margin: 1px;
     font-size: 20px;
     color: #222;
-    background-color: #ccc;
+    background-color: transparent;
 }
 /*-- footer start*/
-
+div#social-links ul li a span{
+    color: #8B77FC;
+}
 footer {
     font-family: Sailec-Light;
     background-color: white;
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     color: rgba(0, 0, 0, 0.60);
 }
 

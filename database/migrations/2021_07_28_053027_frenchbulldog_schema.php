@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class FrenchBullDogSchema extends Migration
+class FrenchbulldogSchema extends Migration
 {
     /**
      * Run the migrations.
@@ -205,6 +205,12 @@ class FrenchBullDogSchema extends Migration
 
         });
 
+        Schema::create('api_configs', function (Blueprint $table) {
+            $table->integer('id')->autoIncrement()->unsigned();
+            $table->string('token', 255);
+
+        });
+
         Schema::create('dms_roles', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->string('name', 255);
@@ -377,6 +383,7 @@ class FrenchBullDogSchema extends Migration
         Schema::drop('dms_user_roles');
         Schema::drop('dms_users');
         Schema::drop('dms_roles');
+        Schema::drop('api_configs');
         Schema::drop('advertises');
         Schema::drop('saved_litters');
         Schema::drop('saved_listings');

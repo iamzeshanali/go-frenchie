@@ -41,7 +41,7 @@ class GeoLocationController extends Controller
     public  function findKennels($token, $responseType, $zipCode, $distance, $unit): array
     {
 
-//        dd($zipCode);
+//        dd($token);
         $url = 'https://www.zipcodeapi.com/rest/'.$token.'/'.$responseType.'/'.$zipCode.'/'.$distance.'/'.$unit;
         $response = Http::timeout(10)->get($url);
         if($response->ok()){
@@ -69,10 +69,10 @@ class GeoLocationController extends Controller
                 }
             }
             if(empty($kennels)){
-                dd("NO ZIP MATCHED");
-            }else{
-//                dd($kennels);
                 return $kennels;
+            }else{
+
+                return $kennels[0];
             }
         }else{
             echo "API Expired or Wrong";

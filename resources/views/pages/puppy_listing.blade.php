@@ -2,83 +2,91 @@
 @section('title', 'Puppies')
 @section('content')
 
-    <div class="container mt-4">
-        {!! $shareComponent !!}
-    </div>
-    <div class="container">
 
-        <h2 class="page-title text-center">Puppy Page</h2>
 
-        <div class="page-description text-justify mb-5 rounded">
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </p>
+    <div class="row justify-content-center m-0">
+
+        <h2 class="page-title text-center col-xl-8 mb-5">Puppy Page</h2>
+
+        <div class="col-xl-8 px-4">
+            <div class="page-description text-justify mb-5 rounded">
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                </p>
+            </div>
         </div>
+
+
 
         {{--SEARCH BAR COMPONENT--}}
-        <div class="container fbd-search-area p-3 mb-3 rounded">
-            <form method="POST" id="search-listings" action="{{ route('findListings') }}">
-                @csrf
-                <input type="hidden" name="type" value="puppy">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <h6>DNA Colors</h6>
-                        <select class="form-control form-select dna-a" name="dnaColor" id="dnaColor" aria-label="Default select example">
-                            <option selected disabled>Choose Color</option>
-                            <option value="Blue" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Blue' ? 'selected':''}} @endif >Blue </option>
-                            <option value="Chocolate" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Chocolate' ? 'selected':''}} @endif >Chocolate </option>
-                            <option value="Testable_Chocolate">Testable Chocolate </option>
-                            <option value="Fluffy">Fluffy </option>
-                            <option value="Intensity">Intensity </option>
-                            <option value="Pied">Pied </option>
-                            <option value="Merle">Merle </option>
-                            <option value="Brindle">Brindle </option>
-                        </select>
-                    </div>
-                    <div class="col-lg-3">
-                        <h6>DNA Characteristics</h6>
-                        <div id="coat">
-                        </div>
-                        <div id="optional">
-                            <!-- Default COAT Characteristics-->
-                            <select class="form-control form-select" id="dnaCoatOptional" name="dnaCoatOptional" aria-label="Default select example">
-                                <option selected disabled>Choose DNA Color</option>
+        <div class="col-xl-8 px-4">
+            <div class="fbd-search-area p-3 mb-5 rounded">
+                <form method="POST" id="search-listings" action="{{ route('findListings') }}">
+                    @csrf
+                    <input type="hidden" name="type" value="puppy">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <h6>DNA Colors</h6>
+                            <select class="form-control form-select dna-a" name="dnaColor" id="dnaColor" aria-label="Default select example">
+                                <option selected disabled>Choose Color</option>
+                                <option value="Blue" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Blue' ? 'selected':''}} @endif >Blue </option>
+                                <option value="Chocolate" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Chocolate' ? 'selected':''}} @endif >Chocolate </option>
+                                <option value="Testable_Chocolate">Testable Chocolate </option>
+                                <option value="Fluffy">Fluffy </option>
+                                <option value="Intensity">Intensity </option>
+                                <option value="Pied">Pied </option>
+                                <option value="Merle">Merle </option>
+                                <option value="Brindle">Brindle </option>
                             </select>
-                            <div class="invalid-feedback">Please select a Color!</div>
                         </div>
-                    </div>
+                        <div class="col-lg-3">
+                            <h6>DNA Characteristics</h6>
+                            <div id="coat">
+                            </div>
+                            <div id="optional">
+                                <!-- Default COAT Characteristics-->
+                                <select class="form-control form-select" id="dnaCoatOptional" name="dnaCoatOptional" aria-label="Default select example">
+                                    <option selected disabled>Choose DNA Color</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a Color!</div>
+                            </div>
+                        </div>
 
-                    <div class="col-lg-3">
-                        <h6>Location</h6>
-                        <div class="locatin-group-btn input-group">
-                            <input type="zip" class="form-control" name="zip" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
-                            <span class="input-group-btn mr-1">
+                        <div class="col-lg-3">
+                            <h6>Location</h6>
+                            <div class="locatin-group-btn input-group">
+                                <input type="zip" class="form-control" name="zip" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
+                                <span class="input-group-btn mr-1">
                             <button class="btn btn-default" onClick="getZip()" type="button"><i class="far fa-compass"></i></button>
                         </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block btn-fbd">Search</button>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block btn-fbd">Search</button>
-                    </div>
-                </div>
 
-            </form>
+                </form>
+            </div>
         </div>
+
         {{--END SEARCH BAR COMPONENT--}}
 
     </div>
+
+
     <div class="container-fluid">
-        <div class="page-content d-lg-flex ">
+        <div class="page-content row">
             {{--Filter area--}}
-            <div class="fbd-filter-area mb-3 rounded">
+            <div class="fbd-filter-area mb-3 rounded col-xl-2">
                 <div id="accordion">
                     <!-- Your Search -->
                     @if($data != null)
                         <div class="card p-3 mb-4 rounded">
                             <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
                                 <span class="heading mb-0">Your Search</span>
-                                <span class="results-number" title="Total Results">3 Results</span>
+                                <span class="results-number" title="Total Results"> Results</span>
                             </div>
                             <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
                                 <div class="card-body">
@@ -116,17 +124,18 @@
                     <div class="card p-3 mb-4 rounded">
                         <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
                             <span class="heading mb-0">Search History</span>
-                            <span class="results-number" title="Total Results">5 Results</span>
+                            <?php
+                            $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedPuppy();
+                            ?>
+                            <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>
                         </div>
                         <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
                             <div class="card-body">
                                 <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
                                 <ul class="tags-list" id="primary-recent-search">
-                                    <?php
-                                        $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedPuppy();
-                                    ?>
+
                                     @foreach($allSavedSearch AS $saved)
-                                            <li onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small> <span aria-hidden="true" title="close">&times;</span></li>
+                                            <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -198,7 +207,7 @@
                                     {{-- Blue --}}
                                     <form>
                                         <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' class="{{ $data['dnaColor'] === 'Blue' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Blue' ? 'checked':''}} id="filterBlue" name="filterBlue" value="Blue">
-                                        <label for="filterBlue" class="parentLabel"> Blue</label>
+                                        <label for="filterBlue"> Blue</label><br>
                                         <div id="collapseBlue" class="collapse pl-4 {{ $data['dnaColor'] === 'Blue' ? 'show':''}}">
                                             <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)" {{ $data['dnaCoat'] === '2copies(d/d)' ? 'checked': ''}}>
                                             <label for="filterABlue2copy"> 2 copies(d/d) </label><br>
@@ -341,9 +350,8 @@
                                     </form>
                                 @else
                                     {{-- Blue --}}
-                                    <button class="btn btn-collapse p-0 d-block text-left" data-toggle="collapse" data-target="#collapseBlue" id="filterBlue" name="filterBlue" value="Blue">
-                                        Blue
-                                    </button>
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' id="filterBlue" name="filterBlue" value="Blue">
+                                    <label for="filterBlue"> Blue</label><br>
                                     <div id="collapseBlue" class="collapse pl-4">
                                         <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)">
                                         <label for="filterABlue2copy"> 2 copies(d/d) </label><br>
@@ -491,11 +499,11 @@
             </div>
             {{--End Filter area--}}
 
-            <div class="fbd-content-area mb-3 rounded">
+            <div class="fbd-content-area mb-3 rounded col-xl-8">
 
                 <div id="primary-listing-data" class="fbd-listing-area p-3 rounded">
 
-                    <p class="listing-count">0-5 out of {{count($sponsoredPuppies)}} listings</p>
+                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>5</b> listings</p>
                     <span class="listing-type">SPONSORED LISTINGS</span>
                     @if(empty($sponsoredPuppies))
                         <div class="fbd-standard-listing p-3">
@@ -726,7 +734,7 @@
                         @endforeach
 
                     @endif
-
+                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>
                     <span class="listing-type">STANDARD LISTINGS</span>
 
                     @if(empty($standardPuppies))
@@ -968,7 +976,6 @@
         </div>
     </div>
 
-
     <script type="text/javascript">
 
         $('#dnaColor').on('change', function () {
@@ -981,9 +988,9 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    console.log(data.success);
+                    // console.log(data.success);
                     if(data.success == '200'){
-                        console.log("DONE");
+                        // console.log("DONE");
                         document.getElementById("optional").style.display = "none";
                         $("#coat").html(data.html);
                     }
@@ -992,7 +999,7 @@
             });
         });
         function addOrRemoveToFavourite($slug, $email, $type){
-                // console.log($slug, $email, $type);
+                // // console.log($slug, $email, $type);
 
                 $.ajax({
                     type:'POST',
@@ -1004,14 +1011,14 @@
                     },
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     success: function(data){
-                        // console.log(data.success);
+                        // // console.log(data.success);
                         if(data.success == '200'){
-                            // console.log(data.success);
+                            // // console.log(data.success);
                             var className = ".fbd-liked-icon"+"-"+$slug;
                             $(className).css("color","#8b77fc");
                         }
                         if(data.success == '300'){
-                            // console.log(data.success);
+                            // // console.log(data.success);
                             var className = ".fbd-liked-icon"+"-"+$slug;
                             $(className).css("color","#c4bfbf");
                         }
@@ -1022,7 +1029,7 @@
         }
 
         function previousSearch(color, coat, zip, type){
-            console.log(color, coat, zip,type);
+            // console.log(color, coat, zip,type);
             $.ajax({
                     type:'POST',
                     url: '{{route('findListings')}}',
@@ -1035,7 +1042,7 @@
                     },
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     success: function(data){
-                        console.log(data.success);
+                        // console.log(data.success);
                         document.getElementById("primary-listing-data").style.display = "none";
                         $('#secondary-listing-data').html(data.html);
                     },
@@ -1046,7 +1053,7 @@
                             var pct = (e.loaded / e.total) * 100;
 
                             //log percentage loaded
-                            console.log(pct);
+                            // console.log(pct);
                         }
                         //this usually happens when Content-Length isn't set
                         else {
@@ -1056,7 +1063,7 @@
                 });
         }
         function cancelRecentSearch(color,coat){
-            console.log("Color:" +color, "DNA:" +coat);
+            // console.log("Color:" +color, "DNA:" +coat);
 
             if (color = 'Blue'){
                 $("input[name='blue']:checked").each(function(){
@@ -1087,13 +1094,13 @@
                 $("input[name='chocolate']:checked").each(function(){
                     if (coat == '2copies(co/co)'){
                         $("#chocolate2copy").prop('checked',false);
-                        console.log("DONE");
+                        // console.log("DONE");
                         findValue();
                         return false;
                     }
                     if(coat == '1copy(Co/co)'){
                         $("#chocolate1copy").prop('checked',false);
-                        console.log("NDONE");
+                        // console.log("NDONE");
                         findValue();
                         return false;
                     }
@@ -1273,16 +1280,16 @@
             $("input[name='agouti']:checked").each(function(){
                 agouti.push($(this).val());
             });
-            console.log("Blue are: " + blue.join(", "));
-            console.log("Chococlate are: " + chocolate.join(", "));
-            console.log("Testablechococlate are: " + testable.join(", "));
-            console.log("Fluffy are: " + fluffy.join(", "));
-            console.log("Intensity are: " + intensity.join(", "));
-            console.log("Pied are: " + pied.join(", "));
-            console.log("Merle are: " + merle.join(", "));
-            console.log("Brindle are: " + brindle.join(", "));
-            console.log("Agouti are: " + agouti.join(", "));
-            console.log("EMCIR are: " + emcir.join(", "));
+            // console.log("Blue are: " + blue.join(", "));
+            // console.log("Chococlate are: " + chocolate.join(", "));
+            // console.log("Testablechococlate are: " + testable.join(", "));
+            // console.log("Fluffy are: " + fluffy.join(", "));
+            // console.log("Intensity are: " + intensity.join(", "));
+            // console.log("Pied are: " + pied.join(", "));
+            // console.log("Merle are: " + merle.join(", "));
+            // console.log("Brindle are: " + brindle.join(", "));
+            // console.log("Agouti are: " + agouti.join(", "));
+            // console.log("EMCIR are: " + emcir.join(", "));
 
             $.ajax({
                 type:'POST',
@@ -1301,7 +1308,7 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    console.log(data.success);
+                    // console.log(data.success);
                     document.getElementById("primary-listing-data").style.display = "none";
                     document.getElementById("primary-recent-search").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
@@ -1314,7 +1321,7 @@
                         var pct = (e.loaded / e.total) * 100;
 
                         //log percentage loaded
-                        console.log(pct);
+                        // console.log(pct);
                     }
                     //this usually happens when Content-Length isn't set
                     else {
@@ -1376,8 +1383,8 @@
                     agouti.push($(this).val());
                 });
                 var distance = $("#distance").val();
-                console.log(distance);
-                console.log(value);
+                // console.log(distance);
+                // console.log(value);
                 $.ajax({
                     type:'POST',
                     url: '{{route('filterByZip')}}',
@@ -1398,7 +1405,7 @@
                     },
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     success: function(data){
-                        console.log(data.success);
+                    console.log(data.success);
                         document.getElementById("primary-listing-data").style.display = "none";
                         $('#secondary-listing-data').html(data.html);
                     },
@@ -1409,7 +1416,7 @@
                             var pct = (e.loaded / e.total) * 100;
 
                             //log percentage loaded
-                            console.log(pct);
+                            // console.log(pct);
                         }
                         //this usually happens when Content-Length isn't set
                         else {
@@ -1435,8 +1442,8 @@
             }else{
                 zip = '76667';
             }
-            console.log(distance);
-            console.log(zip);
+            // // console.log(distance);
+            // // console.log(zip);
             var blue = [];
             var chocolate = [];
             var testable = [];
@@ -1499,7 +1506,7 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    // console.log(data.success);
+                    // // console.log(data.success);
                     document.getElementById("primary-listing-data").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
                 },
@@ -1510,7 +1517,7 @@
                         var pct = (e.loaded / e.total) * 100;
 
                         //log percentage loaded
-                        console.log(pct);
+                        // // console.log(pct);
                     }
                     //this usually happens when Content-Length isn't set
                     else {
@@ -1614,7 +1621,7 @@
         });
 
         function singlePuppy($slug) {
-            // console.log($slug);
+            // // console.log($slug);
             window.location = "{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug;
         }
 
