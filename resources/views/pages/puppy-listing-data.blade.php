@@ -1,4 +1,4 @@
-<p class="listing-count">0-5 out of {{count($sponsoredPuppies)}} listings</p>
+<p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>5</b> listings</p>
 <span class="listing-type">SPONSORED LISTINGS</span>
 @if(empty($sponsoredPuppies))
     <div class="fbd-standard-listing p-3">
@@ -231,7 +231,7 @@
     @endforeach
 
 @endif
-
+<p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>
 <span class="listing-type">STANDARD LISTINGS</span>
 
 @if(empty($standardPuppies))

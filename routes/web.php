@@ -28,8 +28,9 @@ Route::get('puppy_listing',[App\Http\Controllers\ListingsController::class, 'sho
 Route::get('puppy-listing/{slug}',[App\Http\Controllers\ListingsController::class, 'showSinglePuppy'])->name('showPuppy');
 Route::post('find-listings',[App\Http\Controllers\ListingsController::class, 'findListings'])->name('findListings');
 Route::post('filter-listings', [App\Http\Controllers\ListingsController::class, 'filterPuppies'])->name('filterPuppies');
-Route::post('filter-by-zip-puppies',[App\Http\Controllers\ListingsController::class, 'filterByZip'])->name('filterByZip');
-Route::post('filter-by-radius-puppies',[App\Http\Controllers\ListingsController::class, 'filterByRadius'])->name('filterByRadius');
+Route::post('filter-by-zip',[App\Http\Controllers\ListingsController::class, 'filterByZip'])->name('filterByZip');
+Route::post('filter-by-dna',[App\Http\Controllers\ListingsController::class, 'filterByDNA'])->name('filterByDNA');
+Route::post('filter-by-radius',[App\Http\Controllers\ListingsController::class, 'filterByRadius'])->name('filterByRadius');
 Route::post('search-coats',[App\Http\Controllers\ListingsController::class, 'searchDNACoat'])->name('searchDNACoat');
 
 Route::post('add-or-remove-to-favourite',[App\Http\Controllers\SavedItemsController::class, 'addOrRemoveToFavourite'])->name('addOrRemoveToFavourite');

@@ -17,9 +17,11 @@ use App\Domain\Entities\Enums\PiedEnum;
 use App\Domain\Entities\Enums\TestableChocolateEnum;
 use App\Domain\Entities\Listings;
 use App\Domain\Entities\SavedSearch;
+use App\Domain\Entities\Users;
 use App\Domain\Services\Persistence\IApiConfigRepository;
 use App\Domain\Services\Persistence\IListingsRepository;
 use App\Domain\Services\Persistence\ISavedSearchRepository;
+use App\Domain\Services\Persistence\IUsersRepository;
 use Dms\Common\Structure\DateTime\Date;
 use Dms\Common\Structure\FileSystem\Image;
 use Dms\Core\Auth\IAdminRepository;
@@ -32,6 +34,7 @@ use Illuminate\Support\Facades\URL;
 use Jorenvh\Share\Share;
 use Jorenvh\Share\ShareFacade;
 use phpDocumentor\Reflection\Types\True_;
+use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isTrue;
 
 
@@ -41,12 +44,15 @@ class ListingsController extends Controller
     public $listingsRepository;
     public $savedSearchRepository;
     public $token;
+    public $userRepository;
 
-    public function __construct(IListingsRepository $listingsRepository, ISavedSearchRepository $savedSearchRepository, IApiConfigRepository $apiConfigRepository)
+    public function __construct(IListingsRepository $listingsRepository, ISavedSearchRepository $savedSearchRepository, IApiConfigRepository $apiConfigRepository, IUsersRepository $userRepository)
     {
         $this->listingsRepository = $listingsRepository;
         $this->savedSearchRepository = $savedSearchRepository;
+        $this->userRepository = $userRepository;
         $this->token = $apiConfigRepository->getAll()[0]->token;
+//        $this->token = '3QRH1yb6zYyiwCEizx4Wv4tdqNhWAmU0aq8M5w7SwPgdvEAWCbmXrI4aV3KNaNG2';
     }
 
     public function showAllSavedSearchedListings()
@@ -723,10 +729,11 @@ class ListingsController extends Controller
         if($type == 'all'){
             foreach ($kennels as $key=>$breeder){
 
+
                 $allListings = $this->listingsRepository->matching(
 
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder)
+                        ->where(Listings::BREEDER,'=',$breeder[0])
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                         ->orderByAsc(Listings::ID)
                 );
@@ -741,7 +748,7 @@ class ListingsController extends Controller
                 $allListings = $this->listingsRepository->matching(
 
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder)
+                        ->where(Listings::BREEDER,'=',$breeder[0])
                         ->where(Listings::TYPE,'=',new ListingsTypeEnum($type))
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                         ->orderByAsc(Listings::ID)
@@ -956,46 +963,87 @@ class ListingsController extends Controller
      *
      * @return Listings
      */
-    public function filterByZip(Request $request){
+    public function filterByDNA(Request $request){
+
         $type = $request->get('type');
         $responseType = 'radius.json';
         $zipCode = $request->get('zip');
         $distance = $request->get('distance');
-        $unit = 'mile';
-//        return response()->json(['success'=>$type]);
+        $unit = 'km';
+//        return response()->json(['success'=>$zipCode]);
+        $finalListings = [];
 
-        $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
-
-        $allListings = [];
-
-        if($type == 'all'){
-            foreach ($kennels as $key=>$breeder){
-                $allListings = $this->listingsRepository->matching(
-
-                    $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder)
-                        ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                        ->orderByAsc(Listings::ID)
-                );
+        if($zipCode == null){
+            $kennels = $this->userRepository->getAll();
+            if($type == 'all'){
+//            return response()->json(['success'=>'200']);
+                foreach ($kennels as $key=>$breeder){
+                    $allListings = [];
+                    $allListings = $this->listingsRepository->matching(
+                        $this->listingsRepository->criteria()
+                            ->where(Listings::BREEDER,'=',$breeder)
+                            ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                            ->orderByAsc(Listings::ID)
+                    );
+                    foreach ($allListings as $listing){
+                        array_push($finalListings, $listing);
+                    }
+                }
+            }else{
+                foreach ($kennels as $key=>$breeder){
+                    $allListings = [];
+                    $allListings = $this->listingsRepository->matching(
+                        $this->listingsRepository->criteria()
+                            ->where(Listings::BREEDER,'=',$breeder)
+                            ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
+                            ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                            ->orderByAsc(Listings::ID)
+                    );
+                    foreach ($allListings as $listing){
+                        array_push($finalListings, $listing);
+                    }
+                }
             }
         }else{
-            foreach ($kennels as $key=>$breeder){
-                $allListings = $this->listingsRepository->matching(
-                    $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder)
-                        ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
-                        ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                        ->orderByAsc(Listings::ID)
-                );
+            $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
+            if($type == 'all'){
+//            return response()->json(['success'=>'200']);
+                foreach ($kennels as $key=>$breeder){
+                    $allListings = [];
+                    $allListings = $this->listingsRepository->matching(
+                        $this->listingsRepository->criteria()
+                            ->where(Listings::BREEDER,'=',$breeder[0])
+                            ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                            ->orderByAsc(Listings::ID)
+                    );
+                    foreach ($allListings as $listing){
+                        array_push($finalListings, $listing);
+                    }
+                }
+            }else{
+                foreach ($kennels as $key=>$breeder){
+                    $allListings = [];
+                    $allListings = $this->listingsRepository->matching(
+                        $this->listingsRepository->criteria()
+                            ->where(Listings::BREEDER,'=',$breeder[0])
+                            ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
+                            ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                            ->orderByAsc(Listings::ID)
+                    );
+                    foreach ($allListings as $listing){
+                        array_push($finalListings, $listing);
+                    }
+                }
             }
         }
+//        return response()->json(['success'=>count($kennels)]);
 
-//        return response()->json(['success'=>count($allListings)]);
+//        return response()->json(['success'=>count($finalListings)]);
 
-        $afterFilters = $this->filterByAttributes($allListings, $request);
+        $afterFilters = $this->filterByAttributes($finalListings, $request);
 //        return response()->json(['success'=>count($afterFilters)]);
         $dataIds = [];
-        foreach ($allListings as $list){
+        foreach ($finalListings as $list){
             array_push($dataIds, $list->getId());
         }
         Session::put('ids',$dataIds);
@@ -1009,11 +1057,113 @@ class ListingsController extends Controller
             }
         }
 
-//        return response()->json(['success'=>$afterFilters[0]->isSponsored]);
+        $data = null;
+        $blue = $request->get('blue');
+        $chocolate = $request->get('chocolate');
+        $testable = $request->get('testable');
+        $fluffy = $request->get('fluffy');
+        $intensity = $request->get('intensity');
+        $pied = $request->get('pied');
+        $merle = $request->get('merle');
+        $brindle = $request->get('brindle');
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        $recentSearch = view('pages/recent-search-data')
+            ->with(
+                compact('blue','chocolate','testable','fluffy','intensity','pied','merle','brindle')
+            )->render();
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        $matched = false;
+        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched'))->render();
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
+
+    }
+    public function filterByZip(Request $request){
+        $type = $request->get('type');
+        $responseType = 'radius.json';
+        $zipCode = $request->get('zip');
+        $distance = $request->get('distance');
+        $unit = 'km';
+//        return response()->json(['success'=>$distance]);
+
+        $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
+//        return response()->json(['success'=>count($kennels)]);
+        $allListings = [];
+        $allFinalListings = [];
+
+        if($type == 'all'){
+//            return response()->json(['success'=>'200']);
+            foreach ($kennels as $key=>$breeder){
+                $allListings = [];
+                $allListings = $this->listingsRepository->matching(
+
+                    $this->listingsRepository->criteria()
+                        ->where(Listings::BREEDER,'=',$breeder[0])
+                        ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                        ->orderByAsc(Listings::ID)
+                );
+//                return response()->json(['success'=>$allListings]);
+                foreach ($allListings as $listing){
+                    array_push($allFinalListings, $listing);
+                }
+            }
+        }else{
+//            return response()->json(['success'=>'300']);
+            $allListings = [];
+            foreach ($kennels as $key=>$breeder){
+                $allListings = $this->listingsRepository->matching(
+                    $this->listingsRepository->criteria()
+                        ->where(Listings::BREEDER,'=',$breeder[0])
+                        ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
+                        ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                        ->orderByAsc(Listings::ID)
+                );
+                foreach ($allListings as $listing){
+                    array_push($allFinalListings, $listing);
+                }
+            }
+
+        }
+
+//        return response()->json(['success'=>count($allFinalListings)]);
+
+        $afterFilters = $this->filterByAttributes($allFinalListings, $request);
+//        return response()->json(['success'=>count($afterFilters)]);
+        $dataIds = [];
+        foreach ($allFinalListings as $list){
+            array_push($dataIds, $list->getId());
+        }
+        Session::put('ids',$dataIds);
+        $sponsoredPuppies = [];
+        $standardPuppies = [];
+        foreach ($afterFilters as $af) {
+            if($af->isSponsored){
+                array_push($sponsoredPuppies,$af);
+            }else{
+                array_push($standardPuppies,$af);
+            }
+        }
 
         $data = null;
-        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data'))->render();
-        return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html]);
+        $blue = $request->get('blue');
+        $chocolate = $request->get('chocolate');
+        $testable = $request->get('testable');
+        $fluffy = $request->get('fluffy');
+        $intensity = $request->get('intensity');
+        $pied = $request->get('pied');
+        $merle = $request->get('merle');
+        $brindle = $request->get('brindle');
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        $recentSearch = view('pages/recent-search-data')
+            ->with(
+                compact('blue','chocolate','testable','fluffy','intensity','pied','merle','brindle')
+            )->render();
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        $matched = false;
+        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched'))->render();
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
+
 
     }
     /**
@@ -1026,41 +1176,50 @@ class ListingsController extends Controller
         $responseType = 'radius.json';
         $distance = $request->get('radius');
         $zipCode = $request->get('zip');
-        $unit = 'mile';
+        $unit = 'km';
 
-        $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
+        if($zipCode == null){
 
-        $allListings = [];
+            $kennels[0] = $this->userRepository->getAll();
+        }else{
 
+            $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
+        }
+//        return response()->json(['success'=>count($kennels)]);
+        $finalListings = [];
         if($type == 'all'){
             foreach ($kennels as $key=>$breeder){
+                $allListings = [];
                 $allListings = $this->listingsRepository->matching(
-
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder)
+                        ->where(Listings::BREEDER,'=',$breeder[0])
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                        ->orderByAsc(Listings::ID)
                 );
+
+                foreach ($allListings as $listing){
+                    array_push($finalListings, $listing);
+                }
             }
         }else{
+//            return response()->json(['success'=>'300']);
             foreach ($kennels as $key=>$breeder){
+                $allListings = [];
                 $allListings = $this->listingsRepository->matching(
-
                     $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder)
+                        ->where(Listings::BREEDER,'=',$breeder[0])
                         ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
                         ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                        ->orderByAsc(Listings::ID)
                 );
+                foreach ($allListings as $listing){
+                    array_push($finalListings, $listing);
+                }
             }
-
         }
-        return response()->json(['success'=>count($allListings)]);
-
-        $afterFilters = $this->filterByAttributes($allListings, $request);
+//        return response()->json(['success'=>count($finalListings)]);
+        $afterFilters = $this->filterByAttributes($finalListings, $request);
 //        return response()->json(['success'=>count($afterFilters)]);
         $dataIds = [];
-        foreach ($allListings as $list){
+        foreach ($finalListings as $list){
             array_push($dataIds, $list->getId());
         }
         Session::put('ids',$dataIds);
@@ -1073,13 +1232,25 @@ class ListingsController extends Controller
                 array_push($standardPuppies,$af);
             }
         }
-
-//        return response()->json(['success'=>$afterFilters[0]->isSponsored]);
-
         $data = null;
-        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data'))->render();
-        return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html]);
-
+        $blue = $request->get('blue');
+        $chocolate = $request->get('chocolate');
+        $testable = $request->get('testable');
+        $fluffy = $request->get('fluffy');
+        $intensity = $request->get('intensity');
+        $pied = $request->get('pied');
+        $merle = $request->get('merle');
+        $brindle = $request->get('brindle');
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        $recentSearch = view('pages/recent-search-data')
+            ->with(
+                compact('blue','chocolate','testable','fluffy','intensity','pied','merle','brindle')
+            )->render();
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        $matched = false;
+        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched'))->render();
+//        return response()->json(['success'=>count($sponsoredPuppies)]);
+        return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
     }
 
     /**

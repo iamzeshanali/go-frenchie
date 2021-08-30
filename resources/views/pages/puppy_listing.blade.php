@@ -1,85 +1,73 @@
 @extends('./layouts.app')
-@section('title', 'Puppies')
+@section('title', 'Puppy')
 @section('content')
 
+    <div class="container">
 
-
-    <div class="row justify-content-center m-0">
-
-        <h2 class="page-title text-center col-xl-8 mb-5">Puppy Page</h2>
-
-        <div class="col-xl-8 px-4">
-            <div class="page-description text-justify mb-5 rounded">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                </p>
-            </div>
+        <h2 class="page-title text-center">Puppy Page</h2>
+        <div class="page-description text-justify mb-5 rounded">
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+            </p>
         </div>
 
-
-
         {{--SEARCH BAR COMPONENT--}}
-        <div class="col-xl-8 px-4">
-            <div class="fbd-search-area p-3 mb-5 rounded">
-                <form method="POST" id="search-listings" action="{{ route('findListings') }}">
-                    @csrf
-                    <input type="hidden" name="type" value="puppy">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <h6>DNA Colors</h6>
-                            <select class="form-control form-select dna-a" name="dnaColor" id="dnaColor" aria-label="Default select example">
-                                <option selected disabled>Choose Color</option>
-                                <option value="Blue" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Blue' ? 'selected':''}} @endif >Blue </option>
-                                <option value="Chocolate" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Chocolate' ? 'selected':''}} @endif >Chocolate </option>
-                                <option value="Testable_Chocolate">Testable Chocolate </option>
-                                <option value="Fluffy">Fluffy </option>
-                                <option value="Intensity">Intensity </option>
-                                <option value="Pied">Pied </option>
-                                <option value="Merle">Merle </option>
-                                <option value="Brindle">Brindle </option>
+        <div class="container fbd-search-area p-3 mb-3 rounded">
+            <form method="POST" id="search-listings" action="{{ route('findListings') }}">
+                @csrf
+                <input type="hidden" name="type" value="puppy">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h6>DNA Colors</h6>
+                        <select class="form-control form-select dna-a" name="dnaColor" id="dnaColor" aria-label="Default select example">
+                            <option selected disabled>Choose Color</option>
+                            <option value="Blue" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Blue' ? 'selected':''}} @endif >Blue </option>
+                            <option value="Chocolate" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Chocolate' ? 'selected':''}} @endif >Chocolate </option>
+                            <option value="Testable_Chocolate">Testable Chocolate </option>
+                            <option value="Fluffy">Fluffy </option>
+                            <option value="Intensity">Intensity </option>
+                            <option value="Pied">Pied </option>
+                            <option value="Merle">Merle </option>
+                            <option value="Brindle">Brindle </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <h6>DNA Characteristics</h6>
+                        <div id="coat">
+                        </div>
+                        <div id="optional">
+                            <!-- Default COAT Characteristics-->
+                            <select class="form-control form-select" id="dnaCoatOptional" name="dnaCoatOptional" aria-label="Default select example">
+                                <option selected disabled>Choose DNA Color</option>
                             </select>
-                        </div>
-                        <div class="col-lg-3">
-                            <h6>DNA Characteristics</h6>
-                            <div id="coat">
-                            </div>
-                            <div id="optional">
-                                <!-- Default COAT Characteristics-->
-                                <select class="form-control form-select" id="dnaCoatOptional" name="dnaCoatOptional" aria-label="Default select example">
-                                    <option selected disabled>Choose DNA Color</option>
-                                </select>
-                                <div class="invalid-feedback">Please select a Color!</div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <h6>Location</h6>
-                            <div class="locatin-group-btn input-group">
-                                <input type="zip" class="form-control" name="zip" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
-                                <span class="input-group-btn mr-1">
-                            <button class="btn btn-default" onClick="getZip()" type="button"><i class="far fa-compass"></i></button>
-                        </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block btn-fbd">Search</button>
+                            <div class="invalid-feedback">Please select a Color!</div>
                         </div>
                     </div>
 
-                </form>
-            </div>
-        </div>
+                    <div class="col-lg-3">
+                        <h6>Location</h6>
+                        <div class="locatin-group-btn input-group">
+                            <input type="zip" class="form-control" name="zip" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
+                            <span class="input-group-btn mr-1">
+                            <button class="btn btn-default" onClick="getZip()" type="button"><i class="far fa-compass"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block btn-fbd">Search</button>
+                    </div>
+                </div>
 
+            </form>
+        </div>
         {{--END SEARCH BAR COMPONENT--}}
 
     </div>
-
-
     <div class="container-fluid">
-        <div class="page-content row">
+        <div class="page-content d-lg-flex ">
             {{--Filter area--}}
-            <div class="fbd-filter-area mb-3 rounded col-xl-2">
+            <div class="fbd-filter-area mb-3 rounded col-xl-3 col-lg-3 col-md-12">
                 <div id="accordion">
                     <!-- Your Search -->
                     @if($data != null)
@@ -120,30 +108,28 @@
                     @endif
 
                     @if(Auth::user())
-                    {{--Saved Search--}}
-                    <div class="card p-3 mb-4 rounded">
-                        <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
-                            <span class="heading mb-0">Search History</span>
-                            <?php
-                            $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedPuppy();
-                            ?>
-                            <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>
-                        </div>
-                        <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
-                            <div class="card-body">
-                                <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
-                                <ul class="tags-list" id="primary-recent-search">
-
-                                    @foreach($allSavedSearch AS $saved)
+                        {{--Saved Search--}}
+                        <div class="card p-3 mb-4 rounded">
+                            <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
+                                <span class="heading mb-0">Search History</span>
+                                <?php
+                                $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();
+                                ?>
+                                <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>
+                            </div>
+                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
+                                <div class="card-body">
+                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
+                                    <ul class="tags-list" id="primary-recent-search">
+                                        @foreach($allSavedSearch AS $saved)
                                             <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>
-                                    @endforeach
-                                </ul>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @endif
-
-                    <!-- Location -->
+                @endif
+                <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
 
                         <div class="card-header p-0 bg-white border-0" id="filterLocation">
@@ -155,6 +141,7 @@
                         </div>
                         <div id="collapseLocation" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
                             <div class="card-body">
+
                                 @if(!empty($data))
 
                                     <select class="form-control form-select filterDistance" name="filterDistance" id="distance" aria-label="Default select example">
@@ -169,7 +156,7 @@
                                         <option value="500" {{$data['distance'] === '500' ? 'selected' : ''}}>500 Miles </option>
                                         <option value="10" selected>Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zip" onblur="searchByZip(this.value)" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zipSection" onblur="searchByZip(this.value)" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
                                 @else
                                     <select class="form-control form-select filterDistance" name="filterDistance" id="distance" aria-label="Default select example">
                                         <option value="10">10 Miles </option>
@@ -181,9 +168,9 @@
                                         <option value="300">300 Miles </option>
                                         <option value="400">400 Miles </option>
                                         <option value="500">500 Miles </option>
-                                        <option selected="10" value="10">Any Distance</option>
+                                        <option selected="100" value="100">Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" value="" name="zip" onblur="searchByZip(this.value)" id="zipcode1" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" class="form-control" value="" name="zipSectionSecond" onblur="searchByZip(this.value)" id="zoo" aria-describedby="zipHelp" placeholder="Zip Code">
                                 @endif
 
 
@@ -499,7 +486,7 @@
             </div>
             {{--End Filter area--}}
 
-            <div class="fbd-content-area mb-3 rounded col-xl-8">
+            <div class="fbd-content-area mb-3 rounded col-xl-7">
 
                 <div id="primary-listing-data" class="fbd-listing-area p-3 rounded">
 
@@ -527,23 +514,23 @@
                                         @if(Auth::user())
                                             <?php
                                             $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
-//                                            dd($allSavedListings);
+                                            //                                            dd($allSavedListings);
                                             ?>
 
                                             @if(count($allSavedListings) > 0)
                                                 <?php
-                                                    foreach ($allSavedListings as $saved) {
-                                                        if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
-                                                        {
-                                                            if(($saved->listings->slug == $sponsoredPuppy->slug)){
-                                                                $matched = true;
-                                                                break;
-                                                            }else{
-                                                                $matched = false;
-                                                            }
-
+                                                foreach ($allSavedListings as $saved) {
+                                                    if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
+                                                    {
+                                                        if(($saved->listings->slug == $sponsoredPuppy->slug)){
+                                                            $matched = true;
+                                                            break;
+                                                        }else{
+                                                            $matched = false;
                                                         }
+
                                                     }
+                                                }
                                                 ?>
                                                 @if($matched == false)
                                                     <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
@@ -552,143 +539,143 @@
                                                 @endif
 
                                             @else
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                             @endif
                                         @else
                                             <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
                                         @endif
-                                            <div id="LoginModal" class="modal fade">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                        </div>
-                                                        @if (\Session::has('error'))
-                                                            <div class="alert alert-danger">
-                                                                {{ \Session::get('error') }}
-                                                            </div>
-                                                        @endif
-                                                        <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
-                                                            @csrf
-                                                            <div class="modal-body">
-
-                                                                <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
-                                                                <input type="hidden" name="type" value="listing">
-
-                                                                {{--  EMAIL-ADDRESS  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                                                        @error('email')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                                {{--  PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                                                        @error('password')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
-                                                                    {{ __('Login') }}
-                                                                </button>
-
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <div id="deleteListingModal" class="modal fade">
+                                        <div id="LoginModal" class="modal fade">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Register Yourself</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    @if (\Session::has('error'))
+                                                        <div class="alert alert-danger">
+                                                            {{ \Session::get('error') }}
                                                         </div>
-                                                        <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
-                                                            @csrf
+                                                    @endif
+                                                    <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
+                                                        @csrf
                                                         <div class="modal-body">
 
                                                             <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
                                                             <input type="hidden" name="type" value="listing">
-                                                                {{--  USERNAME  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
-                                                                    <div class="col-md-6">
-                                                                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                            {{--  EMAIL-ADDRESS  --}}
+                                                            <div class="form-group row">
+                                                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                                                        @error('username')
-                                                                        <span class="invalid-feedback" role="alert">
+                                                                <div class="col-md-6">
+                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                                                    @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
                                                                         </span>
-                                                                        @enderror
-                                                                    </div>
+                                                                    @enderror
                                                                 </div>
-                                                                {{--  EMAIL-ADDRESS  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                                            </div>
+                                                            {{--  PASSWORD  --}}
+                                                            <div class="form-group row">
+                                                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                                                    <div class="col-md-6">
-                                                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                <div class="col-md-6">
+                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                                                        @error('email')
-                                                                        <span class="invalid-feedback" role="alert">
+                                                                    @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
                                                                         </span>
-                                                                        @enderror
-                                                                    </div>
+                                                                    @enderror
                                                                 </div>
-                                                                {{--  PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                                                        @error('password')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                                {{--  CONFIRM-PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                                                    </div>
-                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                            <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
+                                                            <button type="submit" class="btn btn-danger btn-fbd">
+                                                                {{ __('Login') }}
+                                                            </button>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="deleteListingModal" class="modal fade">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Register Yourself</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
+                                                        @csrf
+                                                        <div class="modal-body">
+
+                                                            <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
+                                                            <input type="hidden" name="type" value="listing">
+                                                            {{--  USERNAME  --}}
+                                                            <div class="form-group row">
+                                                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                                                                <div class="col-md-6">
+                                                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                                                                    @error('username')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            {{--  EMAIL-ADDRESS  --}}
+                                                            <div class="form-group row">
+                                                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                                                <div class="col-md-6">
+                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                                                    @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            {{--  PASSWORD  --}}
+                                                            <div class="form-group row">
+                                                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                                                <div class="col-md-6">
+                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                                                    @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            {{--  CONFIRM-PASSWORD  --}}
+                                                            <div class="form-group row">
+                                                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                                                <div class="col-md-6">
+                                                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                                             <button type="submit" class="btn btn-danger btn-fbd">
                                                                 {{ __('Register') }}
                                                             </button>
 
                                                         </div>
-                                                        </form>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -976,6 +963,7 @@
         </div>
     </div>
 
+
     <script type="text/javascript">
 
         $('#dnaColor').on('change', function () {
@@ -988,9 +976,9 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    // console.log(data.success);
+                    console.log(data.success);
                     if(data.success == '200'){
-                        // console.log("DONE");
+                        console.log("DONE");
                         document.getElementById("optional").style.display = "none";
                         $("#coat").html(data.html);
                     }
@@ -999,71 +987,68 @@
             });
         });
         function addOrRemoveToFavourite($slug, $email, $type){
-                // // console.log($slug, $email, $type);
+            $.ajax({
+                type:'POST',
+                url: '{{route('addOrRemoveToFavourite')}}',
+                data: {
+                    slug:$slug,
+                    email:$email,
+                    type:$type
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                success: function(data){
+                    // console.log(data.success);
+                    if(data.success == '200'){
+                        // console.log(data.success);
+                        var className = ".fbd-liked-icon"+"-"+$slug;
+                        $(className).css("color","#8b77fc");
+                    }
+                    if(data.success == '300'){
+                        // console.log(data.success);
+                        var className = ".fbd-liked-icon"+"-"+$slug;
+                        $(className).css("color","#c4bfbf");
+                    }
+                },
 
-                $.ajax({
-                    type:'POST',
-                    url: '{{route('addOrRemoveToFavourite')}}',
-                    data: {
-                        slug:$slug,
-                        email:$email,
-                        type:$type
-                    },
-                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                    success: function(data){
-                        // // console.log(data.success);
-                        if(data.success == '200'){
-                            // // console.log(data.success);
-                            var className = ".fbd-liked-icon"+"-"+$slug;
-                            $(className).css("color","#8b77fc");
-                        }
-                        if(data.success == '300'){
-                            // // console.log(data.success);
-                            var className = ".fbd-liked-icon"+"-"+$slug;
-                            $(className).css("color","#c4bfbf");
-                        }
-                    },
-
-                });
+            });
 
         }
-
         function previousSearch(color, coat, zip, type){
-            // console.log(color, coat, zip,type);
+            console.log(color, coat, zip,type);
             $.ajax({
-                    type:'POST',
-                    url: '{{route('findListings')}}',
-                    data: {
-                        type:type,
-                        dnaColor:color,
-                        dnaCoat:coat,
-                        zip:zip,
-                        requestType: 'ajax'
-                    },
-                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                    success: function(data){
-                        // console.log(data.success);
-                        document.getElementById("primary-listing-data").style.display = "none";
-                        $('#secondary-listing-data').html(data.html);
-                    },
-                    progress: function(e) {
-                        //make sure we can compute the length
-                        if(e.lengthComputable) {
-                            //calculate the percentage loaded
-                            var pct = (e.loaded / e.total) * 100;
+                type:'POST',
+                url: '{{route('findListings')}}',
+                data: {
+                    type:type,
+                    dnaColor:color,
+                    dnaCoat:coat,
+                    zip:zip,
+                    requestType: 'ajax'
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                success: function(data){
+                    console.log(data.success);
+                    document.getElementById("primary-listing-data").style.display = "none";
+                    $('#secondary-listing-data').html(data.html);
+                },
+                progress: function(e) {
+                    //make sure we can compute the length
+                    if(e.lengthComputable) {
+                        //calculate the percentage loaded
+                        var pct = (e.loaded / e.total) * 100;
 
-                            //log percentage loaded
-                            // console.log(pct);
-                        }
-                        //this usually happens when Content-Length isn't set
-                        else {
-                            console.warn('Content Length not reported!');
-                        }
+                        //log percentage loaded
+                        console.log(pct);
                     }
-                });
+                    //this usually happens when Content-Length isn't set
+                    else {
+                        console.warn('Content Length not reported!');
+                    }
+                }
+            });
         }
         function cancelRecentSearch(color,coat){
-            // console.log("Color:" +color, "DNA:" +coat);
+            console.log("Color:" +color, "DNA:" +coat);
 
             if (color = 'Blue'){
                 $("input[name='blue']:checked").each(function(){
@@ -1072,7 +1057,7 @@
                         findValue();
                         return false;
                     }
-                     if(coat == '2copies(d/d)'){
+                    if(coat == '2copies(d/d)'){
                         $("#filterABlue2copy").prop('checked',false);
                         findValue();
                         return false;
@@ -1081,7 +1066,7 @@
                         findValue();
                         return false;
                     }
-                     if(coat == 'unknown'){
+                    if(coat == 'unknown'){
                         $("#filterABlueUnknown").prop('checked',false);
                         findValue();
                         return false;
@@ -1094,13 +1079,13 @@
                 $("input[name='chocolate']:checked").each(function(){
                     if (coat == '2copies(co/co)'){
                         $("#chocolate2copy").prop('checked',false);
-                        // console.log("DONE");
+                        console.log("DONE");
                         findValue();
                         return false;
                     }
                     if(coat == '1copy(Co/co)'){
                         $("#chocolate1copy").prop('checked',false);
-                        // console.log("NDONE");
+                        console.log("NDONE");
                         findValue();
                         return false;
                     }
@@ -1280,20 +1265,28 @@
             $("input[name='agouti']:checked").each(function(){
                 agouti.push($(this).val());
             });
-            // console.log("Blue are: " + blue.join(", "));
-            // console.log("Chococlate are: " + chocolate.join(", "));
-            // console.log("Testablechococlate are: " + testable.join(", "));
-            // console.log("Fluffy are: " + fluffy.join(", "));
-            // console.log("Intensity are: " + intensity.join(", "));
-            // console.log("Pied are: " + pied.join(", "));
-            // console.log("Merle are: " + merle.join(", "));
-            // console.log("Brindle are: " + brindle.join(", "));
-            // console.log("Agouti are: " + agouti.join(", "));
-            // console.log("EMCIR are: " + emcir.join(", "));
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
 
+            let distance = $("#distance").val();
+            let zip = 75001;
+            if($('#zipSection').length != 0){
+                this.zip = $('#zipSection').val();
+            }else{
+                this.zip = $("#zoo").val();
+            }
+            console.log(this.zip);
             $.ajax({
                 type:'POST',
-                url: '{{route('filterPuppies')}}',
+                url: '{{route('filterByDNA')}}',
                 data: {
                     blue:blue,
                     chocolate:chocolate,
@@ -1305,10 +1298,13 @@
                     brindle:brindle,
                     agouti:agouti,
                     emcir:emcir,
+                    zip : this.zip,
+                    distance: distance,
+                    type : 'puppy'
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    // console.log(data.success);
+                    console.log(data.success);
                     document.getElementById("primary-listing-data").style.display = "none";
                     document.getElementById("primary-recent-search").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
@@ -1321,7 +1317,7 @@
                         var pct = (e.loaded / e.total) * 100;
 
                         //log percentage loaded
-                        // console.log(pct);
+                        console.log(pct);
                     }
                     //this usually happens when Content-Length isn't set
                     else {
@@ -1331,14 +1327,11 @@
             });
 
         }
-
         //Filter by Zip
         function checkZip(value) {
             return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value);
         }
         function searchByZip(value){
-
-
             if (checkZip(value)) {
                 var blue = [];
                 var chocolate = [];
@@ -1382,9 +1375,21 @@
                 $("input[name='agouti']:checked").each(function(){
                     agouti.push($(this).val());
                 });
+
+                console.log("Blue are: " + blue.join(", "));
+                console.log("Chococlate are: " + chocolate.join(", "));
+                console.log("Testablechococlate are: " + testable.join(", "));
+                console.log("Fluffy are: " + fluffy.join(", "));
+                console.log("Intensity are: " + intensity.join(", "));
+                console.log("Pied are: " + pied.join(", "));
+                console.log("Merle are: " + merle.join(", "));
+                console.log("Brindle are: " + brindle.join(", "));
+                console.log("Agouti are: " + agouti.join(", "));
+                console.log("EMCIR are: " + emcir.join(", "));
+
                 var distance = $("#distance").val();
-                // console.log(distance);
-                // console.log(value);
+                console.log(distance);
+                console.log(value);
                 $.ajax({
                     type:'POST',
                     url: '{{route('filterByZip')}}',
@@ -1405,9 +1410,10 @@
                     },
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     success: function(data){
-                    console.log(data.success);
+                        console.log(data.success);
                         document.getElementById("primary-listing-data").style.display = "none";
                         $('#secondary-listing-data').html(data.html);
+                        $('#secondary-recent-search').html(data.recentSearch);
                     },
                     progress: function(e) {
                         //make sure we can compute the length
@@ -1416,7 +1422,7 @@
                             var pct = (e.loaded / e.total) * 100;
 
                             //log percentage loaded
-                            // console.log(pct);
+                            console.log(pct);
                         }
                         //this usually happens when Content-Length isn't set
                         else {
@@ -1427,23 +1433,21 @@
             } else {
                 alert('invalid zip');
             }
-
-
-
         }
-
-        //Filter by Radius
+        // Filter by Radius
         $('#distance').on('change', function () {
 
             var distance = $(this).val();
-            var zip = $("#zipcode1").val();
+            var zip = $('#zipSection').val();
+
             if (checkZip(zip)){
                 zip=zip;
             }else{
-                zip = '76667';
+                alert('Zipcode not valid')
             }
-            // // console.log(distance);
-            // // console.log(zip);
+            console.log(distance);
+
+            console.log(zip);
             var blue = [];
             var chocolate = [];
             var testable = [];
@@ -1486,6 +1490,17 @@
                 agouti.push($(this).val());
             });
 
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
+
             $.ajax({
                 type:'POST',
                 url: '{{route('filterByRadius')}}',
@@ -1506,9 +1521,10 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    // // console.log(data.success);
+                    console.log(data.success);
                     document.getElementById("primary-listing-data").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
+                    $('#secondary-recent-search').html(data.recentSearch);
                 },
                 progress: function(e) {
                     //make sure we can compute the length
@@ -1517,7 +1533,7 @@
                         var pct = (e.loaded / e.total) * 100;
 
                         //log percentage loaded
-                        // // console.log(pct);
+                        console.log(pct);
                     }
                     //this usually happens when Content-Length isn't set
                     else {
@@ -1621,14 +1637,14 @@
         });
 
         function singlePuppy($slug) {
-            // // console.log($slug);
+            // console.log($slug);
             window.location = "{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug;
         }
 
         function getZip(){
             var inputZip = document.getElementById("zipcode");
             var data;
-            fetch('http://frenchbulldog.test/get-address-from-ip')
+            fetch('{{\Illuminate\Support\Facades\URL::to('get-address-from-ip')}}')
                 .then(data => {
                     address = data.json()
                     address.then(function (res){
@@ -1636,8 +1652,6 @@
                     });
                 }).catch(error => { alert('Unknown Location'); });
         }
-
-
 
     </script>
 @endsection

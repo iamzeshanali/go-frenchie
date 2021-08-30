@@ -2,6 +2,7 @@
 
 namespace App\Cms\Modules;
 
+use Dms\Common\Structure\Web\Html;
 use Dms\Core\Auth\IAuthSystem;
 use Dms\Core\Common\Crud\CrudModule;
 use Dms\Core\Common\Crud\Definition\CrudModuleDefinition;
@@ -10,6 +11,7 @@ use Dms\Core\Common\Crud\Definition\Table\SummaryTableDefinition;
 use App\Domain\Services\Persistence\IApiConfigRepository;
 use App\Domain\Entities\ApiConfig;
 use Dms\Common\Structure\Field;
+use Dms\Core\Language\Message;
 
 /**
  * The api-config module.
@@ -38,6 +40,12 @@ class ApiConfigModule extends CrudModule
         $module->metadata([
             'icon' => ''
         ]);
+        $module->action('change-zipcode-api-token ')
+            ->authorize(self::VIEW_PERMISSION)
+            ->returns(Html::class)
+            ->handler(function () {
+                dd("Visit this link to change Token for API: 'https://www.zipcodeapi.com/API#radius'");
+            });
 
         $module->crudForm(function (CrudFormDefinition $form) {
             $form->section('Details', [

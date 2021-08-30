@@ -62,9 +62,9 @@ body {
 .btn-fbd {
     font-family: "Sailec-Medium";
     border: none !important;
-    background-image: -moz-linear-gradient( 0deg, #8b77fc 0%, #957afe 100%);
-    background-image: -webkit-linear-gradient( 0deg, #8b77fc 0%, #957afe 100%);
-    background-image: -ms-linear-gradient( 0deg, #8b77fc 0%, #957afe 100%);
+    background-image: -moz-linear-gradient( 0deg, #3390CE 0%, #3390CE 100%);
+    background-image: -webkit-linear-gradient( 0deg, #3390CE 0%, #3390CE 100%);
+    background-image: -ms-linear-gradient( 0deg, #3390CE 0%, #3390CE 100%);
 }
 
 .btn-fbd:active:focus {
@@ -76,9 +76,9 @@ button:focus {
 }
 
 .btn-fbd:hover {
-    background-image: -moz-linear-gradient( 0deg, rgba(140, 120, 252, 0.8) 0%, rgba(149, 123, 254, 0.8) 100%);
-    background-image: -webkit-linear-gradient( 0deg, rgba(139, 119, 252, 0.8) 0%, rgba(148, 122, 254, 0.8) 100%);
-    background-image: -ms-linear-gradient( 0deg, rgba(139, 119, 252, 0.8) 0%, rgba(148, 122, 254, 0.8) 100%);
+    background-image: -moz-linear-gradient( 0deg, #BE202E 0%, #BE202E 100%);
+    background-image: -webkit-linear-gradient( 0deg, #BE202E 0%, #BE202E 100%);
+    background-image: -ms-linear-gradient( 0deg, #BE202E 0%, #BE202E 100%);
 }
 
 .btn-fbd:focus {
@@ -1302,7 +1302,7 @@ p.breeder-profile-about{
 
 .home-intro h2 {
     padding-top: 30px;
-    color: #8B77FC;
+    color: #231F20;
     font-family: "Sailec-Bold";
 }
 

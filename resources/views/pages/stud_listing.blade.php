@@ -1,10 +1,10 @@
 @extends('./layouts.app')
-@section('title', 'Studs')
+@section('title', 'Stud')
 @section('content')
 
     <div class="container">
 
-        <h2 class="page-title text-center">Studs Page</h2>
+        <h2 class="page-title text-center">Puppy Page</h2>
         <div class="page-description text-justify mb-5 rounded">
             <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -16,7 +16,7 @@
         <div class="container fbd-search-area p-3 mb-3 rounded">
             <form method="POST" id="search-listings" action="{{ route('findListings') }}">
                 @csrf
-                <input type="hidden" name="type" value="stud">
+                <input type="hidden" name="type" value="puppy">
                 <div class="row">
                     <div class="col-lg-3">
                         <h6>DNA Colors</h6>
@@ -65,7 +65,7 @@
 
     </div>
     <div class="container-fluid">
-        <div class="page-content row">
+        <div class="page-content d-lg-flex ">
             {{--Filter area--}}
             <div class="fbd-filter-area mb-3 rounded col-xl-2">
                 <div id="accordion">
@@ -105,29 +105,30 @@
                                 </div>
                             </div>
                         </div>
-                @endif
-                @if(Auth::user())
-                    {{--Saved Search--}}
-                    <div class="card p-3 mb-4 rounded">
-                        <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
-                            <span class="heading mb-0">Search History</span>
-                            <?php
-                            $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedStuds();
-                            ?>
-                            <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>
-                        </div>
-                        <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
-                            <div class="card-body">
-                                <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
-                                <ul class="tags-list" id="primary-recent-search">
-                                    @foreach($allSavedSearch AS $saved)
+                    @endif
+
+                    @if(Auth::user())
+                        {{--Saved Search--}}
+                        <div class="card p-3 mb-4 rounded">
+                            <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
+                                <span class="heading mb-0">Search History</span>
+                                <?php
+                                $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();
+                                ?>
+                                <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>
+                            </div>
+                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
+                                <div class="card-body">
+                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
+                                    <ul class="tags-list" id="primary-recent-search">
+                                        @foreach($allSavedSearch AS $saved)
                                             <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>
-                                    @endforeach
-                                </ul>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @endif
+                @endif
                 <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
 
@@ -140,6 +141,7 @@
                         </div>
                         <div id="collapseLocation" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
                             <div class="card-body">
+
                                 @if(!empty($data))
 
                                     <select class="form-control form-select filterDistance" name="filterDistance" id="distance" aria-label="Default select example">
@@ -154,7 +156,7 @@
                                         <option value="500" {{$data['distance'] === '500' ? 'selected' : ''}}>500 Miles </option>
                                         <option value="10" selected>Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zip" onblur="searchByZip(this.value)" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zipSection" onblur="searchByZip(this.value)" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
                                 @else
                                     <select class="form-control form-select filterDistance" name="filterDistance" id="distance" aria-label="Default select example">
                                         <option value="10">10 Miles </option>
@@ -166,9 +168,9 @@
                                         <option value="300">300 Miles </option>
                                         <option value="400">400 Miles </option>
                                         <option value="500">500 Miles </option>
-                                        <option selected="10" value="10">Any Distance</option>
+                                        <option selected="100" value="100">Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" value="" name="zip" onblur="searchByZip(this.value)" id="zipcode1" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" class="form-control" value="" name="zipSectionSecond" onblur="searchByZip(this.value)" id="zoo" aria-describedby="zipHelp" placeholder="Zip Code">
                                 @endif
 
 
@@ -488,7 +490,7 @@
 
                 <div id="primary-listing-data" class="fbd-listing-area p-3 rounded">
 
-                <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>5</b> listings</p>
+                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>5</b> listings</p>
                     <span class="listing-type">SPONSORED LISTINGS</span>
                     @if(empty($sponsoredPuppies))
                         <div class="fbd-standard-listing p-3">
@@ -1014,36 +1016,36 @@
         function previousSearch(color, coat, zip, type){
             console.log(color, coat, zip,type);
             $.ajax({
-                    type:'POST',
-                    url: '{{route('findListings')}}',
-                    data: {
-                        type:type,
-                        dnaColor:color,
-                        dnaCoat:coat,
-                        zip:zip,
-                        requestType: 'ajax'
-                    },
-                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                    success: function(data){
-                        console.log(data.success);
-                        document.getElementById("primary-listing-data").style.display = "none";
-                        $('#secondary-listing-data').html(data.html);
-                    },
-                    progress: function(e) {
-                        //make sure we can compute the length
-                        if(e.lengthComputable) {
-                            //calculate the percentage loaded
-                            var pct = (e.loaded / e.total) * 100;
+                type:'POST',
+                url: '{{route('findListings')}}',
+                data: {
+                    type:type,
+                    dnaColor:color,
+                    dnaCoat:coat,
+                    zip:zip,
+                    requestType: 'ajax'
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                success: function(data){
+                    console.log(data.success);
+                    document.getElementById("primary-listing-data").style.display = "none";
+                    $('#secondary-listing-data').html(data.html);
+                },
+                progress: function(e) {
+                    //make sure we can compute the length
+                    if(e.lengthComputable) {
+                        //calculate the percentage loaded
+                        var pct = (e.loaded / e.total) * 100;
 
-                            //log percentage loaded
-                            console.log(pct);
-                        }
-                        //this usually happens when Content-Length isn't set
-                        else {
-                            console.warn('Content Length not reported!');
-                        }
+                        //log percentage loaded
+                        console.log(pct);
                     }
-                });
+                    //this usually happens when Content-Length isn't set
+                    else {
+                        console.warn('Content Length not reported!');
+                    }
+                }
+            });
         }
         function cancelRecentSearch(color,coat){
             console.log("Color:" +color, "DNA:" +coat);
@@ -1274,9 +1276,17 @@
             console.log("Agouti are: " + agouti.join(", "));
             console.log("EMCIR are: " + emcir.join(", "));
 
+            let distance = $("#distance").val();
+            let zip = 75001;
+            if($('#zipSection').length != 0){
+                this.zip = $('#zipSection').val();
+            }else{
+                this.zip = $("#zoo").val();
+            }
+            console.log(this.zip);
             $.ajax({
                 type:'POST',
-                url: '{{route('filterPuppies')}}',
+                url: '{{route('filterByDNA')}}',
                 data: {
                     blue:blue,
                     chocolate:chocolate,
@@ -1288,6 +1298,9 @@
                     brindle:brindle,
                     agouti:agouti,
                     emcir:emcir,
+                    zip : this.zip,
+                    distance: distance,
+                    type : 'stud'
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
@@ -1314,14 +1327,11 @@
             });
 
         }
-
         //Filter by Zip
         function checkZip(value) {
             return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value);
         }
         function searchByZip(value){
-
-
             if (checkZip(value)) {
                 var blue = [];
                 var chocolate = [];
@@ -1365,6 +1375,18 @@
                 $("input[name='agouti']:checked").each(function(){
                     agouti.push($(this).val());
                 });
+
+                console.log("Blue are: " + blue.join(", "));
+                console.log("Chococlate are: " + chocolate.join(", "));
+                console.log("Testablechococlate are: " + testable.join(", "));
+                console.log("Fluffy are: " + fluffy.join(", "));
+                console.log("Intensity are: " + intensity.join(", "));
+                console.log("Pied are: " + pied.join(", "));
+                console.log("Merle are: " + merle.join(", "));
+                console.log("Brindle are: " + brindle.join(", "));
+                console.log("Agouti are: " + agouti.join(", "));
+                console.log("EMCIR are: " + emcir.join(", "));
+
                 var distance = $("#distance").val();
                 console.log(distance);
                 console.log(value);
@@ -1391,6 +1413,7 @@
                         console.log(data.success);
                         document.getElementById("primary-listing-data").style.display = "none";
                         $('#secondary-listing-data').html(data.html);
+                        $('#secondary-recent-search').html(data.recentSearch);
                     },
                     progress: function(e) {
                         //make sure we can compute the length
@@ -1410,22 +1433,20 @@
             } else {
                 alert('invalid zip');
             }
-
-
-
         }
-
-        //Filter by Radius
+        // Filter by Radius
         $('#distance').on('change', function () {
 
             var distance = $(this).val();
-            var zip = $("#zipcode1").val();
+            var zip = $('#zipSection').val();
+
             if (checkZip(zip)){
                 zip=zip;
             }else{
-                zip = '76667';
+                alert('Zipcode not valid')
             }
             console.log(distance);
+
             console.log(zip);
             var blue = [];
             var chocolate = [];
@@ -1469,6 +1490,17 @@
                 agouti.push($(this).val());
             });
 
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
+
             $.ajax({
                 type:'POST',
                 url: '{{route('filterByRadius')}}',
@@ -1489,9 +1521,10 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    // console.log(data.success);
+                    console.log(data.success);
                     document.getElementById("primary-listing-data").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
+                    $('#secondary-recent-search').html(data.recentSearch);
                 },
                 progress: function(e) {
                     //make sure we can compute the length
@@ -1611,7 +1644,7 @@
         function getZip(){
             var inputZip = document.getElementById("zipcode");
             var data;
-            fetch('http://frenchbulldog.test/get-address-from-ip')
+            fetch('{{\Illuminate\Support\Facades\URL::to('get-address-from-ip')}}')
                 .then(data => {
                     address = data.json()
                     address.then(function (res){
@@ -1619,5 +1652,6 @@
                     });
                 }).catch(error => { alert('Unknown Location'); });
         }
+
     </script>
 @endsection

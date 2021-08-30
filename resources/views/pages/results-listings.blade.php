@@ -155,7 +155,7 @@
                                         <option value="500" {{$data['distance'] === '500' ? 'selected' : ''}}>500 Miles </option>
                                         <option value="10" selected>Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zip" onblur="searchByZip(this.value)" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zip" onblur="searchByZip(this.value)" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
                                 @else
                                     <select class="form-control form-select filterDistance" name="filterDistance" id="distance" aria-label="Default select example">
                                         <option value="10">10 Miles </option>
@@ -349,7 +349,7 @@
                                         <label for="filterABlueUnknown"> Unknown </label><br>
                                     </div>
                                     {{-- Chocolate --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' id="filterChocolate" name="filterChocolate" value="Chocolate">
+                                    <input type="checkbox"  data-toggle='collapse' data-target='#collapseChocolate' id="filterChocolate" name="filterChocolate" value="Chocolate">
                                     <label for="filterChocolate"> Chocolate</label><br>
                                     <div id="collapseChocolate" class="collapse pl-4">
                                         <input type="checkbox" id="chocolate2copy" name="chocolate" onchange="(findValue())" value="2copies(co/co)">
@@ -1275,9 +1275,13 @@
             console.log("Agouti are: " + agouti.join(", "));
             console.log("EMCIR are: " + emcir.join(", "));
 
+            var distance = $("#distance").val();
+            var zip = $("#zipSection").val();
+            console.log(distance);
+            console.log(zip);
             $.ajax({
                 type:'POST',
-                url: '{{route('filterPuppies')}}',
+                url: '{{route('filterByDNA')}}',
                 data: {
                     blue:blue,
                     chocolate:chocolate,
@@ -1289,6 +1293,9 @@
                     brindle:brindle,
                     agouti:agouti,
                     emcir:emcir,
+                    zip : zip,
+                    distance: distance,
+                    type : 'all'
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
@@ -1321,8 +1328,6 @@
             return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value);
         }
         function searchByZip(value){
-
-
             if (checkZip(value)) {
                 var blue = [];
                 var chocolate = [];
@@ -1366,6 +1371,18 @@
                 $("input[name='agouti']:checked").each(function(){
                     agouti.push($(this).val());
                 });
+
+                console.log("Blue are: " + blue.join(", "));
+                console.log("Chococlate are: " + chocolate.join(", "));
+                console.log("Testablechococlate are: " + testable.join(", "));
+                console.log("Fluffy are: " + fluffy.join(", "));
+                console.log("Intensity are: " + intensity.join(", "));
+                console.log("Pied are: " + pied.join(", "));
+                console.log("Merle are: " + merle.join(", "));
+                console.log("Brindle are: " + brindle.join(", "));
+                console.log("Agouti are: " + agouti.join(", "));
+                console.log("EMCIR are: " + emcir.join(", "));
+
                 var distance = $("#distance").val();
                 console.log(distance);
                 console.log(value);
@@ -1385,13 +1402,14 @@
                         emcir:emcir,
                         zip : value,
                         distance: distance,
-                        type : 'puppy'
+                        type : 'all'
                     },
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     success: function(data){
                         console.log(data.success);
                         document.getElementById("primary-listing-data").style.display = "none";
                         $('#secondary-listing-data').html(data.html);
+                        $('#secondary-recent-search').html(data.recentSearch);
                     },
                     progress: function(e) {
                         //make sure we can compute the length
@@ -1411,22 +1429,20 @@
             } else {
                 alert('invalid zip');
             }
-
-
-
         }
-
-        //Filter by Radius
+        // Filter by Radius
         $('#distance').on('change', function () {
 
             var distance = $(this).val();
-            var zip = $("#zipcode1").val();
+            var zip = $('#zipSection').val();
+
             if (checkZip(zip)){
                 zip=zip;
             }else{
-                zip = '76667';
+                alert('Zipcode not valid')
             }
             console.log(distance);
+
             console.log(zip);
             var blue = [];
             var chocolate = [];
@@ -1470,6 +1486,17 @@
                 agouti.push($(this).val());
             });
 
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
+
             $.ajax({
                 type:'POST',
                 url: '{{route('filterByRadius')}}',
@@ -1486,13 +1513,14 @@
                     emcir:emcir,
                     radius:distance,
                     zip:zip,
-                    type : 'puppy'
+                    type : 'all'
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    // console.log(data.success);
+                    console.log(data.success);
                     document.getElementById("primary-listing-data").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
+                    $('#secondary-recent-search').html(data.recentSearch);
                 },
                 progress: function(e) {
                     //make sure we can compute the length
@@ -1606,13 +1634,13 @@
 
         function singlePuppy($slug) {
             // console.log($slug);
-            window.location = "http://frenchbulldog.test/puppy-listing/"+$slug;
+            window.location = "{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug;
         }
 
         function getZip(){
             var inputZip = document.getElementById("zipcode");
             var data;
-            fetch('http://frenchbulldog.test/get-address-from-ip')
+            fetch('{{\Illuminate\Support\Facades\URL::to('get-address-from-ip')}}')
                 .then(data => {
                     address = data.json()
                     address.then(function (res){

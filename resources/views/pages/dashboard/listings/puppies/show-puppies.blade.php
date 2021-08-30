@@ -44,7 +44,7 @@
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
-                                    </thead>
+                                    </thead>`
                                     <tbody>
                                     @foreach($Puppies as $puppy)
                                         <tr>
