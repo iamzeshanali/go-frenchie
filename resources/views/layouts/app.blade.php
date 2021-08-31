@@ -34,10 +34,10 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="https://fernileaboardingkennels.co.uk/wp-content/uploads/2020/07/iconfinder_Kennel_3775247.png" alt="Logo not found" height="40px">
+                    <img src="/images/GoFrenchie-logo.png" alt="Logo not found" height="80px">
                     <!-- {{ config('app.name', 'Laravel') }} -->
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

@@ -2,10 +2,71 @@
 @extends('layouts.app')
 @section('title', 'Home')
 @section('content')
+<!-- <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
 
 <div class="home-banner-wrapper d-flex justify-content-center">
     <div class="home-banner-form row py-5 text-center align-content-center">
+        <form method="POST" action="{{route('findListings')}}" class="col-md-4 requires-validation">
+            @csrf
+            <input type="hidden" name="type" value="all">
+            <h2>Find Your Partner</h2>
+            <div class="mb-3">
+                <select class="form-control form-select dna-a" name="dnaColor" id="dnaColor" aria-label="Default select example">
+                    <option selected disabled>Choose Color</option>
+                    <option value="Blue">Blue </option>
+                    <option value="Chocolate">Chocolate </option>
+                    <option value="Testable_Chocolate">Testable Chocolate </option>
+                    <option value="Fluffy">Fluffy </option>
+                    <option value="Intensity">Intensity </option>
+                    <option value="Pied">Pied </option>
+                    <option value="Merle">Merle </option>
+                    <option value="Brindle">Brindle </option>
+                </select>
+                <div class="invalid-feedback">Please select a Color!</div>
+            </div>
 
+            <div class="mb-3">
+                <div id="coat">
+                </div>
+                <div id="optional">
+                    <!-- Default COAT Characteristics-->
+                    <select class="form-control form-select" id="dnaCoatOptional" name="dnaCoatOptional" aria-label="Default select example">
+                        <option selected disabled>Choose DNA Color</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a Color!</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="locatin-group-btn input-group">
+                    <input type="zip" class="form-control" name="zip" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" onClick="getZip()" type="button"><i class="far fa-compass"></i></button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-button">
+                <button id="submit" type="submit" class="btn btn-block btn-primary btn-fbd">Search</button>
+            </div>
+        </form>
     </div>
 </div>
 <div class="home-banner-divider"></div>
