@@ -10,9 +10,9 @@
             <h2>
                 <span style="color:#be202e;">For Your </span><br>
                 Best Friend</h2>
-            <div class="gf-home-banner-detail d-flex">
+            <div class="gf-home-banner-detail d-flex align-items-center">
                 <div>
-                    <img src="/images/homepage/gf-home-banner-paws.png" width="150" alt="">
+                    <img src="/images/homepage/gf-home-banner-paws.png" width="450" alt="">
                 </div>
                 <div class="pl-3">
                     <h4>Get Best Pet Care Services</h4>
@@ -35,7 +35,7 @@
             <img src="/images/homepage/gf-home-second-intro-image.png" alt="">
         </div>
         <div class="col-md-6">
-            <h2>Every Pet Is <span style="color:#BE202F"><br>Treated With Love</span></h2>
+            <h2>Every Pet Is <span style="color:#BE202E"><br>Treated With Love</span></h2>
             <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
             <button class="gf-btn-dark">BOOK NOW</button>
         </div>
@@ -73,6 +73,11 @@
 
     </div>
 
+</div>
+<div class="wrapper gf-home-blurbs">
+    <div class="container row">
+        <h2>Your pet’s health and well-being, <span style="color:#BE202E"><br>are our top priority.</span></h2>
+    </div>
 </div>
 
 @endsection

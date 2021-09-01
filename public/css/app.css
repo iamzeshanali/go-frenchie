@@ -1610,16 +1610,26 @@ footer {
     url(/fonts/Sanson.otf);
 }
 
-body {
+html body {
     color: #231F20;
     background-color: #ffffff !important;
     line-height: 1.7em;
+    font-family: Proxima-Nova;
+}
+
+html:root{
+    --blue: #3390CE;
+    --red: #BE202E;
+    --dark: #231F20;
+    --gray: #6E6F72;
+    --champagne: #F5CE9A;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: #231F20;
-    font-family: Proxima-Nova;
+    font-family: Sanson;
     font-weight: 600 !important;
+    letter-spacing: 0.2rem;
 }
 
 body a:hover{
@@ -1657,7 +1667,7 @@ body a:hover{
     border: none;
     padding: 10px 25px;
     line-height: 1.5;
-    transition: all 600ms ease;
+    transition: all 400ms ease;
     box-shadow: 0 0 0 2px #BE202E inset;
     background-color: transparent;
     
@@ -1728,7 +1738,6 @@ img{
 }
 
 .gf-home-banner-text h2{
-    font-weight: 800;
     font-size: 85px;
     line-height: 100px;
 }
@@ -1743,6 +1752,10 @@ img{
     margin: 50px 0px;
 }
 
+.gf-home-banner-detail h4{
+    font-family: Proxima-Nova;
+}
+
 .gf-home-banner-detail p{
     font-family: Proxima-Nova;
 }
@@ -1752,6 +1765,7 @@ img{
 }
 
 .gf-home-banner-button a{
+    display: inline-block;
     color: #ffffff!important;
     border-width: 0px!important;
     border-radius: 0px;
@@ -1763,8 +1777,8 @@ img{
     background-repeat: no-repeat;
     background-blend-mode: normal;
     background-image: url('/images/homepage/gf-home-button-bg.png');
-    padding: 43px 45px;
-    transition: all 0.3s;
+    padding: 40px 50px;
+    transition: all 0.3s ease;
 }
 .gf-home-banner-button a:hover{
     -webkit-transform: rotate(10deg);
@@ -1784,7 +1798,7 @@ img{
     line-height: 60px;
 }
 
-@media only screen and (max-width: 992px){
+@media only screen and (max-width: 991px){
     .gf-home-second-intro h2 {
         font-size: 40px;
         line-height: 50px;
