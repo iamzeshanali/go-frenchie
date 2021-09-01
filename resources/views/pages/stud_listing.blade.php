@@ -1,10 +1,11 @@
 @extends('./layouts.app')
-@section('title', 'Stud')
+@section('title', 'Puppy')
 @section('content')
+
 
     <div class="container">
 
-        <h2 class="page-title text-center">Puppy Page</h2>
+        <h2 class="page-title text-center">Studs Page</h2>
         <div class="page-description text-justify mb-5 rounded">
             <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -13,7 +14,7 @@
         </div>
 
         {{--SEARCH BAR COMPONENT--}}
-        <div class="container fbd-search-area p-3 mb-3 rounded">
+        {{--<div class="container fbd-search-area p-3 mb-3 rounded">
             <form method="POST" id="search-listings" action="{{ route('findListings') }}">
                 @csrf
                 <input type="hidden" name="type" value="puppy">
@@ -60,14 +61,14 @@
                 </div>
 
             </form>
-        </div>
+        </div>--}}
         {{--END SEARCH BAR COMPONENT--}}
 
     </div>
     <div class="container-fluid">
         <div class="page-content d-lg-flex ">
             {{--Filter area--}}
-            <div class="fbd-filter-area mb-3 rounded col-xl-2">
+            <div class="fbd-filter-area mb-3 rounded col-xl-3 col-lg-3 col-md-12">
                 <div id="accordion">
                     <!-- Your Search -->
                     @if($data != null)
@@ -89,21 +90,9 @@
                             </div>
                         </div>
                     @else
-                        <div class="card p-3 mb-4 rounded">
-                            <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
-                                <span class="heading mb-0">Your Search</span>
-                                <span class="results-number" title="Total Results"> Results</span>
-                            </div>
-                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
-                                <div class="card-body">
-                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
-                                    <ul class="tags-list" id="primary-recent-search">
-                                    </ul>
-                                    <div id="secondary-recent-search">
 
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="secondary-recent-search">
+
                         </div>
                     @endif
 
@@ -156,7 +145,8 @@
                                         <option value="500" {{$data['distance'] === '500' ? 'selected' : ''}}>500 Miles </option>
                                         <option value="10" selected>Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zipSection" onblur="searchByZip(this.value)" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zipSection" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <button type="submit" class="btn btn-primary btn-sm  btn-fbd">Search</button>
                                 @else
                                     <select class="form-control form-select filterDistance" name="filterDistance" id="distance" aria-label="Default select example">
                                         <option value="10">10 Miles </option>
@@ -168,9 +158,10 @@
                                         <option value="300">300 Miles </option>
                                         <option value="400">400 Miles </option>
                                         <option value="500">500 Miles </option>
-                                        <option selected="100" value="100">Any Distance</option>
+                                        <option selected value="10">Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" value="" name="zipSectionSecond" onblur="searchByZip(this.value)" id="zoo" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" class="form-control" name="zipSectionSecond" id="zipSectionSecond" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <button type="submit" class="btn btn-primary btn-sm  btn-fbd" onClick="searchByZipDistance()" style="width:22%; float:right; margin-top: 2%;"><i class="far fa-compass"></i> Search</button>
                                 @endif
 
 
@@ -193,7 +184,7 @@
                                 @if(!empty($data) && count($data['allListings']) > 0)
                                     {{-- Blue --}}
                                     <form>
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' class="{{ $data['dnaColor'] === 'Blue' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Blue' ? 'checked':''}} id="filterBlue" name="filterBlue" value="Blue">
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' class="{{ $data['dnaColor'] === 'Blue' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Blue' ? 'checked':''}} id="filterBlue" name="Parentfilter" value="blue">
                                         <label for="filterBlue"> Blue</label><br>
                                         <div id="collapseBlue" class="collapse pl-4 {{ $data['dnaColor'] === 'Blue' ? 'show':''}}">
                                             <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)" {{ $data['dnaCoat'] === '2copies(d/d)' ? 'checked': ''}}>
@@ -206,7 +197,7 @@
                                             <label for="filterABlueUnknown"> Unknown </label><br>
                                         </div>
                                         {{-- Chocolate --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' class="{{ $data['dnaColor'] === 'Chocolate' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Chocolate' ? 'checked':''}} id="filterChocolate" name="filterChocolate" value="Chocolate">
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' class="{{ $data['dnaColor'] === 'Chocolate' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Chocolate' ? 'checked':''}} id="filterChocolate" name="Parentfilter" value="chocolate">
                                         <label for="filterChocolate"> Chocolate</label><br>
                                         <div id="collapseChocolate" class="collapse pl-4 {{ $data['dnaColor'] === 'Chocolate' ? 'show':''}}">
                                             <input type="checkbox" id="chocolate2copy" name="chocolate" onchange="(findValue())" value="2copies(co/co)" {{ $data['dnaCoat'] === '2copies(co/co)' ? 'checked': ''}}>
@@ -220,7 +211,7 @@
                                         </div>
 
                                         {{-- Testable Chocolate --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseTestable' class="{{ $data['dnaColor'] === 'Testable_Chocolate' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Testable_Chocolate' ? 'checked':''}} id="filterTestable" name="filterTestable" value="Testable">
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseTestable' class="{{ $data['dnaColor'] === 'Testable_Chocolate' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Testable_Chocolate' ? 'checked':''}} id="filterTestable" name="Parentfilter" value="testable">
                                         <label for="filterTestable"> Testable Chocolate</label><br>
                                         <div id="collapseTestable" class="collapse pl-4 {{ $data['dnaColor'] === 'Testable_Chocolate' ? 'show':''}}">
                                             <input type="checkbox" id="filterTestableChocolate2copy" name="testable" onchange="(findValue())" value="2copies(b/b)" {{ $data['dnaCoat'] === '2copies(b/b)' ? 'checked': ''}}>
@@ -234,7 +225,7 @@
                                         </div>
 
                                         {{-- Fluffy --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseFluffy' class="{{ $data['dnaColor'] === 'Fluffy' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Fluffy' ? 'checked':''}} id="filterFluffy" name="filterIntensity" value="Fluffy">
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseFluffy' class="{{ $data['dnaColor'] === 'Fluffy' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Fluffy' ? 'checked':''}} id="filterFluffy" name="Parentfilter" value="fluffy">
                                         <label for="filterFluffy"> Fluffy</label><br>
                                         <div id="collapseFluffy" class="collapse pl-4 {{ $data['dnaColor'] === 'Fluffy' ? 'show':''}}">
                                             <input type="checkbox" id="filterAfluffy2copy" name="fluffy" onchange="(findValue())" value="2copies(l/l)" {{ $data['dnaCoat'] === '2copies(l/l)' ? 'checked': ''}}>
@@ -248,7 +239,7 @@
                                         </div>
 
                                         {{-- Intensity --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseIntensity' class="{{ $data['dnaColor'] === 'Intensity' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Intensity' ? 'checked':''}} id="filterIntensity" name="filterIntensity" value="Intensity">
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseIntensity' class="{{ $data['dnaColor'] === 'Intensity' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Intensity' ? 'checked':''}} id="filterIntensity" name="Parentfilter" value="intensity">
                                         <label for="filterIntensity"> Intensity</label><br>
                                         <div id="collapseIntensity" class="collapse pl-4 {{ $data['dnaColor'] === 'Intensity' ? 'show':''}}">
                                             <input type="checkbox" id="filterAintensity2copy" name="intensity" onchange="(findValue())" value="2copies(i/i)" {{ $data['dnaCoat'] === '2copies(i/i)' ? 'checked': ''}}>
@@ -262,7 +253,7 @@
                                         </div>
 
                                         {{-- Pied --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapsePied' class="{{ $data['dnaColor'] === 'Pied' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Pied' ? 'checked':''}} id="filterPied" name="filterPied" value="Pied">
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapsePied' class="{{ $data['dnaColor'] === 'Pied' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Pied' ? 'checked':''}} id="filterPied" name="Parentfilter" value="pied">
                                         <label for="filterPied"> Pied</label><br>
                                         <div id="collapsePied" class="collapse pl-4 {{ $data['dnaColor'] === 'Pied' ? 'show':''}}">
                                             <input type="checkbox" id="filterApied2copy" name="pied" onchange="(findValue())" value="2copies(s/s)" {{ $data['dnaCoat'] === '2copies(s/s)' ? 'checked': ''}}>
@@ -276,7 +267,7 @@
                                         </div>
 
                                         {{-- Merle --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseMerle' class="{{ $data['dnaColor'] === 'Merle' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Merle' ? 'checked':''}} id="filterMerle" name="filterMerle" value="Blue">
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseMerle' class="{{ $data['dnaColor'] === 'Merle' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Merle' ? 'checked':''}} id="filterMerle" name="Parentfilter" value="merle">
                                         <label for="filterMerle"> Merle</label><br>
                                         <div id="collapseMerle" class="collapse pl-4 {{ $data['dnaColor'] === 'Merle' ? 'show':''}}">
                                             <input type="checkbox" id="filterMerleYes" name="merle" onchange="(findValue())" value="yes" {{ ($data['dnaCoat'] === 'yes' && $data['dnaColor'] === 'Merle') ? 'checked': ''}}>
@@ -288,7 +279,7 @@
                                         </div>
 
                                         {{-- Brindle --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseBrindle' class="{{ $data['dnaColor'] === 'Brindle' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Brindle' ? 'checked':''}} id="filterBrindle" name="filterBrindle" value="Brindle">
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseBrindle' class="{{ $data['dnaColor'] === 'Brindle' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Brindle' ? 'checked':''}} id="filterBrindle" name="Parentfilter" value="brindle">
                                         <label for="filterBrindle"> Brindle</label><br>
                                         <div id="collapseBrindle" class="collapse pl-4 {{ $data['dnaColor'] === 'Brindle' ? 'show':''}}">
                                             <input type="checkbox" id="filterBrindleYes" name="brindle" onchange="(findValue())" value="yes" {{ ($data['dnaCoat'] === 'yes' && $data['dnaColor'] === 'Brindle') ? 'checked': ''}}>
@@ -300,7 +291,7 @@
                                         </div>
 
                                         {{-- Agouti --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseAgouti' id="filterAgouti" name="filterAgouti" value="Agouti" checked>
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseAgouti' id="filterAgouti" name="Parentfilter" value="agouti" checked>
                                         <label for="filterAgouti"> Agouti</label><br>
                                         <div id="collapseAgouti" class="collapse pl-4 show">
                                             <input type="checkbox" id="filterAgoutiAa" name="agouti" onchange="(findValue())" value="(a,a)" checked>
@@ -318,7 +309,7 @@
                                         </div>
 
                                         {{-- E(MCIR) --}}
-                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseEmcir' id="filterEmcir" name="filterEmcir" value="Emcir" checked>
+                                        <input type="checkbox" data-toggle='collapse' data-target='#collapseEmcir' id="filterEmcir" name="Parentfilter" value="emcir" checked>
                                         <label for="filterEmcir"> E(MCIR)</label><br>
                                         <div id="collapseEmcir" class="collapse pl-4 show">
                                             <input type="checkbox" id="filterEmcirEmem" name="emcir" onchange="(findValue())" value="(Em,Em)" checked>
@@ -337,7 +328,7 @@
                                     </form>
                                 @else
                                     {{-- Blue --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' id="filterBlue" name="filterBlue" value="Blue">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' id="filterBlue" name="Parentfilter" value="blue">
                                     <label for="filterBlue"> Blue</label><br>
                                     <div id="collapseBlue" class="collapse pl-4">
                                         <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)">
@@ -350,7 +341,7 @@
                                         <label for="filterABlueUnknown"> Unknown </label><br>
                                     </div>
                                     {{-- Chocolate --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' id="filterChocolate" name="filterChocolate" value="Chocolate">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' id="filterChocolate" name="Parentfilter" value="chocolate">
                                     <label for="filterChocolate"> Chocolate</label><br>
                                     <div id="collapseChocolate" class="collapse pl-4">
                                         <input type="checkbox" id="chocolate2copy" name="chocolate" onchange="(findValue())" value="2copies(co/co)">
@@ -364,7 +355,7 @@
                                     </div>
 
                                     {{-- Testable Chocolate --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseTestable' id="filterTestable" name="filterTestable" value="Testable">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseTestable' id="filterTestable" name="Parentfilter" value="testable">
                                     <label for="filterTestable"> Testable Chocolate</label><br>
                                     <div id="collapseTestable" class="collapse pl-4">
                                         <input type="checkbox" id="filterTestableChocolate2copy" name="testable" onchange="(findValue())" value="2copies(b/b)">
@@ -378,7 +369,7 @@
                                     </div>
 
                                     {{-- Fluffy --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseFluffy' id="filterFluffy" name="filterFluffy" value="Fluffy">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseFluffy' id="filterFluffy" name="Parentfilter" value="fluffy">
                                     <label for="filterFluffy"> Fluffy</label><br>
                                     <div id="collapseFluffy" class="collapse pl-4">
                                         <input type="checkbox" id="filterAfluffy2copy" name="fluffy" onchange="(findValue())" value="2copies(l/l)">
@@ -392,7 +383,7 @@
                                     </div>
 
                                     {{-- Intensity --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseIntensity' id="filterIntensity" name="filterIntensity" value="Intensity">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseIntensity' id="filterIntensity" name="Parentfilter" value="intensity">
                                     <label for="filterIntensity"> Intensity</label><br>
                                     <div id="collapseIntensity" class="collapse pl-4">
                                         <input type="checkbox" id="filterAintensity2copy" name="intensity" onchange="(findValue())" value="2copies(i/i)">
@@ -406,7 +397,7 @@
                                     </div>
 
                                     {{-- Pied --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapsePied' id="filterPied" name="filterPied" value="Pied">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapsePied' id="filterPied" name="Parentfilter" value="pied">
                                     <label for="filterPied"> Pied</label><br>
                                     <div id="collapsePied" class="collapse pl-4">
                                         <input type="checkbox" id="filterApied2copy" name="pied" onchange="(findValue())" value="2copies(s/s)">
@@ -420,7 +411,7 @@
                                     </div>
 
                                     {{-- Merle --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseMerle' id="filterMerle" name="filterMerle" value="Blue">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseMerle' id="filterMerle" name="Parentfilter" value="merle">
                                     <label for="filterMerle"> Merle</label><br>
                                     <div id="collapseMerle" class="collapse pl-4">
                                         <input type="checkbox" id="filterMerleYes" name="merle" onchange="(findValue())" value="yes">
@@ -432,7 +423,7 @@
                                     </div>
 
                                     {{-- Brindle --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBrindle' id="filterBrindle" name="filterBrindle" value="Brindle">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBrindle' id="filterBrindle" name="Parentfilter" value="brindle">
                                     <label for="filterBrindle"> Brindle</label><br>
                                     <div id="collapseBrindle" class="collapse pl-4">
                                         <input type="checkbox" id="filterBrindleYes" name="brindle" onchange="(findValue())" value="yes">
@@ -444,7 +435,7 @@
                                     </div>
 
                                     {{-- Agouti --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseAgouti' id="filterAgouti" name="filterAgouti" value="Agouti">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseAgouti' id="filterAgouti" name="Parentfilter" value="agouti">
                                     <label for="filterAgouti"> Agouti</label><br>
                                     <div id="collapseAgouti" class="collapse pl-4">
                                         <input type="checkbox" id="filterAgoutiAa" name="agouti" onchange="(findValue())" value="(a,a)" >
@@ -462,7 +453,7 @@
                                     </div>
 
                                     {{-- E(MCIR) --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseEmcir' id="filterEmcir" name="filterEmcir" value="Emcir">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseEmcir' id="filterEmcir" name="Parentfilter" value="emcir">
                                     <label for="filterEmcir"> E(MCIR)</label><br>
                                     <div id="collapseEmcir" class="collapse pl-4">
                                         <input type="checkbox" id="filterEmcirEmem" name="emcir" onchange="(findValue())" value="(Em,Em)">
@@ -486,7 +477,7 @@
             </div>
             {{--End Filter area--}}
 
-            <div class="fbd-content-area mb-3 rounded col-xl-8">
+            <div class="fbd-content-area mb-3 rounded col-xl-7">
 
                 <div id="primary-listing-data" class="fbd-listing-area p-3 rounded">
 
@@ -775,7 +766,7 @@
                                         @else
                                             <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
                                         @endif
-                                        <div id="LoginModal" class="modal fade">
+                                        <div id="LoginModal" class="modal fade" style="display:none;">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -966,6 +957,110 @@
 
     <script type="text/javascript">
 
+        // To uncheck child elements when parent element is unchecked
+        $("#filterBlue").change(function() {
+            if(!this.checked) {
+                console.log("Unchecked");
+                $("#filterABlue2copy").prop('checked',false);
+                $("#filterABlue1copy").prop('checked',false);
+                $("#filterABlueDd").prop('checked',false);
+                $("#filterABlueUnknown").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterChocolate").change(function() {
+            if(!this.checked) {
+                $("#chocolate2copy").prop('checked',false);
+                $("#chocolate1copy").prop('checked',false);
+                $("#chocolateDd").prop('checked',false);
+                $("#chocolateUnknown").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterTestable").change(function() {
+            if(!this.checked) {
+                $("#filterTestableChocolate2copy").prop('checked',false);
+                $("#filterTestableChocolate1copy").prop('checked',false);
+                $("#filterTestableChocolateDd").prop('checked',false);
+                $("#filterTestableChocolateUnknown").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterFluffy").change(function() {
+            if(!this.checked) {
+                $("#filterAfluffy2copy").prop('checked',false);
+                $("#filterAfluffy1copy").prop('checked',false);
+                $("#filterAfluffyDd").prop('checked',false);
+                $("#filterAfluffyUnknown").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterIntensity").change(function() {
+            if(!this.checked) {
+                $("#filterAintensity2copy").prop('checked',false);
+                $("#filterAintensity1copy").prop('checked',false);
+                $("#filterAintensityDd").prop('checked',false);
+                $("#filterAintensityUnknown").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterPied").change(function() {
+            if(!this.checked) {
+                $("#filterApied2copy").prop('checked',false);
+                $("#filterApied1copy").prop('checked',false);
+                $("#filterApiedDd").prop('checked',false);
+                $("#filterApiedUnknown").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterMerle").change(function() {
+            if(!this.checked) {
+                $("#filterMerleYes").prop('checked',false);
+                $("#filterMerleNo").prop('checked',false);
+                $("#filterMerleUnknown").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterBrindle").change(function() {
+            if(!this.checked) {
+                $("#filterBrindleYes").prop('checked',false);
+                $("#filterBrindleNo").prop('checked',false);
+                $("#filterBrindleUnknown").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterAgouti").change(function() {
+            if(!this.checked) {
+                $("#filterAgoutiAa").prop('checked',false);
+                $("#filterAgoutiAya").prop('checked',false);
+                $("#filterAgoutiAyat").prop('checked',false);
+                $("#filterAgoutiAyay").prop('checked',false);
+                $("#filterAgoutiAta").prop('checked',false);
+                $("#filterAgoutiAtat").prop('checked',false);
+            }
+            findValue();
+        });
+
+        $("#filterEmcir").change(function() {
+            if(!this.checked) {
+                $("#filterEmcirEmem").prop('checked',false);
+                $("#filterEmcirEmE").prop('checked',false);
+                $("#filterEmcirEme").prop('checked',false);
+                $("#filterEmcirEE").prop('checked',false);
+                $("#filterEmcirEe").prop('checked',false);
+                $("#filterEmciree").prop('checked',false);
+            }
+            findValue();
+        });
+
         $('#dnaColor').on('change', function () {
             var dnaColor = $(this).val();
             $.ajax({
@@ -986,6 +1081,7 @@
 
             });
         });
+
         function addOrRemoveToFavourite($slug, $email, $type){
             $.ajax({
                 type:'POST',
@@ -1222,7 +1318,173 @@
 
 
         }
+        function arrayRemove(arr, value) {
+
+            return arr.filter(function(geeks){
+                return geeks != value;
+            });
+
+        }
         function findValue(){
+            var blue = [];
+            var chocolate = [];
+            var testable = [];
+            var fluffy = [];
+            var intensity = [];
+            var pied = [];
+            var merle = [];
+            var brindle = [];
+            var agouti = [];
+            var emcir = [];
+            var listingsData = [];
+
+            console.log("checking");
+            $("input[name='blue']:checked").each(function(){
+                blue.push($(this).val());
+            });
+            $("input[name='chocolate']:checked").each(function(){
+                chocolate.push($(this).val());
+            });
+            $("input[name='testable']:checked").each(function(){
+                testable.push($(this).val());
+            });
+            $("input[name='fluffy']:checked").each(function(){
+                fluffy.push($(this).val());
+            });
+            $("input[name='intensity']:checked").each(function(){
+                intensity.push($(this).val());
+            });
+            $("input[name='pied']:checked").each(function(){
+                pied.push($(this).val());
+            });
+            $("input[name='merle']:checked").each(function(){
+                merle.push($(this).val());
+            });
+            $("input[name='brindle']:checked").each(function(){
+                brindle.push($(this).val());
+            });
+            $("input[name='emcir']:checked").each(function(){
+                emcir.push($(this).val());
+            });
+            $("input[name='agouti']:checked").each(function(){
+                agouti.push($(this).val());
+            });
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
+
+            let distance = $("#distance").val();
+            let zip = 75001;
+            if($('#zipSection').length != 0){
+                this.zip = $('#zipSection').val();
+            }else{
+                this.zip = $("#zipSectionSecond").val();
+            }
+            console.log(this.zip);
+            console.log(distance);
+
+            var DNAColors_Selected_without_coats = [];
+
+            $("input[name='Parentfilter']:checked").each(function(){
+                DNAColors_Selected_without_coats.push($(this).val());
+            });
+
+            if(blue.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "blue");
+            }
+            if(chocolate.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "chocolate");
+            }
+            if(testable.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "testable");
+            }
+            if(fluffy.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "fluffy");
+            }
+            if(intensity.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "intensity");
+            }
+            if(pied.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "pied");
+            }
+            if(merle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "merle");
+            }
+            if(brindle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "brindle");
+            }
+            if(agouti.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "agouti");
+            }
+            if(emcir.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "emcir");
+            }
+
+
+            $.ajax({
+                type:'POST',
+                url: '{{route('filterByDNA')}}',
+                data: {
+                    blue:blue,
+                    chocolate:chocolate,
+                    testable:testable,
+                    fluffy:fluffy,
+                    intensity:intensity,
+                    pied:pied,
+                    merle:merle,
+                    brindle:brindle,
+                    agouti:agouti,
+                    emcir:emcir,
+                    parentDNA: DNAColors_Selected_without_coats,
+                    zip : this.zip,
+                    distance: distance,
+                    type : 'stud'
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                beforeSend: function(){
+                    $("#loaderModalCenter").modal('show');
+                },
+                complete: function (){
+                    $("#loaderModalCenter").modal('hide');
+                },
+                success: function(data){
+                    console.log(data.success);
+                    document.getElementById("primary-listing-data").style.display = "none";
+                    $('#secondary-listing-data').html(data.html);
+                    $('#secondary-recent-search').html(data.recentSearch);
+                },
+            });
+
+        }
+        //Filter by Zip
+        function checkZip(value) {
+            return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value);
+        }
+        function searchByZipDistance(){
+            // var distance = $('#distance :selected').text();
+            var distance = $('#distance').val();
+            var zip = $('#zipSection').val();
+            if (checkZip(zip)){
+                this.zip=zip;
+            }else{
+                zip2 = $('#zipSectionSecond').val();
+                if (checkZip(zip2)){
+                    this.zip=zip2;
+                }else{
+                    alert('Invalid Zip')
+                    return;
+                }
+            }
+            console.log(distance);
+            console.log(this.zip);
+
             var blue = [];
             var chocolate = [];
             var testable = [];
@@ -1276,14 +1538,44 @@
             console.log("Agouti are: " + agouti.join(", "));
             console.log("EMCIR are: " + emcir.join(", "));
 
-            let distance = $("#distance").val();
-            let zip = 75001;
-            if($('#zipSection').length != 0){
-                this.zip = $('#zipSection').val();
-            }else{
-                this.zip = $("#zoo").val();
+
+            var DNAColors_Selected_without_coats = [];
+            $("input[name='Parentfilter']:checked").each(function(){
+                DNAColors_Selected_without_coats.push($(this).val());
+            });
+
+            if(blue.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "blue");
             }
-            console.log(this.zip);
+            if(chocolate.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "chocolate");
+            }
+            if(testable.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "testable");
+            }
+            if(fluffy.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "fluffy");
+            }
+            if(intensity.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "intensity");
+            }
+            if(pied.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "pied");
+            }
+            if(merle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "merle");
+            }
+            if(brindle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "brindle");
+            }
+            if(agouti.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "agouti");
+            }
+            if(emcir.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "emcir");
+            }
+
+
             $.ajax({
                 type:'POST',
                 url: '{{route('filterByDNA')}}',
@@ -1298,343 +1590,26 @@
                     brindle:brindle,
                     agouti:agouti,
                     emcir:emcir,
+                    parentDNA: DNAColors_Selected_without_coats,
                     zip : this.zip,
                     distance: distance,
                     type : 'stud'
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                success: function(data){
-                    console.log(data.success);
-                    document.getElementById("primary-listing-data").style.display = "none";
-                    document.getElementById("primary-recent-search").style.display = "none";
-                    $('#secondary-listing-data').html(data.html);
-                    $('#secondary-recent-search').html(data.recentSearch);
+                beforeSend: function(){
+                    $("#loaderModalCenter").modal('show');
                 },
-                progress: function(e) {
-                    //make sure we can compute the length
-                    if(e.lengthComputable) {
-                        //calculate the percentage loaded
-                        var pct = (e.loaded / e.total) * 100;
-
-                        //log percentage loaded
-                        console.log(pct);
-                    }
-                    //this usually happens when Content-Length isn't set
-                    else {
-                        console.warn('Content Length not reported!');
-                    }
-                }
-            });
-
-        }
-        //Filter by Zip
-        function checkZip(value) {
-            return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value);
-        }
-        function searchByZip(value){
-            if (checkZip(value)) {
-                var blue = [];
-                var chocolate = [];
-                var testable = [];
-                var fluffy = [];
-                var intensity = [];
-                var pied = [];
-                var merle = [];
-                var brindle = [];
-                var agouti = [];
-                var emcir = [];
-                var listingsData = [];
-
-                $("input[name='blue']:checked").each(function(){
-                    blue.push($(this).val());
-                });
-                $("input[name='chocolate']:checked").each(function(){
-                    chocolate.push($(this).val());
-                });
-                $("input[name='testable']:checked").each(function(){
-                    testable.push($(this).val());
-                });
-                $("input[name='fluffy']:checked").each(function(){
-                    fluffy.push($(this).val());
-                });
-                $("input[name='intensity']:checked").each(function(){
-                    intensity.push($(this).val());
-                });
-                $("input[name='pied']:checked").each(function(){
-                    pied.push($(this).val());
-                });
-                $("input[name='merle']:checked").each(function(){
-                    merle.push($(this).val());
-                });
-                $("input[name='brindle']:checked").each(function(){
-                    brindle.push($(this).val());
-                });
-                $("input[name='emcir']:checked").each(function(){
-                    emcir.push($(this).val());
-                });
-                $("input[name='agouti']:checked").each(function(){
-                    agouti.push($(this).val());
-                });
-
-                console.log("Blue are: " + blue.join(", "));
-                console.log("Chococlate are: " + chocolate.join(", "));
-                console.log("Testablechococlate are: " + testable.join(", "));
-                console.log("Fluffy are: " + fluffy.join(", "));
-                console.log("Intensity are: " + intensity.join(", "));
-                console.log("Pied are: " + pied.join(", "));
-                console.log("Merle are: " + merle.join(", "));
-                console.log("Brindle are: " + brindle.join(", "));
-                console.log("Agouti are: " + agouti.join(", "));
-                console.log("EMCIR are: " + emcir.join(", "));
-
-                var distance = $("#distance").val();
-                console.log(distance);
-                console.log(value);
-                $.ajax({
-                    type:'POST',
-                    url: '{{route('filterByZip')}}',
-                    data: {
-                        blue:blue,
-                        chocolate:chocolate,
-                        testable:testable,
-                        fluffy:fluffy,
-                        intensity:intensity,
-                        pied:pied,
-                        merle:merle,
-                        brindle:brindle,
-                        agouti:agouti,
-                        emcir:emcir,
-                        zip : value,
-                        distance: distance,
-                        type : 'stud'
-                    },
-                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                    success: function(data){
-                        console.log(data.success);
-                        document.getElementById("primary-listing-data").style.display = "none";
-                        $('#secondary-listing-data').html(data.html);
-                        $('#secondary-recent-search').html(data.recentSearch);
-                    },
-                    progress: function(e) {
-                        //make sure we can compute the length
-                        if(e.lengthComputable) {
-                            //calculate the percentage loaded
-                            var pct = (e.loaded / e.total) * 100;
-
-                            //log percentage loaded
-                            console.log(pct);
-                        }
-                        //this usually happens when Content-Length isn't set
-                        else {
-                            console.warn('Content Length not reported!');
-                        }
-                    }
-                });
-            } else {
-                alert('invalid zip');
-            }
-        }
-        // Filter by Radius
-        $('#distance').on('change', function () {
-
-            var distance = $(this).val();
-            var zip = $('#zipSection').val();
-
-            if (checkZip(zip)){
-                zip=zip;
-            }else{
-                alert('Zipcode not valid')
-            }
-            console.log(distance);
-
-            console.log(zip);
-            var blue = [];
-            var chocolate = [];
-            var testable = [];
-            var fluffy = [];
-            var intensity = [];
-            var pied = [];
-            var merle = [];
-            var brindle = [];
-            var agouti = [];
-            var emcir = [];
-
-            $("input[name='blue']:checked").each(function(){
-                blue.push($(this).val());
-            });
-            $("input[name='chocolate']:checked").each(function(){
-                chocolate.push($(this).val());
-            });
-            $("input[name='testable']:checked").each(function(){
-                testable.push($(this).val());
-            });
-            $("input[name='fluffy']:checked").each(function(){
-                fluffy.push($(this).val());
-            });
-            $("input[name='intensity']:checked").each(function(){
-                intensity.push($(this).val());
-            });
-            $("input[name='pied']:checked").each(function(){
-                pied.push($(this).val());
-            });
-            $("input[name='merle']:checked").each(function(){
-                merle.push($(this).val());
-            });
-            $("input[name='brindle']:checked").each(function(){
-                brindle.push($(this).val());
-            });
-            $("input[name='emcir']:checked").each(function(){
-                emcir.push($(this).val());
-            });
-            $("input[name='agouti']:checked").each(function(){
-                agouti.push($(this).val());
-            });
-
-            console.log("Blue are: " + blue.join(", "));
-            console.log("Chococlate are: " + chocolate.join(", "));
-            console.log("Testablechococlate are: " + testable.join(", "));
-            console.log("Fluffy are: " + fluffy.join(", "));
-            console.log("Intensity are: " + intensity.join(", "));
-            console.log("Pied are: " + pied.join(", "));
-            console.log("Merle are: " + merle.join(", "));
-            console.log("Brindle are: " + brindle.join(", "));
-            console.log("Agouti are: " + agouti.join(", "));
-            console.log("EMCIR are: " + emcir.join(", "));
-
-            $.ajax({
-                type:'POST',
-                url: '{{route('filterByRadius')}}',
-                data: {
-                    blue:blue,
-                    chocolate:chocolate,
-                    testable:testable,
-                    fluffy:fluffy,
-                    intensity:intensity,
-                    pied:pied,
-                    merle:merle,
-                    brindle:brindle,
-                    agouti:agouti,
-                    emcir:emcir,
-                    radius:distance,
-                    zip:zip,
-                    type : 'stud'
+                complete: function (){
+                    $("#loaderModalCenter").modal('hide');
                 },
-                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
                     console.log(data.success);
                     document.getElementById("primary-listing-data").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
                     $('#secondary-recent-search').html(data.recentSearch);
-                },
-                progress: function(e) {
-                    //make sure we can compute the length
-                    if(e.lengthComputable) {
-                        //calculate the percentage loaded
-                        var pct = (e.loaded / e.total) * 100;
-
-                        //log percentage loaded
-                        console.log(pct);
-                    }
-                    //this usually happens when Content-Length isn't set
-                    else {
-                        console.warn('Content Length not reported!');
-                    }
                 }
             });
-
-        });
-        // To uncheck child elements when parent element is unchecked
-        $("#filterBlue").change(function() {
-            if(!this.checked) {
-                $("#filterABlue2copy").prop('checked',false);
-                $("#filterABlue1copy").prop('checked',false);
-                $("#filterABlueDd").prop('checked',false);
-                $("#filterABlueUnknown").prop('checked',false);
-            }
-        });
-
-        $("#filterChocolate").change(function() {
-            if(!this.checked) {
-                $("#chocolate2copy").prop('checked',false);
-                $("#chocolate1copy").prop('checked',false);
-                $("#chocolateDd").prop('checked',false);
-                $("#chocolateUnknown").prop('checked',false);
-            }
-        });
-
-        $("#filterTestable").change(function() {
-            if(!this.checked) {
-                $("#filterTestableChocolate2copy").prop('checked',false);
-                $("#filterTestableChocolate1copy").prop('checked',false);
-                $("#filterTestableChocolateDd").prop('checked',false);
-                $("#filterTestableChocolateUnknown").prop('checked',false);
-            }
-        });
-
-        $("#filterFluffy").change(function() {
-            if(!this.checked) {
-                $("#filterAfluffy2copy").prop('checked',false);
-                $("#filterAfluffy1copy").prop('checked',false);
-                $("#filterAfluffyDd").prop('checked',false);
-                $("#filterAfluffyUnknown").prop('checked',false);
-            }
-        });
-
-        $("#filterIntensity").change(function() {
-            if(!this.checked) {
-                $("#filterAintensity2copy").prop('checked',false);
-                $("#filterAintensity1copy").prop('checked',false);
-                $("#filterAintensityDd").prop('checked',false);
-                $("#filterAintensityUnknown").prop('checked',false);
-            }
-        });
-
-        $("#filterPied").change(function() {
-            if(!this.checked) {
-                $("#filterApied2copy").prop('checked',false);
-                $("#filterApied1copy").prop('checked',false);
-                $("#filterApiedDd").prop('checked',false);
-                $("#filterApiedUnknown").prop('checked',false);
-            }
-        });
-
-        $("#filterMerle").change(function() {
-            if(!this.checked) {
-                $("#filterMerleYes").prop('checked',false);
-                $("#filterMerleNo").prop('checked',false);
-                $("#filterMerleUnknown").prop('checked',false);
-            }
-        });
-
-        $("#filterBrindle").change(function() {
-            if(!this.checked) {
-                $("#filterBrindleYes").prop('checked',false);
-                $("#filterBrindleNo").prop('checked',false);
-                $("#filterBrindleUnknown").prop('checked',false);
-            }
-        });
-
-        $("#filterAgouti").change(function() {
-            if(!this.checked) {
-                $("#filterAgoutiAa").prop('checked',false);
-                $("#filterAgoutiAya").prop('checked',false);
-                $("#filterAgoutiAyat").prop('checked',false);
-                $("#filterAgoutiAyay").prop('checked',false);
-                $("#filterAgoutiAta").prop('checked',false);
-                $("#filterAgoutiAtat").prop('checked',false);
-            }
-        });
-
-        $("#filterEmcir").change(function() {
-            if(!this.checked) {
-                $("#filterEmcirEmem").prop('checked',false);
-                $("#filterEmcirEmE").prop('checked',false);
-                $("#filterEmcirEme").prop('checked',false);
-                $("#filterEmcirEE").prop('checked',false);
-                $("#filterEmcirEe").prop('checked',false);
-                $("#filterEmciree").prop('checked',false);
-            }
-        });
+        }
 
         function singlePuppy($slug) {
             // console.log($slug);

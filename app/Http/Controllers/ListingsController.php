@@ -974,9 +974,10 @@ class ListingsController extends Controller
         $finalListings = [];
 
         if($zipCode == null){
+//            return response()->json(['success'=>'200']);
             $kennels = $this->userRepository->getAll();
+
             if($type == 'all'){
-//            return response()->json(['success'=>'200']);
                 foreach ($kennels as $key=>$breeder){
                     $allListings = [];
                     $allListings = $this->listingsRepository->matching(
@@ -998,6 +999,7 @@ class ListingsController extends Controller
                             ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
                             ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                             ->orderByAsc(Listings::ID)
+                            ->limit(5)
                     );
                     foreach ($allListings as $listing){
                         array_push($finalListings, $listing);
@@ -1015,6 +1017,7 @@ class ListingsController extends Controller
                             ->where(Listings::BREEDER,'=',$breeder[0])
                             ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                             ->orderByAsc(Listings::ID)
+                            ->limit(5)
                     );
                     foreach ($allListings as $listing){
                         array_push($finalListings, $listing);
@@ -1029,6 +1032,7 @@ class ListingsController extends Controller
                             ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
                             ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                             ->orderByAsc(Listings::ID)
+                            ->limit(5)
                     );
                     foreach ($allListings as $listing){
                         array_push($finalListings, $listing);
@@ -1040,7 +1044,127 @@ class ListingsController extends Controller
 
 //        return response()->json(['success'=>count($finalListings)]);
 
+        $afterFilters = [];
         $afterFilters = $this->filterByAttributes($finalListings, $request);
+//        return response()->json(['success'=>count($afterFilters)]);
+        $parentDNA = $request->get('parentDNA');
+//        return response()->json(['success'=>$parentDNA]);
+        $parentFilteredEntities = [];
+        if (isset($parentDNA) && isset($afterFilters)){
+            foreach ($parentDNA as $parentColor){
+                switch ($parentColor){
+                    case 'blue':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->blue != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                    return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'chocolate':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->chocolate != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'testable':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->testableChocolate != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'fluffy':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->fluffy != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'intensity':
+//                        return response()->json(['success'=>'200']);
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->intensity != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'pied':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->pied != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'merle':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->merle != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'brindle':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->brindle != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'agouti':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->agouti != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                    case 'emcir':
+                        $parentFilteredEntities = [];
+                        foreach ($afterFilters as $list){
+                            if ($list->eMcir != null){
+                                array_push($parentFilteredEntities,$list);
+                            }
+                        }
+                        $afterFilters = $parentFilteredEntities;
+//                        return response()->json(['success'=>count($parentFilteredEntities)]);
+                        break;
+                }
+            }
+
+        }
+
+
+//        return response()->json(['success'=>count($parentFilteredEntities)]);
+//        return response()->json(['success'=>count($afterFilters)]);
+//        foreach ($parentFilteredEntities as $entity){
+//            array_push($afterFilters, $entity);
+//        }
 //        return response()->json(['success'=>count($afterFilters)]);
         $dataIds = [];
         foreach ($finalListings as $list){
@@ -1073,191 +1197,28 @@ class ListingsController extends Controller
             )->render();
 //        return response()->json(['success'=>count($sponsoredPuppies)]);
         $matched = false;
-        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched'))->render();
-//        return response()->json(['success'=>count($sponsoredPuppies)]);
-        return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
-
-    }
-    public function filterByZip(Request $request){
-        $type = $request->get('type');
-        $responseType = 'radius.json';
-        $zipCode = $request->get('zip');
-        $distance = $request->get('distance');
-        $unit = 'km';
-//        return response()->json(['success'=>$distance]);
-
-        $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
-//        return response()->json(['success'=>count($kennels)]);
-        $allListings = [];
-        $allFinalListings = [];
-
-        if($type == 'all'){
-//            return response()->json(['success'=>'200']);
-            foreach ($kennels as $key=>$breeder){
-                $allListings = [];
-                $allListings = $this->listingsRepository->matching(
-
-                    $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
-                        ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                        ->orderByAsc(Listings::ID)
-                );
-//                return response()->json(['success'=>$allListings]);
-                foreach ($allListings as $listing){
-                    array_push($allFinalListings, $listing);
-                }
-            }
-        }else{
-//            return response()->json(['success'=>'300']);
-            $allListings = [];
-            foreach ($kennels as $key=>$breeder){
-                $allListings = $this->listingsRepository->matching(
-                    $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
-                        ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
-                        ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                        ->orderByAsc(Listings::ID)
-                );
-                foreach ($allListings as $listing){
-                    array_push($allFinalListings, $listing);
-                }
-            }
-
-        }
-
-//        return response()->json(['success'=>count($allFinalListings)]);
-
-        $afterFilters = $this->filterByAttributes($allFinalListings, $request);
-//        return response()->json(['success'=>count($afterFilters)]);
-        $dataIds = [];
-        foreach ($allFinalListings as $list){
-            array_push($dataIds, $list->getId());
-        }
-        Session::put('ids',$dataIds);
-        $sponsoredPuppies = [];
-        $standardPuppies = [];
-        foreach ($afterFilters as $af) {
+        $allListings = $this->listingsRepository->matching(
+            $this->listingsRepository->criteria()
+                ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
+                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+        );
+        $totalSponsoredPuppies = [];
+        $totalStandardPuppies = [];
+        foreach ($allListings as $af) {
             if($af->isSponsored){
-                array_push($sponsoredPuppies,$af);
+                array_push($totalSponsoredPuppies,$af);
             }else{
-                array_push($standardPuppies,$af);
+                array_push($totalStandardPuppies,$af);
             }
         }
 
-        $data = null;
-        $blue = $request->get('blue');
-        $chocolate = $request->get('chocolate');
-        $testable = $request->get('testable');
-        $fluffy = $request->get('fluffy');
-        $intensity = $request->get('intensity');
-        $pied = $request->get('pied');
-        $merle = $request->get('merle');
-        $brindle = $request->get('brindle');
+        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched','totalSponsoredPuppies','totalStandardPuppies'))->render();
 //        return response()->json(['success'=>count($sponsoredPuppies)]);
-        $recentSearch = view('pages/recent-search-data')
-            ->with(
-                compact('blue','chocolate','testable','fluffy','intensity','pied','merle','brindle')
-            )->render();
-//        return response()->json(['success'=>count($sponsoredPuppies)]);
-        $matched = false;
-        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched'))->render();
-//        return response()->json(['success'=>count($sponsoredPuppies)]);
+
         return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
 
-
-    }
-    /**
-     * Filter Listings based on Zip Code and Display the filtered listings.
-     *
-     * @return Listings
-     */
-    public function filterByRadius(Request $request){
-        $type = $request->get('type');
-        $responseType = 'radius.json';
-        $distance = $request->get('radius');
-        $zipCode = $request->get('zip');
-        $unit = 'km';
-
-        if($zipCode == null){
-
-            $kennels[0] = $this->userRepository->getAll();
-        }else{
-
-            $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
-        }
-//        return response()->json(['success'=>count($kennels)]);
-        $finalListings = [];
-        if($type == 'all'){
-            foreach ($kennels as $key=>$breeder){
-                $allListings = [];
-                $allListings = $this->listingsRepository->matching(
-                    $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
-                        ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                );
-
-                foreach ($allListings as $listing){
-                    array_push($finalListings, $listing);
-                }
-            }
-        }else{
-//            return response()->json(['success'=>'300']);
-            foreach ($kennels as $key=>$breeder){
-                $allListings = [];
-                $allListings = $this->listingsRepository->matching(
-                    $this->listingsRepository->criteria()
-                        ->where(Listings::BREEDER,'=',$breeder[0])
-                        ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
-                        ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                );
-                foreach ($allListings as $listing){
-                    array_push($finalListings, $listing);
-                }
-            }
-        }
-//        return response()->json(['success'=>count($finalListings)]);
-        $afterFilters = $this->filterByAttributes($finalListings, $request);
-//        return response()->json(['success'=>count($afterFilters)]);
-        $dataIds = [];
-        foreach ($finalListings as $list){
-            array_push($dataIds, $list->getId());
-        }
-        Session::put('ids',$dataIds);
-        $sponsoredPuppies = [];
-        $standardPuppies = [];
-        foreach ($afterFilters as $af) {
-            if($af->isSponsored){
-                array_push($sponsoredPuppies,$af);
-            }else{
-                array_push($standardPuppies,$af);
-            }
-        }
-        $data = null;
-        $blue = $request->get('blue');
-        $chocolate = $request->get('chocolate');
-        $testable = $request->get('testable');
-        $fluffy = $request->get('fluffy');
-        $intensity = $request->get('intensity');
-        $pied = $request->get('pied');
-        $merle = $request->get('merle');
-        $brindle = $request->get('brindle');
-//        return response()->json(['success'=>count($sponsoredPuppies)]);
-        $recentSearch = view('pages/recent-search-data')
-            ->with(
-                compact('blue','chocolate','testable','fluffy','intensity','pied','merle','brindle')
-            )->render();
-//        return response()->json(['success'=>count($sponsoredPuppies)]);
-        $matched = false;
-        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched'))->render();
-//        return response()->json(['success'=>count($sponsoredPuppies)]);
-        return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
     }
 
-    /**
-     * Filter Listings based on the given DNA Attributes and return the filtered listings.
-     *
-     * @return Listings
-     */
     public function filterByAttributes($listingsData, $request){
 
         $blue = $request->get('blue');
@@ -1391,7 +1352,6 @@ class ListingsController extends Controller
         }
 
     }
-
     /**
      * It takes the filter Parameters and return the filtered listings.
      *
@@ -1519,7 +1479,6 @@ class ListingsController extends Controller
         return $finalValue;
 
     }
-
     /**
      * Filter Listings and Displays listings.
      *
@@ -1572,9 +1531,6 @@ class ListingsController extends Controller
 //        return response()->json(['success'=>count($sponsoredPuppies)]);
         return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
     }
-
-
-
     /**
      * It Soft Deletes the provided listing.
      *
