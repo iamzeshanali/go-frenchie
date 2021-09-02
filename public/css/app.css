@@ -247,7 +247,6 @@ a#navbarDropdown img {
 
 form button[type=submit] {
     height: calc(1.5em + .75rem + 0px);
-    margin-top: 27px;
 }
 
 /* stud_listing listing area  start*/
@@ -1569,13 +1568,6 @@ div#social-links ul li a {
 div#social-links ul li a span{
     color: #8B77FC;
 }
-footer {
-    font-family: Sailec-Light;
-    background-color: white;
-    text-align: center;
-    padding: 15px;
-    color: rgba(0, 0, 0, 0.60);
-}
 
 /* Footer End */
 
@@ -1615,6 +1607,7 @@ html body {
     background-color: #ffffff !important;
     line-height: 1.7em;
     font-family: Proxima-Nova;
+    font-size: 16px;
 }
 
 html:root{
@@ -1638,7 +1631,7 @@ body a:hover{
 
 .gf-btn-dark{
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 0px 50px 50px 50px;
     color: #ffffff;
     text-align: center;
@@ -1659,7 +1652,7 @@ body a:hover{
 
 .gf-btn-light{
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 0px 50px 50px 50px;
     color: #231F20;
     text-align: center;
@@ -1701,6 +1694,18 @@ img{
     .wrapper {padding: 50px 0;}
 }
 
+.wrapper h2{
+    font-size: 55px;
+    line-height: 60px;
+}
+
+@media only screen and (max-width: 991px){
+    .wrapper h2 {
+        font-size: 40px;
+        line-height: 50px;
+    }
+}
+
 .row{
     margin-right: 0px !important;
     margin-left: 0px !important;
@@ -1721,28 +1726,32 @@ img{
     }
 }
 
+select:focus-visible {
+    outline: none !important;
+}
+
 /* 3--Go Frenchie Home Page */
 .gf-home-banner-wrapper {
     background-image: url("/images/homepage/gf-home-banner-bg.jpg");
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
+    background-position: top right;
 }
 
 .gf-home-banner-text p:first-child{
     font-size: 20px;
-    font-family: Proxima-Nova;
     font-weight: 600;
     letter-spacing: 3px;
     margin-bottom: 0px;
     color: #3390CE;
 }
 
-.gf-home-banner-text h2{
+.gf-home-banner-text h1{
     font-size: 85px;
     line-height: 100px;
 }
-@media only screen and (max-width: 767px){
-.gf-home-banner-text h2 {
+@media only screen and (max-width: 991px){
+.gf-home-banner-text h1 {
     font-size: 50px;
     line-height: 70px;
 }
@@ -1753,10 +1762,6 @@ img{
 }
 
 .gf-home-banner-detail h4{
-    font-family: Proxima-Nova;
-}
-
-.gf-home-banner-detail p{
     font-family: Proxima-Nova;
 }
 
@@ -1787,22 +1792,10 @@ img{
     transform: rotate(10deg);
 }
 
-.gf-home-second-intro{
+.gf-home-second-intro, .gf-testimonials, .gf-contactform{
     background-image: url("/images/homepage/gf-home-second-intro-bg.png");
     background-size: contain;
     background-repeat: no-repeat;
-}
-
-.gf-home-second-intro h2{
-    font-size: 55px;
-    line-height: 60px;
-}
-
-@media only screen and (max-width: 991px){
-    .gf-home-second-intro h2 {
-        font-size: 40px;
-        line-height: 50px;
-    }
 }
 
 .gf-home-second-intro p{
@@ -1818,14 +1811,215 @@ img{
     background-repeat: no-repeat;
 }
 
-.gf-home-third-quality h2{
-    font-size: 55px;
-    line-height: 60px;
+.gf-home-blurbs .service-blurb{
+    padding: 60px 50px;
+    background-color: hsla(225, 2%, 44%, 0.2);
+    border-radius: 25px;
+}
+.gf-home-blurbs img{
+    margin-bottom: 30px;
 }
 
-@media only screen and (max-width: 991px){
-    .gf-home-third-quality h2 {
-        font-size: 40px;
-        line-height: 50px;
-    }
+.gf-home-blurbs h4{
+    padding-bottom: 20px;
+    font-family: Proxima-Nova;
+}
+
+.gf-home-blurbs a{
+    color: #BE202E;
+    font-size: 14px;
+}
+.gf-home-blurbs a:hover{
+    color: #BE202E;
+}
+
+.gf-home-blurbs a:after{
+    content: '\2192';
+    color: #BE202E;
+    position: absolute;
+    font-size: 24px;
+    margin-left: .3em;
+    left: auto;
+}
+
+.gf-home-testimonial-slider span:first-of-type{
+    color: #BE202E;
+}
+
+.gf-home-testimonial-slider span:last-of-type{
+    text-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+    
+}
+
+
+.gf-home-testimonial-slider ul.slick-dots{
+    text-align: left;
+    bottom: -60px;
+}
+
+.gf-home-testimonial-slider ul.slick-dots li button:before{
+    color: var(--red);
+    font-size: 10px;
+}
+
+
+
+.gf-homepage-adds .container{
+    background-color: var(--red);
+    border-radius:50px;
+}
+
+.gf-homepage-adds .container img{
+    margin-top: -50%!important;
+    width: 100%;
+    position: absolute!important;
+    top: 0px;
+    bottom: auto;
+    left: 0px;
+    right: auto;
+    text-align: center;
+}
+
+.gf-homepage-adds h4{
+    font-size: 36px;
+    color: #ffffff;
+}
+
+.gf-homepage-adds span{
+    color: #ffffff;
+}
+
+.gf-homepage-adds a{
+    display: inline-block;
+    color: #ffffff!important;
+    border-width: 0px!important;
+    border-radius: 0px;
+    font-size: 18px;
+    font-weight: 800!important;
+    text-transform: uppercase!important;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
+    background-image: url('/images/homepage/gf-home-button-bg.png');
+    padding: 40px 50px;
+    transition: all 0.3s ease;
+}
+
+.gf-homepage-adds a:hover{
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    transform: rotate(10deg);
+}
+
+
+/* Contact Form Section Styling */
+
+.gf-contactform-area{
+    background-color: hsla(225, 2%, 44%, 0.4);
+    padding: 50px 70px;
+    border-radius: 30px;
+}
+
+.gf-contactform-area p{
+    color: #BE202E;
+}
+
+.gf-contactform-area form select, .gf-contactform-area form textarea{
+    background-color: transparent;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #6E6F72;
+    margin-bottom: 14px;
+    border-radius: 30px;
+}
+
+
+/* Footer Styling */
+.gf-footer-content{
+    background-size: contain;
+    background-position: bottom right;
+    background-blend-mode: overlay;
+    background-image: url('/images/gf-footer-bg.jpg');
+    background-color: rgba(255,255,255,0.62);
+    background-repeat: no-repeat;
+}
+
+.gf-footer-col1 p, .gf-footer-col4 p{
+    color: hsla(225, 2%, 44%, 0.8);
+}
+
+.gf-footer-socialIcons i{
+    box-shadow: 0 0 0 1em var(--red) inset;
+    font-size: 1.1em;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 43px;
+    width: 35px;
+    margin-right: 7px;
+    text-align: center;
+    -webkit-transition: all 280ms ease;
+    -moz-transition: all 280ms ease;
+    transition: all 280ms ease;
+}
+.gf-footer-socialIcons i:hover{
+    box-shadow: 0 0 0 1px var(--red) inset;
+    background-color: #ffffff;
+    color: var(--dark);
+}
+
+.gf-footer-col2 h3, .gf-footer-col3 h3, .gf-footer-col4 h3{
+    color: var(--red);
+    font-family: Proxima-Nova;
+}
+
+.gf-footer-col2 div, .gf-footer-col3 div{
+    margin-bottom: 10px;
+} 
+
+.gf-footer-col2 a, .gf-footer-col3 a,.gf-footer-col2 a:hover, .gf-footer-col3 a:hover{
+    color: var(--dark);
+}
+
+.gf-footer-col2 i, .gf-footer-col3 i{
+    margin-right: 15px;
+    color: var(--dark);
+}
+
+.gf-footer-col2 div:hover i{
+    color: var(--red);
+}
+
+.gf-footer-col4 form input[type=text]{
+    width: 100%;
+    background-color: white;
+    border-radius: 50px;
+    height: 33px;
+    border: 1px solid rgba(0,0,0,.2);
+    text-align: center;
+    font-size: 12px;
+}
+.gf-footer-col4 form button[type=submit]{
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    font-size: 12px;
+    padding-block: 5px;
+}
+
+.gf-footer-bottom-bar{
+    background-color: var(--red);
+    color: #ffffff;
+}
+
+
+
+
+
+.lg-gf-container{
+    width: 80%;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
 }
