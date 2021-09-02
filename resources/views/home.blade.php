@@ -51,32 +51,32 @@
         <div class="services-blurbs row">
             <div class="col-md-3">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-pet-paw-sign.png" alt="">
-                    <h4>Pet Grooming</h4>
+                    <img src="/images/homepage/gf-home-contact-image.png" height="100" alt="">
+                    <h4>STUDS</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-pet-paw-sign.png" alt="">
-                    <h4>Pet Grooming</h4>
+                    <img src="/images/homepage/gf-home-banner-dog.png" height="100" alt="">
+                    <h4>PUPPIES</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-pet-paw-sign.png" alt="">
-                    <h4>Pet Grooming</h4>
+                    <img src="/images/homepage/gf-home-second-intro-image.png" height="100" alt="">
+                    <h4>LITTERS</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-pet-paw-sign.png" alt="">
-                    <h4>Pet Grooming</h4>
+                    <img src="/images/homepage/gf-adds-image.png" height="100" alt="">
+                    <h4>RESOURCES</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
                 </div>
@@ -85,42 +85,7 @@
     </div>
 </div>
 
-<div class="wrapper gf-home-third-quality">
-    <div class="lg-gf-container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <h2>Quality Styling, <span style="color:#BE202E"><br>Clipping &amp; Bathing is Hard to Find…</span></h2>
-                <p>Our puppies and other very active dogs have plenty of space to run and romp, and comfy blankets. We offer quick & easy services for both dogs and cat of various breeds. No matter their size or age, we can provide positive grooming experience.</p>
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <div class="">
-                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span>PET GROOMING</span>
-                    </div>
-                    <div class="">
-                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span>PET HOTEL</span>
-                    </div>
-                    <div class="">
-                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span>VACCINATION</span>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <button class="gf-btn-dark mr-4">VIEW MORE</button>
-                    <button class="gf-btn-light">BOOK NOW</button>
-
-                </div>
-            </div>
-            <div class="col-md-6 text-left">
-                <img src="images/homepage/gf-home-third-quality-image.png" width="400" alt="">
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-<div class="wrapper gf-testimonials d-flex justify-content-center">
+<div class="wrapper gf-testimonials d-flex justify-content-center p-0">
     <div class="container row align-items-center">
         <div class="col-md-6 text-center">
             <img src="/images/homepage/gf-home-banner-dog.png" alt="">
@@ -162,10 +127,92 @@
         </div>
 </div>
 
-<div class="wrapper gf-contactform d-flex justify-content-center">
+
+<div class="wrapper gf-home-kennels-carousel">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <span>OUR STARS</span>
+                <h2>Spotlight<span style="color:#BE202E"><br>Breeders</span></h2>
+                <p>We take the responsibility of caring for pets very seriously. They are members of your family.</p>
+                <a href="#contact-form" class="gf-btn-dark">GET QUOTE</a>
+            </div>
+            <div class="col-md-9">
+                <div class="gf-kennel-slider row">
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="wrapper gf-home-third-quality">
+    <div class="lg-gf-container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>Quality Styling, <span style="color:#BE202E"><br>Clipping &amp; Bathing is Hard to Find…</span></h2>
+                <p>Our puppies and other very active dogs have plenty of space to run and romp, and comfy blankets. We offer quick & easy services for both dogs and cat of various breeds. No matter their size or age, we can provide positive grooming experience.</p>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="">
+                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
+                        <span>PET GROOMING</span>
+                    </div>
+                    <div class="">
+                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
+                        <span>PET HOTEL</span>
+                    </div>
+                    <div class="">
+                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
+                        <span>VACCINATION</span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button class="gf-btn-dark mr-4">VIEW MORE</button>
+                    <button class="gf-btn-light">BOOK NOW</button>
+
+                </div>
+            </div>
+            <div class="col-md-6 text-left">
+                <img src="images/homepage/gf-home-third-quality-image.png" width="400" alt="">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
     <div class="container row align-items-center">
-        <div class="col-md-6 text-center">
-            <img src="/images/homepage/gf-contactform-image.png" alt="">
+        <div class="col-md-6">
+            <img src="/images/homepage/gf-home-contact-image.png" width="450" alt="">
         </div>
         <div class="col-md-6">
             <div class="gf-contactform-area">
@@ -181,9 +228,13 @@
                         </select>
                     </div>
                     <select name="Service" id="">
+                        <option value="">Service</option>
                         <option value="">Resources</option>
+                        <option value="">DNA Test</option>
+                        <option value="">Litters Announcement</option>
+                        <option value="">Adds</option>
                     </select>
-                    <textarea name="Message" id="" cols="30" rows="5"></textarea>
+                    <textarea name="Message" id="" cols="30" rows="5" placeholder="Message"></textarea>
                     <button type="submit" class="gf-btn-dark">SUBMIT</button>
                 </form>
             </div>

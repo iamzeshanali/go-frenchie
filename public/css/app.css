@@ -45,9 +45,7 @@
     font-family: Sailec;
     src: url(/fonts/Sailec.ttf);
 }
- :root{
-     --font-family: "Sailec";
- }
+
 /* Font Include End */
 
 /*2-- General For Multiple pages Start*/
@@ -1726,7 +1724,7 @@ img{
     }
 }
 
-select:focus-visible {
+textarea:focus-visible, select:focus-visible {
     outline: none !important;
 }
 
@@ -1815,6 +1813,11 @@ select:focus-visible {
     padding: 60px 50px;
     background-color: hsla(225, 2%, 44%, 0.2);
     border-radius: 25px;
+}
+.gf-home-blurbs .service-blurb:hover{
+    -webkit-box-shadow: 4px 5px 30px rgb(0 0 0 / 20%);
+    -moz-box-shadow: 4px 5px 30px rgba(0,0,0,0.2);
+    box-shadow: 4px 5px 30px rgb(0 0 0 / 20%);
 }
 .gf-home-blurbs img{
     margin-bottom: 30px;
@@ -1935,6 +1938,39 @@ select:focus-visible {
     border-radius: 30px;
 }
 
+.gf-contactform-area form button[type=submit]{
+    height: auto;
+    width: 100%;
+}
+
+
+/* Kennel Carousel */
+
+
+.gf-home-kennels-carousel{
+    background-image: url("/images/homepage/gf-home-third-quality-bg.png");
+    background-size: contain;
+    background-position: bottom right;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+}
+
+.gf-slide{
+    background-color: hsla(225, 2%, 44%, 0.4);
+    border-radius: 25px;
+    border-bottom: 3px solid #BE202E;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.gf-slide img{
+    margin:auto;
+}
+
+.gf-kennel-slider ul.slick-dots li button:before{
+    color: var(--red);
+    font-size: 10px;
+}
 
 /* Footer Styling */
 .gf-footer-content{
@@ -2012,10 +2048,6 @@ select:focus-visible {
     background-color: var(--red);
     color: #ffffff;
 }
-
-
-
-
 
 .lg-gf-container{
     width: 80%;
