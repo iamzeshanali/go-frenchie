@@ -247,7 +247,6 @@ a#navbarDropdown img {
 
 form button[type=submit] {
     height: calc(1.5em + .75rem + 0px);
-    margin-top: 27px;
 }
 
 /* stud_listing listing area  start*/
