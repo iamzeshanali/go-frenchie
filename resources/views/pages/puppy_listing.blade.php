@@ -161,7 +161,7 @@
                                         <option selected value="10">Any Distance</option>
                                     </select>
                                     <input type="zip" class="form-control" name="zipSectionSecond" id="zipSectionSecond" aria-describedby="zipHelp" placeholder="Zip Code">
-                                    <button type="submit" class="btn btn-primary btn-sm  btn-fbd" onClick="searchByZipDistance()" style="width:22%; float:right; margin-top: 2%;"><i class="far fa-compass"></i> Search</button>
+                                    <button type="submit" class="btn btn-primary btn-sm  btn-fbd" onClick="searchByZipDistance()" style="width:90px; float:right; margin-top: 2%;"><i class="far fa-compass"></i> Search</button>
                                 @endif
 
 
@@ -556,10 +556,9 @@
 
                                                             {{--  EMAIL-ADDRESS  --}}
                                                             <div class="form-group row">
-                                                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                                                <div class="col-md-6">
-                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                <div class="col-md-12">
+                                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
 
                                                                     @error('email')
                                                                     <span class="invalid-feedback" role="alert">
@@ -570,10 +569,9 @@
                                                             </div>
                                                             {{--  PASSWORD  --}}
                                                             <div class="form-group row">
-                                                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                                                <div class="col-md-6">
-                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                <div class="col-md-12">
+                                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
 
                                                                     @error('password')
                                                                     <span class="invalid-feedback" role="alert">
@@ -584,8 +582,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                            <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
+                                                            <a href="#deleteListingModal" class="delete" data-dismiss="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel"></a>
+                                                            <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-secondary" data-dismiss="modal" value="Register"></a>
                                                             <button type="submit" class="btn btn-danger btn-fbd">
                                                                 {{ __('Login') }}
                                                             </button>
@@ -610,10 +608,8 @@
                                                             <input type="hidden" name="type" value="listing">
                                                             {{--  USERNAME  --}}
                                                             <div class="form-group row">
-                                                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                                <div class="col-md-12">
+                                                                    <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Username" required autocomplete="username" autofocus>
 
                                                                     @error('username')
                                                                     <span class="invalid-feedback" role="alert">
@@ -624,10 +620,8 @@
                                                             </div>
                                                             {{--  EMAIL-ADDRESS  --}}
                                                             <div class="form-group row">
-                                                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                <div class="col-md-12">
+                                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
 
                                                                     @error('email')
                                                                     <span class="invalid-feedback" role="alert">
@@ -638,10 +632,8 @@
                                                             </div>
                                                             {{--  PASSWORD  --}}
                                                             <div class="form-group row">
-                                                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                <div class="col-md-12">
+                                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
 
                                                                     @error('password')
                                                                     <span class="invalid-feedback" role="alert">
@@ -652,10 +644,8 @@
                                                             </div>
                                                             {{--  CONFIRM-PASSWORD  --}}
                                                             <div class="form-group row">
-                                                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                <div class="col-md-12">
+                                                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -790,7 +780,7 @@
                                                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                                                     @error('email')
                                                                     <span class="invalid-feedback" role="alert">
@@ -804,7 +794,7 @@
                                                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                                                     @error('password')
                                                                     <span class="invalid-feedback" role="alert">
@@ -844,7 +834,7 @@
                                                                 <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                                    <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                                                     @error('username')
                                                                     <span class="invalid-feedback" role="alert">
@@ -858,7 +848,7 @@
                                                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                                                     @error('email')
                                                                     <span class="invalid-feedback" role="alert">
@@ -872,7 +862,7 @@
                                                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                                                     @error('password')
                                                                     <span class="invalid-feedback" role="alert">
@@ -886,7 +876,7 @@
                                                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                    <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -960,11 +950,16 @@
         // To uncheck child elements when parent element is unchecked
         $("#filterBlue").change(function() {
             if(!this.checked) {
-                console.log("Unchecked");
                 $("#filterABlue2copy").prop('checked',false);
                 $("#filterABlue1copy").prop('checked',false);
                 $("#filterABlueDd").prop('checked',false);
                 $("#filterABlueUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterABlue2copy").prop('checked',true);
+                $("#filterABlue1copy").prop('checked',true);
+                $("#filterABlueDd").prop('checked',true);
+                $("#filterABlueUnknown").prop('checked',true);
             }
             findValue();
         });
@@ -976,6 +971,12 @@
                 $("#chocolateDd").prop('checked',false);
                 $("#chocolateUnknown").prop('checked',false);
             }
+            if(this.checked) {
+                $("#chocolate2copy").prop('checked',true);
+                $("#chocolate1copy").prop('checked',true);
+                $("#chocolateDd").prop('checked',true);
+                $("#chocolateUnknown").prop('checked',true);
+            }
             findValue();
         });
 
@@ -985,6 +986,12 @@
                 $("#filterTestableChocolate1copy").prop('checked',false);
                 $("#filterTestableChocolateDd").prop('checked',false);
                 $("#filterTestableChocolateUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterTestableChocolate2copy").prop('checked',true);
+                $("#filterTestableChocolate1copy").prop('checked',true);
+                $("#filterTestableChocolateDd").prop('checked',true);
+                $("#filterTestableChocolateUnknown").prop('checked',true);
             }
             findValue();
         });
@@ -996,6 +1003,12 @@
                 $("#filterAfluffyDd").prop('checked',false);
                 $("#filterAfluffyUnknown").prop('checked',false);
             }
+            if(this.checked) {
+                $("#filterAfluffy2copy").prop('checked',true);
+                $("#filterAfluffy1copy").prop('checked',true);
+                $("#filterAfluffyDd").prop('checked',true);
+                $("#filterAfluffyUnknown").prop('checked',true);
+            }
             findValue();
         });
 
@@ -1005,6 +1018,12 @@
                 $("#filterAintensity1copy").prop('checked',false);
                 $("#filterAintensityDd").prop('checked',false);
                 $("#filterAintensityUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterAintensity2copy").prop('checked',true);
+                $("#filterAintensity1copy").prop('checked',true);
+                $("#filterAintensityDd").prop('checked',true);
+                $("#filterAintensityUnknown").prop('checked',true);
             }
             findValue();
         });
@@ -1016,6 +1035,12 @@
                 $("#filterApiedDd").prop('checked',false);
                 $("#filterApiedUnknown").prop('checked',false);
             }
+            if(this.checked) {
+                $("#filterApied2copy").prop('checked',true);
+                $("#filterApied1copy").prop('checked',true);
+                $("#filterApiedDd").prop('checked',true);
+                $("#filterApiedUnknown").prop('checked',true);
+            }
             findValue();
         });
 
@@ -1025,6 +1050,11 @@
                 $("#filterMerleNo").prop('checked',false);
                 $("#filterMerleUnknown").prop('checked',false);
             }
+            if(this.checked) {
+                $("#filterMerleYes").prop('checked',true);
+                $("#filterMerleNo").prop('checked',true);
+                $("#filterMerleUnknown").prop('checked',true);
+            }
             findValue();
         });
 
@@ -1033,6 +1063,11 @@
                 $("#filterBrindleYes").prop('checked',false);
                 $("#filterBrindleNo").prop('checked',false);
                 $("#filterBrindleUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterBrindleYes").prop('checked',true);
+                $("#filterBrindleNo").prop('checked',true);
+                $("#filterBrindleUnknown").prop('checked',true);
             }
             findValue();
         });
@@ -1046,7 +1081,15 @@
                 $("#filterAgoutiAta").prop('checked',false);
                 $("#filterAgoutiAtat").prop('checked',false);
             }
-            findValue();
+            if(this.checked) {
+                $("#filterAgoutiAa").prop('checked',true);
+                $("#filterAgoutiAya").prop('checked',true);
+                $("#filterAgoutiAyat").prop('checked',true);
+                $("#filterAgoutiAyay").prop('checked',true);
+                $("#filterAgoutiAta").prop('checked',true);
+                $("#filterAgoutiAtat").prop('checked',true);
+            }
+            findValueForAgoutiEmcir();
         });
 
         $("#filterEmcir").change(function() {
@@ -1058,7 +1101,15 @@
                 $("#filterEmcirEe").prop('checked',false);
                 $("#filterEmciree").prop('checked',false);
             }
-            findValue();
+            if(this.checked) {
+                $("#filterEmcirEmem").prop('checked',true);
+                $("#filterEmcirEmE").prop('checked',true);
+                $("#filterEmcirEme").prop('checked',true);
+                $("#filterEmcirEE").prop('checked',true);
+                $("#filterEmcirEe").prop('checked',true);
+                $("#filterEmciree").prop('checked',true);
+            }
+            findValueForAgoutiEmcir();
         });
 
         $('#dnaColor').on('change', function () {
@@ -1325,7 +1376,7 @@
             });
 
         }
-        function findValue(){
+        function findValueForAgoutiEmcir(){
             var blue = [];
             var chocolate = [];
             var testable = [];
@@ -1449,19 +1500,194 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 beforeSend: function(){
+                    console.log("sTART");
                     $("#loaderModalCenter").modal('show');
                 },
-                complete: function (){
-                    $("#loaderModalCenter").modal('hide');
-                },
+
                 success: function(data){
                     console.log(data.success);
+                    if (data.response == 200){
+                        closeModal();
+                    }
+
                     document.getElementById("primary-listing-data").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
                     $('#secondary-recent-search').html(data.recentSearch);
+
+                },
+            });
+        }
+
+        function findValue(){
+            var blue = [];
+            var chocolate = [];
+            var testable = [];
+            var fluffy = [];
+            var intensity = [];
+            var pied = [];
+            var merle = [];
+            var brindle = [];
+            var agouti = [];
+            var emcir = [];
+            var listingsData = [];
+
+            console.log("checking");
+            $("input[name='blue']:checked").each(function(){
+                blue.push($(this).val());
+            });
+            $("input[name='chocolate']:checked").each(function(){
+                chocolate.push($(this).val());
+            });
+            $("input[name='testable']:checked").each(function(){
+                testable.push($(this).val());
+            });
+            $("input[name='fluffy']:checked").each(function(){
+                fluffy.push($(this).val());
+            });
+            $("input[name='intensity']:checked").each(function(){
+                intensity.push($(this).val());
+            });
+            $("input[name='pied']:checked").each(function(){
+                pied.push($(this).val());
+            });
+            $("input[name='merle']:checked").each(function(){
+                merle.push($(this).val());
+            });
+            $("input[name='brindle']:checked").each(function(){
+                brindle.push($(this).val());
+            });
+            $("input[name='emcir']:checked").each(function(){
+                emcir.push($(this).val());
+            });
+            $("input[name='agouti']:checked").each(function(){
+                agouti.push($(this).val());
+            });
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
+
+            let distance = $("#distance").val();
+            let zip = 75001;
+            if($('#zipSection').length != 0){
+                this.zip = $('#zipSection').val();
+            }else{
+                this.zip = $("#zipSectionSecond").val();
+            }
+            // console.log(this.zip);
+            // console.log(distance);
+
+            var DNAColors_Selected_without_coats = [];
+
+            $("input[name='Parentfilter']:checked").each(function(){
+                DNAColors_Selected_without_coats.push($(this).val());
+            });
+
+            if(blue.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "blue");
+            }
+            if(chocolate.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "chocolate");
+            }
+            if(testable.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "testable");
+            }
+            if(fluffy.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "fluffy");
+            }
+            if(intensity.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "intensity");
+            }
+            if(pied.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "pied");
+            }
+            if(merle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "merle");
+            }
+            if(brindle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "brindle");
+            }
+            if(agouti.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "agouti");
+            }
+            if(emcir.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "emcir");
+            }
+
+
+            $.ajax({
+                type:'POST',
+                url: '{{route('filterByDNA')}}',
+                data: {
+                    blue:blue,
+                    chocolate:chocolate,
+                    testable:testable,
+                    fluffy:fluffy,
+                    intensity:intensity,
+                    pied:pied,
+                    merle:merle,
+                    brindle:brindle,
+                    agouti:agouti,
+                    emcir:emcir,
+                    parentDNA: DNAColors_Selected_without_coats,
+                    zip : this.zip,
+                    distance: distance,
+                    type : 'puppy'
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                beforeSend: function(){
+                    $("#loaderModalCenter").modal('show');
+                },
+
+                success: function(data){
+                    console.log(data.success);
+                    if (data.response == 200){
+                        console.log(data.response);
+                        closeModal();
+
+                        if(emcir.length == 0){
+
+                            $("#collapseEmcir").addClass('show');
+                            $("#filterEmcir").prop('checked',true);
+                            $("#filterEmcirEmem").prop('checked',true);
+                            $("#filterEmcirEmE").prop('checked',true);
+                            $("#filterEmcirEme").prop('checked',true);
+                            $("#filterEmcirEE").prop('checked',true);
+                            $("#filterEmcirEe").prop('checked',true);
+                            $("#filterEmciree").prop('checked',true);
+                        }
+                        if(agouti.length == 0){
+
+                            $("#collapseAgouti").addClass('show');
+                            $("#filterAgouti").prop('checked',true);
+                            $("#filterAgoutiAa").prop('checked',true);
+                            $("#filterAgoutiAya").prop('checked',true);
+                            $("#filterAgoutiAyat").prop('checked',true);
+                            $("#filterAgoutiAyay").prop('checked',true);
+                            $("#filterAgoutiAta").prop('checked',true);
+                            $("#filterAgoutiAtat").prop('checked',true);
+                        }
+                    }
+
+
+                    document.getElementById("primary-listing-data").style.display = "none";
+                    $('#secondary-listing-data').html(data.html);
+                    $('#secondary-recent-search').html(data.recentSearch);
+
                 },
             });
 
+        }
+        function closeModal() {
+            $('#loaderModalCenter').on('shown.bs.modal', function(e) {
+                $("#loaderModalCenter").modal("hide");
+            });
         }
         //Filter by Zip
         function checkZip(value) {

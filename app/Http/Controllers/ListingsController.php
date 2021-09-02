@@ -1215,7 +1215,7 @@ class ListingsController extends Controller
         $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched','totalSponsoredPuppies','totalStandardPuppies'))->render();
 //        return response()->json(['success'=>count($sponsoredPuppies)]);
 
-        return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
+        return response()->json(['success'=>'Form is successfully submitted!','response'=>200, 'html'=>$html, 'recentSearch'=>$recentSearch]);
 
     }
 
