@@ -157,4 +157,14 @@ $('.carousel .carousel-item').each(function() {
 // Home page End ////////////////////////////////////
 // To uncheck child elements when parent element is unchecked
 
-
+// GF Redesign JS
+// Homepage testimonials slider
+$('.gf-home-testimonial-slider').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    focusOnSelect: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    dots: true,
+});
