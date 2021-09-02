@@ -49,7 +49,7 @@
     </div>
     <div class="lg-gf-container">
         <div class="services-blurbs row">
-            <div class="col-md-3">
+            <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
                     <img src="/images/homepage/gf-home-contact-image.png" height="100" alt="">
                     <h4>STUDS</h4>
@@ -57,7 +57,7 @@
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
                     <img src="/images/homepage/gf-home-banner-dog.png" height="100" alt="">
                     <h4>PUPPIES</h4>
@@ -65,7 +65,7 @@
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
                     <img src="/images/homepage/gf-home-second-intro-image.png" height="100" alt="">
                     <h4>LITTERS</h4>
@@ -73,7 +73,7 @@
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
                     <img src="/images/homepage/gf-adds-image.png" height="100" alt="">
                     <h4>RESOURCES</h4>
@@ -117,10 +117,10 @@
                     <h4>Get 30% off for the First Time Appointment!</h4>
                     <span>CONTACT US NOW AND MAKE AN APPOINTMENT TODAY</span>
                 </div>
-                <div class="col-3">
+                <div class="col-3 d-none d-md-block">
                     <img src="/images/homepage/gf-adds-image.png" alt="Image not found">
                 </div>
-                <div class="col-3">
+                <div class="col-3 text-center">
                     <a href="">BOOKING NOW</a>
                 </div>
             </div>

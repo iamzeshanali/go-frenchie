@@ -2055,3 +2055,11 @@ textarea:focus-visible, select:focus-visible {
     margin-left: auto;
     margin-right: auto;
 }
+
+
+/* Bootstrap default container change on less than 576px */
+@media (max-width: 576px){
+    .container {
+        max-width: 90%;
+}
+}
