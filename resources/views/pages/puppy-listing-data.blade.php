@@ -52,9 +52,9 @@
                             <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                         @endif
                     @else
-                        <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
+                        <a href="#LoginModalSponsored" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
                     @endif
-                    <div id="LoginModal" class="modal fade">
+                    <div id="LoginModalSponsored" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -75,10 +75,9 @@
 
                                         {{--  EMAIL-ADDRESS  --}}
                                         <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                            <div class="col-md-6">
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <div class="col-md-12">
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
 
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -89,10 +88,9 @@
                                         </div>
                                         {{--  PASSWORD  --}}
                                         <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                            <div class="col-md-6">
-                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <div class="col-md-12">
+                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
 
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -103,8 +101,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
+                                        <a href="#deleteListingModalSponsored" class="delete" data-dismiss="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel"></a>
+                                        <a href="#deleteListingModalSponsored" class="delete" data-toggle="modal"><input type="button" class="btn btn-secondary" data-dismiss="modal" value="Register"></a>
                                         <button type="submit" class="btn btn-danger btn-fbd">
                                             {{ __('Login') }}
                                         </button>
@@ -114,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="deleteListingModal" class="modal fade">
+                    <div id="deleteListingModalSponsored" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -129,24 +127,20 @@
                                         <input type="hidden" name="type" value="listing">
                                         {{--  USERNAME  --}}
                                         <div class="form-group row">
-                                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Username" required autocomplete="username" autofocus>
 
                                                 @error('username')
                                                 <span class="invalid-feedback" role="alert">
-                                                     <strong>{{ $message }}</strong>
-                                                </span>
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
                                                 @enderror
                                             </div>
                                         </div>
                                         {{--  EMAIL-ADDRESS  --}}
                                         <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <div class="col-md-12">
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
 
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -157,10 +151,8 @@
                                         </div>
                                         {{--  PASSWORD  --}}
                                         <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <div class="col-md-12">
+                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
 
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -171,10 +163,8 @@
                                         </div>
                                         {{--  CONFIRM-PASSWORD  --}}
                                         <div class="form-group row">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                            <div class="col-md-12">
+                                                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                                             </div>
                                         </div>
                                     </div>
@@ -308,10 +298,9 @@
 
                                         {{--  EMAIL-ADDRESS  --}}
                                         <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                            <div class="col-md-6">
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <div class="col-md-12">
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
 
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -322,10 +311,9 @@
                                         </div>
                                         {{--  PASSWORD  --}}
                                         <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                            <div class="col-md-6">
-                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <div class="col-md-12">
+                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
 
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -336,8 +324,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <a href="#deleteListingModalSecondary" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
+                                        <a href="#deleteListingModalSecondary" class="delete" data-dismiss="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel"></a>
+                                        <a href="#deleteListingModalSecondary" class="delete" data-toggle="modal"><input type="button" class="btn btn-secondary" data-dismiss="modal" value="Register"></a>
                                         <button type="submit" class="btn btn-danger btn-fbd">
                                             {{ __('Login') }}
                                         </button>
@@ -362,10 +350,8 @@
                                         <input type="hidden" name="type" value="listing">
                                         {{--  USERNAME  --}}
                                         <div class="form-group row">
-                                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Username" required autocomplete="username" autofocus>
 
                                                 @error('username')
                                                 <span class="invalid-feedback" role="alert">
@@ -376,10 +362,8 @@
                                         </div>
                                         {{--  EMAIL-ADDRESS  --}}
                                         <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <div class="col-md-12">
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
 
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -390,10 +374,8 @@
                                         </div>
                                         {{--  PASSWORD  --}}
                                         <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <div class="col-md-12">
+                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
 
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -404,10 +386,8 @@
                                         </div>
                                         {{--  CONFIRM-PASSWORD  --}}
                                         <div class="form-group row">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                            <div class="col-md-12">
+                                                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                                             </div>
                                         </div>
                                     </div>
