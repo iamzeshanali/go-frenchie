@@ -49,40 +49,130 @@
     </div>
     <div class="lg-gf-container">
         <div class="services-blurbs row">
-            <div class="col-md-3">
+            <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-pet-paw-sign.png" alt="">
-                    <h4>Pet Grooming</h4>
+                    <img src="/images/homepage/gf-home-contact-image.png" height="100" alt="">
+                    <h4>STUDS</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-pet-paw-sign.png" alt="">
-                    <h4>Pet Grooming</h4>
+                    <img src="/images/homepage/gf-home-banner-dog.png" height="100" alt="">
+                    <h4>PUPPIES</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-pet-paw-sign.png" alt="">
-                    <h4>Pet Grooming</h4>
+                    <img src="/images/homepage/gf-home-second-intro-image.png" height="100" alt="">
+                    <h4>LITTERS</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-pet-paw-sign.png" alt="">
-                    <h4>Pet Grooming</h4>
+                    <img src="/images/homepage/gf-adds-image.png" height="100" alt="">
+                    <h4>RESOURCES</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="wrapper gf-testimonials d-flex justify-content-center p-0">
+    <div class="container row align-items-center">
+        <div class="col-md-6 text-center">
+            <img src="/images/homepage/gf-home-banner-dog.png" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2>Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
+
+            <div class="gf-home-testimonial-slider">
+                <div>
+                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                    <span>Caroline Bryan</span><br>
+                    <span>Very Affordably Priced</span>
+                </div>
+                <div>
+                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                    <span>Caroline Bryan</span><br>
+                    <span>Very Affordably Priced</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="wrapper gf-homepage-adds">
+        <div class="container">
+            <div class="row px-5 align-items-center">
+                <div class="col-md-6 my-4">
+                    <h4>Get 30% off for the First Time Appointment!</h4>
+                    <span>CONTACT US NOW AND MAKE AN APPOINTMENT TODAY</span>
+                </div>
+                <div class="col-3 d-none d-md-block">
+                    <img src="/images/homepage/gf-adds-image.png" alt="Image not found">
+                </div>
+                <div class="col-3 text-center">
+                    <a href="">BOOKING NOW</a>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="wrapper gf-home-kennels-carousel">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <span>OUR STARS</span>
+                <h2>Spotlight<span style="color:#BE202E"><br>Breeders</span></h2>
+                <p>We take the responsibility of caring for pets very seriously. They are members of your family.</p>
+                <a href="#contact-form" class="gf-btn-dark">GET QUOTE</a>
+            </div>
+            <div class="col-md-9">
+                <div class="gf-kennel-slider row">
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
 <div class="wrapper gf-home-third-quality">
@@ -119,53 +209,10 @@
     </div>
 </div>
 
-
-<div class="wrapper gf-testimonials d-flex justify-content-center">
+<div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
     <div class="container row align-items-center">
-        <div class="col-md-6 text-center">
-            <img src="/images/homepage/gf-home-banner-dog.png" alt="">
-        </div>
         <div class="col-md-6">
-            <h2>Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
-
-            <div class="gf-home-testimonial-slider">
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="wrapper gf-homepage-adds">
-        <div class="container">
-            <div class="row px-5 align-items-center">
-                <div class="col-md-6 my-4">
-                    <h4>Get 30% off for the First Time Appointment!</h4>
-                    <span>CONTACT US NOW AND MAKE AN APPOINTMENT TODAY</span>
-                </div>
-                <div class="col-3">
-                    <img src="/images/homepage/gf-adds-image.png" alt="Image not found">
-                </div>
-                <div class="col-3">
-                    <a href="">BOOKING NOW</a>
-                </div>
-            </div>
-        </div>
-</div>
-
-<div class="wrapper gf-contactform d-flex justify-content-center">
-    <div class="container row align-items-center">
-        <div class="col-md-6 text-center">
-            <img src="/images/homepage/gf-contactform-image.png" alt="">
+            <img src="/images/homepage/gf-home-contact-image.png" width="450" alt="">
         </div>
         <div class="col-md-6">
             <div class="gf-contactform-area">
@@ -181,9 +228,13 @@
                         </select>
                     </div>
                     <select name="Service" id="">
+                        <option value="">Service</option>
                         <option value="">Resources</option>
+                        <option value="">DNA Test</option>
+                        <option value="">Litters Announcement</option>
+                        <option value="">Adds</option>
                     </select>
-                    <textarea name="Message" id="" cols="30" rows="5"></textarea>
+                    <textarea name="Message" id="" cols="30" rows="5" placeholder="Message"></textarea>
                     <button type="submit" class="gf-btn-dark">SUBMIT</button>
                 </form>
             </div>
