@@ -158,6 +158,17 @@ $('.carousel .carousel-item').each(function() {
 // To uncheck child elements when parent element is unchecked
 
 // GF Redesign JS
+// Header JS
+const nav = document.querySelector('.nav')
+window.addEventListener('scroll', fixNav)
+
+function fixNav() {
+    if(window.scrollY > nav.offsetHeight + 250) {
+        nav.classList.add('active')
+    } else {
+        nav.classList.remove('active')
+    }
+}
 // Homepage testimonials slider
 $('.gf-home-testimonial-slider').slick({
     slidesToShow: 1,
@@ -165,7 +176,7 @@ $('.gf-home-testimonial-slider').slick({
     arrows: false,
     focusOnSelect: true,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     dots: true,
 });
 $('.gf-kennel-slider').slick({

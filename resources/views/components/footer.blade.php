@@ -1,19 +1,6 @@
 <footer>
-
-{{--    <div class="row align-items-center">--}}
-{{--        <div class="col-lg-6">--}}
-{{--            <span>© 2021 French Bull Dogs. All rights reserved.</span>--}}
-{{--        </div>--}}
-{{--        <div class="col-lg-6">--}}
-{{--            <div class="container mt-4">--}}
-{{--                <?php $shareComponent = app('App\Http\Controllers\HomeController')->ShareComponent() ?>--}}
-{{--                {!! $shareComponent !!}--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
     <div class="wrapper gf-footer-content p-0">
-        <div class="container">
+        <div class="lg-gf-container">
             <div class="row">
                 <div class="gf-footer-col1 col-md-3">
                     <img class="mb-3" src="images/GoFrenchie-logo.png" height="100" alt="Logo Not Found">
@@ -59,12 +46,10 @@
                         <button type="submit" name="submit" class="gf-btn-dark">SUBSCRIBE</button>
                     </form>
                 </div>
-            </div>-
+            </div>
         </div>
-
         <div class="gf-footer-bottom-bar text-center">
             <p class="m-auto py-1">COPYRIGHT © 2021. ALL RIGHTS RESERVED. DESIGNED BY AIMSQUAD</p>
         </div>
-
     </div>
 </footer>
