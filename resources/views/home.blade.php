@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="col-md-6 text-center">
-            <img src="/images/homepage/gf-home-banner-dog.png" alt="">
+            <img src="/images/homepage/gf-home-banner-dog.png" loading="lazy" alt="">
         </div>
     </div>
 </div>
@@ -36,7 +36,7 @@
         <div class="services-blurbs row">
             <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-home-contact-image.png" height="150" alt="">
+                    <img src="/images/homepage/gf-home-contact-image.png" height="150" loading="lazy" alt="">
                     <h4>STUDS</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-home-banner-dog.png" height="150" alt="">
+                    <img src="/images/homepage/gf-home-banner-dog.png" height="150" loading="lazy" alt="">
                     <h4>PUPPIES</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
@@ -52,7 +52,7 @@
             </div>
             <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-home-second-intro-image.png" height="150" alt="">
+                    <img src="/images/homepage/gf-home-second-intro-image.png" height="150" loading="lazy" alt="">
                     <h4>LITTERS</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
@@ -60,7 +60,7 @@
             </div>
             <div class="col-xl-3 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-blurbs-resources.png" height="150" alt="">
+                    <img src="/images/homepage/gf-blurbs-resources.png" height="150" loading="lazy" alt="">
                     <h4>RESOURCES</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
@@ -73,7 +73,7 @@
         <div class="services-blurbs row">
             <div class="col-xl-6 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-home-contact-image.png" height="150" alt="">
+                    <img src="/images/homepage/gf-home-contact-image.png" height="150" loading="lazy" alt="">
                     <h4>STUDS</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
@@ -81,7 +81,7 @@
             </div>
             <div class="col-xl-6 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-home-banner-dog.png" height="150" alt="">
+                    <img src="/images/homepage/gf-home-banner-dog.png" height="150" loading="lazy" alt="">
                     <h4>PUPPIES</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
@@ -89,7 +89,7 @@
             </div>
             <div class="col-xl-6 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-home-second-intro-image.png" height="150" alt="">
+                    <img src="/images/homepage/gf-home-second-intro-image.png" height="150" loading="lazy" alt="">
                     <h4>LITTERS</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-xl-6 col-md-6 my-2">
                 <div class="service-blurb">
-                    <img src="/images/homepage/gf-blurbs-resources.png" height="150" alt="">
+                    <img src="/images/homepage/gf-blurbs-resources.png" height="150" loading="lazy" alt="">
                     <h4>RESOURCES</h4>
                     <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed …</p>
                     <a href="#">VIEW MORE</a>
@@ -111,7 +111,7 @@
 <div class="wrapper gf-home-second-intro d-flex justify-content-center">
     <div class="container row align-items-center">
         <div class="col-md-6 text-center">
-            <img src="/images/homepage/gf-home-second-intro-image.png" alt="">
+            <img src="/images/homepage/gf-home-second-intro-image.png" loading="lazy" alt="">
         </div>
         <div class="col-md-6">
             <h2>Every Pet Is <span style="color:#BE202E"><br>Treated With Love</span></h2>
@@ -158,7 +158,7 @@
                     </form>
                 </div>
                 <div class="col-6 d-none d-md-block text-center">
-                    <img src="/images/homepage/gf-subscribe-image.png" width="350px" alt="Image not found">
+                    <img src="/images/homepage/gf-subscribe-image.png" width="350px" loading="lazy" alt="Image not found">
                 </div>
 {{--                <div class="col-3 text-center">--}}
 {{--                    <a href="">BOOKING NOW</a>--}}
@@ -181,28 +181,28 @@
                 <div class="gf-kennel-slider row">
                     <div class="px-3">
                         <div class="gf-slide">
-                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <img src="/images/breeder.png" loading="lazy" alt="Breeder Logo Not found">
                             <h4>Kennel 1</h4>
                             <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                     <div class="px-3">
                         <div class="gf-slide">
-                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <img src="/images/breeder.png" loading="lazy" alt="Breeder Logo Not found">
                             <h4>Kennel 1</h4>
                             <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                     <div class="px-3">
                         <div class="gf-slide">
-                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <img src="/images/breeder.png" loading="lazy" alt="Breeder Logo Not found">
                             <h4>Kennel 1</h4>
                             <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                     <div class="px-3">
                         <div class="gf-slide">
-                            <img src="/images/breeder.png" alt="Breeder Logo Not found">
+                            <img src="/images/breeder.png" loading="lazy" alt="Breeder Logo Not found">
                             <h4>Kennel 1</h4>
                             <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
@@ -210,9 +210,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 
 <div class="wrapper gf-home-third-quality">
@@ -242,7 +240,7 @@
                 </div>
             </div>
             <div class="col-md-6 text-left">
-                <img src="images/homepage/gf-home-third-quality-image.png" width="400" alt="">
+                <img src="images/homepage/gf-home-third-quality-image.png" width="400" loading="lazy" alt="">
             </div>
 
         </div>
@@ -252,7 +250,7 @@
 <div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
     <div class="container row align-items-center">
         <div class="col-md-6">
-            <img src="/images/homepage/gf-home-contact-image.png" width="450" alt="">
+            <img src="/images/homepage/gf-home-contact-image.png" width="450" loading="lazy" alt="">
         </div>
         <div class="col-md-6">
             <div class="gf-contactform-area">

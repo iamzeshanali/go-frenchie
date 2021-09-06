@@ -29,12 +29,12 @@
                 <div class="gf-footer-col3 col-md-3">
                     <h3>Quick Links</h3>
                     <div>
-                        <a href=""><i class="fas fa-paw"></i> <span>Home</span></a><br>
-                        <a href=""><i class="fas fa-paw"></i> <span>Puppies</span></a><br>
-                        <a href=""><i class="fas fa-paw"></i> <span>Studs</span></a><br>
-                        <a href=""><i class="fas fa-paw"></i> <span>Litters</span></a><br>
-                        <a href=""><i class="fas fa-paw"></i> <span>Resources</span></a><br>
-                        <a href=""><i class="fas fa-paw"></i> <span>DNA Machine</span></a><br>
+                        <a href="{{ url('/') }}"><i class="fas fa-paw"></i> <span>Home</span></a><br>
+                        <a href="{{ route('showPuppies') }}"><i class="fas fa-paw"></i> <span>Puppies</span></a><br>
+                        <a href="{{ route('showStuds') }}"><i class="fas fa-paw"></i> <span>Studs</span></a><br>
+                        <a href="{{route('showLitters')}}"><i class="fas fa-paw"></i> <span>Litters</span></a><br>
+                        <a href="{{route('resources')}}"><i class="fas fa-paw"></i> <span>Resources</span></a><br>
+                        <a href="{{route('dnaMachine')}}"><i class="fas fa-paw"></i> <span>DNA Machine</span></a><br>
                         <a href=""><i class="fas fa-paw"></i> <span>Account</span></a>
                     </div>
                 </div>

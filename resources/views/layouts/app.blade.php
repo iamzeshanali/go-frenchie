@@ -147,21 +147,25 @@
 
 
         <header>
-{{--            <div class="secondary-nav">--}}
-{{--test--}}
-{{--            </div>--}}
-            <nav class="nav navbar navbar-expand-lg navbar-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/images/gf-logo.png" alt="Logo not found" height="80">
+            <div class="secondary-nav px-4 d-flex align-items-center justify-content-end">
+                <a class="mr-4" href="mailto:someone@example.com" title="Email"><i class="mr-2 far fa-envelope"></i>contact@gofrenchee.com</a>
+                <a class="mr-4" href="tell:331234567" title="Phone"><i class="mr-2 fas fa-phone-alt"></i> +33 123 4567</a>
+                <a href="#"><i class="d-none d-sm-block far fa-question-circle"></i></a>
+            </div>
+            <nav class="gf-nav navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid" style="max-height:70px;">
+                    <a class="navbar-brand mr-0" href="{{ url('/') }}">
+{{--                        <img src="/images/gf-logo.png" alt="Logo not found" width="263" height="60">--}}
+                        <img src="/images/GoFrenchie-logo.png" alt="Logo not found" width="144" height="115">
                     <!-- {{ config('app.name', 'Laravel') }} -->
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
+                        <i class="fas fa-bars"></i>
+{{--                        <span class="navbar-toggler-icon"></span>--}}
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="z-index:1">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav m-auto">
+                        <ul class="navbar-nav flex-grow-1 justify-content-center">
                             <li class="nav-item {{  request()->routeIs('') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
                             </li>
@@ -183,18 +187,18 @@
                         </ul>
 
                         <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ml-auto flex-row justify-content-right justify-content-lg-end">
                             <!-- Authentication Links -->
                             @guest
 
-                                <li class="nav-item">
-                                    <div class="h-support">
-                                        <a href="#"><i class="far fa-question-circle"></i></a>
-                                    </div>
-                                </li>
+{{--                                <li class="nav-item">--}}
+{{--                                    <div class="h-support">--}}
+{{--                                        <a href="#"><i class="far fa-question-circle"></i></a>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
 
                                 @if (Route::has('login'))
-                                    <li class="nav-item">
+                                    <li class="nav-item border-0">
                                         <div class="h-login">
                                             <a href="{{ route('login') }}" type="button" class="gf-btn-dark"><i class="fas fa-sign-in-alt"></i> {{ __('Login') }}</a>
                                         </div>
