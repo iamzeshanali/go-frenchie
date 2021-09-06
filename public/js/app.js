@@ -159,11 +159,11 @@ $('.carousel .carousel-item').each(function() {
 
 // GF Redesign JS
 // Header JS
-const nav = document.querySelector('.nav')
+const nav = document.querySelector('.gf-nav')
 window.addEventListener('scroll', fixNav)
 
 function fixNav() {
-    if(window.scrollY > nav.offsetHeight + 250) {
+    if(window.scrollY > nav.offsetHeight + 80) {
         nav.classList.add('active')
     } else {
         nav.classList.remove('active')
