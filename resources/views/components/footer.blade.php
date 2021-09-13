@@ -19,7 +19,7 @@
                         <i class="far fa-clock"></i><span>Mon – Sun: 8AM – 8PM</span>
                     </div>
                     <div>
-                        <a href="tel:1234567890"><i class="fas fa-mobile-alt"></i><span>+123 4567 890</span></a>
+                        <a href="tel:1234567890"><i class="fas fa-mobile-alt ml-1"></i><span>+123 4567 890</span></a>
                     </div>
                 </div>
                 <div class="gf-footer-col3 col-md-3">

@@ -1881,7 +1881,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     padding: 60px 50px;
     /* background-color: hsla(225, 2%, 44%, 0.2); */
     /* background-color: rgba(50, 143, 205, 0.2); */
-    background-color: hsla(34, 82%, 78%, 0.2);
+    background-color: #F5CE9A;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(245, 206, 154, 0.3) 0px 3px 7px -3px;
     border-radius: 25px;
     cursor: pointer;
@@ -1983,7 +1983,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 /* Contact Form Section Styling */
 
 .gf-contactform-area{
-    background-color: #fdf5eb;
+    background-color: #F5CE9A;
     padding: 50px 70px;
     border-radius: 30px;
 }
@@ -2017,7 +2017,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 }
 
 .gf-slide{
-    background-color: #fdf5eb;
+    background-color: #F5CE9A;
     /* background-color: hsla(34, 82%, 78%, 0.2); */
     border-radius: 25px;
     border-bottom: 3px solid #BE202E;
