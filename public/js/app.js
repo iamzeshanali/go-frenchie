@@ -159,16 +159,30 @@ $('.carousel .carousel-item').each(function() {
 
 // GF Redesign JS
 // Header JS
-const nav = document.querySelector('.gf-nav')
+const nav = document.querySelector('header')
 window.addEventListener('scroll', fixNav)
 
 function fixNav() {
-    if(window.scrollY > nav.offsetHeight + 80) {
+
+    if(window.scrollY > nav.offsetHeight + 0) {
         nav.classList.add('active')
     } else {
         nav.classList.remove('active')
     }
 }
+
+//Homepage Featured Frenchies Slider
+$('.gf-featured-frenchies-slider').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    focusOnSelect: true,
+    // autoplay: true,
+    // autoplaySpeed: 5000,
+    dots: true,
+    lazyLoad: 'ondemand',
+});
+
 // Homepage testimonials slider
 $('.gf-home-testimonial-slider').slick({
     slidesToShow: 1,

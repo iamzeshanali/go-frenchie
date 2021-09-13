@@ -96,20 +96,31 @@ button:focus {
 
 /* 3-- *********** Navbar Start ***************/
 
+
+header{
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
 .secondary-nav{
     background-color: #BE202E;
-    color: #ffffff;
 }
 
 .secondary-nav a,.secondary-nav a:hover{
     color: #ffffff;
 }
 
-nav.navbar {
+header.active .secondary-nav{
+    position: fixed;
+    height: fit-content;
+    width: 100%;
+}
+
+header nav.navbar {
     /* background-color: hsla(34, 82%, 78%, 0.2); */
     background-color: #ffffff;
     padding: 0;
-    z-index: 999;
     width: 100%;
     transition: all 0.7s ease;
     height: 70px;
@@ -117,14 +128,19 @@ nav.navbar {
 
 }
 
-nav.gf-nav.active{
+header.active nav.gf-nav{
     height: 60px;
-    position: fixed !important;
-    top: 0px;
+    /* position: fixed !important; */
+    /* top: 0px; */
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12), inset 0px 0px 0px 0px rgba(218, 220, 224, 0.004);
 }
 
-nav.gf-nav.active img{
+header nav.gf-nav img{
+    transition: all 1s ease;
+}
+
+header.active nav.gf-nav img{
+    transition: all 1s ease;
     max-height: 55px;
     width: auto;
 }
@@ -969,8 +985,6 @@ p.breeder-profile-about{
     color: #8B77FC;
 }
 
-
-
 /* --------------------------- */
 
 .breeder-profile-area {
@@ -1693,7 +1707,8 @@ body a:hover{
     line-height: 1.5;
     transition: all 300ms ease;
     box-shadow: 0 0 0 3em #BE202E inset;
-
+    -webkit-appearance: button;
+    cursor: pointer;
 }
 .gf-btn-dark:hover{
     color: #BE202E;
@@ -1715,7 +1730,8 @@ body a:hover{
     transition: all 400ms ease;
     box-shadow: 0 0 0 2px #BE202E inset;
     background-color: #ffffff;
-
+    -webkit-appearance: button;
+    cursor: pointer;
 }
 .gf-btn-light:hover{
     color: #ffffff;
@@ -1785,9 +1801,10 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 /* 3--Go Frenchie Home Page */
 .gf-home-banner-wrapper {
     background-image: url("/images/homepage/gf-home-banner-bg.jpg");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: top right;
+    padding-top: 100px;
 }
 
 .gf-home-banner-text p:first-child{
@@ -1810,11 +1827,12 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 }
 
 .gf-home-banner-detail{
-    margin: 20px 0px;
+    margin: 20px 0px 0px;
 }
 
-.gf-home-banner-detail h4{
+.gf-home-banner-text h4{
     font-family: Proxima-Nova;
+    color: var(--blue);
 }
 
 .gf-home-banner-button a{
@@ -1840,8 +1858,8 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     transform: rotate(10deg);
 }
 
-.gf-home-second-intro, .gf-testimonials, .gf-contactform{
-    background-image: url("/images/homepage/gf-home-second-intro-bg.png");
+.gf-home-featured-kennel, .gf-contactform{
+    background-image: url("/images/homepage/gf-home-second-intro-bg.jpg");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -1861,13 +1879,17 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 
 .gf-home-blurbs .service-blurb{
     padding: 60px 50px;
-    background-color: hsla(225, 2%, 44%, 0.2);
+    /* background-color: hsla(225, 2%, 44%, 0.2); */
+    /* background-color: rgba(50, 143, 205, 0.2); */
+    background-color: hsla(34, 82%, 78%, 0.2);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(245, 206, 154, 0.3) 0px 3px 7px -3px;
     border-radius: 25px;
+    cursor: pointer;
 }
 .gf-home-blurbs .service-blurb:hover{
-    -webkit-box-shadow: 4px 5px 30px rgb(0 0 0 / 20%);
-    -moz-box-shadow: 4px 5px 30px rgba(0,0,0,0.2);
-    box-shadow: 4px 5px 30px rgb(0 0 0 / 20%);
+    /* -webkit-box-shadow: 0px 0px 20px rgba(50 143 205 / 20%);
+    -moz-box-shadow: 0px 0px 20px rgba(50,143,205,0.2);
+    box-shadow: 0px 0px 20px rgb(50 143 205 / 20%); */
 }
 .gf-home-blurbs img{
     margin-bottom: 30px;
@@ -1875,7 +1897,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 
 .gf-home-blurbs h4{
     padding-bottom: 20px;
-    font-family: Proxima-Nova;
+    color: #BE202E;
 }
 
 .gf-home-blurbs a{
@@ -1961,7 +1983,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 /* Contact Form Section Styling */
 
 .gf-contactform-area{
-    background-color: #e2e2e3;
+    background-color: #fdf5eb;
     padding: 50px 70px;
     border-radius: 30px;
 }
@@ -1970,7 +1992,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     color: #BE202E;
 }
 
-.gf-contactform-area form select, .gf-contactform-area form textarea{
+.gf-contactform-area form select, .gf-contactform-area form textarea,.gf-contactform-area form input{
     background-color: transparent;
     width: 100%;
     padding: 16px;
@@ -1986,8 +2008,6 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 
 
 /* Kennel Carousel */
-
-
 .gf-home-kennels-carousel{
     background-image: url("/images/homepage/gf-home-third-quality-bg.png");
     background-size: contain;
@@ -1997,11 +2017,22 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 }
 
 .gf-slide{
-    background-color: #e2e2e3;
+    background-color: #fdf5eb;
+    /* background-color: hsla(34, 82%, 78%, 0.2); */
     border-radius: 25px;
     border-bottom: 3px solid #BE202E;
-    text-align: center;
     padding: 10px 20px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(245, 206, 154, 0.3) 0px 3px 7px -3px; */
+}
+
+.gf-slide a.gf-frenchie-slide-like i{
+    position: absolute;
+    right: 50px;
+    top: 40px;
+    color: #6E6F72;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .gf-slide img{
@@ -2012,6 +2043,20 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     color: var(--red);
     font-size: 10px;
 }
+
+
+/* Featured / Sponsured Frenchies Slider on Homepage */
+.gf-featured-frenchies-slider .gf-slide .gf-frenchie-slide-details i{
+    margin-right: 15px;
+    color: #3390CE;
+}
+
+.gf-featured-frenchies-slider ul.slick-dots li button:before{
+    color: var(--red);
+    font-size: 10px;
+}
+
+
 
 /* Footer Styling */
 .gf-footer-content{
@@ -2052,7 +2097,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 }
 
 .gf-footer-col2 div, .gf-footer-col3 div{
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
 .gf-footer-col2 a, .gf-footer-col3 a,.gf-footer-col2 a:hover, .gf-footer-col3 a:hover{
@@ -2088,6 +2133,16 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 .gf-footer-bottom-bar{
     background-color: var(--red);
     color: #ffffff;
+}
+
+.gf-footer-bottom-bar a{
+    color: #ffffff;
+    margin-left: 12px;
+}
+
+.gf-footer-bottom-bar a:hover{
+    color: white;
+    text-decoration: underline;
 }
 
 .lg-gf-container{

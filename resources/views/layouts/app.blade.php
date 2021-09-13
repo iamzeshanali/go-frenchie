@@ -27,7 +27,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
@@ -39,7 +39,7 @@
 {{--        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">--}}
 {{--            <div class="container-fluid">--}}
 {{--                <a class="navbar-brand" href="{{ url('/') }}">--}}
-{{--                    <img src="/images/GoFrenchie-logo.png" alt="Logo not found" height="80px">--}}
+{{--                    <img src="/images/GoFrenchie-logo.png" alt="Logo not found" height="80">--}}
 {{--                    <!-- {{ config('app.name', 'Laravel') }} -->--}}
 {{--                </a>--}}
 {{--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">--}}
@@ -200,7 +200,7 @@
                                 @if (Route::has('login'))
                                     <li class="nav-item border-0">
                                         <div class="h-login">
-                                            <a href="{{ route('login') }}" type="button" class="gf-btn-dark"><i class="fas fa-sign-in-alt"></i> {{ __('Login') }}</a>
+                                            <a href="{{ route('login') }}" class="gf-btn-dark"><i class="fas fa-sign-in-alt"></i> {{ __('LOGIN') }}</a>
                                         </div>
                                     </li>
                                 @endif
@@ -208,7 +208,7 @@
                                 @if (Route::has('register'))
                                     <li class="nav-item">
                                         <div class="h-register">
-                                            <a href="{{ route('selecttype') }}" type="button" class="gf-btn-light"><i class="fas fa-user-plus"></i> {{ __('Register') }}</a>
+                                            <a href="{{ route('selecttype') }}" class="gf-btn-light"><i class="fas fa-user-plus"></i> {{ __('REGISTER') }}</a>
                                         </div>
                                     </li>
                                 @endif

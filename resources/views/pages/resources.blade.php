@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="resources-flex-area d-lg-flex justify-content-center">
 
-            @include('components/adds-area')
+{{--            @include('components/adds-area')--}}
             <?php
                 $allBreeders = app('App\Http\Controllers\BreederController')->getAllBreeders();
 //                dd($allBreeders);
