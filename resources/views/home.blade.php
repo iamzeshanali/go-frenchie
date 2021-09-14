@@ -53,22 +53,19 @@
                             </div>
                             <div class="col-md-9 gf-frenchie-slide-details p-0">
                                 <div class="col">
-                                    <h4>Voluptatem Do asper</h4>
+                                    <h4>Voluptatem Do asper</h4> <i class="fas fa-venus ml-2" style="font-size:24px; color:#f07e92;"></i>
                                     <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
                                 </div>
                                 <div class="row p-0 align-items-center">
-                                    <div class="col-xl-4 gf-frenchie-dob">
+                                    <div class="col-xl-6 gf-frenchie-dob">
                                         <i class="fa fa-calendar-alt"></i>
                                         <span>2018-11-10</span>
                                     </div>
-                                    <div class="col-xl-4 gf-frenchie-kennel">
+                                    <div class="col-xl-6 gf-frenchie-kennel">
                                         <i class="fa fa-igloo"></i>
                                         <span>Patience Stein</span>
                                     </div>
-                                    <div class="col-xl-4 gf-frenchie-gender">
-                                        <i class="fa fa-venus-mars"></i>
-                                        <span>Male</span>
-                                    </div>
+
                                 </div>
                                 <div class="row p-0 align-items-center">
                                     <div class="col-xl-6 gf-frenchie-mail">
@@ -95,22 +92,19 @@
                             </div>
                             <div class="col-md-9 gf-frenchie-slide-details p-0">
                                 <div class="col">
-                                    <h4>Voluptatem Do asper</h4>
+                                    <h4>Voluptatem Do asper</h4> <i class="fas fa-mars ml-2" style="font-size:24px;"></i>
                                     <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
                                 </div>
                                 <div class="row p-0 align-items-center">
-                                    <div class="col-xl-4 gf-frenchie-dob">
+                                    <div class="col-xl-6 gf-frenchie-dob">
                                         <i class="fa fa-calendar-alt"></i>
                                         <span>2018-11-10</span>
                                     </div>
-                                    <div class="col-xl-4 gf-frenchie-kennel">
+                                    <div class="col-xl-6 gf-frenchie-kennel">
                                         <i class="fa fa-igloo"></i>
                                         <span>Patience Stein</span>
                                     </div>
-                                    <div class="col-xl-4 gf-frenchie-gender">
-                                        <i class="fa fa-venus-mars"></i>
-                                        <span>Male</span>
-                                    </div>
+
                                 </div>
                                 <div class="row p-0 align-items-center">
                                     <div class="col-xl-6 gf-frenchie-mail">
@@ -137,22 +131,19 @@
                             </div>
                             <div class="col-md-9 gf-frenchie-slide-details p-0">
                                 <div class="col">
-                                    <h4>Voluptatem Do asper</h4>
+                                    <h4>Voluptatem Do asper</h4> <i class="fas fa-mars ml-2" style="font-size:24px;"></i>
                                     <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
                                 </div>
                                 <div class="row p-0 align-items-center">
-                                    <div class="col-xl-4 gf-frenchie-dob">
+                                    <div class="col-xl-6 gf-frenchie-dob">
                                         <i class="fa fa-calendar-alt"></i>
                                         <span>2018-11-10</span>
                                     </div>
-                                    <div class="col-xl-4 gf-frenchie-kennel">
+                                    <div class="col-xl-6 gf-frenchie-kennel">
                                         <i class="fa fa-igloo"></i>
                                         <span>Patience Stein</span>
                                     </div>
-                                    <div class="col-xl-4 gf-frenchie-gender">
-                                        <i class="fa fa-venus-mars"></i>
-                                        <span>Male</span>
-                                    </div>
+
                                 </div>
                                 <div class="row p-0 align-items-center">
                                     <div class="col-xl-6 gf-frenchie-mail">
@@ -179,22 +170,19 @@
                             </div>
                             <div class="col-md-9 gf-frenchie-slide-details p-0">
                                 <div class="col">
-                                    <h4>Voluptatem Do asper</h4>
+                                    <h4>Voluptatem Do asper</h4> <i class="fas fa-mars ml-2" style="font-size:24px;"></i>
                                     <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
                                 </div>
                                 <div class="row p-0 align-items-center">
-                                    <div class="col-xl-4 gf-frenchie-dob">
+                                    <div class="col-xl-6 gf-frenchie-dob">
                                         <i class="fa fa-calendar-alt"></i>
                                         <span>2018-11-10</span>
                                     </div>
-                                    <div class="col-xl-4 gf-frenchie-kennel">
+                                    <div class="col-xl-6 gf-frenchie-kennel">
                                         <i class="fa fa-igloo"></i>
                                         <span>Patience Stein</span>
                                     </div>
-                                    <div class="col-xl-4 gf-frenchie-gender">
-                                        <i class="fa fa-venus-mars"></i>
-                                        <span>Male</span>
-                                    </div>
+
                                 </div>
                                 <div class="row p-0 align-items-center">
                                     <div class="col-xl-6 gf-frenchie-mail">

@@ -94,33 +94,33 @@ button:focus {
 
 /* General For Multiple pages End */
 
-/* 3-- *********** Navbar Start ***************/
+/* 3-- *********** Navbar Start ***************
 
 
 header{
-    position: fixed;
+    /* position: fixed;
     width: 100%;
-    z-index: 999;
+    z-index: 999; */
 }
 
 .secondary-nav{
     background-color: #BE202E;
+    padding: 5px 0px;
 }
-
 .secondary-nav a,.secondary-nav a:hover{
     color: #ffffff;
 }
 
-header.active .secondary-nav{
-    position: fixed;
-    height: fit-content;
-    width: 100%;
+nav.gf-nav{
+    box-shadow: 0px 3px 3px 0px rgb(0 0 0 / 12%), inset 0px 0px 0px 0px rgb(218 220 224 / 0%);
 }
 
-header nav.navbar {
-    /* background-color: hsla(34, 82%, 78%, 0.2); */
+
+nav.gf-nav.active {
+    z-index: 999;
+    position: fixed;
+    top: 0;
     background-color: #ffffff;
-    padding: 0;
     width: 100%;
     transition: all 0.7s ease;
     height: 70px;
@@ -128,19 +128,14 @@ header nav.navbar {
 
 }
 
-header.active nav.gf-nav{
-    height: 60px;
-    /* position: fixed !important; */
-    /* top: 0px; */
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12), inset 0px 0px 0px 0px rgba(218, 220, 224, 0.004);
-}
 
 header nav.gf-nav img{
-    transition: all 1s ease;
+    /* transition: all 1s ease; */
+    margin-top: -40px;
 }
 
-header.active nav.gf-nav img{
-    transition: all 1s ease;
+nav.gf-nav.active img{
+    margin-top: 0px;
     max-height: 55px;
     width: auto;
 }
@@ -191,13 +186,7 @@ nav.navbar .nav-item .nav-link {
     padding-inline: 3px;
 }
 
-.nav-item:not(:last-child){
-    /* border-right: 1px solid #0000003a; */
-}
-
-.nav-item.active {
-    /* border-bottom: 2px solid #BE202E; */
-}
+/* //////////////////// */
 
 .notification-icon {
     position: relative;
@@ -1579,11 +1568,12 @@ p.breeder-profile-about{
 }
 
 .breeder-resource-card{
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
+    background-color: #fbebd7;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(245, 206, 154, 0.3) 0px 3px 7px -3px;
 }
 
 .resources-cards i{
-    color: #8B77FC;
+    color: #3390CE;
 }
 
 .resource-card-details a{
@@ -1594,7 +1584,7 @@ p.breeder-profile-about{
 
 .resource-card-details a:hover{
     text-decoration: none;
-    color: #8B77FC;
+    color: var(--red);
 }
 
 .resource-card-details span{
@@ -1606,8 +1596,7 @@ p.breeder-profile-about{
 
 .resource-card-details h5 a{
     font-size: 18px;
-    font-family: "Sailec-Medium";
-    color:#8B77FC;
+    color: var(--red);
 }
 
 .resource-card-contact{
@@ -1881,7 +1870,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     padding: 60px 50px;
     /* background-color: hsla(225, 2%, 44%, 0.2); */
     /* background-color: rgba(50, 143, 205, 0.2); */
-    background-color: #F5CE9A;
+    background-color: #fbebd7;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(245, 206, 154, 0.3) 0px 3px 7px -3px;
     border-radius: 25px;
     cursor: pointer;
@@ -1930,6 +1919,10 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 .gf-home-testimonial-slider ul.slick-dots{
     text-align: left;
     bottom: -60px;
+}
+
+.gf-home-testimonial-slider .slick-slide{
+    height: fit-content;
 }
 
 .gf-home-testimonial-slider ul.slick-dots li button:before{
@@ -1983,7 +1976,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 /* Contact Form Section Styling */
 
 .gf-contactform-area{
-    background-color: #F5CE9A;
+    background-color: #fbebd7;
     padding: 50px 70px;
     border-radius: 30px;
 }
@@ -2017,7 +2010,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 }
 
 .gf-slide{
-    background-color: #F5CE9A;
+    background-color: #fbebd7;
     /* background-color: hsla(34, 82%, 78%, 0.2); */
     border-radius: 25px;
     border-bottom: 3px solid #BE202E;
@@ -2046,6 +2039,11 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 
 
 /* Featured / Sponsured Frenchies Slider on Homepage */
+
+.gf-featured-frenchies-slider .gf-slide .gf-frenchie-slide-details h4{
+    display: inline-block;
+}
+
 .gf-featured-frenchies-slider .gf-slide .gf-frenchie-slide-details i{
     margin-right: 15px;
     color: #3390CE;
@@ -2145,6 +2143,27 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     text-decoration: underline;
 }
 
+
+
+/* Resources Page */
+.gf-resources-banner-wrapper {
+    background-image: url("/images/homepage/gf-home-banner-bg.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+
+.gf-resources-banner-text h1{
+    font-size: 65px;
+    line-height: 80px;
+}
+@media only screen and (max-width: 991px){
+.gf-resources-banner-text h1 {
+    font-size: 40px;
+    line-height: 50px;
+}
+
+}
 .lg-gf-container{
     width: 80%;
     max-width: 1600px;
@@ -2152,6 +2171,14 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     margin-right: auto;
 }
 
+
+.gf-home-resources-featured{
+    background-image: url("/images/homepage/gf-home-third-quality-bg.png");
+    background-size: contain;
+    background-position: bottom right;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+}
 
 /* Bootstrap default container change on less than 576px */
 @media (max-width: 576px){
