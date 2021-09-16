@@ -290,7 +290,7 @@
 <div class="wrapper gf-home-featured-kennel d-flex justify-content-center">
     <div class="container row align-items-center">
         <div class="col-md-6 text-center">
-            <img src="/images/breeder.png" loading="lazy" alt="">
+            <img src="/images/breeder-kennel.png" width="300" height="300" loading="lazy" alt="">
         </div>
         <div class="col-md-6">
             <h2>Featured <span style="color:#BE202E"><br>Kennel</span></h2>
@@ -314,28 +314,28 @@
                 <div class="gf-kennel-slider row">
                     <div class="px-3">
                         <div class="gf-slide">
-                            <img src="/images/breeder.png" loading="lazy" alt="Breeder Logo Not found">
+                            <img src="/images/breeder-kennel-4.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
                             <h4>Kennel 1</h4>
                             <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                     <div class="px-3">
                         <div class="gf-slide">
-                            <img src="/images/breeder.png" loading="lazy" alt="Breeder Logo Not found">
+                            <img src="/images/breeder-kennel-2.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
                             <h4>Kennel 1</h4>
                             <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                     <div class="px-3">
                         <div class="gf-slide">
-                            <img src="/images/breeder.png" loading="lazy" alt="Breeder Logo Not found">
+                            <img src="/images/breeder-kennel-3.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
                             <h4>Kennel 1</h4>
                             <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                     <div class="px-3">
                         <div class="gf-slide">
-                            <img src="/images/breeder.png" loading="lazy" alt="Breeder Logo Not found">
+                            <img src="/images/breeder-kennel.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
                             <h4>Kennel 1</h4>
                             <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
@@ -417,17 +417,17 @@
                 <h2>Featured Resources<span style="color:#BE202E"><br>For Frenchie Lovers</span></h2>
                 <p>Our puppies and other very active dogs have plenty of space to run and romp, and comfy blankets. We offer quick & easy services for both dogs and cat of various breeds. No matter their size or age, we can provide positive grooming experience.</p>
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <div class="">
+                    <div class="d-flex align-items-center">
                         <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span>PET GROOMING</span>
+                        <span class="ml-2">CANINE GENETICS</span>
                     </div>
-                    <div class="">
+                    <div class="d-flex align-items-center">
                         <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span>PET HOTEL</span>
+                        <span class="ml-2">CANINE NUTRITION</span>
                     </div>
-                    <div class="">
+                    <div class="d-flex align-items-center">
                         <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span>VACCINATION</span>
+                        <span class="ml-2">VACCINATION</span>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
@@ -447,24 +447,34 @@
 {{--Contact Section--}}
 <div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
     <div class="container row align-items-center">
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <img src="/images/homepage/gf-home-contact-image.png" width="450" loading="lazy" alt="">
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <div class="gf-contactform-area">
-{{--                <p>Get 30% off for the First Time Appointment!</p>--}}
                 <h4>Contact Us With Any Questions </h4>
                 <form action="">
                     <input type="text" placeholder="Name">
                     <input type="email" placeholder="Email">
                     <textarea name="Message" cols="30" rows="5" placeholder="Message"></textarea>
-
+                    <label for="captchaWrap">To continue, please type the characters below:</label>
+                    <div id="captchaWrap" class="captchaWrap d-flex align-items-center text-align-center">
+                        <canvas id="captcha"></canvas>
+                            <button type="button" id="refreshButton" class="captcha-refresh-btn"><i class="fas fa-redo"></i></button>
+                        <span id="output" class="ml-2"></span>
+                    </div>
+                    <div class="mb-2">
+                        <input id="textBox" class="captcha-textBox mr-2" type="text" name="text" placeholder="Captcha Text">
+                        <button type="button" id="submitButton" class="gf-btn-light">Check</button>
+                    </div>
                     <button type="submit" class="gf-btn-dark">SUBMIT</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
 @endsection
 
 

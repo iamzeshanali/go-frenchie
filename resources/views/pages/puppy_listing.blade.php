@@ -2,69 +2,20 @@
 @section('title', 'Puppy')
 @section('content')
 
-
-    <div class="container">
-
-        <h2 class="page-title text-center my-3">Puppy Page</h2>
-        <div class="page-description text-justify mb-5 rounded">
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </p>
+{{--Homepage Banner Section--}}
+<div class="wrapper gf-resources-banner-wrapper d-flex justify-content-center">
+    <div class="container row align-items-center">
+        <div class="gf-resources-banner-text col-md-6">
+            <h1>
+                <span style="color:#be202e;">Featured Puppies</span><br>
+                For Frenchie Lovers</h1>
         </div>
-
-        {{--SEARCH BAR COMPONENT--}}
-        {{--<div class="container fbd-search-area p-3 mb-3 rounded">
-            <form method="POST" id="search-listings" action="{{ route('findListings') }}">
-                @csrf
-                <input type="hidden" name="type" value="puppy">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <h6>DNA Colors</h6>
-                        <select class="form-control form-select dna-a" name="dnaColor" id="dnaColor" aria-label="Default select example">
-                            <option selected disabled>Choose Color</option>
-                            <option value="Blue" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Blue' ? 'selected':''}} @endif >Blue </option>
-                            <option value="Chocolate" @if(isset($filterData)) {{$filterData['dnaColor'] === 'Chocolate' ? 'selected':''}} @endif >Chocolate </option>
-                            <option value="Testable_Chocolate">Testable Chocolate </option>
-                            <option value="Fluffy">Fluffy </option>
-                            <option value="Intensity">Intensity </option>
-                            <option value="Pied">Pied </option>
-                            <option value="Merle">Merle </option>
-                            <option value="Brindle">Brindle </option>
-                        </select>
-                    </div>
-                    <div class="col-lg-3">
-                        <h6>DNA Characteristics</h6>
-                        <div id="coat">
-                        </div>
-                        <div id="optional">
-                            <!-- Default COAT Characteristics-->
-                            <select class="form-control form-select" id="dnaCoatOptional" name="dnaCoatOptional" aria-label="Default select example">
-                                <option selected disabled>Choose DNA Color</option>
-                            </select>
-                            <div class="invalid-feedback">Please select a Color!</div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <h6>Location</h6>
-                        <div class="locatin-group-btn input-group">
-                            <input type="zip" class="form-control" name="zip" id="zipcode" aria-describedby="zipHelp" placeholder="Zip Code">
-                            <span class="input-group-btn mr-1">
-                            <button class="btn btn-default" onClick="getZip()" type="button"><i class="far fa-compass"></i></button>
-                        </span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block btn-fbd">Search</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>--}}
-        {{--END SEARCH BAR COMPONENT--}}
-
+        <div class="col-md-6 text-center">
+            <img src="/images/frenchie-reading-book.png" loading="lazy" width="400" height="271" alt="">
+        </div>
     </div>
+</div>
+
     <div class="container-fluid">
         <div class="page-content d-lg-flex ">
             {{--Filter area--}}
@@ -99,7 +50,7 @@
                     @if(Auth::user())
                         {{--Saved Search--}}
                         <div class="card p-3 mb-4 rounded">
-                            <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
+                            <div class="card-header p-0 bg-peach border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
                                 <span class="heading mb-0">Search History</span>
                                 <?php
                                 $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();
@@ -145,7 +96,7 @@
                                         <option value="500" {{$data['distance'] === '500' ? 'selected' : ''}}>500 Miles </option>
                                         <option value="10" selected>Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" value="{{$data['zip']}}" name="zipSection" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" style="background-color: #fbebd7;" class="form-control" value="{{$data['zip']}}" name="zipSection" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
                                     <button type="submit" class="btn btn-primary btn-sm  btn-fbd">Search</button>
                                 @else
                                     <select class="form-control form-select filterDistance" name="filterDistance" id="distance" aria-label="Default select example">
@@ -160,7 +111,7 @@
                                         <option value="500">500 Miles </option>
                                         <option selected value="10">Any Distance</option>
                                     </select>
-                                    <input type="zip" class="form-control" name="zipSectionSecond" id="zipSectionSecond" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" style="background-color: #fbebd7;" class="form-control" name="zipSectionSecond" id="zipSectionSecond" aria-describedby="zipHelp" placeholder="Zip Code">
                                     <button type="submit" class="btn btn-primary btn-sm  btn-fbd" onClick="searchByZipDistance()" style="width:90px; float:right; margin-top: 2%;"><i class="far fa-compass"></i> Search</button>
                                 @endif
 
@@ -173,12 +124,12 @@
                     <div class="card border-top p-3 rounded">
                         <div class="card-header p-0 bg-white border-0 " id="filterA">
                             <h5 class="mb-0">
-                                <button class="btn btn-collapse p-0 d-block {{ !empty($data) && count($data['allListings']) > 0 ? '':'collapsed'}} text-left" data-toggle="collapse" data-target="#collapseA" aria-expanded="true" aria-controls="collapseA">
+                                <button class="btn btn-collapse p-0 d-block collapsed text-left" data-toggle="collapse" data-target="#collapseA" aria-expanded="true" aria-controls="collapseA">
                                     DNA Colors
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseA" class="collapse mt-3 {{ !empty($data) && count($data['allListings']) > 0 ? 'show':''}}" aria-labelledby="filterA" data-parent="">
+                        <div id="collapseA" class="collapse mt-3 show" aria-labelledby="filterA" data-parent="">
                             <div class="card-body">
                                 @csrf
                                 @if(!empty($data) && count($data['allListings']) > 0)

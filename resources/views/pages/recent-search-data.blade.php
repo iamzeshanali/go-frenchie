@@ -1,5 +1,5 @@
 <div class="card p-3 mb-4 rounded">
-    <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
+    <div style="background-color: #fbebd7;" class="card-header p-0 bg-peach border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
         <span class="heading mb-0">Your Search</span>
         <span class="results-number" title="Total Results"> Results</span>
     </div>

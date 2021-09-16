@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h2 class="page-title text-center">DNA MACHINE</h2>
+{{--    <h2 class="page-title text-center">DNA MACHINE</h2>--}}
     <div class="dna-machine-flex-area d-lg-flex justify-content-center align-items-start my-3">
 
         @include('components/adds-area')
@@ -211,6 +211,37 @@
         @include('components/adds-area')
     </div>
 
+</div>
+
+
+{{--Contact Section--}}
+<div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
+    <div class="container row align-items-center">
+        <div class="col-md-6">
+            <img src="/images/homepage/gf-home-contact-image.png" width="450" loading="lazy" alt="">
+        </div>
+        <div class="col-md-6">
+            <div class="gf-contactform-area">
+                <h4>Contact Us With Any Questions </h4>
+                <form action="">
+                    <input type="text" placeholder="Name">
+                    <input type="email" placeholder="Email">
+                    <textarea name="Message" cols="30" rows="5" placeholder="Message"></textarea>
+                    <label for="captchaWrap">To continue, please type the characters below:</label>
+                    <div id="captchaWrap" class="captchaWrap d-flex align-items-center text-align-center">
+                        <canvas id="captcha"></canvas>
+                        <button type="button" id="refreshButton" class="captcha-refresh-btn"><i class="fas fa-redo"></i></button>
+                        <span id="output" class="ml-2"></span>
+                    </div>
+                    <div class="mb-2">
+                        <input id="textBox" class="captcha-textBox mr-2" type="text" name="text" placeholder="Captcha Text">
+                        <button type="button" id="submitButton" class="gf-btn-light">Check</button>
+                    </div>
+                    <button type="submit" class="gf-btn-dark">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

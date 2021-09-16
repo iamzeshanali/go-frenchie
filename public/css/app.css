@@ -49,7 +49,9 @@
 /* Font Include End */
 
 /*2-- General For Multiple pages Start*/
-
+.bg-peach {
+    background-color: #fbebd7;
+}
 .select-display{
     display: none !important;
 }
@@ -80,7 +82,7 @@ button:focus {
 }
 
 .fa-dna {
-    color: #8B77FC;
+    color: var(--blue);
 }
 
 /* .tooltip .tooltiptext {*/
@@ -94,7 +96,7 @@ button:focus {
 
 /* General For Multiple pages End */
 
-/* 3-- *********** Navbar Start ***************
+/* 3-- *********** Navbar Start ***************/
 
 
 header{
@@ -269,20 +271,14 @@ a#navbarDropdown img {
 }
 
 .page-content {
-    /* display: grid;
-    grid-template-columns: 1.1fr 4fr 1fr;
-    grid-gap: 15px;
-    align-items: flex-start; */
-    /*gap: 15px;*/
-    align-items: flex-start;
 }
 
 .fbd-filter-area {
-    /* background-color: white; */
 }
 
 .fbd-filter-area select {
     margin-bottom: 18px;
+    background-color: transparent;
 }
 
 .fbd-filter-area button {
@@ -312,63 +308,52 @@ form button[type=submit] {
     height: calc(1.5em + .75rem + 0px);
 }
 
+.listing-type{
+    color: var(--red)
+}
+
 /* stud_listing listing area  start*/
 
-.fbd-listing-area {
-    background-color: white;
-    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
-}
-
 .fbd-sponsured-card, .fbd-standard-card {
-    border: 1px solid #e2ecf1;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
-}
-
-.listing-count {
-    font-family: "Sailec-Medium";
-    color: #455263;
-    font-size: 12px;
-}
-
-.listing-type {
-    font-family: "Sailec-Bold";
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 /* Sponsured card image slider Start*/
 
 .fbd-sp-listing-img {
-    /* border: 3px solid #c0c0c0; */
-    /* border-radius: 10px; */
-    max-width: 100%;
-    width: 200px;
-    margin: auto;
-    transition: 1s ease;
+    max-width: fit-content;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    
 }
 
-.fbd-sp-listing-img:hover {
-    -webkit-transform: scale(1.2);
-    -ms-transform: scale(1.2);
+
+.fbd-sp-listing-img img {
+    width: 100%;
+    object-fit: contain;
+    max-width: 250px;
+    border-radius: 0.25rem;
+    transition: 3s ease;
+    height: auto;
+}
+
+@media only screen and (max-width: 991px){
+    .fbd-sp-listing-img img {
+        object-fit: contain;
+    }
+    .fbd-sp-listing-img{
+        margin:auto;
+    }
+    }
+
+
+
+.fbd-sp-listing-img img:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
     transform: scale(1.1);
-    transition: 1s ease;
+    transition: 3s ease;
 }
-
-/* .fbd-sp-listing-img::after {
-    font-family: "Font Awesome 5 Pro";
-    content: "\f004";
-    font-size: 24px;
-    display: block;
-    position: absolute;
-    top: 10px;
-    right: 5px;
-    width: 32px;
-    height: 32px;
-    color: #8b77fc;
-    background-color: #ffffff;
-    border-radius: 36px;
-    padding: 4px;
-    line-height: initial;
-} */
 
 .fbd-sp-listing-liked {
     position: absolute;
@@ -383,12 +368,6 @@ form button[type=submit] {
     width: 32px;
     height: 33px;
     text-align: center;
-}
-
-.fbd-sp-listing-img img {
-    height: auto;
-    object-fit: contain;
-    max-width: 100%;
 }
 
 .slick-next:before, .slick-prev:before {
@@ -420,9 +399,8 @@ form button[type=submit] {
 
 /* Sponsured card image slider End*/
 
-.fbd-sp-list-title-description h5 {
-    color: #242626;
-    font-family: "Sailec-Medium";
+.fbd-sp-list-title-description h4 {
+    color: var(--dark);
 }
 
 /*.fbd-sponsured-listings i.fbd-liked-icon{*/
@@ -441,31 +419,44 @@ form button[type=submit] {
 } */
 
 .fbd-sp-list-title-description p {
-    font-family: "Sailec";
-    color: #455263cc;
+    color: var(--gray);
+    margin-bottom: 0px;
 }
 
 .fbd-sp-list-detail span {
-    font-family: "Sailec-Medium";
-    color: #455263cc;
+    color: var(--dark);
 }
 
 .fbd-sp-list-detail i, .fbd-sp-list-kennel i {
-    color: #8b77fc;
+    margin-right: 12px;
+    color: var(--blue);
 }
 
 .fbd-sp-list-kennel span {
-    font-family: "Sailec-Medium";
-    color: #455263cc;
+    color: var(--dark);
+}
+
+@media only screen and (min-width: 992px){
+.gf-listing-card-like-icon{
+    margin-bottom:60px !important;
+    }
+}
+.gf-listing-card-social-icon{
+    background-color: hsla(34, 82%, 78%, 0.2);
+    border-radius: 0px 0.25rem 0.25rem 0px;
+}
+.fbd-sp-list-social{
+    height: 100%;
 }
 
 .fbd-sp-list-social a {
-    margin-right: 20px;
-    color: #8b77fc;
+    margin: auto;
+    color: var(--blue);
+    font-size:20px;
 }
 
 .fbd-sp-list-social a:hover {
-    color: #957AFE;
+    color: var(--red);
 }
 
 /* stud_listing listing area  End */
@@ -1162,7 +1153,7 @@ p.breeder-profile-about{
 
 #filterLocation span.results-number{
     font-family: "Sailec";
-    color: #8B77FC;
+    color: #3390CE;
     font-size: 12px;
 }
 
@@ -1178,7 +1169,7 @@ p.breeder-profile-about{
 
 #collapseSearch ul.tags-list li{
     display: inline;
-    background-color: #f8f8f8;
+    background-color: transparent;
     padding: 3px 10px;
     margin-bottom: 5px;
     border-radius: 30px;
@@ -1187,7 +1178,7 @@ p.breeder-profile-about{
 }
 #collapseSearch ul.tags-list li span{
     margin-left: 4px;
-    background-color: #8B77FC;
+    background-color: #be202e;
     padding: 0px 4px;
     width: 20px;
     height: 20px;
@@ -1201,12 +1192,13 @@ p.breeder-profile-about{
 
 .fbd-filter-area .card {
     border: none;
-    box-shadow: 0 1px 4px 1px rgb(0 0 0 / 10%);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    background-color: hsla(34, 82%, 78%, 0.2);
 }
 
 .fbd-filter-area .card .card-body {
-    font-family: "Sailec";
-    color: #957AFE;
+    
+    color: var(--blue);
 }
 
 .fbd-filter-area .card-body {
@@ -1232,7 +1224,7 @@ p.breeder-profile-about{
     content: '';
     -webkit-appearance: none;
     background-color: transparent;
-    border: 2px solid #957AFE;
+    border: 2px solid #3390CE;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
     padding: 8px;
     display: inline-block;
@@ -1251,7 +1243,7 @@ p.breeder-profile-about{
     left: 7px;
     width: 6px;
     height: 14px;
-    border: solid #957AFE;
+    border: solid #3390CE;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
@@ -1280,9 +1272,10 @@ p.breeder-profile-about{
 
 
 .fbd-filter-area .card .card-header button.btn-collapse {
-    font-size: 16px;
-    font-family: "Sailec-Medium";
-    color: #8B77FC;
+    font-size: 20px;
+    color: var(--blue);
+    background-color: transparent;
+    letter-spacing: 1px;
 }
 
 .fbd-filter-area .card .card-header button.collapsed::after {
@@ -1572,6 +1565,20 @@ p.breeder-profile-about{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(245, 206, 154, 0.3) 0px 3px 7px -3px;
 }
 
+.breeder-resource-card{
+    margin-top: 110px;
+}
+.gf-resource-card-image{
+    max-width: fit-content;
+    margin: auto;
+    margin-top: -120px;
+}
+
+.gf-resource-card-image img{
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .resources-cards i{
     color: #3390CE;
 }
@@ -1658,7 +1665,7 @@ div#social-links ul li a {
 }
 
 html body {
-    color: #231F20;
+    color: var(--dark);
     background-color: #ffffff !important;
     line-height: 1.7em;
     font-family: Proxima-Nova;
@@ -1674,7 +1681,7 @@ html:root{
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #231F20;
+    color: var(--dark);
     font-family: Sanson;
     font-weight: 600 !important;
     letter-spacing: 0.2rem;
@@ -1752,6 +1759,7 @@ img{
 }
 
 .wrapper h2{
+    /* color: var(--blue); */
     font-size: 55px;
     line-height: 60px;
 }
@@ -1783,7 +1791,7 @@ img{
     }
 }
 
-textarea:focus-visible, select:focus-visible, input:focus-visible{
+textarea:focus-visible, select:focus-visible, input:focus-visible, button{
     outline: none !important;
 }
 
@@ -1805,6 +1813,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 }
 
 .gf-home-banner-text h1{
+    color: var(--blue);
     font-size: 65px;
     line-height: 80px;
 }
@@ -1821,7 +1830,6 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 
 .gf-home-banner-text h4{
     font-family: Proxima-Nova;
-    color: var(--blue);
 }
 
 .gf-home-banner-button a{
@@ -1994,6 +2002,41 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     border-radius: 30px;
 }
 
+/* Captcha Styling */
+.captchaWrap{
+    margin-bottom: 14px;
+}
+
+#captcha{
+    height: 70px;
+    background-color: #ffffff;
+    border: 1px solid var(--gray);
+    padding-top: 14px;
+    padding-right: 25%;
+    padding-left: 20%;
+    width: 100%;
+}
+
+.captcha-refresh-btn{
+    background-color: transparent;
+    color: #BE202E;
+    border: none;
+    font-size: 30px;
+
+}
+.captcha-textBox{
+    width: 50% !important;
+    padding: 6px !important;
+}   
+
+.incorrectCaptcha {
+    color: #BE202E;
+}
+
+.correctCaptcha {
+    color: #0ab179;
+}
+
 .gf-contactform-area form button[type=submit]{
     height: auto;
     width: 100%;
@@ -2082,6 +2125,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     -webkit-transition: all 280ms ease;
     -moz-transition: all 280ms ease;
     transition: all 280ms ease;
+    cursor: pointer;
 }
 .gf-footer-socialIcons i:hover{
     box-shadow: 0 0 0 1px var(--red) inset;
@@ -2105,6 +2149,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 .gf-footer-col2 i, .gf-footer-col3 i{
     margin-right: 15px;
     color: var(--dark);
+    width: 18px;
 }
 
 .gf-footer-col2 div:hover i{
@@ -2163,6 +2208,13 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
     line-height: 50px;
 }
 
+/* Adds Area */
+
+.gf-side-add-image{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+
 }
 .lg-gf-container{
     width: 80%;
@@ -2184,5 +2236,19 @@ textarea:focus-visible, select:focus-visible, input:focus-visible{
 @media (max-width: 576px){
     .container {
         max-width: 90%;
+    }
 }
+
+.container-fluid{
+    max-width: 1600px;
 }
+
+
+.gf-side-add-image.posFix {
+    position: fixed;
+    top: 80px;
+  }
+  .gf-side-add-image.posAbs {
+    position: absolute;
+    bottom: 25px;
+  }
