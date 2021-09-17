@@ -8,6 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" href="/images/favicon.png" type="image/png" sizes="150x92">
+
 
 
     <title>@yield('title')</title>
@@ -152,7 +154,7 @@
                 <a class="mr-4" href="tell:331234567" title="Phone"><i class="mr-2 fas fa-phone-alt"></i> +33 123 4567</a>
                 <a href="#"><i class="d-none d-sm-block far fa-question-circle"></i></a>
             </div>
-            <nav class="gf-nav navbar navbar-expand-lg navbar-light">
+            <nav class="gf-nav navbar navbar-expand-lg navbar-light px-0">
                 <div class="container-fluid" style="max-height:70px;">
                     <a class="navbar-brand mr-0" href="{{ url('/') }}">
 {{--                        <img src="/images/gf-logo.png" alt="Logo not found" width="263" height="60">--}}

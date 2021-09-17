@@ -1,30 +1,30 @@
 @extends('./layouts.app')
-@section('title', 'Puppy')
+@section('title', 'Puppies')
 @section('content')
 
-{{--Homepage Banner Section--}}
-<div class="wrapper gf-resources-banner-wrapper d-flex justify-content-center">
-    <div class="container row align-items-center">
-        <div class="gf-resources-banner-text col-md-6">
-            <h1>
-                <span style="color:#be202e;">Featured Puppies</span><br>
-                For Frenchie Lovers</h1>
-        </div>
-        <div class="col-md-6 text-center">
-            <img src="/images/frenchie-reading-book.png" loading="lazy" width="400" height="271" alt="">
+    {{--Homepage Banner Section--}}
+    <div class="wrapper gf-resources-banner-wrapper d-flex justify-content-center">
+        <div class="container row align-items-center">
+            <div class="gf-resources-banner-text col-md-6">
+                <h1>
+                    <span style="color:#be202e;">Featured Puppies</span><br>
+                    For Frenchie Lovers</h1>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="/images/homepage/gf-subscribe-image.png" loading="lazy" width="800" height="695" alt="">
+            </div>
         </div>
     </div>
-</div>
 
     <div class="container-fluid">
-        <div class="page-content d-lg-flex ">
+        <div class="page-content d-lg-flex align-items-start">
             {{--Filter area--}}
-            <div class="fbd-filter-area mb-3 rounded col-xl-3 col-lg-3 col-md-12">
+            <div class="fbd-filter-area p-0 pb-1 mb-3 col-xl-2 col-lg-3">
                 <div id="accordion">
                     <!-- Your Search -->
                     @if($data != null)
                         <div class="card p-3 mb-4 rounded">
-                            <div class="card-header p-0 bg-white border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
+                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
                                 <span class="heading mb-0">Your Search</span>
                                 <span class="results-number" title="Total Results"> Results</span>
                             </div>
@@ -42,15 +42,15 @@
                         </div>
                     @else
 
-                                <div id="secondary-recent-search">
+                        <div id="secondary-recent-search">
 
-                                </div>
+                        </div>
                     @endif
 
                     @if(Auth::user())
                         {{--Saved Search--}}
                         <div class="card p-3 mb-4 rounded">
-                            <div class="card-header p-0 bg-peach border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
+                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
                                 <span class="heading mb-0">Search History</span>
                                 <?php
                                 $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();
@@ -72,9 +72,9 @@
                 <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
 
-                        <div class="card-header p-0 bg-white border-0" id="filterLocation">
+                        <div class="card-header bg-transparent p-0 border-0" id="filterLocation">
                             <h5 class="mb-0">
-                                <button class="btn btn-collapse p-0 d-block text-left" data-toggle="collapse" data-target="#collapseLocation" aria-expanded="true" aria-controls="collapseLocation">
+                                <button class="btn btn-collapse p-0 d-block text-left " data-toggle="collapse" data-target="#collapseLocation" aria-expanded="true" aria-controls="collapseLocation">
                                     Location
                                 </button>
                             </h5>
@@ -96,7 +96,7 @@
                                         <option value="500" {{$data['distance'] === '500' ? 'selected' : ''}}>500 Miles </option>
                                         <option value="10" selected>Any Distance</option>
                                     </select>
-                                    <input type="zip" style="background-color: #fbebd7;" class="form-control" value="{{$data['zip']}}" name="zipSection" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <input type="zip" style="background-color: hsla(34, 82%, 78%, 0.2);;" class="form-control" value="{{$data['zip']}}" name="zipSection" id="zipSection" aria-describedby="zipHelp" placeholder="Zip Code">
                                     <button type="submit" class="btn btn-primary btn-sm  btn-fbd">Search</button>
                                 @else
                                     <select class="form-control form-select filterDistance" name="filterDistance" id="distance" aria-label="Default select example">
@@ -111,8 +111,8 @@
                                         <option value="500">500 Miles </option>
                                         <option selected value="10">Any Distance</option>
                                     </select>
-                                    <input type="zip" style="background-color: #fbebd7;" class="form-control" name="zipSectionSecond" id="zipSectionSecond" aria-describedby="zipHelp" placeholder="Zip Code">
-                                    <button type="submit" class="btn btn-primary btn-sm  btn-fbd" onClick="searchByZipDistance()" style="width:90px; float:right; margin-top: 2%;"><i class="far fa-compass"></i> Search</button>
+                                    <input type="zip" style="background-color:transparent;" class="form-control" name="zipSectionSecond" id="zipSectionSecond" aria-describedby="zipHelp" placeholder="Zip Code">
+                                    <button type="submit" class="gf-btn-dark" onClick="searchByZipDistance()" style="margin-top: 18px;"><i class="far fa-compass"></i> Search</button>
                                 @endif
 
 
@@ -122,7 +122,7 @@
 
                     <!-- DNA Colors -->
                     <div class="card border-top p-3 rounded">
-                        <div class="card-header p-0 bg-white border-0 " id="filterA">
+                        <div class="card-header bg-transparent p-0 border-0 " id="filterA">
                             <h5 class="mb-0">
                                 <button class="btn btn-collapse p-0 d-block collapsed text-left" data-toggle="collapse" data-target="#collapseA" aria-expanded="true" aria-controls="collapseA">
                                     DNA Colors
@@ -428,12 +428,12 @@
             </div>
             {{--End Filter area--}}
 
-            <div class="fbd-content-area mb-3 rounded col-xl-7">
+            <div class="fbd-content-area mb-3 col-xl-8 col-lg-9">
 
-                <div id="primary-listing-data" class="fbd-listing-area p-3 rounded">
+                <div id="primary-listing-data" class="fbd-listing-area">
 
-                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>5</b> listings</p>
-                    <span class="listing-type">SPONSORED LISTINGS</span>
+                    {{--                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>12</b> listings</p>--}}
+                    <h3 class="listing-type">SPONSORED LISTINGS</h3>
                     @if(empty($sponsoredPuppies))
                         <div class="fbd-standard-listing p-3">
                             <div class="fbd-standard-card rounded row p-3">
@@ -443,204 +443,217 @@
                     @else
                         @foreach($sponsoredPuppies as $key=>$sponsoredPuppy)
 
-                            <div  class="fbd-sponsured-listings p-3">
-                                <div class="fbd-sponsured-card rounded row align-items-center p-3">
-                                    <div class="col-lg-3">
+                            <div  class="fbd-sponsured-listings py-3">
+                                <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
+                                    <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($sponsoredPuppy->photo1)}}" alt="">
-                                            <!-- <span class="fbd-sp-listing-liked"><i class="far fa-heart"></i></span> -->
+                                            <img src="{{asset_file_url($sponsoredPuppy->photo1)}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-lg-9 pl-5">
+                                    <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
 
-                                        @if(Auth::user())
-                                            <?php
-                                            $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
-                                            //                                            dd($allSavedListings);
-                                            ?>
 
-                                            @if(count($allSavedListings) > 0)
-                                                <?php
-                                                foreach ($allSavedListings as $saved) {
-                                                    if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
-                                                    {
-                                                        if(($saved->listings->slug == $sponsoredPuppy->slug)){
-                                                            $matched = true;
-                                                            break;
-                                                        }else{
-                                                            $matched = false;
-                                                        }
 
-                                                    }
-                                                }
-                                                ?>
-                                                @if($matched == false)
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
-                                                @else
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
-                                                @endif
-
-                                            @else
-                                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
-                                            @endif
-                                        @else
-                                            <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
-                                        @endif
-                                        <div id="LoginModal" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Login Yourself</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    @if (\Session::has('error'))
-                                                        <div class="alert alert-danger">
-                                                            {{ \Session::get('error') }}
-                                                        </div>
-                                                    @endif
-                                                    <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
-                                                        @csrf
-                                                        <div class="modal-body">
-
-                                                            <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
-                                                            <input type="hidden" name="type" value="listing">
-
-                                                            {{--  EMAIL-ADDRESS  --}}
-                                                            <div class="form-group row">
-
-                                                                <div class="col-md-12">
-                                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
-
-                                                                    @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  PASSWORD  --}}
-                                                            <div class="form-group row">
-
-                                                                <div class="col-md-12">
-                                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
-
-                                                                    @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a href="#deleteListingModal" class="delete" data-dismiss="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel"></a>
-                                                            <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-secondary" data-dismiss="modal" value="Register"></a>
-                                                            <button type="submit" class="btn btn-danger btn-fbd">
-                                                                {{ __('Login') }}
-                                                            </button>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="deleteListingModal" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Register Yourself</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
-                                                        @csrf
-                                                        <div class="modal-body">
-
-                                                            <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
-                                                            <input type="hidden" name="type" value="listing">
-                                                            {{--  USERNAME  --}}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Username" required autocomplete="username" autofocus>
-
-                                                                    @error('username')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  EMAIL-ADDRESS  --}}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
-
-                                                                    @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  PASSWORD  --}}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
-
-                                                                    @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  CONFIRM-PASSWORD  --}}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                            <button type="submit" class="btn btn-danger btn-fbd">
-                                                                {{ __('Register') }}
-                                                            </button>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div onclick="singlePuppy('{{$sponsoredPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description mb-3">
-                                            <h5 class="fbd-sp-list-title d-inline">{{$sponsoredPuppy->title}}</h5>
+                                        <div onclick="singlePuppy('{{$sponsoredPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
+                                            <h4 class="fbd-sp-list-title d-inline">{{$sponsoredPuppy->title}}</h4>
                                             <p>{{$sponsoredPuppy->decription}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
-                                            <div class="col-xl-4 fbd-sp-list-detail-second mb-2">
-                                                <i class="fa fa-calendar-alt"></i>
-                                                <span>{{date('Y-m-d',$sponsoredPuppy->dob->getTimestamp())}}</span>
-                                            </div>
-
-                                        </div>
-                                        <div class="fbd-sp-list-kennel row">
-                                            <div class="col-xl-8 fbd-sp-list-kennel-first mb-2">
-                                                <i class="fa fa-igloo"></i>
-                                                <span>{{$sponsoredPuppy->breeder->kennelName}}</span>
-                                            </div>
-                                            <div class="col-xl-4 mb-2">
-                                                <i class="fa fa-venus-mars"></i>
-                                                <span>{{$sponsoredPuppy->sex->getValue()}}</span>
-                                            </div>
-                                            <div class="col-xl-8 fbd-sp-list-kennel-second mb-2">
-                                                <i class="fa fa-envelope"></i>
-                                                <span>{{$sponsoredPuppy->breeder->email->asString()}}</span>
-                                            </div>
-                                            <div class="col-xl-4 mb-2">
+                                            <div class="col-xl-6 pl-0">
                                                 <i class="fa fa-phone-alt"></i>
                                                 <span>{{$sponsoredPuppy->breeder->phone}}</span>
                                             </div>
+                                            <div class="col-xl-3 fbd-sp-list-detail-second pl-0">
+                                                <i class="fa fa-calendar-alt"></i>
+                                                <span>{{date('Y-m-d',$sponsoredPuppy->dob->getTimestamp())}}</span>
+                                            </div>
+                                            <div class="col-xl-3 pl-0">
+                                                <i class="fa fa-venus-mars"></i>
+                                                <span>{{$sponsoredPuppy->sex->getValue()}}</span>
+                                            </div>
+                                            {{--                                        </div>--}}
+                                            {{--                                        <div class="fbd-sp-list-kennel row">--}}
+                                            <div class="col-xl-6 fbd-sp-list-kennel-second pl-0">
+                                                <i class="fa fa-envelope"></i>
+                                                <span>{{$sponsoredPuppy->breeder->email->asString()}}</span>
+                                            </div>
+                                            <div class="col-xl-6 fbd-sp-list-kennel-first pl-0">
+                                                <i class="fa fa-igloo"></i>
+                                                <span>{{$sponsoredPuppy->breeder->kennelName}}</span>
+                                            </div>
                                         </div>
-                                        <div class="fbd-sp-list-social text-right">
+                                    </div>
+
+                                    <div class="col-lg-1 gf-listing-card-social-icon p-0">
+                                        <div class="fbd-sp-list-social d-flex flex-lg-column py-2">
+                                            @if(Auth::user())
+                                                <?php
+                                                $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
+                                                //                                            dd($allSavedListings);
+                                                ?>
+
+                                                @if(count($allSavedListings) > 0)
+                                                    <?php
+                                                    foreach ($allSavedListings as $saved) {
+                                                        if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
+                                                        {
+                                                            if(($saved->listings->slug == $sponsoredPuppy->slug)){
+                                                                $matched = true;
+                                                                break;
+                                                            }else{
+                                                                $matched = false;
+                                                            }
+
+                                                        }
+                                                    }
+                                                    ?>
+                                                    @if($matched == false)
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    @else
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    @endif
+
+                                                @else
+                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                @endif
+                                            @else
+                                                <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
+                                            @endif
+                                            <div id="LoginModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        @if (\Session::has('error'))
+                                                            <div class="alert alert-danger">
+                                                                {{ \Session::get('error') }}
+                                                            </div>
+                                                        @endif
+                                                        <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
+                                                            @csrf
+                                                            <div class="modal-body">
+
+                                                                <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
+                                                                <input type="hidden" name="type" value="listing">
+
+                                                                {{--  EMAIL-ADDRESS  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                                                        @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                                                        @error('password')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
+                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                    {{ __('Login') }}
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="deleteListingModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
+                                                            @csrf
+                                                            <div class="modal-body">
+
+                                                                <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
+                                                                <input type="hidden" name="type" value="listing">
+                                                                {{--  USERNAME  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                                                                        @error('username')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  EMAIL-ADDRESS  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                                                        @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                                                        @error('password')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  CONFIRM-PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                    {{ __('Register') }}
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <a href="{{$sponsoredPuppy->breeder->fbAccountUrl->asString()}}"><i class="fab fa-facebook-f"></i></a>
                                             <a href="{{$sponsoredPuppy->breeder->igAccountUrl->asString()}}"><i class="fab fa-instagram"></i></a>
                                             <a href="{{$sponsoredPuppy->breeder->website->asString()}}"><i class="fas fa-globe"></i></a>
@@ -653,215 +666,229 @@
                         @endforeach
 
                     @endif
-                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>
-                    <span class="listing-type">STANDARD LISTINGS</span>
+                    {{--                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>--}}
+                    <h3 class="listing-type my-3">STANDARD LISTINGS</h3>
 
                     @if(empty($standardPuppies))
                         <div class="fbd-standard-listing p-3">
                             <div class="fbd-standard-card rounded row p-3">
-                                <p class="text-center">No Sponsored Listings</p>
+                                <p class="text-center">No Standard Listings</p>
                             </div>
                         </div>
                     @else
                         @foreach($standardPuppies as $key=>$standardPuppy)
 
-                            <div  class="fbd-sponsured-listings p-3">
-                                <div class="fbd-sponsured-card rounded row align-items-center p-3">
-                                    <div class="col-lg-3">
+                            <div  class="fbd-sponsured-listings py-3">
+                                <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
+                                    <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($standardPuppy->photo1)}}" alt="">
-                                            <!-- <span class="fbd-sp-listing-liked"><i class="far fa-heart"></i></span> -->
+                                            <img src="{{asset_file_url($standardPuppy->photo1)}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-lg-9 pl-5">
+                                    <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
 
-                                        @if(Auth::user())
-                                            <?php
-                                            $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
-                                            //                                            dd($allSavedListings);
-                                            ?>
-                                            @if(count($allSavedListings) > 0)
-                                                <?php
-                                                foreach ($allSavedListings as $saved) {
-                                                    if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
-                                                    {
-                                                        if(($saved->listings->slug == $standardPuppy->slug)){
-                                                            $matched = true;
-                                                            break;
-                                                        }else{
-                                                            $matched = false;
-                                                        }
 
-                                                    }
-                                                }
-                                                ?>
-                                                @if($matched == false)
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
-                                                @else
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
-                                                @endif
 
-                                            @else
-                                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
-                                            @endif
-                                        @else
-                                            <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
-                                        @endif
-                                        <div id="LoginModal" class="modal fade" style="display:none;">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Register Yourself</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    @if (\Session::has('error'))
-                                                        <div class="alert alert-danger">
-                                                            {{ \Session::get('error') }}
-                                                        </div>
-                                                    @endif
-                                                    <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
-                                                        @csrf
-                                                        <div class="modal-body">
-
-                                                            <input type="hidden" name="slug" value="{{$standardPuppy->slug}}">
-                                                            <input type="hidden" name="type" value="listing">
-
-                                                            {{--  EMAIL-ADDRESS  --}}
-                                                            <div class="form-group row">
-
-                                                                <div class="col-md-12">
-                                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
-
-                                                                    @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  PASSWORD  --}}
-                                                            <div class="form-group row">
-
-                                                                <div class="col-md-12">
-                                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
-
-                                                                    @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a href="#deleteListingModal" class="delete" data-dismiss="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel"></a>
-                                                            <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-secondary" data-dismiss="modal" value="Register"></a>
-                                                            <button type="submit" class="btn btn-danger btn-fbd">
-                                                                {{ __('Login') }}
-                                                            </button>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="deleteListingModal" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Register Yourself</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
-                                                        @csrf
-                                                        <div class="modal-body">
-
-                                                            <input type="hidden" name="slug" value="{{$standardPuppy->slug}}">
-                                                            <input type="hidden" name="type" value="listing">
-                                                            {{--  USERNAME  --}}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Username" required autocomplete="username" autofocus>
-
-                                                                    @error('username')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  EMAIL-ADDRESS  --}}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autocomplete="email">
-
-                                                                    @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  PASSWORD  --}}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
-
-                                                                    @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  CONFIRM-PASSWORD  --}}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                            <button type="submit" class="btn btn-danger btn-fbd">
-                                                                {{ __('Register') }}
-                                                            </button>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div onclick="singlePuppy('{{$standardPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description mb-3">
-                                            <h5 class="fbd-sp-list-title d-inline">{{$standardPuppy->title}}</h5>
+                                        <div onclick="singlePuppy('{{$standardPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
+                                            <h4 class="fbd-sp-list-title d-inline">{{$standardPuppy->title}}</h4>
                                             <p>{{$standardPuppy->decription}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
-                                            <div class="col-xl-4 fbd-sp-list-detail-second mb-2">
-                                                <i class="fa fa-calendar-alt"></i>
-                                                <span>{{date('Y-m-d',$standardPuppy->dob->getTimestamp())}}</span>
-                                            </div>
-
-                                        </div>
-                                        <div class="fbd-sp-list-kennel row">
-                                            <div class="col-xl-8 fbd-sp-list-kennel-first mb-2">
-                                                <i class="fa fa-igloo"></i>
-                                                <span>{{$standardPuppy->breeder->kennelName}}</span>
-                                            </div>
-                                            <div class="col-xl-4 mb-2">
-                                                <i class="fa fa-venus-mars"></i>
-                                                <span>{{$standardPuppy->sex->getValue()}}</span>
-                                            </div>
-                                            <div class="col-xl-8 fbd-sp-list-kennel-second mb-2">
-                                                <i class="fa fa-envelope"></i>
-                                                <span>{{$standardPuppy->breeder->email->asString()}}</span>
-                                            </div>
-                                            <div class="col-xl-4 mb-2">
+                                            <div class="col-xl-6 pl-0">
                                                 <i class="fa fa-phone-alt"></i>
                                                 <span>{{$standardPuppy->breeder->phone}}</span>
                                             </div>
+                                            <div class="col-xl-3 fbd-sp-list-detail-second pl-0">
+                                                <i class="fa fa-calendar-alt"></i>
+                                                <span>{{date('Y-m-d',$standardPuppy->dob->getTimestamp())}}</span>
+                                            </div>
+                                            <div class="col-xl-3 pl-0">
+                                                <i class="fa fa-venus-mars"></i>
+                                                <span>{{$standardPuppy->sex->getValue()}}</span>
+                                            </div>
+                                            {{--                                        </div>--}}
+                                            {{--                                        <div class="fbd-sp-list-kennel row">--}}
+                                            <div class="col-xl-6 fbd-sp-list-kennel-second pl-0">
+                                                <i class="fa fa-envelope"></i>
+                                                <span>{{$standardPuppy->breeder->email->asString()}}</span>
+                                            </div>
+                                            <div class="col-xl-6 fbd-sp-list-kennel-first pl-0">
+                                                <i class="fa fa-igloo"></i>
+                                                <span>{{$standardPuppy->breeder->kennelName}}</span>
+                                            </div>
                                         </div>
-                                        <div class="fbd-sp-list-social text-right">
+                                    </div>
+
+                                    <div class="col-lg-1 gf-listing-card-social-icon p-0">
+                                        <div class="fbd-sp-list-social d-flex flex-lg-column py-2">
+                                            @if(Auth::user())
+                                                <?php
+                                                $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
+                                                //                                            dd($allSavedListings);
+                                                ?>
+
+                                                @if(count($allSavedListings) > 0)
+                                                    <?php
+                                                    foreach ($allSavedListings as $saved) {
+                                                        if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
+                                                        {
+                                                            if(($saved->listings->slug == $standardPuppy->slug)){
+                                                                $matched = true;
+                                                                break;
+                                                            }else{
+                                                                $matched = false;
+                                                            }
+
+                                                        }
+                                                    }
+                                                    ?>
+                                                    @if($matched == false)
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    @else
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    @endif
+
+                                                @else
+                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                @endif
+                                            @else
+                                                <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
+                                            @endif
+                                            <div id="LoginModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        @if (\Session::has('error'))
+                                                            <div class="alert alert-danger">
+                                                                {{ \Session::get('error') }}
+                                                            </div>
+                                                        @endif
+                                                        <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
+                                                            @csrf
+                                                            <div class="modal-body">
+
+                                                                <input type="hidden" name="slug" value="{{$standardPuppy->slug}}">
+                                                                <input type="hidden" name="type" value="listing">
+
+                                                                {{--  EMAIL-ADDRESS  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                                                        @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                                                        @error('password')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
+                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                    {{ __('Login') }}
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="deleteListingModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
+                                                            @csrf
+                                                            <div class="modal-body">
+
+                                                                <input type="hidden" name="slug" value="{{$standardPuppy->slug}}">
+                                                                <input type="hidden" name="type" value="listing">
+                                                                {{--  USERNAME  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                                                                        @error('username')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  EMAIL-ADDRESS  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                                                        @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                                                        @error('password')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  CONFIRM-PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                    {{ __('Register') }}
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <a href="{{$standardPuppy->breeder->fbAccountUrl->asString()}}"><i class="fab fa-facebook-f"></i></a>
                                             <a href="{{$standardPuppy->breeder->igAccountUrl->asString()}}"><i class="fab fa-instagram"></i></a>
                                             <a href="{{$standardPuppy->breeder->website->asString()}}"><i class="fas fa-globe"></i></a>
@@ -877,14 +904,90 @@
 
                 </div>
 
-                <div id="secondary-listing-data" class="fbd-listing-area p-3 rounded">
+                <div id="secondary-listing-data" class="fbd-listing-area rounded">
                 </div>
 
             </div>
-            @include('components/adds-area')
+
+            {{--            Adds Area--}}
+            <div class="gf-adds-area mb-3 p-0 col-xl-2">
+                @include('components/adds-area')
+            </div>
         </div>
     </div>
 
+
+{{--Testimonials Slider--}}
+<div class="wrapper gf-testimonials d-flex justify-content-center">
+    <div class="container row align-items-center justify-content-center">
+        {{--        <div class="col-md-6 text-center">--}}
+        {{--            <img src="/images/homepage/gf-home-banner-dog.png" alt="">--}}
+        {{--        </div>--}}
+        <div class="col-md-9">
+            <h2 class="text-center">Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
+
+            <div class="gf-home-testimonial-slider">
+                <div>
+                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                    <span>Caroline Bryan</span><br>
+                    <span>Very Affordably Priced</span>
+                </div>
+                <div>
+                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                    <span>Caroline Bryan</span><br>
+                    <span>Very Affordably Priced</span>
+                </div>
+                <div>
+                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                    <span>Caroline Bryan</span><br>
+                    <span>Very Affordably Priced</span>
+                </div>
+                <div>
+                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                    <span>Caroline Bryan</span><br>
+                    <span>Very Affordably Priced</span>
+                </div>
+                <div>
+                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                    <span>Caroline Bryan</span><br>
+                    <span>Very Affordably Priced</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    {{--Contact Section--}}
+    <div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
+        <div class="container row align-items-center">
+            <div class="col-md-6">
+                <img src="/images/homepage/gf-home-contact-image.png" width="450" loading="lazy" alt="">
+            </div>
+            <div class="col-md-6">
+                <div class="gf-contactform-area">
+                    <h4>Contact Us With Any Questions </h4>
+                    <form action="">
+                        <input type="text" placeholder="Name">
+                        <input type="email" placeholder="Email">
+                        <textarea name="Message" cols="30" rows="5" placeholder="Message"></textarea>
+                        <label for="captchaWrap">To continue, please type the characters below:</label>
+                        <div id="captchaWrap" class="captchaWrap d-flex align-items-center text-align-center">
+                            <canvas id="captcha"></canvas>
+                            <button type="button" id="refreshButton" class="captcha-refresh-btn"><i class="fas fa-redo"></i></button>
+                            <span id="output" class="ml-2"></span>
+                        </div>
+                        <div class="mb-2">
+                            <input id="textBox" class="captcha-textBox mr-2" type="text" name="text" placeholder="Captcha Text">
+                            <button type="button" id="submitButton" class="gf-btn-light">Check</button>
+                        </div>
+                        <button type="submit" class="gf-btn-dark">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript">
 
@@ -1458,7 +1561,6 @@
                 },
             });
         }
-
         function findValue(){
             var blue = [];
             var chocolate = [];
@@ -1589,8 +1691,9 @@
                 success: function(data){
                     console.log(data.success);
                     if (data.response == 200){
-                        console.log(data.response);
+                        // console.log(data.response);
                         closeModal();
+
 
                         if(emcir.length == 0){
 
@@ -1615,7 +1718,6 @@
                             $("#filterAgoutiAtat").prop('checked',true);
                         }
                     }
-
 
                     document.getElementById("primary-listing-data").style.display = "none";
                     $('#secondary-listing-data').html(data.html);

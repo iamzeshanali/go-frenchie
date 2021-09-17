@@ -295,28 +295,28 @@ refreshButton.addEventListener('click', function() {
     output.innerHTML = "";
 });
 
-// Stick a section js
-$(window).scroll(reOrder)
-$(window).resize(reOrder)
-
-function reOrder() {
-    var mq = window.matchMedia("(min-width: 992px)");
-    if (mq.matches) {
-        $('.gf-side-add-image').addClass('customm');
-        var scroll = $(window).scrollTop(),
-            topContent = $('.page-content').position().top - 25,
-            sectionHeight = $('#primary-listing-data').height(),
-            rightHeight = $('.gf-side-add-image').height(),
-            bottomContent = topContent + sectionHeight - rightHeight - 45;
-
-        if (scroll > topContent && scroll < bottomContent) {
-            $('.customm').removeClass('posAbs').addClass('posFix');
-        } else if (scroll > bottomContent) {
-            $('.customm').removeClass('posFix').addClass('posAbs');
-        } else if (scroll < topContent) {
-            $('.customm').removeClass('posFix');
-        }
-    } else {
-        $('.gf-side-add-image').removeClass('customm posAbs posFix');
-    }
-}
+// // Stick a section js
+// $(window).scroll(reOrder)
+// $(window).resize(reOrder)
+//
+// function reOrder() {
+//     var mq = window.matchMedia("(min-width: 992px)");
+//     if (mq.matches) {
+//         $('.gf-adds-area').addClass('gf-custom'); //add customm class if large screen size
+//     //     var scroll = $(window).scrollTop(),
+//     //         topContent = $('.page-content').position().top - 25, //reference position, stick starting point
+//     //         sectionHeight = $('.fbd-content-area').height(), //reference height
+//     //         addHeight = $('.gf-side-add-image').height(), //add height
+//     //         bottomContent = topContent + sectionHeight - addHeight - 100;
+//     //
+//     //     if (scroll > topContent && scroll < bottomContent) {
+//     //         $('.customm').removeClass('posAbs').addClass('posFix');
+//     //     } else if (scroll > bottomContent) {
+//     //         $('.customm').removeClass('posFix').addClass('posAbs');
+//     //     } else if (scroll < topContent) {
+//     //         $('.customm').removeClass('posFix');
+//     //     }
+//     } else {
+//         $('.gf-adds-area').removeClass('gf-custom');
+//     }
+// }

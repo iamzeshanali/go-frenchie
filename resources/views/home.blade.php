@@ -445,7 +445,7 @@
 </div>
 
 {{--Contact Section--}}
-<div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
+<div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center">
     <div class="container row align-items-center">
         <div class="col-lg-6">
             <img src="/images/homepage/gf-home-contact-image.png" width="450" loading="lazy" alt="">
