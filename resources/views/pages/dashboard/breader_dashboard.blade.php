@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h2 class="page-title text-center mb-5">Breader Dashboard</h2>
+    <h2 class="page-title text-center my-5">Breader Dashboard</h2>
 
     <div class="breeder-dashboard-page-content">
         @include('components.breader-dashboard-menu-area')

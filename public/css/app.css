@@ -65,7 +65,7 @@
 }
 
 button:focus {
-    box-shadow: none !important;
+    /* box-shadow: none !important; */
 }
 
 .btn-fbd:hover {
@@ -231,12 +231,12 @@ nav.navbar .nav-item .nav-link {
 
 .breeder-db-login-dropdown p a {
     text-decoration: none;
-    color: #8B77FC;
+    color: var(--blue);
 }
 
 .breeder-db-login-dropdown p a:hover {
     text-decoration: none;
-    color: rgba(140, 120, 252, 0.8);
+    color: var(--blue);
 }
 
 a#navbarDropdown img {
@@ -249,13 +249,87 @@ a#navbarDropdown img {
 /* 4-- Login page start */
 
 .fbd-login-form .fbd-login-password span.input-group-btn {
-    border: 1px solid #ced4da;
+    border: 1px solid #6E6F72;
     height: calc(1.5em + .75rem + 2px);
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 0px 30px 30px 0px;
     border-left: none;
 }
 
+.gf-login-wrapper, .gf-select-user-wrapper{
+    /* background-image: url(/images/homepage/gf-home-second-intro-bg.jpg);
+    background-size: contain;
+    background-repeat: no-repeat; */
+
+    background-image: url(/images/homepage/gf-home-banner-bg.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+.gf-login-wrapper img{
+    width: 70%;
+    height: auto;
+}
+
+.gf-login-wrapper .card, .gf-select-user-wrapper .card{
+    border: none;
+    background-color: #fbebd7;
+    border-radius: 12px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(245 206 154 / 30%) 0px 3px 7px -3px;
+}
+
+.gf-login-wrapper .card .card-header, .gf-select-user-wrapper .card .card-header{
+    background-color: transparent;
+    border: none;
+}
+
+.gf-login-wrapper .card .card-header h3, .gf-select-user-wrapper .card .card-header h3{
+    color: var(--red);
+}
+
+.gf-login-wrapper .card .card-header p, .gf-select-user-wrapper .card .card-header p{
+    color: var(--gray);
+}
+
+.gf-login-wrapper form input[type="email"],.gf-login-wrapper form input[type="password"],.gf-login-wrapper form input[type="text"]{
+    background-color: transparent;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #6E6F72;
+    margin-bottom: 14px;
+    border-radius: 30px;
+}
+
+.gf-login-wrapper form input[type="password"],.gf-login-wrapper form input[type="text"]{
+    width: 85%;
+}
+
+.gf-login-wrapper .form-group{
+    width: 100%;
+}
+
+.gf-login-wrapper button[type="submit"]{
+    width: 100%;
+}
 /* Login page end */
+
+
+.gf-select-user-wrapper .card-body img{
+    width: 75%;
+    height: auto;
+    transition: all 0.2s ease;
+    margin-bottom: 12px;
+}
+
+.gf-select-user-wrapper .card-body img:hover{
+    /* transform: scale(1.1); */
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.gf-select-user-wrapper .card-body a{
+    color: var(--dark);
+}
+
 
 /*5-- *********** stud_listing page Start ***************/
 
@@ -309,8 +383,12 @@ a#navbarDropdown img {
     background-color: white;
 }
 
-form button[type=submit] {
+/* form button[type=submit] {
     height: calc(1.5em + .75rem + 0px);
+} */
+
+input.form-control:focus{
+    box-shadow: none;
 }
 
 .listing-type{
@@ -537,15 +615,9 @@ form#create-listing-form label {
 }
 
 .bd-menu-user-panel-user {
-    font-size: 16px;
-    font-family: "Sailec-Bold";
-    color: #242626;
 }
 
-.bd-menu-user-panel-email {
-    font-size: 14px;
-    font-family: "Sailec-Medium";
-    color: #455263cc;
+.bd-menu-user-panel-email {    
 }
 
 .breader-dashboard-menu-area .card-header button::after {
@@ -572,12 +644,11 @@ form#create-listing-form label {
 
 .breader-dashboard-menu-area button.btn-collapse {
     font-size: 16px;
-    font-family: "Sailec-Bold";
-    color: #8B77FC;
+    color: var(--blue);
 }
 
 .breader-dashboard-menu-area button.btn-collapse:hover {
-    color: hsla(249, 96%, 73%, 0.8);
+    visibility: 0.8;
 }
 
 .breader-dashboard-menu-area .card-body {
@@ -590,16 +661,13 @@ form#create-listing-form label {
 }
 
 .breader-dashboard-menu-area .card-body a {
-    font-size: 14px;
-    font-family: "Sailec-Bold";
     padding-left: 12px;
     text-decoration: none;
-    color: #8B77FC;
+    color: var(--blue);
 }
 
 .breader-dashboard-menu-area .card-body a:hover {
-    text-decoration: none;
-    color: hsla(249, 96%, 73%, 0.8);
+    visibility: 0.8;
 }
 
 /* Dashboard Content Area */
@@ -1086,58 +1154,61 @@ p.breeder-profile-about{
 /* Slick End */
 
 .fbd-single-listing-title {
-    font-family: "Sailec-Bold";
-    font-size: 24px;
-    color: #242626;
+    
 }
 
-.fbd-single-listing-info .breeder-name {
-    text-decoration: none;
-    color: #242626;
-    font-size: 1.5rem;
-    font-family: "Sailec-Bold";
-    line-height: 0;
+.fbd-single-listing-info .breeder-name h3{
+    color: var(--red);
 }
 
 .fbd-single-listing-info .kennel-name {
-    font-family: "Sailec-Bold";
-    color: #9CA2BC;
+    color: var(--blue);
 }
 
 .fbd-single-listing-info .contactNo, .fbd-single-listing-info .email, .fbd-single-listing-info .website {
     text-decoration: none;
     color: #242626;
-    font-family: "Sailec-Medium";
 }
 
 .fbd-single-listing-info .contactNo i, .fbd-single-listing-info .email i, .fbd-single-listing-info .website i {
-    color: #8B77FC;
+    color: var(--blue);
 }
 
 .fbd-single-listing-contact-social a {
     font-size: x-large;
-    color: #8B77FC;
+    color: var(--blue);
 }
 
 .fbd-single-listing-contact-social a:hover {
-    color: rgba(140, 120, 252, 0.8);
+    color: hsla(204, 61%, 50%, 0.8);
 }
 
-/* .fbd-single-listing-contactForm .card .card-header a.contactNo {
-    font-size: 14px;
-    font-family: "Sailec-Bold";
-    text-decoration: none;
-    color: #8B77FC;
-} */
+.fbd-single-listing-contactForm .card {
+    border: none;
+    background-color: #fbebd7;
+    border-radius: 30px;
+}
+
+.fbd-single-listing-contactForm input[type="text"], .fbd-single-listing-contactForm input[type="email"], .fbd-single-listing-contactForm textarea{
+    background-color: transparent;
+    /* width: 100%; */
+    padding: 16px;
+    border: 1px solid #6E6F72;
+    /* margin-bottom: 14px; */
+    border-radius: 0px 30px 30px 0px !important;
+}
+
+.fbd-single-listing-contactForm input[type="submit"]{
+    width: 100%;
+}
 
 .fbd-single-listing-features i {
-    color: #8B77FC;
+    color: var(--blue);
 }
 
 .fbd-single-listing-features span {
-    color: #242626;
-    font-family: "Sailec-Medium";
-    font-size: 1rem;
+    
+    
 }
 
 .fbd-single-listing-social i {
@@ -1147,7 +1218,7 @@ p.breeder-profile-about{
 }
 
 .fbd-single-listing-dna table.table {
-    font-family: "Sailec-Medium";
+    /* font-family: "Sailec-Medium"; */
 }
 
 /************ Single Listing Page End ***************/
@@ -1954,8 +2025,6 @@ textarea:focus-visible, select:focus-visible, input:focus-visible, button{
     font-size: 10px;
 }
 
-
-
 .gf-homepage-adds .container{
     background-color: #e2e2e3;
     border-radius:50px;
@@ -2001,7 +2070,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible, button{
 
 .gf-contactform-area{
     background-color: #fbebd7;
-    padding: 50px 70px;
+    padding: 10%;
     border-radius: 30px;
 }
 

@@ -240,7 +240,7 @@
         {{--            <img src="/images/homepage/gf-home-banner-dog.png" alt="">--}}
         {{--        </div>--}}
         <div class="col-md-9">
-            <h2 class="text-center">Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
+            <h2 class="text-center mb-4">Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
 
             <div class="gf-home-testimonial-slider">
                 <div>

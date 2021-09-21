@@ -9,7 +9,7 @@
         <i class="fas fa-angle-right"></i> &emsp;
         <a href="" title="View Listing">View Listing</a> &emsp;
     </div>
-    <div class="row mb-3">
+    <div class="row">
         <div class="col-md-6">
             <h2 class="fbd-single-listing-title">{{$puppy->title}}</h2>
         </div>
@@ -206,7 +206,9 @@
 
         </div>
         <div class="col-md-3">
-            <a class="breeder-name" href="" title="Breeder Name">{{ucfirst($puppy->breeder->username)}}</a><br>
+            <a class="breeder-name" href="" title="Breeder Name">
+                <h3>{{ucfirst($puppy->breeder->username)}}</h3>
+            </a>
             <span class="kennel-name" title="Kennel Name">{{ucfirst($puppy->breeder->kennelName)}}</span>
             <hr>
             <div>
@@ -219,7 +221,7 @@
                 </div>
             </div>
 
-            <div class="row my-5 fbd-single-listing-contact-social">
+            <div class="row my-4 fbd-single-listing-contact-social justify-content-between">
                 <a class="mx-4" href="{{$puppy->breeder->fbAccountUrl->asString()}}" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a class="mx-4" href="{$puppy->breeder->igAccountUrl->asString()}}" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a class="mx-4" href="#" title="Share"><i class="fas fa-share-square"></i></a>
@@ -242,7 +244,7 @@
                         </div>
                         @endif
                     </div>
-                    <div class="card rounded">
+                    <div class="card">
 
                         <div class="card-body p-3">
                             <div class="form-group">
@@ -282,7 +284,7 @@
                             </div>
 
                             <div class="text-center">
-                                <input type="submit" value="Send Message" class="btn btn-primary btn-fbd btn-block rounded-0 py-2">
+                                <input type="submit" value="Send Message" class="gf-btn-dark py-2">
                             </div>
                         </div>
 

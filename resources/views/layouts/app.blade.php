@@ -149,7 +149,7 @@
 
 
         <header>
-            <div class="secondary-nav px-4 d-flex align-items-center justify-content-end">
+            <div class="secondary-nav px-4 d-flex align-items-center justify-content-end flex-wrap">
                 <a class="mr-4" href="mailto:someone@example.com" title="Email"><i class="mr-2 far fa-envelope"></i>contact@gofrenchee.com</a>
                 <a class="mr-4" href="tell:331234567" title="Phone"><i class="mr-2 fas fa-phone-alt"></i> +33 123 4567</a>
                 <a href="#"><i class="d-none d-sm-block far fa-question-circle"></i></a>
@@ -217,7 +217,7 @@
                             @else
                                 <li class="nav-item">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <img class="float-left" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="30px" height="30px">
+                                        <img class="" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="30px" height="30px">
                                     </a>
                                     <div class="breeder-db-login-dropdown dropdown-menu p-3" aria-labelledby="navbarDropdown">
                                         <p>
