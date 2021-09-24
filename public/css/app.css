@@ -60,12 +60,8 @@
     background-image: -ms-linear-gradient( 0deg, #3390CE 0%, #3390CE 100%);
 } */
 
-.btn-fbd:active:focus {
+/* .btn-fbd:active:focus {
     box-shadow: none !important;
-}
-
-button:focus {
-    /* box-shadow: none !important; */
 }
 
 .btn-fbd:hover {
@@ -76,7 +72,7 @@ button:focus {
 
 .btn-fbd:focus {
     box-shadow: none;
-}
+} */
 
 .fa-dna {
     color: var(--blue);
@@ -128,7 +124,7 @@ nav.gf-nav.active {
 }
 
 
-header nav.gf-nav img{
+header nav.gf-nav .navbar-brand img{
     margin-top: -40px;
 }
 
@@ -585,47 +581,18 @@ form#create-listing-form label {
 
 /*7-- *********** Breader Dashboard Start ***************/
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-    .breeder-dashboard-page-content {
-        display: grid;
-        grid-template-columns: 2fr 3fr;
-        grid-gap: 15px;
-        align-items: flex-start;
-    }
-}
 
-@media only screen and (min-width: 1024px) {
-    .breeder-dashboard-page-content {
-        display: grid;
-        grid-template-columns: 1fr 4fr;
-        grid-gap: 15px;
-        align-items: flex-start;
-    }
-}
-
-@media (min-width: 1920px) {
-    .breeder-dashboard-page-content {
-        grid-template-columns: 1fr 4fr;
-    }
-}
 
 /* Dashboard Menu Area */
 
-.breader-dashboard-menu-area {
-    background-color: white;
+
+.gf-dashboard-menu-user-panel img{
+    height: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
 }
 
-.bd-menu-user-panel img {
-    border-radius: 60px;
-}
-
-.bd-menu-user-panel-user {
-}
-
-.bd-menu-user-panel-email {    
-}
-
-.breader-dashboard-menu-area .card-header button::after {
+.gf-dashboard-menu-area .card-header button::after {
     display: block;
     position: absolute;
     top: 0px;
@@ -634,20 +601,23 @@ form#create-listing-form label {
     height: 16px;
     content: "\f107";
     font-family: "Font Awesome 5 Pro";
+    transition: all 0.3s ease;
 }
 
-.breader-dashboard-menu-area .card-header button.collapsed::after {
-    display: block;
+.gf-dashboard-menu-area .card-header button.collapsed::after {
+    transition: all 0.3s ease;
+    transform: rotate(90deg);
+    /* display: block;
     position: absolute;
     top: 0px;
     right: 0px;
     width: 16px;
     height: 16px;
     content: "\f104";
-    font-family: "Font Awesome 5 Pro";
+    font-family: "Font Awesome 5 Pro"; */
 }
 
-.breader-dashboard-menu-area button.btn-collapse {
+.gf-dashboard-menu-area button.btn-collapse {
     font-size: 16px;
     color: var(--blue);
 }
@@ -1274,7 +1244,7 @@ p.breeder-profile-about{
 /* ==================== */
 
 
-.fbd-filter-area .card {
+.fbd-filter-area .card,  .gf-dashboard-menu-area{
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     background-color: hsla(34, 82%, 78%, 0.2);
@@ -1887,6 +1857,8 @@ textarea:focus-visible, select:focus-visible, input:focus-visible, button{
     outline: none !important;
 }
 
+
+
 /* 3--Go Frenchie Home Page */
 .gf-home-banner-wrapper {
     background-image: url("/images/homepage/gf-home-banner-bg.jpg");
@@ -2336,6 +2308,10 @@ textarea:focus-visible, select:focus-visible, input:focus-visible, button{
 
 .container-fluid{
     max-width: 1600px;
+}
+
+.btn:focus{
+    box-shadow: none !important;
 }
 
 

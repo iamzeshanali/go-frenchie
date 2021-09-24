@@ -1,4 +1,4 @@
-<div class="breader-dashboard-content p-3 mb-3 rounded">
+<div class="gf-dashboard-content col-xl-8 col-lg-9">
     <div class="container-fluid">
         <div class="table-responsive">
             <div class="table-wrapper">

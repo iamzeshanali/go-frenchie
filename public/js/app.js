@@ -228,14 +228,12 @@ $('.gf-kennel-slider').slick({
 ]
 });
 
-
-
 ////////Captcha on contact form js
-let captchaText = document.querySelector('#captcha');
+let captchaText = document.querySelector('captcha');
+console.log(captchaText);
 var ctx = captchaText.getContext("2d");
 ctx.font = "48px Proxima-Nova";
 ctx.fillStyle = "#BE202E";
-
 let userText = document.querySelector('#textBox');
 let submitButton = document.querySelector('#submitButton');
 let output = document.querySelector('#output');
@@ -294,6 +292,8 @@ refreshButton.addEventListener('click', function() {
     ctx.fillText(refreshArr.join(''),captchaText.width/4, captchaText.height/2);
     output.innerHTML = "";
 });
+
+
 
 // // Stick a section js
 // $(window).scroll(reOrder)

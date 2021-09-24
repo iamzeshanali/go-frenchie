@@ -51,25 +51,25 @@
 
                     @if(Auth::user())
                         {{--Saved Search--}}
-                        <div class="card p-3 mb-4 rounded">
-                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
-                                <span class="heading mb-0">Search History</span>
-                                <?php
-                                $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();
-                                ?>
-                                <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>
-                            </div>
-                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
-                                <div class="card-body">
-                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
-                                    <ul class="tags-list" id="primary-recent-search">
-                                        @foreach($allSavedSearch AS $saved)
-                                            <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="card p-3 mb-4 rounded">--}}
+{{--                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">--}}
+{{--                                <span class="heading mb-0">Search History</span>--}}
+{{--                                <?php--}}
+{{--                                $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();--}}
+{{--                                ?>--}}
+{{--                                <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>--}}
+{{--                            </div>--}}
+{{--                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->--}}
+{{--                                    <ul class="tags-list" id="primary-recent-search">--}}
+{{--                                        @foreach($allSavedSearch AS $saved)--}}
+{{--                                            <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>--}}
+{{--                                        @endforeach--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                 @endif
                 <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
