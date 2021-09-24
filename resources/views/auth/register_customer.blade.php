@@ -4,6 +4,9 @@
 <div class="gf-customer-reg-wrapper">
     <div class="container">
         <div class="row justify-content-end">
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <img src="/images/homepage/gf-subscribe-image.png" width="800" height="695" alt="image not found">
+            </div>
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header text-center">
@@ -23,11 +26,11 @@
                         <form method="POST" action="{{ route('createCustomer') }}">
                             @csrf
                             {{--  FIRST NAME  --}}
-                            <div class="form-group row">
-                                <label for="firstName" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                            <div class="form-group row mb-0">
+{{--                                <label for="firstName" class=" col-form-label text-md-right">{{ __('First Name') }}</label>--}}
 
                                 <div class="col-md-6">
-                                    <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="firstName" type="text" class="gf-form-field @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="First Name">
 
                                     @error('firstName')
                                     <span class="invalid-feedback" role="alert">
@@ -35,13 +38,10 @@
                                     </span>
                                     @enderror
                                 </div>
-                            </div>
                             {{--  LAST NAME  --}}
-                            <div class="form-group row">
-                                <label for="lastName" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="name" autofocus>
+                                    <input id="lastName" type="text" class="gf-form-field @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="name" autofocus placeholder="Last Name">
 
                                     @error('lastName')
                                     <span class="invalid-feedback" role="alert">
@@ -50,12 +50,14 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{--  USERNAME  --}}
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                            {{--  USERNAME  --}}
+                            <div class="form-group row mb-0">
+{{--                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>--}}
+
+                                <div class="col">
+                                    <input id="username" type="text" class="gf-form-field @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
 
                                     @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -65,11 +67,10 @@
                                 </div>
                             </div>
                             {{--  EMAIL-ADDRESS  --}}
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <div class="form-group row mb-0">
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <div class="col">
+                                    <input id="email" type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -79,11 +80,10 @@
                                 </div>
                             </div>
                             {{--  PHONE  --}}
-                            <div class="form-group row">
-                                <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
+                            <div class="form-group row mb-0">
 
-                                <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                <div class="col">
+                                    <input id="phone" type="text" class="gf-form-field @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus placeholder="Phone">
 
                                     @error('phone')
                                     <span class="invalid-feedback" role="alert">
@@ -93,67 +93,61 @@
                                 </div>
                             </div>
                             {{--  ADDRESS  --}}
-                            <div class="form-group row">
-                                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+{{--                            <div class="form-group row mb-0">--}}
 
-                                <div class="col-md-6">
-                                    <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+{{--                                <div class="col">--}}
+{{--                                    <input id="address" type="text" class="gf-form-field @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus placeholder="Street Address">--}}
 
-                                    @error('address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
+{{--                                    @error('address')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             {{--  ZIP  --}}
-                            <div class="form-group row">
-                                <label for="zip" class="col-md-4 col-form-label text-md-right">{{ __('Zip') }}</label>
+{{--                            <div class="form-group row mb-0">--}}
 
-                                <div class="col-md-6">
-                                    <input id="zip" type="text" class="form-control @error('zip') is-invalid @enderror" name="zip" value="{{ old('zip') }}" required autocomplete="zip" autofocus>
+{{--                                <div class="col-md-6">--}}
+{{--                                    <input id="zip" type="text" class="gf-form-field @error('zip') is-invalid @enderror" name="zip" value="{{ old('zip') }}" required autocomplete="zip" autofocus placeholder="{{ __('Zip') }}">--}}
 
-                                    @error('zip')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            {{--  STATE  --}}
-                            <div class="form-group row">
-                                <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
+{{--                                    @error('zip')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
 
-                                <div class="col-md-6">
-                                    <input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state" autofocus>
+{{--                                --}}{{--  STATE  --}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <input id="state" type="text" class="gf-form-field @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state" autofocus placeholder="{{ __('State') }}">--}}
 
-                                    @error('state')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
+{{--                                    @error('state')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
                             {{--  CITY  --}}
-                            <div class="form-group row">
-                                <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+{{--                            <div class="form-group row mb-0">--}}
 
-                                <div class="col-md-6">
-                                    <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus>
+{{--                                <div class="col">--}}
+{{--                                    <input id="city" type="text" class="gf-form-field @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus placeholder="{{ __('City') }}">--}}
 
-                                    @error('city')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
+{{--                                    @error('city')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             {{--  PASSWORD  --}}
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <div class="form-group row mb-0">
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="col">
+                                    <input id="password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -163,20 +157,17 @@
                                 </div>
                             </div>
                             {{--  CONFIRM-PASSWORD  --}}
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <div class="form-group row mb-0">
 
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div class="col">
+                                    <input id="password-confirm" type="password" class="gf-form-field" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                                 </div>
                             </div>
                             {{--  SUBMIT  --}}
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary btn-fbd">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
+                                <button type="submit" class="col gf-btn-dark">
+                                    {{ __('Register') }}
+                                </button>
                             </div>
                         </form>
                     </div>

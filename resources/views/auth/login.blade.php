@@ -34,7 +34,7 @@
 {{--                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>--}}
 
                                 <div class="">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
+                                    <input id="email" type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
 {{--                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
 
                                 <div class="input-group">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                                    <input id="password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
                                     <span class="input-group-btn">
                                     <button onclick="showPassword()" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
                                 </span>
