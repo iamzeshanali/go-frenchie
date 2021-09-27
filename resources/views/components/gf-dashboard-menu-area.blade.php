@@ -1,4 +1,4 @@
-<div class="gf-dashboard-menu-area col-xl-2 col-lg-3">
+<div class="gf-dashboard-menu-area py-3 col-xl-2 col-lg-3 ">
     <div class="gf-dashboard-menu-user-panel">
         <div class="gf-user-info text-center">
                 <a href="">
@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div id="accordion" class="my-4">
+    <div id="accordion" class="mt-4">
         <div class="card bg-transparent border-0 pb-2">
             <div class="card-header p-0 bg-transparent border-0" id="headingOne">
                 <h5 class="mb-0">
@@ -22,11 +22,10 @@
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                    <ul>
-                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/studs')}}/1">Studs</a></li>
-                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/puppies')}}/1">Puppies</a></li>
-                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/litters')}}/1">Litters</a></li>
-                    </ul>
+                    <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/studs')}}/1"><i class="fas fa-paw mr-3"></i> <span>Studs</span></a><br>
+                    <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/puppies')}}/1"><i class="fas fa-paw mr-3"></i> <span>Puppies</span></a><br>
+                    <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/litters')}}/1"><i class="fas fa-paw mr-3"></i> <span>Litters</span></a>
+
                 </div>
             </div>
         </div>
@@ -42,11 +41,10 @@
 
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
-                        <ul>
-                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/breeder-supplies')}}/1">Breeder Supplies</a></li>
-                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-genetics')}}/1">Cannie Genetics</a></li>
-                            <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-nutrition')}}/1">Cannie Nutrition</a></li>
-                        </ul>
+                        <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/breeder-supplies')}}/1"><i class="fas fa-paw mr-3"></i> <span>Breeder Supplies</span></a><br>
+                        <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-genetics')}}/1"><i class="fas fa-paw mr-3"></i> <span>Cannie Genetics</span></a><br>
+                        <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-nutrition')}}/1"><i class="fas fa-paw mr-3"></i> <span>Cannie Nutrition</span></a>
+
                     </div>
                 </div>
             </div>
@@ -54,26 +52,26 @@
         <div class="card bg-transparent border-0 pb-2">
             <div class="card-header p-0 bg-transparent border-0" id="headingThree">
                 <h5 class="mb-0">
-                    <button class="btn btn-collapse p-0 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    <button class="btn btn-collapse p-0 link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                         <i class="fas fa-paw"></i> &emsp;  Saved Items
                     </button>
                 </h5>
             </div>
 
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                    <ul>
-                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-studs')}}/1">Saved Studs</a></li>
-                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-puppy')}}/1">Saved Puppies</a></li>
-                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-litters')}}/1">Saved Litters</a></li>
-                    </ul>
-                </div>
-            </div>
+{{--            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">--}}
+{{--                <div class="card-body">--}}
+{{--                    <ul>--}}
+{{--                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-studs')}}/1">Saved Studs</a></li>--}}
+{{--                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-puppy')}}/1">Saved Puppies</a></li>--}}
+{{--                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-litters')}}/1">Saved Litters</a></li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
         <div class="card bg-transparent border-0 pb-2">
             <div class="card-header p-0 bg-transparent border-0" id="headingThree">
                 <h5 class="mb-0">
-                    <button onclick="window.location = '{{\Illuminate\Support\Facades\URL::to('dashboard/saved-search')}}/1'" class="btn btn-collapse p-0 collapsed" aria-expanded="false">
+                    <button onclick="window.location = '{{\Illuminate\Support\Facades\URL::to('dashboard/saved-search')}}/1'" class="btn btn-collapse p-0 link" aria-expanded="false">
                         <i class="fas fa-history"></i> &emsp;  Search History
                     </button>
                 </h5>

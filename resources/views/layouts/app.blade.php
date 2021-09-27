@@ -101,7 +101,7 @@
                                 @else
                                     <li class="nav-item">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            <img class="" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="30px" height="30px">
+                                            <img class="" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="40px" height="40px">
                                         </a>
                                         <div class="breeder-db-login-dropdown dropdown-menu p-3" aria-labelledby="navbarDropdown">
                                             <p><a class="dropdown-item" href="{{ Auth::user()->role->getValue() == 'breeder' ? route('breederProfile') : route('customerProfile') }}"><b>{{ ucfirst(Auth::user()->username) }}</b></a></p>

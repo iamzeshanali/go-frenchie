@@ -129,7 +129,7 @@ header nav.gf-nav .navbar-brand img{
 }
 
 nav.gf-nav.active img{
-    margin-top: 0px;
+    margin-top: 0px !important;
     max-height: 55px;
     width: auto;
 }
@@ -347,7 +347,7 @@ a#navbarDropdown img {
 
 
 @media only screen and (min-width: 991px){
-    .fbd-filter-area, .gf-adds-area {
+    .fbd-filter-area, .gf-adds-area, .gf-dashboard-menu-area{
         position: sticky !important;
         top:80px;
         max-height: calc(100vh - 87px);
@@ -581,18 +581,17 @@ form#create-listing-form label {
 
 /*7-- *********** Breader Dashboard Start ***************/
 
-
-
 /* Dashboard Menu Area */
 
-
 .gf-dashboard-menu-user-panel img{
+    width: 75%;
     height: auto;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    max-width: 200px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
 
 }
 
-.gf-dashboard-menu-area .card-header button::after {
+.gf-dashboard-menu-area .card-header button:not(.link):after {
     display: block;
     position: absolute;
     top: 0px;
@@ -602,80 +601,26 @@ form#create-listing-form label {
     content: "\f107";
     font-family: "Font Awesome 5 Pro";
     transition: all 0.3s ease;
+    margin-top: 2px;
+    color: var(--blue);
 }
 
 .gf-dashboard-menu-area .card-header button.collapsed::after {
     transition: all 0.3s ease;
     transform: rotate(90deg);
-    /* display: block;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 16px;
-    height: 16px;
-    content: "\f104";
-    font-family: "Font Awesome 5 Pro"; */
+    margin-top: 6px;
 }
 
-.gf-dashboard-menu-area button.btn-collapse {
-    font-size: 16px;
+.gf-dashboard-menu-area button.btn-collapse ,.gf-dashboard-menu-area .card-body a{
+    color: var(--dark);
+}
+
+.gf-dashboard-menu-area button.btn-collapse i, .gf-dashboard-menu-area .card-body a i{
     color: var(--blue);
-}
-
-.breader-dashboard-menu-area button.btn-collapse:hover {
-    visibility: 0.8;
-}
-
-.breader-dashboard-menu-area .card-body {
-    padding: 0.25rem 0.25rem;
-}
-
-.breader-dashboard-menu-area .card-body ul li::marker {
-    content: "";
-    font-family: "Font Awesome 5 Pro";
-}
-
-.breader-dashboard-menu-area .card-body a {
-    padding-left: 12px;
-    text-decoration: none;
-    color: var(--blue);
-}
-
-.breader-dashboard-menu-area .card-body a:hover {
-    visibility: 0.8;
 }
 
 /* Dashboard Content Area */
 
-.breader-dashboard-content {
-    background-color: white;
-}
-
-.table-responsive {
-    margin: 30px 0;
-}
-
-.table-wrapper {
-    background: #fff;
-    padding: 20px 25px;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-}
-
-.table-title {
-    padding-bottom: 15px;
-    background: #ffffff;
-    color: #000000;
-    padding: 16px 30px;
-    min-width: 100%;
-    margin: -20px -25px 10px;
-    border-radius: 3px 3px 0 0;
-}
-
-.table-title h2 {
-    margin: 5px 0 0;
-    font-size: 24px;
-}
 
 .table-title .btn-group {
     float: right;
@@ -776,9 +721,8 @@ table.table .avatar {
     margin-right: 10px;
 }
 
-.pagination {
-    float: right;
-    margin: 0 0 5px;
+.pagination{
+    margin-bottom: 0px;
 }
 
 .pagination li a {
@@ -816,8 +760,6 @@ table.table .avatar {
 }
 
 .hint-text {
-    float: left;
-    margin-top: 10px;
     font-size: 13px;
 }
 
@@ -922,6 +864,21 @@ table.table .avatar {
 
 .modal form label {
     font-weight: normal;
+}
+
+
+/* Add new listing Form */
+
+.gf-add-listing-image input.gf-form-field{
+    width: 78%;
+    border-radius: 30px 0px 0px 30px;
+}
+
+.gf-add-listing-image button.gf-btn-dark{
+    border-bottom-left-radius: 0px;
+    padding-block: 7px;
+    margin-left: -1px;
+    border: none;
 }
 
 /************ Breader Dashboard End ***************/
@@ -1742,6 +1699,13 @@ html:root{
     --champagne: #F5CE9A;
 }
 
+.gf-blue{color: var(--blue);}
+.gf-red{color: var(--red);}
+.gf-dark{color: var(--dark);}
+.gf-gray{color: var(--gray);}
+.gf-champagne{color: var(--champagne);}
+
+
 h1, h2, h3, h4, h5, h6 {
     color: var(--dark);
     font-family: Sanson;
@@ -1800,6 +1764,10 @@ body a:hover{
 .container{
     padding-right: 0px !important;
     padding-left: 0px !important;
+}
+
+.gf-mw-fit{
+    max-width: fit-content;
 }
 
 img{
