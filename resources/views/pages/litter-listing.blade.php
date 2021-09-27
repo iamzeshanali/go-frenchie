@@ -2,80 +2,121 @@
 @section('title', 'Litters')
 @section('content')
 
-    <div class="container">
 
-        <h2 class="page-title text-center">Litters Page</h2>
-        <div class="page-description text-justify mb-5 rounded">
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </p>
+
+    {{--Homepage Banner Section--}}
+    <div class="wrapper gf-resources-banner-wrapper d-flex justify-content-center">
+        <div class="container row align-items-center">
+            <div class="gf-resources-banner-text col-md-6">
+                <h1>
+                    <span style="color:#be202e;">Friendly Studs</span><br>
+                    For Frenchie Lovers</h1>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="/images/frenchie-reading-book.png" loading="lazy" width="800" height="431" alt="">
+            </div>
         </div>
-
     </div>
+
     <div class="container-fluid">
-        <div class="page-content d-lg-flex ">
+        <div class="page-content d-lg-flex align-items-start">
+            {{--            Adds Area--}}
+            <div class="gf-adds-area mb-3 col-xl-2">
+                <img class="gf-side-add-image rounded" src="/images/ads/the-dog-house.jpg" alt="">
+{{--                @include('components/adds-area')--}}
+            </div>
 
-            @include('components/adds-area')
+            <div class="fbd-content-area mb-3 col-xl-8 col-lg-9">
 
-            <div class="fbd-content-area mb-3 rounded">
+                <div id="primary-listing-data" class="fbd-listing-area">
 
-                <div id="primary-listing-data" class="fbd-listing-area p-3 rounded">
-
-                    <p class="listing-count">0-5 out of {{count($sponsoredLitters)}} listings</p>
-                    <span class="listing-type">SPONSORED LITTERS</span>
-                    @if(empty($sponsoredLitters))
+                    {{--                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>12</b> listings</p>--}}
+                    <h3 class="listing-type">SPONSORED LITTERS</h3>
+                    @if(empty($sponsoredPuppies))
                         <div class="fbd-standard-listing p-3">
                             <div class="fbd-standard-card rounded row p-3">
                                 <p class="text-center">No Sponsored Litters</p>
                             </div>
                         </div>
                     @else
-                        @foreach($sponsoredLitters as $key=>$sponsoredLitter)
+                        @foreach($sponsoredPuppies as $key=>$sponsoredPuppy)
 
-                            <div  class="fbd-sponsured-listings p-3">
-                                <div class="fbd-sponsured-card rounded row align-items-center p-3">
-                                    <div class="col-lg-3">
+                            <div  class="fbd-sponsured-listings py-3">
+                                <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
+                                    <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($sponsoredLitter->photo1)}}" alt="">
-                                            <!-- <span class="fbd-sp-listing-liked"><i class="far fa-heart"></i></span> -->
+                                            <img src="{{asset_file_url($sponsoredPuppy->photo1)}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-lg-9 pl-5">
+                                    <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
 
-                                        @if(Auth::user())
-                                            <?php
-                                            $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllLitters();
-                                            //                                            dd($allSavedListings);
-                                            ?>
 
-                                            @if(count($allSavedListings) > 0)
+
+                                        <div onclick="singlePuppy('{{$sponsoredPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
+                                            <h4 class="fbd-sp-list-title d-inline">{{$sponsoredPuppy->title}}</h4>
+                                            <p>{{$sponsoredPuppy->decription}}</p>
+                                        </div>
+                                        <div class="fbd-sp-list-detail row">
+                                            <div class="col-xl-6 pl-0">
+                                                <i class="fa fa-phone-alt"></i>
+                                                <span>{{$sponsoredPuppy->breeder->phone}}</span>
+                                            </div>
+                                            <div class="col-xl-3 fbd-sp-list-detail-second pl-0">
+                                                <i class="fa fa-calendar-alt"></i>
+                                                <span>{{date('Y-m-d',$sponsoredPuppy->dob->getTimestamp())}}</span>
+                                            </div>
+                                            <div class="col-xl-3 pl-0">
+                                                <i class="fa fa-venus-mars"></i>
+                                                <span>{{$sponsoredPuppy->sex->getValue()}}</span>
+                                            </div>
+                                            {{--                                        </div>--}}
+                                            {{--                                        <div class="fbd-sp-list-kennel row">--}}
+                                            <div class="col-xl-6 fbd-sp-list-kennel-second pl-0">
+                                                <i class="fa fa-envelope"></i>
+                                                <span>{{$sponsoredPuppy->breeder->email->asString()}}</span>
+                                            </div>
+                                            <div class="col-xl-6 fbd-sp-list-kennel-first pl-0">
+                                                <i class="fa fa-igloo"></i>
+                                                <span>{{$sponsoredPuppy->breeder->kennelName}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-1 gf-listing-card-social-icon p-0">
+                                        <div class="fbd-sp-list-social d-flex flex-lg-column py-2">
+                                            @if(Auth::user())
                                                 <?php
-                                                foreach ($allSavedListings as $saved) {
-                                                    if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
-                                                    {
-                                                        if(($saved->litters->slug == $sponsoredLitter->slug)){
-                                                            $matched = true;
-                                                            break;
-                                                        }else{
-                                                            $matched = false;
-                                                        }
-
-                                                    }
-                                                }
+                                                $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
+                                                //                                            dd($allSavedListings);
                                                 ?>
-                                                @if($matched == false)
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredLitter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredLitter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
-                                                @else
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredLitter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredLitter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
-                                                @endif
 
+                                                @if(count($allSavedListings) > 0)
+                                                    <?php
+                                                    foreach ($allSavedListings as $saved) {
+                                                        if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
+                                                        {
+                                                            if(($saved->listings->slug == $sponsoredPuppy->slug)){
+                                                                $matched = true;
+                                                                break;
+                                                            }else{
+                                                                $matched = false;
+                                                            }
+
+                                                        }
+                                                    }
+                                                    ?>
+                                                    @if($matched == false)
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    @else
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    @endif
+
+                                                @else
+                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                @endif
                                             @else
-                                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredLitter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredLitter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
+                                                <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
                                             @endif
-                                        @else
-                                            <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
-                                        @endif
                                             <div id="LoginModal" class="modal fade">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -92,15 +133,15 @@
                                                             @csrf
                                                             <div class="modal-body">
 
-                                                                <input type="hidden" name="slug" value="{{$sponsoredLitter->slug}}">
-                                                                <input type="hidden" name="type" value="litters">
+                                                                <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
+                                                                <input type="hidden" name="type" value="listing">
 
                                                                 {{--  EMAIL-ADDRESS  --}}
                                                                 <div class="form-group row">
                                                                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                                                     <div class="col-md-6">
-                                                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -114,7 +155,7 @@
                                                                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                                                     <div class="col-md-6">
-                                                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
@@ -147,14 +188,14 @@
                                                             @csrf
                                                             <div class="modal-body">
 
-                                                                <input type="hidden" name="slug" value="{{$sponsoredLitter->slug}}">
-                                                                <input type="hidden" name="type" value="litters">
+                                                                <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
+                                                                <input type="hidden" name="type" value="listing">
                                                                 {{--  USERNAME  --}}
                                                                 <div class="form-group row">
                                                                     <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                                                                     <div class="col-md-6">
-                                                                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                                                         @error('username')
                                                                         <span class="invalid-feedback" role="alert">
@@ -168,7 +209,7 @@
                                                                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                                                     <div class="col-md-6">
-                                                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -182,7 +223,7 @@
                                                                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                                                     <div class="col-md-6">
-                                                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
@@ -196,7 +237,7 @@
                                                                     <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                                                                     <div class="col-md-6">
-                                                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                        <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -211,39 +252,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        <div onclick="singleList('{{$sponsoredLitter->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description mb-3">
-                                            <h5 class="fbd-sp-list-title d-inline">{{$sponsoredLitter->title}}</h5>
-                                            <p>{{$sponsoredLitter->decription}}</p>
-                                        </div>
-                                        <div class="fbd-sp-list-detail row">
-                                            <div class="col-xl-4 fbd-sp-list-detail-second mb-2">
-                                                <i class="fa fa-calendar-alt"></i>
-                                                <span>{{date('Y-m-d',$sponsoredLitter->expectedDob->getTimestamp())}}</span>
-                                            </div>
-
-                                        </div>
-                                        <div class="fbd-sp-list-kennel row">
-                                            <div class="col-xl-8 fbd-sp-list-kennel-first mb-2">
-                                                <i class="fa fa-igloo"></i>
-                                                <span>{{$sponsoredLitter->sire}}</span>
-                                            </div>
-                                            <div class="col-xl-4 mb-2">
-                                                <i class="fa fa-venus-mars"></i>
-                                                <span>{{$sponsoredLitter->dam}}</span>
-                                            </div>
-                                            <div class="col-xl-8 fbd-sp-list-kennel-second mb-2">
-                                                <i class="fa fa-envelope"></i>
-                                                <span>{{$sponsoredLitter->breeder->email->asString()}}</span>
-                                            </div>
-                                            <div class="col-xl-4 mb-2">
-                                                <i class="fa fa-phone-alt"></i>
-                                                <span>{{$sponsoredLitter->breeder->phone}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="fbd-sp-list-social text-right">
-                                            <a href="{{$sponsoredLitter->breeder->fbAccountUrl->asString()}}"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="{{$sponsoredLitter->breeder->igAccountUrl->asString()}}"><i class="fab fa-instagram"></i></a>
-                                            <a href="{{$sponsoredLitter->breeder->website->asString()}}"><i class="fas fa-globe"></i></a>
+                                            <a href="{{$sponsoredPuppy->breeder->fbAccountUrl->asString()}}"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="{{$sponsoredPuppy->breeder->igAccountUrl->asString()}}"><i class="fab fa-instagram"></i></a>
+                                            <a href="{{$sponsoredPuppy->breeder->website->asString()}}"><i class="fas fa-globe"></i></a>
                                             <a href="#"><i class="fas fa-share-square"></i></a>
                                         </div>
                                     </div>
@@ -253,228 +264,232 @@
                         @endforeach
 
                     @endif
+                    {{--                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>--}}
+                    <h3 class="listing-type my-3">STANDARD LISTINGS</h3>
 
-                    <span class="listing-type">STANDARD LITTERS</span>
-
-                    @if(empty($standardLitters))
+                    @if(empty($standardPuppies))
                         <div class="fbd-standard-listing p-3">
                             <div class="fbd-standard-card rounded row p-3">
-                                <p class="text-center">No Sponsored Litters</p>
+                                <p class="text-center">No Standard Listings</p>
                             </div>
                         </div>
                     @else
-                        @foreach($standardLitters as $key=>$standardLitter)
+                        @foreach($standardPuppies as $key=>$standardPuppy)
 
-                            <div  class="fbd-sponsured-listings p-3">
-                                <div class="fbd-sponsured-card rounded row align-items-center p-3">
-                                    <div class="col-lg-3">
+                            <div  class="fbd-sponsured-listings py-3">
+                                <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
+                                    <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($standardLitter->photo1)}}" alt="">
-                                            <!-- <span class="fbd-sp-listing-liked"><i class="far fa-heart"></i></span> -->
+                                            <img src="{{asset_file_url($standardPuppy->photo1)}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-lg-9 pl-5">
+                                    <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
 
-                                        @if(Auth::user())
-                                            <?php
-                                            $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllLitters();
-                                            //                                            dd($allSavedListings);
-                                            ?>
-                                            @if(count($allSavedListings) > 0)
-                                                <?php
-                                                foreach ($allSavedListings as $saved) {
-                                                    if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
-                                                    {
-                                                        if(($saved->litters->slug == $standardLitter->slug)){
-                                                            $matched = true;
-                                                            break;
-                                                        }else{
-                                                            $matched = false;
-                                                        }
 
-                                                    }
-                                                }
-                                                ?>
-                                                @if($matched == false)
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardLitter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardLitter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
-                                                @else
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardLitter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardLitter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
-                                                @endif
 
-                                            @else
-                                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardLitter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardLitter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
-                                            @endif
-                                        @else
-                                            <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
-                                        @endif
-                                        <div id="LoginModal" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Register Yourself</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    @if (\Session::has('error'))
-                                                        <div class="alert alert-danger">
-                                                            {{ \Session::get('error') }}
-                                                        </div>
-                                                    @endif
-                                                    <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
-                                                        @csrf
-                                                        <div class="modal-body">
-
-                                                            <input type="hidden" name="slug" value="{{$standardLitter->slug}}">
-                                                            <input type="hidden" name="type" value="litters">
-
-                                                            {{--  EMAIL-ADDRESS  --}}
-                                                            <div class="form-group row">
-                                                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                                                    @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  PASSWORD  --}}
-                                                            <div class="form-group row">
-                                                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                                                    @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                            <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
-                                                            <button type="submit" class="btn btn-danger btn-fbd">
-                                                                {{ __('Login') }}
-                                                            </button>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="deleteListingModal" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Register Yourself</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
-                                                        @csrf
-                                                        <div class="modal-body">
-
-                                                            <input type="hidden" name="slug" value="{{$standardLitter->slug}}">
-                                                            <input type="hidden" name="type" value="litters">
-                                                            {{--  USERNAME  --}}
-                                                            <div class="form-group row">
-                                                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                                                                    @error('username')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  EMAIL-ADDRESS  --}}
-                                                            <div class="form-group row">
-                                                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                                                    @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  PASSWORD  --}}
-                                                            <div class="form-group row">
-                                                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                                                    @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            {{--  CONFIRM-PASSWORD  --}}
-                                                            <div class="form-group row">
-                                                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                            <button type="submit" class="btn btn-danger btn-fbd">
-                                                                {{ __('Register') }}
-                                                            </button>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div onclick="singleList('{{$standardLitter->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description mb-3">
-                                            <h5 class="fbd-sp-list-title d-inline">{{$standardLitter->title}}</h5>
-                                            <p>{{$standardLitter->decription}}</p>
+                                        <div onclick="singlePuppy('{{$standardPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
+                                            <h4 class="fbd-sp-list-title d-inline">{{$standardPuppy->title}}</h4>
+                                            <p>{{$standardPuppy->decription}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
-                                            <div class="col-xl-4 fbd-sp-list-detail-second mb-2">
-                                                <i class="fa fa-calendar-alt"></i>
-                                                <span>{{date('Y-m-d',$standardLitter->expectedDob->getTimestamp())}}</span>
-                                            </div>
-
-                                        </div>
-                                        <div class="fbd-sp-list-kennel row">
-                                            <div class="col-xl-8 fbd-sp-list-kennel-first mb-2">
-                                                <i class="fa fa-igloo"></i>
-                                                <span>{{$standardLitter->sire}}</span>
-                                            </div>
-                                            <div class="col-xl-4 mb-2">
-                                                <i class="fa fa-venus-mars"></i>
-                                                <span>{{$standardLitter->dam}}</span>
-                                            </div>
-                                            <div class="col-xl-8 fbd-sp-list-kennel-second mb-2">
-                                                <i class="fa fa-envelope"></i>
-                                                <span>{{$standardLitter->breeder->email->asString()}}</span>
-                                            </div>
-                                            <div class="col-xl-4 mb-2">
+                                            <div class="col-xl-6 pl-0">
                                                 <i class="fa fa-phone-alt"></i>
-                                                <span>{{$standardLitter->breeder->phone}}</span>
+                                                <span>{{$standardPuppy->breeder->phone}}</span>
+                                            </div>
+                                            <div class="col-xl-3 fbd-sp-list-detail-second pl-0">
+                                                <i class="fa fa-calendar-alt"></i>
+                                                <span>{{date('Y-m-d',$standardPuppy->dob->getTimestamp())}}</span>
+                                            </div>
+                                            <div class="col-xl-3 pl-0">
+                                                <i class="fa fa-venus-mars"></i>
+                                                <span>{{$standardPuppy->sex->getValue()}}</span>
+                                            </div>
+                                            {{--                                        </div>--}}
+                                            {{--                                        <div class="fbd-sp-list-kennel row">--}}
+                                            <div class="col-xl-6 fbd-sp-list-kennel-second pl-0">
+                                                <i class="fa fa-envelope"></i>
+                                                <span>{{$standardPuppy->breeder->email->asString()}}</span>
+                                            </div>
+                                            <div class="col-xl-6 fbd-sp-list-kennel-first pl-0">
+                                                <i class="fa fa-igloo"></i>
+                                                <span>{{$standardPuppy->breeder->kennelName}}</span>
                                             </div>
                                         </div>
-                                        <div class="fbd-sp-list-social text-right">
-                                            <a href="{{$standardLitter->breeder->fbAccountUrl->asString()}}"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="{{$standardLitter->breeder->igAccountUrl->asString()}}"><i class="fab fa-instagram"></i></a>
-                                            <a href="{{$standardLitter->breeder->website->asString()}}"><i class="fas fa-globe"></i></a>
+                                    </div>
+
+                                    <div class="col-lg-1 gf-listing-card-social-icon p-0">
+                                        <div class="fbd-sp-list-social d-flex flex-lg-column py-2">
+                                            @if(Auth::user())
+                                                <?php
+                                                $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
+                                                //                                            dd($allSavedListings);
+                                                ?>
+
+                                                @if(count($allSavedListings) > 0)
+                                                    <?php
+                                                    foreach ($allSavedListings as $saved) {
+                                                        if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
+                                                        {
+                                                            if(($saved->listings->slug == $standardPuppy->slug)){
+                                                                $matched = true;
+                                                                break;
+                                                            }else{
+                                                                $matched = false;
+                                                            }
+
+                                                        }
+                                                    }
+                                                    ?>
+                                                    @if($matched == false)
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    @else
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    @endif
+
+                                                @else
+                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                @endif
+                                            @else
+                                                <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
+                                            @endif
+                                            <div id="LoginModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        @if (\Session::has('error'))
+                                                            <div class="alert alert-danger">
+                                                                {{ \Session::get('error') }}
+                                                            </div>
+                                                        @endif
+                                                        <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
+                                                            @csrf
+                                                            <div class="modal-body">
+
+                                                                <input type="hidden" name="slug" value="{{$standardPuppy->slug}}">
+                                                                <input type="hidden" name="type" value="listing">
+
+                                                                {{--  EMAIL-ADDRESS  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                                                        @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                                                        @error('password')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
+                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                    {{ __('Login') }}
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="deleteListingModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
+                                                            @csrf
+                                                            <div class="modal-body">
+
+                                                                <input type="hidden" name="slug" value="{{$standardPuppy->slug}}">
+                                                                <input type="hidden" name="type" value="listing">
+                                                                {{--  USERNAME  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                                                                        @error('username')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  EMAIL-ADDRESS  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                                                        @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                                                        @error('password')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                {{--  CONFIRM-PASSWORD  --}}
+                                                                <div class="form-group row">
+                                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                                                    <div class="col-md-6">
+                                                                        <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                    {{ __('Register') }}
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="{{$standardPuppy->breeder->fbAccountUrl->asString()}}"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="{{$standardPuppy->breeder->igAccountUrl->asString()}}"><i class="fab fa-instagram"></i></a>
+                                            <a href="{{$standardPuppy->breeder->website->asString()}}"><i class="fas fa-globe"></i></a>
                                             <a href="#"><i class="fas fa-share-square"></i></a>
                                         </div>
                                     </div>
@@ -487,21 +502,280 @@
 
                 </div>
 
-                <div id="secondary-listing-data" class="fbd-listing-area p-3 rounded">
+                <div id="secondary-listing-data" class="fbd-listing-area rounded">
                 </div>
 
             </div>
-            @include('components/adds-area')
+
+            {{--            Adds Area--}}
+            <div class="gf-adds-area mb-3 col-xl-2">
+                @include('components/adds-area')
+            </div>
         </div>
     </div>
 
 
+    {{--Testimonials Slider--}}
+    <div class="wrapper gf-testimonials d-flex justify-content-center">
+        <div class="container row align-items-center justify-content-center">
+            {{--        <div class="col-md-6 text-center">--}}
+            {{--            <img src="/images/homepage/gf-home-banner-dog.png" alt="">--}}
+            {{--        </div>--}}
+            <div class="col-md-9">
+                <h2 class="text-center mb-4">Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
+
+                <div class="gf-home-testimonial-slider">
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    {{--Contact Section--}}
+    <div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
+        <div class="container row align-items-center">
+            <div class="col-md-6">
+                <img src="/images/homepage/gf-home-contact-image.png" width="450" loading="lazy" alt="">
+            </div>
+            <div class="col-md-6">
+                <div class="gf-contactform-area">
+                    <h4>Contact Us With Any Questions </h4>
+                    <form action="">
+                        <input type="text" placeholder="Name">
+                        <input type="email" placeholder="Email">
+                        <textarea name="Message" cols="30" rows="5" placeholder="Message"></textarea>
+                        <label for="captchaWrap">To continue, please type the characters below:</label>
+                        <div id="captchaWrap" class="captchaWrap d-flex align-items-center text-align-center">
+                            <canvas id="captcha"></canvas>
+                            <button type="button" id="refreshButton" class="captcha-refresh-btn"><i class="fas fa-redo"></i></button>
+                            <span id="output" class="ml-2"></span>
+                        </div>
+                        <div class="mb-2">
+                            <input id="textBox" class="captcha-textBox mr-2" type="text" name="text" placeholder="Captcha Text">
+                            <button type="button" id="submitButton" class="gf-btn-light">Check</button>
+                        </div>
+                        <button type="submit" class="gf-btn-dark">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
 
+        // To uncheck child elements when parent element is unchecked
+        $("#filterBlue").change(function() {
+            if(!this.checked) {
+                $("#filterABlue2copy").prop('checked',false);
+                $("#filterABlue1copy").prop('checked',false);
+                $("#filterABlueDd").prop('checked',false);
+                $("#filterABlueUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterABlue2copy").prop('checked',true);
+                $("#filterABlue1copy").prop('checked',true);
+                $("#filterABlueDd").prop('checked',true);
+                $("#filterABlueUnknown").prop('checked',true);
+            }
+            findValue();
+        });
+
+        $("#filterChocolate").change(function() {
+            if(!this.checked) {
+                $("#chocolate2copy").prop('checked',false);
+                $("#chocolate1copy").prop('checked',false);
+                $("#chocolateDd").prop('checked',false);
+                $("#chocolateUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#chocolate2copy").prop('checked',true);
+                $("#chocolate1copy").prop('checked',true);
+                $("#chocolateDd").prop('checked',true);
+                $("#chocolateUnknown").prop('checked',true);
+            }
+            findValue();
+        });
+
+        $("#filterTestable").change(function() {
+            if(!this.checked) {
+                $("#filterTestableChocolate2copy").prop('checked',false);
+                $("#filterTestableChocolate1copy").prop('checked',false);
+                $("#filterTestableChocolateDd").prop('checked',false);
+                $("#filterTestableChocolateUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterTestableChocolate2copy").prop('checked',true);
+                $("#filterTestableChocolate1copy").prop('checked',true);
+                $("#filterTestableChocolateDd").prop('checked',true);
+                $("#filterTestableChocolateUnknown").prop('checked',true);
+            }
+            findValue();
+        });
+
+        $("#filterFluffy").change(function() {
+            if(!this.checked) {
+                $("#filterAfluffy2copy").prop('checked',false);
+                $("#filterAfluffy1copy").prop('checked',false);
+                $("#filterAfluffyDd").prop('checked',false);
+                $("#filterAfluffyUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterAfluffy2copy").prop('checked',true);
+                $("#filterAfluffy1copy").prop('checked',true);
+                $("#filterAfluffyDd").prop('checked',true);
+                $("#filterAfluffyUnknown").prop('checked',true);
+            }
+            findValue();
+        });
+
+        $("#filterIntensity").change(function() {
+            if(!this.checked) {
+                $("#filterAintensity2copy").prop('checked',false);
+                $("#filterAintensity1copy").prop('checked',false);
+                $("#filterAintensityDd").prop('checked',false);
+                $("#filterAintensityUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterAintensity2copy").prop('checked',true);
+                $("#filterAintensity1copy").prop('checked',true);
+                $("#filterAintensityDd").prop('checked',true);
+                $("#filterAintensityUnknown").prop('checked',true);
+            }
+            findValue();
+        });
+
+        $("#filterPied").change(function() {
+            if(!this.checked) {
+                $("#filterApied2copy").prop('checked',false);
+                $("#filterApied1copy").prop('checked',false);
+                $("#filterApiedDd").prop('checked',false);
+                $("#filterApiedUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterApied2copy").prop('checked',true);
+                $("#filterApied1copy").prop('checked',true);
+                $("#filterApiedDd").prop('checked',true);
+                $("#filterApiedUnknown").prop('checked',true);
+            }
+            findValue();
+        });
+
+        $("#filterMerle").change(function() {
+            if(!this.checked) {
+                $("#filterMerleYes").prop('checked',false);
+                $("#filterMerleNo").prop('checked',false);
+                $("#filterMerleUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterMerleYes").prop('checked',true);
+                $("#filterMerleNo").prop('checked',true);
+                $("#filterMerleUnknown").prop('checked',true);
+            }
+            findValue();
+        });
+
+        $("#filterBrindle").change(function() {
+            if(!this.checked) {
+                $("#filterBrindleYes").prop('checked',false);
+                $("#filterBrindleNo").prop('checked',false);
+                $("#filterBrindleUnknown").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterBrindleYes").prop('checked',true);
+                $("#filterBrindleNo").prop('checked',true);
+                $("#filterBrindleUnknown").prop('checked',true);
+            }
+            findValue();
+        });
+
+        $("#filterAgouti").change(function() {
+            if(!this.checked) {
+                $("#filterAgoutiAa").prop('checked',false);
+                $("#filterAgoutiAya").prop('checked',false);
+                $("#filterAgoutiAyat").prop('checked',false);
+                $("#filterAgoutiAyay").prop('checked',false);
+                $("#filterAgoutiAta").prop('checked',false);
+                $("#filterAgoutiAtat").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterAgoutiAa").prop('checked',true);
+                $("#filterAgoutiAya").prop('checked',true);
+                $("#filterAgoutiAyat").prop('checked',true);
+                $("#filterAgoutiAyay").prop('checked',true);
+                $("#filterAgoutiAta").prop('checked',true);
+                $("#filterAgoutiAtat").prop('checked',true);
+            }
+            findValueForAgoutiEmcir();
+        });
+
+        $("#filterEmcir").change(function() {
+            if(!this.checked) {
+                $("#filterEmcirEmem").prop('checked',false);
+                $("#filterEmcirEmE").prop('checked',false);
+                $("#filterEmcirEme").prop('checked',false);
+                $("#filterEmcirEE").prop('checked',false);
+                $("#filterEmcirEe").prop('checked',false);
+                $("#filterEmciree").prop('checked',false);
+            }
+            if(this.checked) {
+                $("#filterEmcirEmem").prop('checked',true);
+                $("#filterEmcirEmE").prop('checked',true);
+                $("#filterEmcirEme").prop('checked',true);
+                $("#filterEmcirEE").prop('checked',true);
+                $("#filterEmcirEe").prop('checked',true);
+                $("#filterEmciree").prop('checked',true);
+            }
+            findValueForAgoutiEmcir();
+        });
+
+        $('#dnaColor').on('change', function () {
+            var dnaColor = $(this).val();
+            $.ajax({
+                type:'POST',
+                url: '{{route('searchDNACoat')}}',
+                data: {
+                    dnaColor:dnaColor,
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                success: function(data){
+                    console.log(data.success);
+                    if(data.success == '200'){
+                        console.log("DONE");
+                        document.getElementById("optional").style.display = "none";
+                        $("#coat").html(data.html);
+                    }
+                },
+
+            });
+        });
+
         function addOrRemoveToFavourite($slug, $email, $type){
-            // console.log($slug, $email, $type);
-
-
             $.ajax({
                 type:'POST',
                 url: '{{route('addOrRemoveToFavourite')}}',
@@ -528,10 +802,698 @@
             });
 
         }
+        function previousSearch(color, coat, zip, type){
+            console.log(color, coat, zip,type);
+            $.ajax({
+                type:'POST',
+                url: '{{route('findListings')}}',
+                data: {
+                    type:type,
+                    dnaColor:color,
+                    dnaCoat:coat,
+                    zip:zip,
+                    requestType: 'ajax'
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                success: function(data){
+                    console.log(data.success);
+                    document.getElementById("primary-listing-data").style.display = "none";
+                    $('#secondary-listing-data').html(data.html);
+                },
+                progress: function(e) {
+                    //make sure we can compute the length
+                    if(e.lengthComputable) {
+                        //calculate the percentage loaded
+                        var pct = (e.loaded / e.total) * 100;
 
-        function singleList($slug) {
-            // console.log($slug);
-            window.location = "http://frenchbulldog.test/show-litter/"+$slug;
+                        //log percentage loaded
+                        console.log(pct);
+                    }
+                    //this usually happens when Content-Length isn't set
+                    else {
+                        console.warn('Content Length not reported!');
+                    }
+                }
+            });
         }
+        function cancelRecentSearch(color,coat){
+            console.log("Color:" +color, "DNA:" +coat);
+
+            if (color = 'Blue'){
+                $("input[name='blue']:checked").each(function(){
+                    if (coat == '1copy(D/d)'){
+                        $("#filterABlue1copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                    if(coat == '2copies(d/d)'){
+                        $("#filterABlue2copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    } if(coat == 'doesnotcarry'){
+                        $("#filterABlueDd").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                    if(coat == 'unknown'){
+                        $("#filterABlueUnknown").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                    return false;
+                });
+            }
+            if (color = 'Chocolate'){
+
+                $("input[name='chocolate']:checked").each(function(){
+                    if (coat == '2copies(co/co)'){
+                        $("#chocolate2copy").prop('checked',false);
+                        console.log("DONE");
+                        findValue();
+                        return false;
+                    }
+                    if(coat == '1copy(Co/co)'){
+                        $("#chocolate1copy").prop('checked',false);
+                        console.log("NDONE");
+                        findValue();
+                        return false;
+                    }
+                    if(coat == 'doesnotcarry'){
+                        $("#chocolateDd").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                    if(coat == 'unknown'){
+                        $("#chocolateUnknown").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                });
+            }
+            if (color = 'Testable'){
+                $("input[name='testable']:checked").each(function(){
+                    if (coat == '2copies(b/b)'){
+                        $("#filterTestableChocolate2copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == '1copy(B/b)'){
+                        $("#filterTestableChocolate1copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'doesnotcarry'){
+                        $("#filterTestableChocolateDd").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'unknown'){
+                        $("#filterTestableChocolateUnknown").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                });
+            }
+            if (color = 'Fluffy'){
+                $("input[name='fluffy']:checked").each(function(){
+                    if (coat == '2copies(l/l)'){
+                        $("#filterAfluffy2copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == '1copy(L/l)'){
+                        $("#filterAfluffy1copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'doesnotcarry'){
+                        $("#filterAfluffyDd").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'unknown'){
+                        $("#filterAfluffyUnknown").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                });
+            }
+            if (color = 'Intensity'){
+                $("input[name='intensity']:checked").each(function(){
+                    if (coat == '2copies(i/i)'){
+                        $("#filterAintensity2copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == '1copy(I/i)'){
+                        $("#filterAintensity1copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'doesnotcarry'){
+                        $("#filterAintensityDd").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'unknown'){
+                        $("#filterAintensityUnknown").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                });
+            }
+            if (color = 'Pied'){
+                $("input[name='pied']:checked").each(function(){
+                    if (coat == '2copies(s/s)'){
+                        $("#filterApied2copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == '1copy(s/N)'){
+                        $("#filterApied1copy").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'doesnotcarry'){
+                        $("#filterApiedDd").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'unknown'){
+                        $("#filterApiedUnknown").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                });
+            }
+            if (color = 'Merle'){
+                $("input[name='merle']:checked").each(function(){
+                    if (coat == 'yes'){
+                        $("#filterMerleYes").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'no'){
+                        $("#filterMerleNo").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'unknown'){
+                        $("#filterMerleUnknown").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                });
+            }
+            if (color = 'Brindle'){
+                $("input[name='brindle']:checked").each(function(){
+                    if (coat == 'yes'){
+                        $("#filterBrindleYes").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'no'){
+                        $("#filterBrindleNo").prop('checked',false);
+                        findValue();
+                        return false;
+                    }else if(coat == 'unknown'){
+                        $("#filterBrindleUnknown").prop('checked',false);
+                        findValue();
+                        return false;
+                    }
+                });
+            }
+
+
+        }
+        function arrayRemove(arr, value) {
+
+            return arr.filter(function(geeks){
+                return geeks != value;
+            });
+
+        }
+        function findValueForAgoutiEmcir(){
+            var blue = [];
+            var chocolate = [];
+            var testable = [];
+            var fluffy = [];
+            var intensity = [];
+            var pied = [];
+            var merle = [];
+            var brindle = [];
+            var agouti = [];
+            var emcir = [];
+            var listingsData = [];
+
+            console.log("checking");
+            $("input[name='blue']:checked").each(function(){
+                blue.push($(this).val());
+            });
+            $("input[name='chocolate']:checked").each(function(){
+                chocolate.push($(this).val());
+            });
+            $("input[name='testable']:checked").each(function(){
+                testable.push($(this).val());
+            });
+            $("input[name='fluffy']:checked").each(function(){
+                fluffy.push($(this).val());
+            });
+            $("input[name='intensity']:checked").each(function(){
+                intensity.push($(this).val());
+            });
+            $("input[name='pied']:checked").each(function(){
+                pied.push($(this).val());
+            });
+            $("input[name='merle']:checked").each(function(){
+                merle.push($(this).val());
+            });
+            $("input[name='brindle']:checked").each(function(){
+                brindle.push($(this).val());
+            });
+            $("input[name='emcir']:checked").each(function(){
+                emcir.push($(this).val());
+            });
+            $("input[name='agouti']:checked").each(function(){
+                agouti.push($(this).val());
+            });
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
+
+            let distance = $("#distance").val();
+            let zip = 75001;
+            if($('#zipSection').length != 0){
+                this.zip = $('#zipSection').val();
+            }else{
+                this.zip = $("#zipSectionSecond").val();
+            }
+            console.log(this.zip);
+            console.log(distance);
+
+            var DNAColors_Selected_without_coats = [];
+
+            $("input[name='Parentfilter']:checked").each(function(){
+                DNAColors_Selected_without_coats.push($(this).val());
+            });
+
+            if(blue.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "blue");
+            }
+            if(chocolate.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "chocolate");
+            }
+            if(testable.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "testable");
+            }
+            if(fluffy.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "fluffy");
+            }
+            if(intensity.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "intensity");
+            }
+            if(pied.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "pied");
+            }
+            if(merle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "merle");
+            }
+            if(brindle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "brindle");
+            }
+            if(agouti.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "agouti");
+            }
+            if(emcir.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "emcir");
+            }
+
+
+            $.ajax({
+                type:'POST',
+                url: '{{route('filterByDNA')}}',
+                data: {
+                    blue:blue,
+                    chocolate:chocolate,
+                    testable:testable,
+                    fluffy:fluffy,
+                    intensity:intensity,
+                    pied:pied,
+                    merle:merle,
+                    brindle:brindle,
+                    agouti:agouti,
+                    emcir:emcir,
+                    parentDNA: DNAColors_Selected_without_coats,
+                    zip : this.zip,
+                    distance: distance,
+                    type : 'stud'
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                beforeSend: function(){
+                    console.log("sTART");
+                    $("#loaderModalCenter").modal('show');
+                },
+
+                success: function(data){
+                    console.log(data.success);
+                    if (data.response == 200){
+                        closeModal();
+                    }
+
+                    document.getElementById("primary-listing-data").style.display = "none";
+                    $('#secondary-listing-data').html(data.html);
+                    $('#secondary-recent-search').html(data.recentSearch);
+
+                },
+            });
+        }
+        function findValue(){
+            var blue = [];
+            var chocolate = [];
+            var testable = [];
+            var fluffy = [];
+            var intensity = [];
+            var pied = [];
+            var merle = [];
+            var brindle = [];
+            var agouti = [];
+            var emcir = [];
+            var listingsData = [];
+
+            console.log("checking");
+            $("input[name='blue']:checked").each(function(){
+                blue.push($(this).val());
+            });
+            $("input[name='chocolate']:checked").each(function(){
+                chocolate.push($(this).val());
+            });
+            $("input[name='testable']:checked").each(function(){
+                testable.push($(this).val());
+            });
+            $("input[name='fluffy']:checked").each(function(){
+                fluffy.push($(this).val());
+            });
+            $("input[name='intensity']:checked").each(function(){
+                intensity.push($(this).val());
+            });
+            $("input[name='pied']:checked").each(function(){
+                pied.push($(this).val());
+            });
+            $("input[name='merle']:checked").each(function(){
+                merle.push($(this).val());
+            });
+            $("input[name='brindle']:checked").each(function(){
+                brindle.push($(this).val());
+            });
+            $("input[name='emcir']:checked").each(function(){
+                emcir.push($(this).val());
+            });
+            $("input[name='agouti']:checked").each(function(){
+                agouti.push($(this).val());
+            });
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
+
+            let distance = $("#distance").val();
+            let zip = 75001;
+            if($('#zipSection').length != 0){
+                this.zip = $('#zipSection').val();
+            }else{
+                this.zip = $("#zipSectionSecond").val();
+            }
+            // console.log(this.zip);
+            // console.log(distance);
+
+            var DNAColors_Selected_without_coats = [];
+
+            $("input[name='Parentfilter']:checked").each(function(){
+                DNAColors_Selected_without_coats.push($(this).val());
+            });
+
+            if(blue.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "blue");
+            }
+            if(chocolate.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "chocolate");
+            }
+            if(testable.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "testable");
+            }
+            if(fluffy.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "fluffy");
+            }
+            if(intensity.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "intensity");
+            }
+            if(pied.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "pied");
+            }
+            if(merle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "merle");
+            }
+            if(brindle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "brindle");
+            }
+            if(agouti.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "agouti");
+            }
+            if(emcir.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "emcir");
+            }
+
+
+            $.ajax({
+                type:'POST',
+                url: '{{route('filterByDNA')}}',
+                data: {
+                    blue:blue,
+                    chocolate:chocolate,
+                    testable:testable,
+                    fluffy:fluffy,
+                    intensity:intensity,
+                    pied:pied,
+                    merle:merle,
+                    brindle:brindle,
+                    agouti:agouti,
+                    emcir:emcir,
+                    parentDNA: DNAColors_Selected_without_coats,
+                    zip : this.zip,
+                    distance: distance,
+                    type : 'stud'
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                beforeSend: function(){
+                    $("#loaderModalCenter").modal('show');
+                },
+
+                success: function(data){
+                    console.log(data.success);
+                    if (data.response == 200){
+                        // console.log(data.response);
+                        closeModal();
+
+
+                        if(emcir.length == 0){
+
+                            $("#collapseEmcir").addClass('show');
+                            $("#filterEmcir").prop('checked',true);
+                            $("#filterEmcirEmem").prop('checked',true);
+                            $("#filterEmcirEmE").prop('checked',true);
+                            $("#filterEmcirEme").prop('checked',true);
+                            $("#filterEmcirEE").prop('checked',true);
+                            $("#filterEmcirEe").prop('checked',true);
+                            $("#filterEmciree").prop('checked',true);
+                        }
+                        if(agouti.length == 0){
+
+                            $("#collapseAgouti").addClass('show');
+                            $("#filterAgouti").prop('checked',true);
+                            $("#filterAgoutiAa").prop('checked',true);
+                            $("#filterAgoutiAya").prop('checked',true);
+                            $("#filterAgoutiAyat").prop('checked',true);
+                            $("#filterAgoutiAyay").prop('checked',true);
+                            $("#filterAgoutiAta").prop('checked',true);
+                            $("#filterAgoutiAtat").prop('checked',true);
+                        }
+                    }
+
+                    document.getElementById("primary-listing-data").style.display = "none";
+                    $('#secondary-listing-data').html(data.html);
+                    $('#secondary-recent-search').html(data.recentSearch);
+
+                },
+            });
+
+        }
+        function closeModal() {
+            $('#loaderModalCenter').on('shown.bs.modal', function(e) {
+                $("#loaderModalCenter").modal("hide");
+            });
+        }
+        //Filter by Zip
+        function checkZip(value) {
+            return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value);
+        }
+        function searchByZipDistance(){
+            // var distance = $('#distance :selected').text();
+            var distance = $('#distance').val();
+            var zip = $('#zipSection').val();
+            if (checkZip(zip)){
+                this.zip=zip;
+            }else{
+                zip2 = $('#zipSectionSecond').val();
+                if (checkZip(zip2)){
+                    this.zip=zip2;
+                }else{
+                    alert('Invalid Zip')
+                    return;
+                }
+            }
+            console.log(distance);
+            console.log(this.zip);
+
+            var blue = [];
+            var chocolate = [];
+            var testable = [];
+            var fluffy = [];
+            var intensity = [];
+            var pied = [];
+            var merle = [];
+            var brindle = [];
+            var agouti = [];
+            var emcir = [];
+            var listingsData = [];
+
+            $("input[name='blue']:checked").each(function(){
+                blue.push($(this).val());
+            });
+            $("input[name='chocolate']:checked").each(function(){
+                chocolate.push($(this).val());
+            });
+            $("input[name='testable']:checked").each(function(){
+                testable.push($(this).val());
+            });
+            $("input[name='fluffy']:checked").each(function(){
+                fluffy.push($(this).val());
+            });
+            $("input[name='intensity']:checked").each(function(){
+                intensity.push($(this).val());
+            });
+            $("input[name='pied']:checked").each(function(){
+                pied.push($(this).val());
+            });
+            $("input[name='merle']:checked").each(function(){
+                merle.push($(this).val());
+            });
+            $("input[name='brindle']:checked").each(function(){
+                brindle.push($(this).val());
+            });
+            $("input[name='emcir']:checked").each(function(){
+                emcir.push($(this).val());
+            });
+            $("input[name='agouti']:checked").each(function(){
+                agouti.push($(this).val());
+            });
+            console.log("Blue are: " + blue.join(", "));
+            console.log("Chococlate are: " + chocolate.join(", "));
+            console.log("Testablechococlate are: " + testable.join(", "));
+            console.log("Fluffy are: " + fluffy.join(", "));
+            console.log("Intensity are: " + intensity.join(", "));
+            console.log("Pied are: " + pied.join(", "));
+            console.log("Merle are: " + merle.join(", "));
+            console.log("Brindle are: " + brindle.join(", "));
+            console.log("Agouti are: " + agouti.join(", "));
+            console.log("EMCIR are: " + emcir.join(", "));
+
+
+            var DNAColors_Selected_without_coats = [];
+            $("input[name='Parentfilter']:checked").each(function(){
+                DNAColors_Selected_without_coats.push($(this).val());
+            });
+
+            if(blue.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "blue");
+            }
+            if(chocolate.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "chocolate");
+            }
+            if(testable.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "testable");
+            }
+            if(fluffy.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "fluffy");
+            }
+            if(intensity.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "intensity");
+            }
+            if(pied.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "pied");
+            }
+            if(merle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "merle");
+            }
+            if(brindle.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "brindle");
+            }
+            if(agouti.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "agouti");
+            }
+            if(emcir.length != 0){
+                DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "emcir");
+            }
+
+
+            $.ajax({
+                type:'POST',
+                url: '{{route('filterByDNA')}}',
+                data: {
+                    blue:blue,
+                    chocolate:chocolate,
+                    testable:testable,
+                    fluffy:fluffy,
+                    intensity:intensity,
+                    pied:pied,
+                    merle:merle,
+                    brindle:brindle,
+                    agouti:agouti,
+                    emcir:emcir,
+                    parentDNA: DNAColors_Selected_without_coats,
+                    zip : this.zip,
+                    distance: distance,
+                    type : 'puppy'
+                },
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                beforeSend: function(){
+                    $("#loaderModalCenter").modal('show');
+                },
+                complete: function (){
+                    $("#loaderModalCenter").modal('hide');
+                },
+                success: function(data){
+                    console.log(data.success);
+                    document.getElementById("primary-listing-data").style.display = "none";
+                    $('#secondary-listing-data').html(data.html);
+                    $('#secondary-recent-search').html(data.recentSearch);
+                }
+            });
+        }
+
+        function singlePuppy($slug) {
+            // console.log($slug);
+            window.location = "{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug;
+        }
+
+        function getZip(){
+            var inputZip = document.getElementById("zipcode");
+            var data;
+            fetch('{{\Illuminate\Support\Facades\URL::to('get-address-from-ip')}}')
+                .then(data => {
+                    address = data.json()
+                    address.then(function (res){
+                        inputZip.value = res['zipCode'];
+                    });
+                }).catch(error => { alert('Unknown Location'); });
+        }
+
     </script>
 @endsection

@@ -5,11 +5,7 @@
                 <div class="gf-footer-col1 col-md-3">
                     <img class="mb-3" src="images/GoFrenchie-logo.png" height="100" alt="Logo Not Found">
                     <p>We are pets care at vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
-                    <div class="gf-footer-socialIcons">
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-instagram"></i>
-                    </div>
+
                 </div>
                 <div class="gf-footer-col2 col-md-3">
                     <h3>About</h3>
@@ -39,17 +35,30 @@
                     </div>
                 </div>
                 <div class="gf-footer-col4 col-md-3">
-                    <h3>Newsletter</h3>
-                    <p>Your pet’s health and well-being are our top priority. Stay Tuned With Our Updates.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Email">
-                        <button type="submit" name="submit" class="gf-btn-dark">SUBSCRIBE</button>
-                    </form>
+                    <h3>Lets Connect</h3>
+                    <div class="gf-footer-socialIcons mb-3">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+{{--                    <p>Your pet’s health and well-being are our top priority. Stay Tuned With Our Updates.</p>--}}
+{{--                    <form action="#">--}}
+{{--                        <input type="text" placeholder="Email">--}}
+{{--                        <button type="submit" name="submit" class="gf-btn-dark">SUBSCRIBE</button>--}}
+{{--                    </form>--}}
                 </div>
             </div>
         </div>
-        <div class="gf-footer-bottom-bar text-center">
-            <p class="m-auto py-1">COPYRIGHT © 2021. ALL RIGHTS RESERVED. DESIGNED BY AIMSQUAD</p>
+        <div class="gf-footer-bottom-bar row px-5 py-2">
+            <div class="col-md-6">
+                <span class="m-auto py-1">COPYRIGHT © 2021. ALL RIGHTS RESERVED. DESIGNED BY AIMSQUAD</span>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="#">Terms and Conditions</a> <a href="">Privacy Policy</a>
+            </div>
+
+
+
         </div>
     </div>
 </footer>

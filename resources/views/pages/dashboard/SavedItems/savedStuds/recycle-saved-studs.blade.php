@@ -6,7 +6,7 @@
         <h2 class="page-title text-center mb-5">Breader Dashboard</h2>
 
         <div class="breeder-dashboard-page-content">
-            @include('components.breader-dashboard-menu-area')
+            @include('components.gf-dashboard-menu-area')
             <div class="breader-dashboard-content p-3 mb-3 rounded">
                 <div class="container-fluid">
                     <div class="table-responsive">
