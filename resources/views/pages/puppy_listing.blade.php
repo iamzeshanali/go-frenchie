@@ -936,7 +936,6 @@
 
 
     <script type="text/javascript">
-
         // To uncheck child elements when parent element is unchecked
         $("#filterBlue").change(function() {
             if(!this.checked) {
