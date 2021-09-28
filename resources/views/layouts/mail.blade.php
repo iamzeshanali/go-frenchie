@@ -12,6 +12,5 @@
     <h3>Your Email is {{$email}}</h3>
     <p> {{$data['message']}}</p>
     <p>Regards: {{$listing->breeder->username}}</p>
-
 </body>
 </html>

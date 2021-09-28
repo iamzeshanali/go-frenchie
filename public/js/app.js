@@ -91,6 +91,17 @@ $(document).ready(function() {
 
     });
 
+
+    // Breeder Registration Form Kennel Logo Browse
+    $(document).on("click", ".browse-b-logo", function() {
+        var file = $(this).parents().find(".breeder-logo");
+        file.trigger("click");
+    });
+    $('.breeder-logo').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $("#breeder-logo").val(fileName);
+
+    });
     // Breader Dashboard content
 
     // Activate tooltip

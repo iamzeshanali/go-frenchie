@@ -555,10 +555,6 @@
                             </div>
                         </div>
 
-
-
-
-
                         <div class="row my-4">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="gf-btn-dark px-5">Add Listing</button>

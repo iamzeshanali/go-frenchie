@@ -16,10 +16,10 @@
                                     </div>
                                     <div class="col-sm-6 text-right">
                                         <a href="{{route('showTrashedPuppies')}}" class="gf-btn-light">
-                                            <i class="fas fa-trash-alt"></i> <span>Recycle Listing</span>
+                                            <i class="fas fa-trash-alt"></i> <span>Recycle Puppies</span>
                                         </a>
                                         <a href="{{route('addPuppy')}}" class="gf-btn-dark">
-                                            <i class="fas fa-plus"></i> <span>Add New Listing</span>
+                                            <i class="fas fa-plus"></i> <span>Add New Puppy</span>
                                         </a>
                                     </div>
                                 </div>

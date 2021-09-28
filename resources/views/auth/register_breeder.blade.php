@@ -165,32 +165,44 @@
                             <div class="form-group row mb-0">
                                 <label for="b-facebook" class="col-md-1 col-form-label text-center"><i class="fab fa-facebook-f"></i></label>
                                 <div class="col">
-                                    <input id="b-facebook" type="url" class="gf-form-field" name="b-facebook" required autocomplete="b-facebook">
+                                    <input id="b-facebook" type="url" class="gf-form-field" name="b-facebook" autocomplete="b-facebook">
                                 </div>
                             </div>
                             {{--INSTAGRAM-URL--}}
                             <div class="form-group row mb-0">
                                 <label for="b-instagram" class="col-md-1 col-form-label text-center"><i class="fab fa-instagram"></i></label>
                                 <div class="col">
-                                    <input id="b-instagram" type="url" class="gf-form-field" name="b-instagram" required autocomplete="b-instagram">
+                                    <input id="b-instagram" type="url" class="gf-form-field" name="b-instagram" autocomplete="b-instagram">
                                 </div>
                             </div>
                             {{--WEBSITE-URL--}}
                             <div class="form-group row mb-0">
                                 <label for="b-website" class="col-md-1 col-form-label text-center"><i class="fas fa-globe"></i></label>
                                 <div class="col">
-                                    <input id="b-website" type="url" class="gf-form-field" name="b-website" required autocomplete="b-instagram">
+                                    <input id="b-website" type="url" class="gf-form-field" name="b-website" autocomplete="b-instagram">
                                 </div>
                             </div>
                             {{--KENNEL LOGO--}}
-                            <div class="form-group row mb-0">
-                                <label for="b-logo" class="col-md-4 col-form-label">{{ __('Kennel Logo') }}</label>
-                                <div class="col">
-                                    <input id="b-logo" type="file" class="gf-form-field border-0 p-0 rounded-0"  name="b-logo">
+{{--                            <div class="form-group row mb-0">--}}
+{{--                                <label for="b-logo" class="col-md-4 col-form-label">{{ __('Kennel Logo') }}</label>--}}
+{{--                                <div class="col">--}}
+{{--                                    <label for=""> Enter your file--}}
+{{--                                        <input id="b-logo" type="file" class="gf-form-field border-0 p-0 rounded"  name="b-logo">--}}
+{{--                                    </label>--}}
+
+{{--                                </div>--}}
+{{--                            </div>--}}
+                            <div class="row gf-breeder-reg-kennel-logo">
+                                <input type="file" class="breeder-logo" name="b-logo"  accept="image/*">
+                                <div class="col input-group flex-nowrap">
+                                    <input id="breeder-logo" type="text" class="gf-form-field" disabled placeholder="Kennel Logo" >
+                                    <div class="">
+                                        <button type="button" class="browse-b-logo gf-btn-dark">Browse</button>
+                                    </div>
                                 </div>
                             </div>
                             {{--SUBMIT--}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row col mb-0">
                                     <button type="submit" id="btn-submit" class="col gf-btn-dark">
                                         {{ __('Register') }}
                                     </button>
