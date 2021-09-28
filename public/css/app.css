@@ -351,7 +351,7 @@ a#navbarDropdown img {
         position: sticky !important;
         top:80px;
         max-height: calc(100vh - 87px);
-        overflow-y: auto;   
+        overflow-y: auto;
     }
 }
 
