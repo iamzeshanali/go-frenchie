@@ -80,7 +80,7 @@ class RegisterController extends Controller
 
             $customer->firstName = $request->get('firstName');
             $customer->lastName = $request->get('lastName');
-            $customer->username = $request->get('username');
+            $customer->username = strtolower($customer->firstName).''.strtolower($customer->lastName);
             $customer->role = new UserRoleEnum('customer');
             $customer->isActive = false;
             $customer->email = new EmailAddress($request->get('email'));
@@ -116,16 +116,10 @@ class RegisterController extends Controller
     }
     protected function createBreeder(Request $request)
     {
-        $matchingUser = $this->userRepository->matching(
-            $this->userRepository->criteria()->where(
-                Users::EMAIL, '=', new EmailAddress($request->input('email'))
-            )
-        );
-        if(empty($matchingUser)){
             $breeder = new Users();
             $breeder->firstName = $request->get('firstName');
             $breeder->lastName = $request->get('lastName');
-            $breeder->username = $request->get('username');
+            $breeder->username = strtolower($breeder->firstName).''.strtolower($breeder->lastName);
             $breeder->role = new UserRoleEnum('breeder');
             $breeder->isActive = false;
             $breeder->email = new EmailAddress($request->get('email'));
@@ -158,8 +152,6 @@ class RegisterController extends Controller
 
             return redirect()->route('login');
 
-        }else {
-            return redirect()->back()->with('error', 'Breeder with this email already exists.');
-        }
+
     }
 }
