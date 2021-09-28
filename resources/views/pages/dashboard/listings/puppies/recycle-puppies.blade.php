@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-fluid">
-        <h2 class="page-title text-center mb-5">Breader Dashboard</h2>
+
 
         <div class="breeder-dashboard-page-content">
             @include('components.gf-dashboard-menu-area')
@@ -139,7 +139,6 @@
                 </div>
 
             </div>
-        <!-- @include('components.adds-area') -->
         </div>
 
     </div>

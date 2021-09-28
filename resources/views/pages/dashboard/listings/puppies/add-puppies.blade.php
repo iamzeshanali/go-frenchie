@@ -357,7 +357,7 @@
                                     <input type="text" name="title"  class="gf-form-field" id="listing Title" placeholder="Puppy Name" required autofocus >
                                 </div>
 
-                                <div class="row my-3 align-items-center">
+                                <div class="row align-items-center">
                                     <label for="listing-sex" class="col-sm-2 col-form-label">Gender</label>
                                     <div class="col-sm-4">
                                         <div class="form-check form-check-inline">
@@ -377,7 +377,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row my-3">
+                                <div class="row">
                                     <label for="listing-dob" class="col-sm-2 col-form-label">Date of Birth</label>
                                     <div class="col-sm-4">
                                         <input type="date" name="dob" class="gf-form-field" required autofocus>
@@ -385,7 +385,7 @@
 
                                 </div>
 
-                                <div class="row my-3">
+                                <div class="row">
                                     <div class="col">
                                         <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description" required autofocus></textarea>
                                     </div>

@@ -196,7 +196,7 @@
                 <img src="{{asset_file_url($puppy->photo4)}}" alt="">
                 <img src="{{asset_file_url($puppy->photo5)}}" alt="">
             </div>
-            <div class="fbd-single-listing-thumbs">
+            <div class="fbd-single-listing-thumbs mb-3">
                 <img src="{{asset_file_url($puppy->photo1)}}" alt="">
                 <img src="{{asset_file_url($puppy->photo2)}}" alt="">
                 <img src="{{asset_file_url($puppy->photo3)}}" alt="">
@@ -537,7 +537,6 @@
     function addOrRemoveToFavourite($slug, $email, $type){
         // console.log($slug, $email, $type);
 
-
         $.ajax({
             type:'POST',
             url: '{{route('addOrRemoveToFavourite')}}',
@@ -552,18 +551,17 @@
                 if(data.success == '200'){
                     // console.log(data.success);
                     var className = ".fbd-liked-icon"+"-"+$slug;
-                    $(className).css("color","#8b77fc");
+                    $(className).css("color","var(--gray)");
                 }
                 if(data.success == '300'){
                     // console.log(data.success);
                     var className = ".fbd-liked-icon"+"-"+$slug;
-                    $(className).css("color","#c4bfbf");
+                    $(className).css("color","var(--red)");
                 }
             },
-
         });
-
     }
+
 </script>
 <script>
     $('.fbd-single-listing-img').slick({
@@ -575,7 +573,9 @@
         asNavFor: '.fbd-single-listing-thumbs'
     });
     $('.fbd-single-listing-thumbs').slick({
-        slidesToShow: 5,
+        slidesToShow: 3,
+        centerMode: true,
+        centerPadding: '30px',
         slidesToScroll: 1,
         asNavFor: '.fbd-single-listing-img',
         focusOnSelect: true,
