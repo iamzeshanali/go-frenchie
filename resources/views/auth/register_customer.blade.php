@@ -70,13 +70,13 @@
                             <div class="form-group row mb-0">
 
                                 <div class="col">
-                                    <input id="email" type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+                                    <input id="email" type="email" onblur="checkForEmail(value)" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
 
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+
+                                    <span id="email-error" class="invalid-feedback d-none" role="alert">
+                                        <strong>{{  __('Email Already Exists') }}</strong>
                                     </span>
-                                    @enderror
+
                                 </div>
                             </div>
                             {{--  PHONE  --}}
@@ -177,3 +177,28 @@
     </div>
 </div>
 @endsection
+<script type="text/javascript">
+    function checkForEmail(value){
+        console.log(value);
+        $.ajax({
+            type:'POST',
+            url: '{{route('checkForExistingUser')}}',
+            data: {
+                email:value,
+            },
+            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+            success: function(data){
+                if(data.success == '200'){
+                    console.log(data.success);
+                    $("#email-error").addClass('d-block');
+                }else if (data.success == '404'){
+                    console.log(data.success);
+                    $("#email-error").removeClass('d-block');
+                    $("#email-error").addClass('d-none');
+                }
+
+            },
+
+        });
+    }
+</script>
