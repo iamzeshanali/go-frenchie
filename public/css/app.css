@@ -266,14 +266,14 @@ a#navbarDropdown img {
     height: auto;
 }
 
-.gf-login-wrapper .card, .gf-select-user-wrapper .card, .gf-customer-reg-wrapper .card, .gf-breeder-reg-wrapper .card{
+.gf-login-wrapper .card, .gf-select-user-wrapper .card, .gf-customer-reg-wrapper .card, .gf-breeder-reg-wrapper .card, .gf-email-password-wrapper .card{
     border: none;
     background-color: #fbebd7;
     border-radius: 12px;
     box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(245 206 154 / 30%) 0px 3px 7px -3px;
 }
 
-.gf-login-wrapper .card-header, .gf-select-user-wrapper .card-header, .gf-customer-reg-wrapper .card-header, .gf-breeder-reg-wrapper .card-header{
+.gf-login-wrapper .card-header, .gf-select-user-wrapper .card-header, .gf-customer-reg-wrapper .card-header, .gf-breeder-reg-wrapper .card-header, .gf-email-password-wrapper .card-header{
     background-color: transparent;
     border: none;
 }
@@ -351,7 +351,7 @@ a#navbarDropdown img {
         position: sticky !important;
         top:80px;
         max-height: calc(100vh - 87px);
-        overflow-y: auto;   
+        overflow-y: auto;
     }
 }
 
@@ -478,9 +478,6 @@ input.form-control:focus{
     object-fit: contain;
 }
 
-.slick-slider {
-    margin-bottom: 10px !important;
-}
 
 /* Sponsured card image slider End*/
 
@@ -567,7 +564,7 @@ input.form-control:focus{
     background-color: white;
 }
 
-.image_one, .image_two, .image_three, .image_four, .image_five {
+.image_one, .image_two, .image_three, .image_four, .image_five, .breeder-logo {
     visibility: hidden;
     position: absolute;
 }
@@ -869,12 +866,12 @@ table.table .avatar {
 
 /* Add new listing Form */
 
-.gf-add-listing-image input.gf-form-field{
+.gf-add-listing-image input.gf-form-field, .gf-breeder-reg-wrapper .gf-breeder-reg-kennel-logo input.gf-form-field{
     width: 78%;
     border-radius: 30px 0px 0px 30px;
 }
 
-.gf-add-listing-image button.gf-btn-dark{
+.gf-add-listing-image button.gf-btn-dark, .gf-breeder-reg-wrapper .browse-b-logo.gf-btn-dark {
     border-bottom-left-radius: 0px;
     padding-block: 7px;
     margin-left: -1px;
@@ -1075,13 +1072,21 @@ p.breeder-profile-about{
 }
 
 .fbd-single-listing-thumbs img {
-    height: 36px;
+    max-height: 75px;
     object-fit: contain;
 }
 
-.slick-slider {
-    margin-bottom: 10px !important;
+
+.fbd-single-listing-thumbs .slick-current.slick-active img{
+    max-height: 100px;
 }
+
+.fbd-single-listing-thumbs .slick-track{
+    display:flex;
+    align-items: center;
+}
+
+
 
 /* Slick End */
 
@@ -1144,9 +1149,8 @@ p.breeder-profile-about{
 }
 
 .fbd-single-listing-social i {
-    color: #242626;
     font-size: 24px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
 }
 
 .fbd-single-listing-dna table.table {
@@ -1761,6 +1765,10 @@ body a:hover{
     background-color: #BE202E;
 }
 
+.gf-btn-dark[disabled=disabled], .gf-btn-light[disabled=disabled]{
+    pointer-events: none;
+}
+
 .container{
     padding-right: 0px !important;
     padding-left: 0px !important;
@@ -2134,7 +2142,7 @@ textarea:focus-visible, select:focus-visible, input:focus-visible, button{
     background-size: contain;
     background-position: bottom right;
     background-blend-mode: overlay;
-    background-image: url('/images/gf-footer-bg.jpg');
+    background-image: url('/images/gf-footer-bg1.jpg');
     background-color: rgba(255,255,255,0.62);
     background-repeat: no-repeat;
 }

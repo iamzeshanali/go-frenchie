@@ -16,10 +16,10 @@
                                     </div>
                                     <div class="col-sm-6 text-right">
                                         <a href="{{route('showTrashedPuppies')}}" class="gf-btn-light">
-                                            <i class="fas fa-trash-alt"></i> <span>Recycle Listing</span>
+                                            <i class="fas fa-trash-alt"></i> <span>Recycle Puppies</span>
                                         </a>
                                         <a href="{{route('addPuppy')}}" class="gf-btn-dark">
-                                            <i class="fas fa-plus"></i> <span>Add New Listing</span>
+                                            <i class="fas fa-plus"></i> <span>Add New Puppy</span>
                                         </a>
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@
                                     <thead>
                                     <tr>
                                         <th>Title</th>
-                                        <th>Breeder</th>
+{{--                                        <th>Breeder</th>--}}
                                         <th>Sex</th>
                                         <th>Image</th>
                                         <th>Preference</th>
@@ -47,7 +47,7 @@
                                     @foreach($Puppies as $puppy)
                                         <tr>
                                             <td>{{$puppy->title}}</td>
-                                            <td>{{$puppy->breeder->kennelName}}</td>
+{{--                                            <td>{{$puppy->breeder->kennelName}}</td>--}}
                                             <td>{{ucfirst($puppy->sex->getValue())}}</td>
                                             <td><img src="{{asset_file_url($puppy->photo1)}}" alt="" width="60px"></td>
                                             <td>
