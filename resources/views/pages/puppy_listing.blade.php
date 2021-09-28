@@ -990,7 +990,6 @@
     </div>
 
     <script type="text/javascript">
-
         // To uncheck child elements when parent element is unchecked
         $("#filterBlue").change(function() {
             if(!this.checked) {
@@ -1192,7 +1191,7 @@
                     if(data.success == '200'){
                         // console.log(data.success);
                         var className = ".fbd-liked-icon"+"-"+$slug;
-                        $(className).css("color","#8b77fc");
+                        $(className).css("color","#be202e");
                     }
                     if(data.success == '300'){
                         // console.log(data.success);
@@ -1411,13 +1410,6 @@
                 });
             }
 
-
-        }
-        function arrayRemove(arr, value) {
-
-            return arr.filter(function(geeks){
-                return geeks != value;
-            });
 
         }
         function findValueForAgoutiEmcir(){

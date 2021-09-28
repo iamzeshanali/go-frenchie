@@ -100,6 +100,20 @@ class RegisterController extends Controller
     }
 
 
+    protected function checkForExistingUser(Request $request){
+        $matchingUser = $this->userRepository->matching(
+            $this->userRepository->criteria()->where(
+                Users::EMAIL, '=', new EmailAddress($request->input('email'))
+            )
+        );
+        if (empty($matchingUser)){
+            return response()->json(['success'=>'404']);
+        }else{
+            return response()->json(['success'=>'200']);
+        }
+
+
+    }
     protected function createBreeder(Request $request)
     {
         $matchingUser = $this->userRepository->matching(
@@ -130,8 +144,14 @@ class RegisterController extends Controller
             $breeder->website = new Url($request->get('b-website'));
 
             $file =$request->file('b-logo');
-            $fullPath = $file->move(public_path('app/breeder'), $file->getClientOriginalName())->getRealPath();
-            $breeder->logo = new Image($fullPath);
+            if($file){
+                $fullPath = $file->move(public_path('app/breeder'), $file->getClientOriginalName())->getRealPath();
+                $breeder->logo = new Image($fullPath);
+            }else{
+                $breeder->logo = null;
+            }
+
+
 
 //            dd($breeder);
             $this->userRepository->save($breeder);

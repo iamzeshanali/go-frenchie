@@ -51,8 +51,13 @@ class ListingsController extends Controller
         $this->listingsRepository = $listingsRepository;
         $this->savedSearchRepository = $savedSearchRepository;
         $this->userRepository = $userRepository;
-        $this->token = $apiConfigRepository->getAll()[0]->token;
-//        $this->token = '3QRH1yb6zYyiwCEizx4Wv4tdqNhWAmU0aq8M5w7SwPgdvEAWCbmXrI4aV3KNaNG2';
+        $allTokens = $apiConfigRepository->getAll();
+        if (count($allTokens) > 0){
+            $this->token = $allTokens[0]->token;
+        }else{
+            echo '<script>alert("Api Keys not found. Visit  https://www.zipcodeapi.com/API#radius for ApiKey generation. ")</script>';
+        }
+
     }
 
     public function showAllSavedSearchedListings()

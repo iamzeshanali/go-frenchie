@@ -64,6 +64,8 @@ Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::post('/createCustomer', [App\Http\Controllers\Auth\RegisterController::class, 'createCustomer'])->name('createCustomer');
 Route::post('/createBreeder', [App\Http\Controllers\Auth\RegisterController::class, 'createBreeder'])->name('createBreeder');
+
+Route::post('/check-for-existing-user', [App\Http\Controllers\Auth\RegisterController::class, 'checkForExistingUser'])->name('checkForExistingUser');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('customer', \App\Http\Controllers\CustomerController::class);
