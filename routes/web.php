@@ -40,9 +40,7 @@ Route::get('litter-listings', [App\Http\Controllers\LittersController::class, 's
 Route::get('/show-litter/{slug}',[App\Http\Controllers\LittersController::class, 'showSingleLitter'])->name('showSingleLitter');
 Route::get('show-kennel/{id}',[App\Http\Controllers\BreederController::class, 'singleKennel'])->name('singleKennel');
 
-Route::get('selecttype', function () {
-    return view('auth/user_type');
-})->name('selecttype');
+Route::get('selecttype', function () {return view('auth/user_type');})->name('selecttype');
 
 Route::get('registerbreeder', function () {
     return view('auth/register_breeder');
@@ -58,7 +56,10 @@ Route::get('find-kennels',[App\Http\Controllers\GeoLocationController::class, 'f
 
 
 //Mail Routes
+
 Route::post('/contactBreeder', [App\Http\Controllers\Mail\MailController::class, 'sendMailCustomerContactBreeder'])->name('contactBreederMail');
+Route::post('/contactUs', [App\Http\Controllers\Mail\MailController::class, 'sendContactUsMail'])->name('contactUsMail');
+
 //Auth Routes
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

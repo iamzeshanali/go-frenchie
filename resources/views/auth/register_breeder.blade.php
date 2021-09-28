@@ -165,21 +165,21 @@
                             <div class="form-group row mb-0">
                                 <label for="b-facebook" class="col-md-1 col-form-label text-center"><i class="fab fa-facebook-f"></i></label>
                                 <div class="col">
-                                    <input id="b-facebook" type="url" class="gf-form-field" name="b-facebook" required autocomplete="b-facebook">
+                                    <input id="b-facebook" type="url" class="gf-form-field" name="b-facebook" autocomplete="b-facebook">
                                 </div>
                             </div>
                             {{--INSTAGRAM-URL--}}
                             <div class="form-group row mb-0">
                                 <label for="b-instagram" class="col-md-1 col-form-label text-center"><i class="fab fa-instagram"></i></label>
                                 <div class="col">
-                                    <input id="b-instagram" type="url" class="gf-form-field" name="b-instagram" required autocomplete="b-instagram">
+                                    <input id="b-instagram" type="url" class="gf-form-field" name="b-instagram" autocomplete="b-instagram">
                                 </div>
                             </div>
                             {{--WEBSITE-URL--}}
                             <div class="form-group row mb-0">
                                 <label for="b-website" class="col-md-1 col-form-label text-center"><i class="fas fa-globe"></i></label>
                                 <div class="col">
-                                    <input id="b-website" type="url" class="gf-form-field" name="b-website" required autocomplete="b-instagram">
+                                    <input id="b-website" type="url" class="gf-form-field" name="b-website" autocomplete="b-instagram">
                                 </div>
                             </div>
                             {{--KENNEL LOGO--}}

@@ -196,25 +196,26 @@ class ListingsController extends Controller
      */
     public function showPuppiesInDashboard(Request $request)
     {
+//        return response('DONE');
+//        dd("DONE");
         $page = !empty($request['page']) ? (int)$request['page'] : 1;
 //        dd($page);
         $totalPuppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::BREEDER,'=',Auth::user())
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
-                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Listings::TRASHED,'=',false)
         );
         $Puppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::BREEDER,'=',Auth::user())
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
-                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Listings::TRASHED,'=',false)
                 ->orderByAsc(Listings::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
         );
-//        dd($Puppies);
+//        return response($Puppies);
+//        dd($Puppies[0]->sex->getValue());
         return view('pages/dashboard/listings/puppies/show-puppies', [
             'Puppies' => $Puppies,
             'total'=>count($totalPuppies),

@@ -264,6 +264,7 @@ if (captchaText){
                 } else {
                     output.classList.add("incorrectCaptcha");
                     output.innerHTML = "Incorrect, please try again";
+                    $("btn-submit-contact-us").attr('disabled', true);
                 }
             }
         });
@@ -275,6 +276,8 @@ if (captchaText){
                 output.classList.add("correctCaptcha");
                 output.classList.remove("incorrectCaptcha");
                 output.innerHTML = "Correct!";
+                // $('#btn-submit-contact-us').attr('disabled',false);
+
             } else {
                 output.classList.add("incorrectCaptcha");
                 output.classList.remove("correctCaptcha");
