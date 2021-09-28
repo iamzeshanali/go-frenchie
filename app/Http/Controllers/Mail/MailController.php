@@ -6,6 +6,7 @@ use App\Domain\Entities\Listings;
 use App\Domain\Services\Persistence\IListingsRepository;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactBreeder;
+use App\Mail\ContactUs;
 use Dms\Common\Structure\Web\EmailAddress;
 use Dms\Core\Auth\IAdminRepository;
 use Dms\Web\Laravel\Auth\LocalAdmin;
@@ -49,6 +50,7 @@ class MailController extends Controller
             }
 
         }
+        dd($emailUsers);
 //        'to' will be the breeder associated with this entity
         Mail::to($breederEmail)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
         foreach($emailUsers as $emailUser){
@@ -56,6 +58,37 @@ class MailController extends Controller
             $emailname = (array)$emailArray["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["emailAddress"];
             $email = $emailname["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["string"];
             Mail::to($email)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
+        }
+
+
+        return redirect()->back()->with('status','200');
+    }
+    public function sendContactUsMail(Request $request)
+    {
+
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $data = array(
+            'message' => $request->message
+        );
+
+        $emailUsers = [];
+        $admins = $this->admin->getAll();
+        foreach ($admins as $user){
+            if(in_array(1,$user->getRoleIds()->getAll()) == true){
+                array_push($emailUsers,$user);
+            }
+
+        }
+//        dd($name);
+//        'to' will be the breeder associated with this entity
+//        Mail::to($emailUsers)->send(new ContactUs($name,$email,$data));
+        foreach($emailUsers as $emailUser){
+            $emailArray = (array)($emailUser);
+            $emailname = (array)$emailArray["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["emailAddress"];
+            $email = $emailname["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["string"];
+//            dd($email);
+            Mail::to($email)->send(new ContactUs($name,$email,$data));
         }
 
 

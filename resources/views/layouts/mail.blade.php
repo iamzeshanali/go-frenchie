@@ -7,10 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
-    <h3>Hi {{$name}}</h3>
-    <h3>Your Email is {{$email}}</h3>
-    <p> {{$data['message']}}</p>
-    <p>Regards: {{$listing->breeder->username}}</p>
+<body style="background-color: #f9f9f9;margin: 0;padding: 0;">
+
+<div class="main" style="position: absolute;width:40%; height: fit-content; background: white; margin-inline: 5%; padding: 2%;">
+    <h3>Hello form {{$name ?? ''}},</h3>
+    <p>
+        Hope you are doing well.
+    </p>
+    <div class="inner" style="text-align: center;">
+        {{$data['message'] ?? ''}}
+    </div>
+    <p>
+        Need help? Contact our support team or hit us up on twitter@GoFrenchie.
+    </p>
+    <p>
+        Want to give us feedback? Let us know what you think on our feedback site.
+    </p>
+</div>
+
 </body>
 </html>
