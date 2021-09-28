@@ -47,7 +47,7 @@
                             <div class="fbd-login-password form-group row">
 {{--                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
 
-                                <div class="input-group">
+                                <div class="input-group flex-nowrap">
                                     <input id="password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
                                     <span class="input-group-btn">
                                     <button onclick="showPassword()" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
@@ -74,7 +74,7 @@
                                 </div>
 
                                 <div class="col-md-6 p-0 text-right">
-                                    <div class="form-check">
+                                    <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">

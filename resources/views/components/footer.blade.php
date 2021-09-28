@@ -3,7 +3,7 @@
         <div class="lg-gf-container">
             <div class="row">
                 <div class="gf-footer-col1 col-md-3">
-                    <img class="mb-3" src="images/GoFrenchie-logo.png" height="100" alt="Logo Not Found">
+                    <img class="mb-3" src="/images/GoFrenchie-logo.png" height="100" alt="Logo Not Found">
                     <p>We are pets care at vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
 
                 </div>
