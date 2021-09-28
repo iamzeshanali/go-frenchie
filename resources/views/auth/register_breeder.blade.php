@@ -52,7 +52,7 @@
                             </div>
 
                             {{--USERNAME--}}
-                            <div class="form-group row mb-0">
+                            {{--<div class="form-group row mb-0">
 
                                 <div class="col">
                                     <input id="username" type="text" class="gf-form-field @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="{{ __('Username') }}">
@@ -63,7 +63,7 @@
                                 </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div>--}}
                             {{--EMAIL--}}
                             <div class="form-group row mb-0">
 
@@ -191,7 +191,7 @@
                             </div>
                             {{--SUBMIT--}}
                             <div class="form-group row mb-0">
-                                    <button type="submit" class="col gf-btn-dark">
+                                    <button type="submit" id="btn-submit" class="col gf-btn-dark">
                                         {{ __('Register') }}
                                     </button>
                             </div>
@@ -217,10 +217,12 @@
                 if(data.success == '200'){
                     console.log(data.success);
                     $("#email-error").addClass('d-block');
+                    $("#btn-submit").attr("disabled", true);
                 }else if (data.success == '404'){
                     console.log(data.success);
                     $("#email-error").removeClass('d-block');
                     $("#email-error").addClass('d-none');
+                    $("#btn-submit").attr("disabled", false);
                 }
 
             },

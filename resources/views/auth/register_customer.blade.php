@@ -53,8 +53,8 @@
 
 
                             {{--  USERNAME  --}}
-                            <div class="form-group row mb-0">
-{{--                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>--}}
+                            {{--<div class="form-group row mb-0">
+--}}{{--                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>--}}{{--
 
                                 <div class="col">
                                     <input id="username" type="text" class="gf-form-field @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
@@ -65,14 +65,12 @@
                                     </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div>--}}
                             {{--  EMAIL-ADDRESS  --}}
                             <div class="form-group row mb-0">
 
                                 <div class="col">
                                     <input id="email" type="email" onblur="checkForEmail(value)" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
-
-
                                     <span id="email-error" class="invalid-feedback d-none" role="alert">
                                         <strong>{{  __('Email Already Exists') }}</strong>
                                     </span>
@@ -165,7 +163,7 @@
                             </div>
                             {{--  SUBMIT  --}}
                             <div class="form-group row mb-0">
-                                <button type="submit" class="col gf-btn-dark">
+                                <button type="submit" id="btn-submit" class="col gf-btn-dark">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -191,10 +189,12 @@
                 if(data.success == '200'){
                     console.log(data.success);
                     $("#email-error").addClass('d-block');
+                    $("#btn-submit").attr("disabled", true);
                 }else if (data.success == '404'){
                     console.log(data.success);
                     $("#email-error").removeClass('d-block');
                     $("#email-error").addClass('d-none');
+                    $("#btn-submit").attr("disabled", false);
                 }
 
             },
