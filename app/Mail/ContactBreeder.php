@@ -37,7 +37,7 @@ class ContactBreeder extends Mailable
      */
     public function build()
     {
-        return $this->from($this->email)->subject($this->subject)->view('layouts/mail')->with([
+        return $this->from($this->email)->subject($this->subject)->view('layouts/layouts/contact-breeder-mail-template')->with([
                'name'=>$this->name,
                'email'=> $this->email,
                'subject'=> $this->subject,
