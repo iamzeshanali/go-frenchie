@@ -1767,6 +1767,9 @@ body a:hover{
 
 .gf-btn-dark[disabled=disabled], .gf-btn-light[disabled=disabled]{
     pointer-events: none;
+    box-shadow: none;
+    color: var(--dark);
+
 }
 
 .container{

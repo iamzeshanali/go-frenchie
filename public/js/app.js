@@ -243,7 +243,7 @@ $('.gf-kennel-slider').slick({
 let captchaText = document.querySelector('#captcha');
 if (captchaText){
         var ctx = captchaText.getContext("2d");
-        console.log(captchaText);
+        // console.log(captchaText);
         var ctx = captchaText.getContext("2d");
         ctx.font = "48px Proxima-Nova";
         ctx.fillStyle = "#BE202E";

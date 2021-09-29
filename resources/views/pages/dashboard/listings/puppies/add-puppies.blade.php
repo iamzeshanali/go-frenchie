@@ -293,7 +293,7 @@
                                     <input type="hidden" name="photo1_name" value="{{public_path($img1)}}">
                                     <input type="text" class="form-control" value="{{$img1}}" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
                                     <div class="input-group-append">
-                                        <button type="button" class="browse gf-btn-dark">Brows</button>
+                                        <button type="button" class="browse gf-btn-dark">Browse</button>
                                     </div>
                                 </div>
                             </div>
@@ -350,16 +350,17 @@
                     <form method="post" action="{{route('createListing')}}" enctype="multipart/form-data" id="create-listing-form mx-5">
                         @csrf
                         <input type="hidden" name="type" value="puppy"  class="form-control" id="listing Title" placeholder="">
-                        <div class="row justify-content-center p-0">
-                            <div class="col-md-8">
+                        <div class="row justify-content-center p-lg-0">
+                            <div class="col-lg-8 p-0">
                                 <h2 class="text-center mb-4 gf-red">Add New Puppy</h2>
                                 <div class="col">
-                                    <input type="text" name="title"  class="gf-form-field" id="listing Title" placeholder="Puppy Name" required autofocus >
+                                    <input type="text" name="title"  class="gf-form-field" id="listing Title" placeholder="Puppy Name *" required autofocus >
                                 </div>
 
-                                <div class="row align-items-center">
-                                    <label for="listing-sex" class="col-sm-2 col-form-label">Gender</label>
-                                    <div class="col-sm-4">
+                                <div class="align-items-center d-flex py-2">
+                                    {{--Gender--}}
+                                    <label for="listing-sex" class="col-4 col-form-label mb-0">Gender *</label>
+                                    <div class="col-8">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male">
                                             <label class="form-check-label" for="gf_puppy_male">Male</label>
@@ -368,33 +369,36 @@
                                             <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_female" value="female">
                                             <label class="form-check-label" for="gf_puppy_female">Female</label>
                                         </div>
-
                                     </div>
+                                </div>
 
-                                    <label for="listing-dob" class="col-sm-2 col-form-label">Sponsored</label>
-                                    <div class="col-sm-4">
+                                {{--Sponsored--}}
+                                <div class="align-items-center d-flex py-2">
+                                    <label for="listing-dob" class="col-4 col-form-label">Sponsored</label>
+                                    <div class="col-8">
                                         <input type="checkbox" name="sponsored" class="form-control" autofocus style="width: 20px;">
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <label for="listing-dob" class="col-sm-2 col-form-label">Date of Birth</label>
-                                    <div class="col-sm-4">
+                                {{--Date of Birth--}}
+                                <div class="align-items-center d-flex py-2">
+                                    <label for="listing-dob" class="col-4 col-form-label">Date of Birth *</label>
+                                    <div class="col-8">
                                         <input type="date" name="dob" class="gf-form-field" required autofocus>
                                     </div>
 
                                 </div>
 
-                                <div class="row">
+                                <div class="py-2">
                                     <div class="col">
                                         <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description" required autofocus></textarea>
                                     </div>
                                 </div>
-
+                                {{--DNA COLOR/COAT CHARACTERISTICS--}}
                                 <h4 class="col gf-red">DNA COLOR/COAT CHARACTERISTICS</h4>
-                                <div class="row">
-                                    <label for="listing-blue" class="col-sm-2 col-form-label ">Blue</label>
-                                    <div class="col-md-4">
+                                <div class="align-items-center d-lg-flex py-lg-2">
+                                    <label for="listing-blue" class="col-lg-2 col-form-label ">Blue</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-blue" id="listing-blue" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($blue as $b)
@@ -402,8 +406,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="listing-choclote" class="col-sm-2 col-form-label">Chocolate</label>
-                                    <div class="col-md-4">
+                                    <label for="listing-choclote" class="col-lg-2 col-form-label">Chocolate</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-choclote" id="listing-choclote" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($chocolate as $c)
@@ -412,9 +416,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label for="listing-agouti" class="col-sm-2 col-form-label">Agouti</label>
-                                    <div class="col-md-4">
+                                <div class="align-items-center d-lg-flex py-lg-2">
+                                    <label for="listing-agouti" class="col-lg-2 col-form-label">Agouti</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-agoutie" id="listing-agouti" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($agouti as $a)
@@ -422,8 +426,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="listing-testable-chocolate" class="col-sm-2 col-form-label">Testable</label>
-                                    <div class="col-md-4">
+                                    <label for="listing-testable-chocolate" class="col-lg-2 col-form-label">Testable</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-testable" id="listing-testable" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($testableChocolate as $t)
@@ -432,9 +436,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label for="listing-fluffy" class="col-sm-2 col-form-label">Fluffy</label>
-                                    <div class="col-md-4">
+                                <div class="align-items-center d-lg-flex py-lg-2">
+                                    <label for="listing-fluffy" class="col-lg-2 col-form-label">Fluffy</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-fluffy" id="listing-fluffy" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($fluffy as $f)
@@ -442,8 +446,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="listing-emcir" class="col-sm-2 col-form-label">E(MCIR)</label>
-                                    <div class="col-md-4">
+                                    <label for="listing-emcir" class="col-lg-2 col-form-label">E(MCIR)</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-emcir" id="listing-emcir" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($emcir as $e)
@@ -452,9 +456,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label for="listing-intensity" class="col-sm-2 col-form-label">Intensity</label>
-                                    <div class="col-md-4">
+                                <div class="align-items-center d-lg-flex py-lg-2">
+                                    <label for="listing-intensity" class="col-lg-2 col-form-label">Intensity</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-intensity" id="listing-intensity" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($intensity as $i)
@@ -462,8 +466,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="listing-pied" class="col-sm-2 col-form-label">PIED</label>
-                                    <div class="col-md-4">
+                                    <label for="listing-pied" class="col-lg-2 col-form-label">PIED</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-pied" id="listing-pied" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($pied as $p)
@@ -472,9 +476,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label for="listing-brindle" class="col-sm-2 col-form-label">BRINDLE</label>
-                                    <div class="col-md-4">
+                                <div class="align-items-center d-lg-flex py-lg-2">
+                                    <label for="listing-brindle" class="col-lg-2 col-form-label">BRINDLE</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-brindle" id="listing-brindle" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($brindle as $br)
@@ -482,8 +486,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="listing-merle" class="col-sm-2 col-form-label">MERLE</label>
-                                    <div class="col-md-4">
+                                    <label for="listing-merle" class="col-lg-2 col-form-label">MERLE</label>
+                                    <div class="col-lg-4">
                                         <select class="form-control" name="listing-merle" id="listing-merle" required autofocus>
                                             <option value="none" selected>None</option>
                                             @foreach($merle as $m)
@@ -494,11 +498,11 @@
                                 </div>
 
 
-                                <div class="row gf-add-listing-image">
-                                    <div class="col-md-6 m-auto gf-mw-fit">
+                                <div class="align-items-center d-lg-flex py-lg-2 gf-add-listing-image">
+                                    <div class="col-lg-6 m-auto gf-mw-fit">
                                         <img src="/images/placeholder.gif" id="preview-image" class="img-thumbnail my-3" width="350px">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <div>
                                             <input type="file" name="photo1" class="image_one" accept="image/*">
                                             <div class="input-group my-3 flex-nowrap">
@@ -555,9 +559,9 @@
                             </div>
                         </div>
 
-                        <div class="row my-4">
+                        <div class="row">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="gf-btn-dark px-5">Add Listing</button>
+                                <button type="submit" class="gf-btn-dark col-sm-8">Add Listing</button>
                             </div>
                         </div>
                     </form>
@@ -567,4 +571,3 @@
 
     </div>
 @endsection
-                                                                                                          
