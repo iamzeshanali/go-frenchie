@@ -37,7 +37,7 @@ class UsersModule extends CrudModule
         $module->labelObjects()->fromProperty(Users::FIRST_NAME);
 
         $module->metadata([
-            'icon' => ''
+            'icon' => 'users'
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {

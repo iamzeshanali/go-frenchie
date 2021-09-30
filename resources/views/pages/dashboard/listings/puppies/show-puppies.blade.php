@@ -15,7 +15,7 @@
                                         <h2>Listings <b>Puppies</b></h2>
                                     </div>
                                     <div class="col-sm-6 text-right">
-                                        <a href="{{route('showTrashedPuppies')}}" class="gf-btn-light">
+                                        <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/trashed-puppies')}}/1" class="gf-btn-light">
                                             <i class="fas fa-trash-alt"></i> <span>Recycle Puppies</span>
                                         </a>
                                         <a href="{{route('addPuppy')}}" class="gf-btn-dark">
@@ -35,7 +35,6 @@
                                     <thead>
                                     <tr>
                                         <th>Title</th>
-{{--                                        <th>Breeder</th>--}}
                                         <th>Sex</th>
                                         <th>Image</th>
                                         <th>Preference</th>
@@ -49,7 +48,8 @@
                                             <td>{{$puppy->title}}</td>
 {{--                                            <td>{{$puppy->breeder->kennelName}}</td>--}}
                                             <td>{{ucfirst($puppy->sex->getValue())}}</td>
-                                            <td><img src="{{asset_file_url($puppy->photo1)}}" alt="" width="60px"></td>
+                                            <td><img src="{{ $puppy->photo1 ? asset_file_url($puppy->photo1) : '/images/notfound/gf-not-found.png'}}" alt="" width="60px"></td>
+
                                             <td>
                                                 @if($puppy->isSponsored == 1)
                                                     <span style="color: #00a65a">Sponsored</span>
@@ -59,9 +59,9 @@
                                             </td>
                                             <td>
                                                 @if($puppy->status->getValue() == 'active')
-                                                    <span style="color: #00a65a">Active</span>
+                                                    <span style="color: #00a65a">Approved</span>
                                                 @else
-                                                    <span style="color: red">Disabled</span>
+                                                    <span style="color: red">Under Review</span>
                                                 @endif
                                             </td>
                                             <td>

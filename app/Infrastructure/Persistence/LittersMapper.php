@@ -44,18 +44,23 @@ class LittersMapper extends EntityMapper
             ->using(new DateMapper('expected_dob'));
 
         $map->embedded(Litters::PHOTO1)
+            ->withIssetColumn('photo1')
             ->using(new ImageMapper('photo1', 'photo1_file_name', public_path('app/litters')));
 
         $map->embedded(Litters::PHOTO2)
+            ->withIssetColumn('photo2')
             ->using(new ImageMapper('photo2', 'photo2_file_name', public_path('app/litters')));
 
         $map->embedded(Litters::PHOTO3)
+            ->withIssetColumn('photo3')
             ->using(new ImageMapper('photo3', 'photo3_file_name', public_path('app/litters')));
 
         $map->embedded(Litters::PHOTO4)
+            ->withIssetColumn('photo4')
             ->using(new ImageMapper('photo4', 'photo4_file_name', public_path('app/litters')));
 
         $map->embedded(Litters::PHOTO5)
+            ->withIssetColumn('photo5')
             ->using(new ImageMapper('photo5', 'photo5_file_name', public_path('app/litters')));
 
         $map->property(Litters::IS_SPONSORED)->to('is_sponsored')->asBool();

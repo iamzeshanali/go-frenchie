@@ -109,7 +109,7 @@ class ListingsController extends Controller
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
                 ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->orderByAsc(Listings::ID)
-                ->limit(10)
+                ->limit(16)
         );
 
 
@@ -159,6 +159,7 @@ class ListingsController extends Controller
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
                 ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->orderByAsc(Listings::ID)
+                ->limit(16)
         );
 
         foreach ($allStuds as $st) {
@@ -235,14 +236,12 @@ class ListingsController extends Controller
             $this->listingsRepository->criteria()
                 ->where(Listings::BREEDER,'=',Auth::user())
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
-                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Listings::TRASHED,'=',false)
         );
         $Studs = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::BREEDER,'=',Auth::user())
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
-                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Listings::TRASHED,'=',false)
                 ->orderByAsc(Listings::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
@@ -429,25 +428,45 @@ class ListingsController extends Controller
         $puppy->dob = new Date($date[0], $date[1], $date[2]);
         $puppy->trashed = (bool)"0";
 
-        $file1 =$request->file('photo1');
-        $fullPath1 = $file1->move(public_path('app/listings'), $file1->getClientOriginalName())->getRealPath();
-        $puppy->photo1 = new Image($fullPath1);
+        if($request->file('photo1')){
+            $file1 =$request->file('photo1');
+            $fullPath1 = $file1->move(public_path('app/listings'), $file1->getClientOriginalName())->getRealPath();
+            $puppy->photo1 = new Image($fullPath1);
+        }else{
+            $puppy->photo1 = null;
+        }
 
-        $file2 =$request->file('photo2');
-        $fullPath2 = $file2->move(public_path('app/listings'), $file2->getClientOriginalName())->getRealPath();
-        $puppy->photo2 = new Image($fullPath2);
+        if($request->file('photo2')){
+            $file1 =$request->file('photo2');
+            $fullPath1 = $file1->move(public_path('app/listings'), $file1->getClientOriginalName())->getRealPath();
+            $puppy->photo2 = new Image($fullPath1);
+        }else{
+            $puppy->photo2 = null;
+        }
 
-        $file3 =$request->file('photo3');
-        $fullPath3 = $file3->move(public_path('app/listings'), $file3->getClientOriginalName())->getRealPath();
-        $puppy->photo3 = new Image($fullPath3);
+        if($request->file('photo3')){
+            $file1 =$request->file('photo3');
+            $fullPath1 = $file1->move(public_path('app/listings'), $file1->getClientOriginalName())->getRealPath();
+            $puppy->photo3 = new Image($fullPath1);
+        }else{
+            $puppy->photo3 = null;
+        }
 
-        $file4 =$request->file('photo4');
-        $fullPath4 = $file4->move(public_path('app/listings'), $file4->getClientOriginalName())->getRealPath();
-        $puppy->photo4 = new Image($fullPath4);
+        if($request->file('photo4')){
+            $file1 =$request->file('photo4');
+            $fullPath1 = $file1->move(public_path('app/listings'), $file1->getClientOriginalName())->getRealPath();
+            $puppy->photo4 = new Image($fullPath1);
+        }else{
+            $puppy->photo4 = null;
+        }
+        if($request->file('photo5')){
+            $file1 =$request->file('photo5');
+            $fullPath1 = $file1->move(public_path('app/listings'), $file1->getClientOriginalName())->getRealPath();
+            $puppy->photo5 = new Image($fullPath1);
+        }else{
+            $puppy->photo5 = null;
+        }
 
-        $file5 =$request->file('photo5');
-        $fullPath5 = $file5->move(public_path('app/listings'), $file5->getClientOriginalName())->getRealPath();
-        $puppy->photo5 = new Image($fullPath5);
 
         if ($request->get('listing-blue') == 'none'){
             $puppy->blue = null;
@@ -511,6 +530,7 @@ class ListingsController extends Controller
 
 //        dd($puppy);
         $this->listingsRepository->save($puppy);
+//        dd($request->get('type'));
         if ($request->get('type') == 'stud'){
             return redirect()->route('showAllStuds',1);
         }
@@ -549,49 +569,76 @@ class ListingsController extends Controller
 
             $file1 =$request->file('photo1');
             if ($file1 == null){
-                $fullPath1 = $request->get('photo1_name');
-                $fullPath1 = substr_replace($fullPath1, 'public/app/listings', 44, 6);
+                if ($request->get('photo1_name')){
+                    $fullPath1 = $request->get('photo1_name');
+                    $fullPath1 = substr_replace($fullPath1, 'public/app/listings', 44, 6);
+//                    dd($fullPath1);
+                    $singleListing[0]->photo1 = new Image($fullPath1);
+                }else{
+                    $singleListing[0]->photo1 = null;
+                }
             }else{
                 $fullPath1 = $file1->move(public_path('app/listings'), $file1->getClientOriginalName())->getRealPath();
+                $singleListing[0]->photo1 = new Image($fullPath1);
+//                dd($fullPath1);
             }
-            $singleListing[0]->photo1 = new Image($fullPath1);
 
             $file2 =$request->file('photo2');
             if ($file2 == null){
-                $fullPath2 = $request->get('photo2_name');
-                $fullPath2 = substr_replace($fullPath2, 'public/app/listings', 44, 6);
+                if ($request->get('photo2_name')) {
+                    $fullPath2 = $request->get('photo2_name');
+                    $fullPath2 = substr_replace($fullPath2, 'public/app/listings', 44, 6);
+                    $singleListing[0]->photo2 = new Image($fullPath2);
+                }else{
+                    $singleListing[0]->photo2 = null;
+                }
             }else{
                 $fullPath2 = $file2->move(public_path('app/listings'), $file2->getClientOriginalName())->getRealPath();
+                $singleListing[0]->photo2 = new Image($fullPath2);
             }
-            $singleListing[0]->photo2 = new Image($fullPath2);
 
             $file3 =$request->file('photo3');
             if ($file3 == null){
-                $fullPath3 = $request->get('photo3_name');
-                $fullPath3 = substr_replace($fullPath3, 'public/app/listings', 44, 6);
+                if ($request->get('photo3_name')) {
+                    $fullPath3 = $request->get('photo3_name');
+                    $fullPath3 = substr_replace($fullPath3, 'public/app/listings', 44, 6);
+                    $singleListing[0]->photo3 = new Image($fullPath3);
+                }else{
+                    $singleListing[0]->photo3 = null;
+                }
             }else{
                 $fullPath3 = $file3->move(public_path('app/listings'), $file3->getClientOriginalName())->getRealPath();
+                $singleListing[0]->photo3 = new Image($fullPath3);
             }
-            $singleListing[0]->photo3 = new Image($fullPath3);
-
 
             $file4 =$request->file('photo4');
             if ($file4 == null){
-                $fullPath4 = $request->get('photo4_name');
-                $fullPath4 = substr_replace($fullPath4, 'public/app/listings', 44, 6);
+                if ($request->get('photo4_name')) {
+                    $fullPath4 = $request->get('photo4_name');
+                    $fullPath4 = substr_replace($fullPath4, 'public/app/listings', 44, 6);
+                    $singleListing[0]->photo4 = new Image($fullPath4);
+                }else{
+                    $singleListing[0]->photo4 = null;
+                }
             }else{
                 $fullPath4 = $file4->move(public_path('app/listings'), $file4->getClientOriginalName())->getRealPath();
+                $singleListing[0]->photo4 = new Image($fullPath4);
             }
-            $singleListing[0]->photo4 = new Image($fullPath4);
 
             $file5 =$request->file('photo5');
             if ($file5 == null){
-                $fullPath5 = $request->get('photo5_name');
-                $fullPath5 = substr_replace($fullPath5, 'public/app/listings', 44, 6);
+                if ($request->get('photo5_name')) {
+                    $fullPath5 = $request->get('photo5_name');
+                    $fullPath5 = substr_replace($fullPath5, 'public/app/listings', 44, 6);
+                    $singleListing[0]->photo5 = new Image($fullPath5);
+                }else{
+                    $singleListing[0]->photo5 = null;
+                }
             }else{
                 $fullPath5 = $file5->move(public_path('app/listings'), $file5->getClientOriginalName())->getRealPath();
+                $singleListing[0]->photo5 = new Image($fullPath5);
             }
-            $singleListing[0]->photo5 = new Image($fullPath5);
+
 
             if ($request->get('listing-blue') == 'none'){
                 $singleListing[0]->blue = null;
@@ -600,55 +647,56 @@ class ListingsController extends Controller
             }
 
             if ($request->get('listing-choclote') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->chocolate = null;
             }else{
                 $singleListing[0]->chocolate = new ChocolateEnum($request->get('listing-choclote'));
             }
 
             if ($request->get('listing-agoutie') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->agouti = null;
             }else{
                 $singleListing[0]->agouti = new AgoutiEnum($request->get('listing-agoutie'));
             }
 
             if ($request->get('listing-testable') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->testableChocolate = null;
             }else{
                 $singleListing[0]->testableChocolate = new TestableChocolateEnum($request->get('listing-testable'));
             }
 
             if ($request->get('listing-fluffy') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->fluffy = null;
             }else{
                 $singleListing[0]->fluffy = new FluffyEnum($request->get('listing-fluffy'));
             }
 
             if ($request->get('listing-emcir') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->eMcir = null;
             }else{
                 $singleListing[0]->eMcir = new E_mcirEnum($request->get('listing-emcir'));
             }
 
             if ($request->get('listing-intensity') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->intensity = null;
             }else{
                 $singleListing[0]->intensity = new IntensityEnum($request->get('listing-intensity'));
             }
 
             if ($request->get('listing-pied') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->pied = null;
             }else{
                 $singleListing[0]->pied = new PiedEnum($request->get('listing-pied'));
             }
 
+//            dd($request->get('listing-brindle'));
             if ($request->get('listing-brindle') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->brindle = null;
             }else{
                 $singleListing[0]->brindle = new BrindleEnum($request->get('listing-brindle'));
             }
 
             if ($request->get('listing-merle') == 'none'){
-                $singleListing[0]->blue = null;
+                $singleListing[0]->merle = null;
             }else{
                 $singleListing[0]->merle = new MerleEnum($request->get('listing-merle'));
             }
@@ -1563,17 +1611,25 @@ class ListingsController extends Controller
      *
      * @return Listings
      */
-    public function showTrashedPuppies()
+    public function showTrashedPuppies(Request $request)
     {
-//        dd("JKSFHJDFG");
+        $page = $request->page;
+        $totalTrashedPuppies = $this->listingsRepository->matching(
+            $this->listingsRepository->criteria()
+                ->where(Listings::TRASHED,'=',true)
+                ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
+        );
         $Puppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TRASHED,'=',true)
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
                 ->orderByAsc(Listings::ID)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
         return view('pages/dashboard/listings/puppies/recycle-puppies', [
             'Puppies' => $Puppies,
+            'total' => count($totalTrashedPuppies),
+            'page'=> $page
         ]);
 
     }

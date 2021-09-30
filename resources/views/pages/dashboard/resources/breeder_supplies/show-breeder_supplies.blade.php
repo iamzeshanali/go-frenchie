@@ -3,11 +3,9 @@
 @section('content')
 
     <div class="container-fluid">
-        <h2 class="page-title text-center mb-5">Breader Dashboard</h2>
-
-        <div class="breeder-dashboard-page-content">
+        <div class="gf-dashboard-page-content row align-items-start">
             @include('components.gf-dashboard-menu-area')
-            <div class="breader-dashboard-content p-3 mb-3 rounded">
+            <div class="breader-dashboard-content col-xl-10 col-lg-9">
                 <div class="container-fluid">
                     <div class="table-responsive">
                         <div class="table-wrapper">
@@ -17,11 +15,11 @@
                                         <h2>Breeder <b>Supplies</b></h2>
                                     </div>
                                     <div class="col-sm-6">
-                                        <a href="{{route('showTrashedSupplies')}}" class="btn btn-success btn-fbd">
-                                            <i class="fas fa-trash-alt"></i> <span>Recycle Listings</span>
+                                        <a href="{{route('showTrashedSupplies')}}" class="gf-btn-light">
+                                            <i class="fas fa-trash-alt"></i> <span>Recycle Supplies</span>
                                         </a>
-                                        <a href="{{route('addBreederSupplies')}}" class="btn btn-success btn-fbd">
-                                            <i class="fas fa-plus"></i> <span>Add New Listing</span>
+                                        <a href="{{route('addBreederSupplies')}}" class="gf-btn-dark">
+                                            <i class="fas fa-plus"></i> <span>Add New Supply</span>
                                         </a>
                                     </div>
                                 </div>
@@ -127,7 +125,6 @@
                 </div>
 
             </div>
-        <!-- @include('components.adds-area') -->
         </div>
 
     </div>

@@ -6,6 +6,7 @@ use App\Cms\AdvertisementsPackage;
 use App\Cms\AdvertisePackage;
 use App\Cms\ApiConfigPackage;
 use App\Cms\ListingsPackage;
+use App\Cms\MakeModelPackage;
 use App\Cms\PasswordTokenPackage;
 use App\Cms\ResourcesPackage;
 use App\Cms\SavedItemsPackage;
@@ -41,8 +42,8 @@ class AppCms extends Cms
             'Resources' => ResourcesPackage::class,
             'SavedItems' => SavedItemsPackage::class,
             'Listings' => ListingsPackage::class,
-            'Advertise' => AdvertisePackage::class,
             'ApiConfig' => ApiConfigPackage::class,
+            'Advertisement' => MakeModelPackage::class,
 //            'Password_Token' => PasswordTokenPackage::class,
 
         ]);

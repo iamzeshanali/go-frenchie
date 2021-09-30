@@ -119,15 +119,15 @@ class Litters extends Entity
 
         $class->property($this->expectedDob)->asObject(Date::class);
 
-        $class->property($this->photo1)->asObject(Image::class);
+        $class->property($this->photo1)->nullable()->asObject(Image::class);
 
-        $class->property($this->photo2)->asObject(Image::class);
+        $class->property($this->photo2)->nullable()->asObject(Image::class);
 
-        $class->property($this->photo3)->asObject(Image::class);
+        $class->property($this->photo3)->nullable()->asObject(Image::class);
 
-        $class->property($this->photo4)->asObject(Image::class);
+        $class->property($this->photo4)->nullable()->asObject(Image::class);
 
-        $class->property($this->photo5)->asObject(Image::class);
+        $class->property($this->photo5)->nullable()->asObject(Image::class);
 
         $class->property($this->isSponsored)->asBool();
 

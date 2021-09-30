@@ -16,6 +16,7 @@ use App\Domain\Services\Persistence\ICustomersRepository;
 use App\Domain\Services\Persistence\IEnumsTestRepository;
 use App\Domain\Services\Persistence\IListingsRepository;
 use App\Domain\Services\Persistence\ILittersRepository;
+use App\Domain\Services\Persistence\IMakeAddRepository;
 use App\Domain\Services\Persistence\ISavedItemsRepository;
 use App\Domain\Services\Persistence\ISavedListingsRepository;
 use App\Domain\Services\Persistence\ISavedLittersRepository;
@@ -33,6 +34,7 @@ use App\Infrastructure\Persistence\DbCustomersRepository;
 use App\Infrastructure\Persistence\DbEnumsTestRepository;
 use App\Infrastructure\Persistence\DbListingsRepository;
 use App\Infrastructure\Persistence\DbLittersRepository;
+use App\Infrastructure\Persistence\DbMakeAddRepository;
 use App\Infrastructure\Persistence\DbSavedItemsRepository;
 use App\Infrastructure\Persistence\DbSavedListingsRepository;
 use App\Infrastructure\Persistence\DbSavedLittersRepository;
@@ -78,7 +80,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ICanine_GeneticsRepository::class, DbCanine_GeneticsRepository::class);
         $this->app->singleton(ICanine_NutritionRepository::class, DbCanine_NutritionRepository::class);
 
-        $this->app->singleton(IAdvertiseRepository::class, DbAdvertiseRepository::class);
+        $this->app->singleton(IMakeAddRepository::class, DbMakeAddRepository::class);
+
 
         $this->app->singleton(IApiConfigRepository::class, DbApiConfigRepository::class);
 

@@ -21,7 +21,7 @@
     <div class="container-fluid">
         <div class="page-content d-lg-flex align-items-start">
             {{--Filter area--}}
-            <div class="fbd-filter-area pb-1 mb-3 col-xl-2 col-lg-3">
+            <div class="fbd-filter-area p-0 pb-1 mb-3 col-xl-2 col-lg-3">
                 <div id="accordion">
                     <!-- Your Search -->
                     @if($data != null)
@@ -48,29 +48,6 @@
 
                         </div>
                     @endif
-
-                    @if(Auth::user())
-                        {{--Saved Search--}}
-{{--                        <div class="card p-3 mb-4 rounded">--}}
-{{--                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">--}}
-{{--                                <span class="heading mb-0">Search History</span>--}}
-{{--                                <?php--}}
-{{--                                $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();--}}
-{{--                                ?>--}}
-{{--                                <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>--}}
-{{--                            </div>--}}
-{{--                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">--}}
-{{--                                <div class="card-body">--}}
-{{--                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->--}}
-{{--                                    <ul class="tags-list" id="primary-recent-search">--}}
-{{--                                        @foreach($allSavedSearch AS $saved)--}}
-{{--                                            <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>--}}
-{{--                                        @endforeach--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-                @endif
                 <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
 
@@ -434,7 +411,7 @@
 
                 <div id="primary-listing-data" class="fbd-listing-area">
 
-{{--                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>12</b> listings</p>--}}
+                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> listings</p>
                     <h3 class="listing-type">SPONSORED LISTINGS</h3>
                     @if(empty($sponsoredPuppies))
                         <div class="fbd-standard-listing p-3">
@@ -525,7 +502,7 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                            <h4 class="modal-title">Login Yourself</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         </div>
                                                         @if (\Session::has('error'))
@@ -542,10 +519,8 @@
 
                                                                 {{--  EMAIL-ADDRESS  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                    <div class="col-md-12">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="E-mail Address: *" autocomplete="email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -556,10 +531,8 @@
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                    <div class="col-md-12">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password: *" autocomplete="new-password">
 
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
@@ -572,7 +545,7 @@
                                                             <div class="modal-footer">
                                                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                                                 <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                <button type="submit" class="btn btn-primary btn-fbd">
                                                                     {{ __('Login') }}
                                                                 </button>
 
@@ -596,10 +569,8 @@
                                                                 <input type="hidden" name="type" value="listing">
                                                                 {{--  USERNAME  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                                    <div class="col-md-12">
+                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required placeholder="Username: *" autocomplete="username" autofocus>
 
                                                                         @error('username')
                                                                         <span class="invalid-feedback" role="alert">
@@ -610,10 +581,8 @@
                                                                 </div>
                                                                 {{--  EMAIL-ADDRESS  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                    <div class="col-md-12">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="E-Mail: *" autocomplete="email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -624,10 +593,8 @@
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                    <div class="col-md-12">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password: *" autocomplete="new-password">
 
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
@@ -638,16 +605,15 @@
                                                                 </div>
                                                                 {{--  CONFIRM-PASSWORD  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                    <div class="col-md-12">
+                                                                        <input type="password" class="form-control" name="password_confirmation" required placeholder="Confirm-Password: *" autocomplete="new-password">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                <a href="#LoginModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Login"></a>
+                                                                <button type="submit" class="btn btn-primary btn-fbd">
                                                                     {{ __('Register') }}
                                                                 </button>
 
@@ -668,7 +634,7 @@
                         @endforeach
 
                     @endif
-{{--                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>--}}
+                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> listings</p>
                     <h3 class="listing-type my-3">STANDARD LISTINGS</h3>
 
                     @if(empty($standardPuppies))

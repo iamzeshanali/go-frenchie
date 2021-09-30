@@ -32,6 +32,7 @@ class LittersController extends Controller
                 ->orderByAsc(Listings::ID)
                 ->limit(5)
         );
+//        dd($Litters);
         foreach ($Litters as $fl) {
             if($fl->isSponsored){
                 array_push($sponsoredLitters,$fl);
@@ -40,7 +41,7 @@ class LittersController extends Controller
             }
         }
 
-//        dd($Litters);
+//        dd($standardLitters);
         return view('pages/litter-listing', [
             'sponsoredLitters' => $sponsoredLitters,
             'standardLitters' => $standardLitters,
@@ -54,16 +55,14 @@ class LittersController extends Controller
         $totalLitters= $this->littersRepository->matching(
             $this->littersRepository->criteria()
                 ->where(Litters::BREEDER,'=',Auth::user())
-                ->where(Litters::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Litters::TRASHED,'=',false)
         );
         $Litters= $this->littersRepository->matching(
             $this->littersRepository->criteria()
                 ->where(Litters::BREEDER,'=',Auth::user())
-                ->where(Litters::STATUS,'=',new ListingsStatusEnum('active'))
                 ->where(Litters::TRASHED,'=',false)
                 ->orderByAsc(Listings::ID)
-                ->skip(((int) $page - 1) * 1)->limit(1)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
 //        dd($Puppies);
         return view('pages/dashboard/listings/litters/show-litters', [
@@ -107,25 +106,45 @@ class LittersController extends Controller
         $litter->sire = $request->get('sire');
         $litter->trashed = (bool)"0";
 
-        $file1 =$request->file('photo1');
-        $fullPath1 = $file1->move(public_path('app/litters'), $file1->getClientOriginalName())->getRealPath();
-        $litter->photo1 = new Image($fullPath1);
+        if($request->file('photo1')){
+            $file1 =$request->file('photo1');
+            $fullPath1 = $file1->move(public_path('app/litters'), $file1->getClientOriginalName())->getRealPath();
+            $litter->photo1 = new Image($fullPath1);
+        }else{
+            $litter->photo1 = null;
+        }
 
-        $file2 =$request->file('photo2');
-        $fullPath2 = $file2->move(public_path('app/litters'), $file2->getClientOriginalName())->getRealPath();
-        $litter->photo2 = new Image($fullPath2);
+        if($request->file('photo2')){
+            $file1 =$request->file('photo2');
+            $fullPath1 = $file1->move(public_path('app/litters'), $file1->getClientOriginalName())->getRealPath();
+            $litter->photo2 = new Image($fullPath1);
+        }else{
+            $litter->photo2 = null;
+        }
 
-        $file3 =$request->file('photo3');
-        $fullPath3 = $file3->move(public_path('app/litters'), $file3->getClientOriginalName())->getRealPath();
-        $litter->photo3 = new Image($fullPath3);
+        if($request->file('photo3')){
+            $file1 =$request->file('photo3');
+            $fullPath1 = $file1->move(public_path('app/litters'), $file1->getClientOriginalName())->getRealPath();
+            $litter->photo3 = new Image($fullPath1);
+        }else{
+            $litter->photo3 = null;
+        }
 
-        $file4 =$request->file('photo4');
-        $fullPath4 = $file4->move(public_path('app/litters'), $file4->getClientOriginalName())->getRealPath();
-        $litter->photo4 = new Image($fullPath4);
+        if($request->file('photo4')){
+            $file1 =$request->file('photo4');
+            $fullPath1 = $file1->move(public_path('app/litters'), $file1->getClientOriginalName())->getRealPath();
+            $litter->photo4 = new Image($fullPath1);
+        }else{
+            $litter->photo4 = null;
+        }
+        if($request->file('photo5')){
+            $file1 =$request->file('photo5');
+            $fullPath1 = $file1->move(public_path('app/litters'), $file1->getClientOriginalName())->getRealPath();
+            $litter->photo5 = new Image($fullPath1);
+        }else{
+            $litter->photo5 = null;
+        }
 
-        $file5 =$request->file('photo5');
-        $fullPath5 = $file5->move(public_path('app/litters'), $file5->getClientOriginalName())->getRealPath();
-        $litter->photo5 = new Image($fullPath5);
 
         $this->littersRepository->save($litter);
 
@@ -168,56 +187,80 @@ class LittersController extends Controller
             $date = explode('-', $request->get('dob'));
             $singleLitter[0]->expectedDob = new Date($date[0], $date[1], $date[2]);
 
-
-            $file1 = $request->file('photo1');
-            if ($file1 == null) {
-                $fullPath1 = $request->get('photo1_name');
-                $fullPath1 = substr_replace($fullPath1, 'public/app/litters', 44, 6);
-            } else {
-                $fullPath1 = $file1->move(public_path('app/litters'), $file1->getClientOriginalName())->getRealPath();
+            $file1 =$request->file('photo1');
+            if ($file1 == null){
+                if ($request->get('photo1_name')){
+                    $fullPath1 = $request->get('photo1_name');
+                    $fullPath1 = substr_replace($fullPath1, 'public/app/listings', 44, 6);
+//                    dd($fullPath1);
+                    $singleLitter[0]->photo1 = new Image($fullPath1);
+                }else{
+                    $singleLitter[0]->photo1 = null;
+                }
+            }else{
+                $fullPath1 = $file1->move(public_path('app/listings'), $file1->getClientOriginalName())->getRealPath();
+                $singleLitter[0]->photo1 = new Image($fullPath1);
+//                dd($fullPath1);
             }
-            $singleLitter[0]->photo1 = new Image($fullPath1);
 
-            $file2 = $request->file('photo2');
-            if ($file2 == null) {
-                $fullPath2 = $request->get('photo2_name');
-                $fullPath2 = substr_replace($fullPath2, 'public/app/litters', 44, 6);
-            } else {
-                $fullPath2 = $file2->move(public_path('app/litters'), $file2->getClientOriginalName())->getRealPath();
+            $file2 =$request->file('photo2');
+            if ($file2 == null){
+                if ($request->get('photo2_name')) {
+                    $fullPath2 = $request->get('photo2_name');
+                    $fullPath2 = substr_replace($fullPath2, 'public/app/listings', 44, 6);
+                    $singleLitter[0]->photo2 = new Image($fullPath2);
+                }else{
+                    $singleLitter[0]->photo2 = null;
+                }
+            }else{
+                $fullPath2 = $file2->move(public_path('app/listings'), $file2->getClientOriginalName())->getRealPath();
+                $singleLitter[0]->photo2 = new Image($fullPath2);
             }
-            $singleLitter[0]->photo2 = new Image($fullPath2);
 
-            $file3 = $request->file('photo3');
-            if ($file3 == null) {
-                $fullPath3 = $request->get('photo3_name');
-                $fullPath3 = substr_replace($fullPath3, 'public/app/litters', 44, 6);
-            } else {
-                $fullPath3 = $file3->move(public_path('app/litters'), $file3->getClientOriginalName())->getRealPath();
+            $file3 =$request->file('photo3');
+            if ($file3 == null){
+                if ($request->get('photo3_name')) {
+                    $fullPath3 = $request->get('photo3_name');
+                    $fullPath3 = substr_replace($fullPath3, 'public/app/listings', 44, 6);
+                    $singleLitter[0]->photo3 = new Image($fullPath3);
+                }else{
+                    $singleLitter[0]->photo3 = null;
+                }
+            }else{
+                $fullPath3 = $file3->move(public_path('app/listings'), $file3->getClientOriginalName())->getRealPath();
+                $singleLitter[0]->photo3 = new Image($fullPath3);
             }
-            $singleLitter[0]->photo3 = new Image($fullPath3);
 
-
-            $file4 = $request->file('photo4');
-            if ($file4 == null) {
-                $fullPath4 = $request->get('photo4_name');
-                $fullPath4 = substr_replace($fullPath4, 'public/app/litters', 44, 6);
-            } else {
-                $fullPath4 = $file4->move(public_path('app/litters'), $file4->getClientOriginalName())->getRealPath();
+            $file4 =$request->file('photo4');
+            if ($file4 == null){
+                if ($request->get('photo4_name')) {
+                    $fullPath4 = $request->get('photo4_name');
+                    $fullPath4 = substr_replace($fullPath4, 'public/app/listings', 44, 6);
+                    $singleLitter[0]->photo4 = new Image($fullPath4);
+                }else{
+                    $singleLitter[0]->photo4 = null;
+                }
+            }else{
+                $fullPath4 = $file4->move(public_path('app/listings'), $file4->getClientOriginalName())->getRealPath();
+                $singleLitter[0]->photo4 = new Image($fullPath4);
             }
-            $singleLitter[0]->photo4 = new Image($fullPath4);
 
-            $file5 = $request->file('photo5');
-            if ($file5 == null) {
-                $fullPath5 = $request->get('photo5_name');
-                $fullPath5 = substr_replace($fullPath5, 'public/app/litters', 44, 6);
-            } else {
-                $fullPath5 = $file5->move(public_path('app/litters'), $file5->getClientOriginalName())->getRealPath();
+            $file5 =$request->file('photo5');
+            if ($file5 == null){
+                if ($request->get('photo5_name')) {
+                    $fullPath5 = $request->get('photo5_name');
+                    $fullPath5 = substr_replace($fullPath5, 'public/app/listings', 44, 6);
+                    $singleLitter[0]->photo5 = new Image($fullPath5);
+                }else{
+                    $singleLitter[0]->photo5 = null;
+                }
+            }else{
+                $fullPath5 = $file5->move(public_path('app/listings'), $file5->getClientOriginalName())->getRealPath();
+                $singleLitter[0]->photo5 = new Image($fullPath5);
             }
-            $singleLitter[0]->photo5 = new Image($fullPath5);
-
 //            dd($singleLitter[0]);
             $this->littersRepository->save($singleLitter[0]);
-            return redirect()->route('showAllLitters');
+            return redirect()->route('showAllLitters',1);
         }
     }
 
