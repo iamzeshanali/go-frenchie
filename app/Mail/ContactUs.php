@@ -34,7 +34,7 @@ class ContactUs extends Mailable
     public function build()
     {
 //        dd('Contact by '.$this->name.' - GoFrenchie');
-        return $this->from($this->email)->subject($this->subject)->view('layouts/mail')->with([
+        return $this->from($this->email)->subject($this->subject)->view('layouts/contact-us-mail-template')->with([
             'name'=>$this->name,
             'email'=> $this->email,
             'subject'=> 'Contact by '.$this->name.' - GoFrenchie',
