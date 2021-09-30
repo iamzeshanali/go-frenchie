@@ -273,7 +273,7 @@ a#navbarDropdown img {
     box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(245 206 154 / 30%) 0px 3px 7px -3px;
 }
 
-.gf-login-wrapper .card-header, .gf-select-user-wrapper .card-header, .gf-customer-reg-wrapper .card-header, .gf-breeder-reg-wrapper .card-header, .gf-email-password-wrapper .card-header{
+.gf-login-wrapper .card-header, .gf-select-user-wrapper .card-header, .gf-customer-reg-wrapper .card-header, .gf-breeder-reg-wrapper .card-header, .gf-email-password-wrapper .card-header, .fbd-single-listing-contactForm .card-header{
     background-color: transparent;
     border: none;
 }
@@ -608,7 +608,7 @@ form#create-listing-form label {
     margin-top: 6px;
 }
 
-.gf-dashboard-menu-area button.btn-collapse ,.gf-dashboard-menu-area .card-body a{
+.gf-dashboard-menu-area button.btn-collapse ,.gf-dashboard-menu-area .card a{
     color: var(--dark);
 }
 
@@ -882,96 +882,60 @@ table.table .avatar {
 
 /*8-- *********** Breader Profile Start ***************/
 
-
-.breeder-profile-info{
-    gap: 10px;
-}
-
-.breeder-profile-info a:hover{
-    text-decoration: none;
-    color: #957afe;
+.gf-breeder-profile-wrapper{
+    background-image: url("/images/homepage/gf-home-banner-bg.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
 }
 
 .breeder-profile-info i{
-    text-decoration: none;
-    color: #8B77FC;
+    color: var(--blue);
     font-size:16px;
-    margin-right: 18px;
+    width: 40px;
 }
 
 .breeder-profile-info h4{
-    color: #8B77FC;
-    font-family: "Sailec-Bold";
-    font-size: 24px;
+    
 }
 
-.breeder-profile-info a, .breeder-profile-info span{
-    color: #242626;
-    font-family: "Sailec";
-    font-size: 14px;
+.breeder-profile-info a{
+    color: var(--dark);
+    margin-bottom: 8px;
 }
 
-.breeder-profile-name h4{
-    color: #242626;
-    font-family: "Sailec-Bold";
-    font-size: 24px;
-}
-
-.breeder-profile-contact i{
+/* .breeder-profile-contact i{
+    color: var(--blue);
     margin-right: 18px;
 }
 
 .breeder-profile-contact a{
-    color: #8B77FC;
-    font-family: "Sailec";
-}
-
-.breeder-profile-contact a:hover{
-    color: #957AFE;
-    text-decoration: none;
-}
-
-p.breeder-profile-about{
-    font-family: "Sailec";
-}
-
+    color: var(--dark);
+} */
 
 /* Product Card */
 
 .breeder-resources-card{
+    background-color: #fbebd7;
+    border-radius: 25px;
+    border-bottom: 3px solid var(--red);
+    padding: 10px 20px;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
 }
 .product-card-info h5{
-    color: #957AFE;
-    font-family: "Sailec-Medium";
+    /* color: #957AFE;
+    font-family: "Sailec-Medium"; */
 }
 
 .product-card-info p{
-    font-family: "Sailec";
-    color: #252727bf;
-    text-align: justify;
 }
 
 .product-card-info a{
-    color: #242626;
+    color: var(--dark);
     display: block;
     font-family: "Sailec-Medium";
 }
 
-.product-card-info i{
-    color: #8B77FC;
-}
-
-.product-card-info a:hover{
-    text-decoration: none;
-    color: #8B77FC;
-}
-
-.product-card-info div.price span{
-    font-size: 20px;
-    font-family: "Sailec-Medium";
-    color: #8B77FC;
-}
 
 /* --------------------------- */
 
@@ -1028,7 +992,7 @@ p.breeder-profile-about{
 }
 
 .fbd-single-listing-img {
-    /* border: 3px solid #c0c0c0; */
+    border: 3px solid #c0c0c0;
     border-radius: 10px;
     max-width: 100%;
     width: 800px;
@@ -1072,7 +1036,7 @@ p.breeder-profile-about{
 }
 
 .fbd-single-listing-thumbs img {
-    max-height: 75px;
+    max-height: 50px;
     object-fit: contain;
 }
 
@@ -1126,13 +1090,8 @@ p.breeder-profile-about{
     border-radius: 30px;
 }
 
-.fbd-single-listing-contactForm input[type="text"], .fbd-single-listing-contactForm input[type="email"], .fbd-single-listing-contactForm textarea{
-    background-color: transparent;
-    /* width: 100%; */
-    padding: 16px;
-    border: 1px solid #6E6F72;
-    /* margin-bottom: 14px; */
-    border-radius: 0px 30px 30px 0px !important;
+.fbd-single-listing-contactForm .gf-form-field{
+    margin-bottom: 0px;
 }
 
 .fbd-single-listing-contactForm input[type="submit"]{
@@ -1799,14 +1758,14 @@ img{
     .wrapper {padding: 50px 0;}
 }
 
-.wrapper h2{
+.wrapper h2,.gf-breeder-profile-wrapper h2, .fbd-single-listing-title{
     /* color: var(--blue); */
     font-size: 55px;
     line-height: 60px;
 }
 
 @media only screen and (max-width: 991px){
-    .wrapper h2 {
+    .wrapper h2, .gf-breeder-profile-wrapper h2, .fbd-single-listing-title{
         font-size: 40px;
         line-height: 50px;
     }
@@ -1836,6 +1795,10 @@ textarea:focus-visible, select:focus-visible, input:focus-visible, button{
     outline: none !important;
 }
 
+body a:hover {
+    color: var(--blue);
+}
+
 
 
 /* 3--Go Frenchie Home Page */
@@ -1844,7 +1807,6 @@ textarea:focus-visible, select:focus-visible, input:focus-visible, button{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top right;
-    /* padding-top: 100px; */
 }
 
 .gf-home-banner-text p:first-child{
@@ -2095,11 +2057,9 @@ textarea:focus-visible, select:focus-visible, input:focus-visible, button{
 
 .gf-slide{
     background-color: #fbebd7;
-    /* background-color: hsla(34, 82%, 78%, 0.2); */
     border-radius: 25px;
     border-bottom: 3px solid #BE202E;
     padding: 10px 20px;
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(245, 206, 154, 0.3) 0px 3px 7px -3px; */
 }
 
 .gf-slide a.gf-frenchie-slide-like i{

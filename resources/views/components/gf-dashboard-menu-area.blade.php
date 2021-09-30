@@ -53,7 +53,8 @@
             <div class="card-header p-0 bg-transparent border-0" id="headingThree">
                 <h5 class="mb-0">
                     <button class="btn btn-collapse p-0 link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                        <i class="fas fa-paw"></i> &emsp;  Saved Items
+                        <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-studs')}}/1"><i class="fas fa-paw"></i> &emsp;  Saved Items</a>
+
                     </button>
                 </h5>
             </div>
@@ -68,14 +69,14 @@
 {{--                </div>--}}
 {{--            </div>--}}
         </div>
-        <div class="card bg-transparent border-0 pb-2">
-            <div class="card-header p-0 bg-transparent border-0" id="headingThree">
-                <h5 class="mb-0">
-                    <button onclick="window.location = '{{\Illuminate\Support\Facades\URL::to('dashboard/saved-search')}}/1'" class="btn btn-collapse p-0 link" aria-expanded="false">
-                        <i class="fas fa-history"></i> &emsp;  Search History
-                    </button>
-                </h5>
-            </div>
-        </div>
+{{--        <div class="card bg-transparent border-0 pb-2">--}}
+{{--            <div class="card-header p-0 bg-transparent border-0" id="headingThree">--}}
+{{--                <h5 class="mb-0">--}}
+{{--                    <button onclick="window.location = '{{\Illuminate\Support\Facades\URL::to('dashboard/saved-search')}}/1'" class="btn btn-collapse p-0 link" aria-expanded="false">--}}
+{{--                        <i class="fas fa-history"></i> &emsp;  Search History--}}
+{{--                    </button>--}}
+{{--                </h5>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 </div>

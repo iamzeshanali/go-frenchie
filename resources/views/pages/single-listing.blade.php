@@ -3,15 +3,15 @@
 @section('content')
 
 
-<div class="container">
+<div class="single-listing-wrapper container">
     <div class="breadcrumbs row align-items-center mb-2">
-        <a href="" title="Dashboard"><i class="fas fa-tachometer-alt"></i>&emsp; Dashboard</a> &emsp;
+        <a href="" title="Dashboard"><i class="fas fa-tachometer-alt gf-blue"></i>&emsp; Dashboard</a> &emsp;
         <i class="fas fa-angle-right"></i> &emsp;
-        <a href="" title="View Listing">View Listing</a> &emsp;
+        <a href="" title="View Listing"><i class="fas fa-th-list gf-blue"></i>&emsp; View Listing</a> &emsp;
     </div>
     <div class="row">
         <div class="col-md-6">
-            <h2 class="fbd-single-listing-title">{{$puppy->title}}</h2>
+            <h2 class="fbd-single-listing-title gf-red">{{$puppy->title}}</h2>
         </div>
         <div class="col-md-6">
             <div class="fbd-single-listing-social text-right mb-3">
@@ -38,16 +38,16 @@
                         }
                         ?>
                         @if($matched == false)
-                            <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$puppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$puppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                            <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$puppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$puppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                         @else
-                            <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$puppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$puppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                            <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #BE202E;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$puppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$puppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                         @endif
 
                     @else
-                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$puppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$puppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$puppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$puppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                     @endif
                 @else
-                    <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
+                    <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
                 @endif
                 <div id="LoginModal" class="modal fade">
                     <div class="modal-dialog">
@@ -188,8 +188,8 @@
         </div>
     </div>
     <div class="row mb-5 fbd-single-listing-info">
-        <div class="col-md-5 px-5">
-            <div class="fbd-single-listing-img mb-3">
+        <div class="col-md-6 px-5">
+            <div class="fbd-single-listing-img p-3 mb-3">
                 <img src="{{asset_file_url($puppy->photo1)}}" alt="">
                 <img src="{{asset_file_url($puppy->photo2)}}" alt="">
                 <img src="{{asset_file_url($puppy->photo3)}}" alt="">
@@ -205,7 +205,7 @@
             </div>
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
             <a class="breeder-name" href="" title="Breeder Name">
                 <h3>{{ucfirst($puppy->breeder->username)}}</h3>
             </a>
@@ -220,14 +220,31 @@
                     <i class="fa fa-calendar-alt"></i> &emsp; <span title="Date of Birth">{{date('Y-m-d',$puppy->dob->getTimestamp())}}</span><br>
                 </div>
             </div>
-
-            <div class="row my-4 fbd-single-listing-contact-social justify-content-between">
+            <hr>
+            <div class="row my-4 fbd-single-listing-contact-social justify-content-around">
                 <a class="mx-4" href="{{$puppy->breeder->fbAccountUrl->asString()}}" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a class="mx-4" href="{$puppy->breeder->igAccountUrl->asString()}}" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a class="mx-4" href="#" title="Share"><i class="fas fa-share-square"></i></a>
             </div>
 
 
+        </div>
+
+    </div>
+
+    <!-- <div class="fbd-single-listing-features row ml-4">
+        <div class="col-md-5 p-2 mr-3">
+            <i class="fa fa-venus-mars"></i> &emsp; &emsp; <span>{{ucfirst($puppy->sex->getValue())}}</span>
+        </div>
+        <div class="col-md-5 p-2 mr-3">
+            <i class="fa fa-calendar-alt"></i> &emsp; &emsp; <span>{{date('Y-m-d',$puppy->dob->getTimestamp())}}</span>
+        </div>
+    </div> -->
+
+    <div class="fbd-single-listing-description row my-4 mx-4">
+        <div class="col-md-8">
+            <h2 class="gf-red">Description</h2>
+            <p>{{$puppy->decription}}</p>
         </div>
         <div class="col-md-4">
 
@@ -239,47 +256,41 @@
                             <div class="alert alert-success"> <p>Mail Sent</p> </div>
                         @endif
                         @if (\Session::has('error'))
-                        <div class="alert alert-danger">
-                            {{ \Session::get('error') }}
-                        </div>
+                            <div class="alert alert-danger">
+                                {{ \Session::get('error') }}
+                            </div>
                         @endif
                     </div>
                     <div class="card">
 
-                        <div class="card-body p-3">
+                        <div class="card-header text-center">
+                            <h3 class="gf-red">
+                                Contact With Breeder
+                            </h3>
+                        </div>
+
+                        <div class="card-body px-3 pb-3 pt-0">
                             <div class="form-group">
                                 <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-user"></i></div>
-                                    </div>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-                                    <input type="hidden" class="form-control" value="{{$puppy->getId()}}" name="listing" placeholder="Name">
+                                    <input type="text" class="gf-form-field" id="name" name="name" placeholder="Name" required>
+                                    <input type="hidden" class="form-control" value="{{$puppy->getId()}}" name="listing" placeholder="Name *">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-envelope"></i></div>
-                                    </div>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                    <input type="email" class="gf-form-field" id="email" name="email" placeholder="Email *" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-envelope"></i></div>
-                                    </div>
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                                    <input type="text" class="gf-form-field" id="subject" name="subject" placeholder="Subject *" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-comment"></i></div>
-                                    </div>
-                                    <textarea class="form-control" name="message" placeholder="Message" rows="6" required></textarea>
+                                    <textarea class="gf-form-field" style="height: 100%;" name="message" placeholder="Message *" rows="6" required></textarea>
                                 </div>
                             </div>
 
@@ -295,241 +306,77 @@
         </div>
     </div>
 
-    <!-- <div class="fbd-single-listing-features row ml-4">
-        <div class="col-md-5 p-2 mr-3">
-            <i class="fa fa-venus-mars"></i> &emsp; &emsp; <span>{{ucfirst($puppy->sex->getValue())}}</span>
-        </div>
-        <div class="col-md-5 p-2 mr-3">
-            <i class="fa fa-calendar-alt"></i> &emsp; &emsp; <span>{{date('Y-m-d',$puppy->dob->getTimestamp())}}</span>
-        </div>
-    </div> -->
 
     <div class="fbd-single-listing-description row my-4 mx-4">
-        <h4>Description</h4>
-        <p class="ml-2">
-            {{$puppy->decription}}
-        </p>
-
-    </div>
-
-
-    <div class="fbd-single-listing-description row my-4 mx-4">
-        <h4>DNA Characteristics</h4>
+        <h2 class="gf-red">DNA Characteristics</h2>
 
     </div>
     <div class="fbd-single-listing-dna row">
 
         @if(!empty($puppy->blue))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>Blue</b></span>
-            <p> &emsp; &emsp;{{$puppy->blue->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>d/d</td>
-                    </tr>
-                    <tr>
-                        <td>D/d</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>Blue</b></span>
+            <p>{{$puppy->blue->getValue()}}</p>
         </div>
         @endif
         @if(!empty($puppy->chocolate))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>Chocolate</b></span>
-            <p> &emsp; &emsp;{{$puppy->chocolate->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>co/co</td>
-                    </tr>
-                    <tr>
-                        <td>Co/co</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>Chocolate</b></span>
+            <p>{{$puppy->chocolate->getValue()}}</p>
         </div>
         @endif
 
         @if(!empty($puppy->testableChocolate))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>TestableChocolate</b></span>
-            <p> &emsp; &emsp;{{$puppy->testableChocolate->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>b/b</td>
-                    </tr>
-                    <tr>
-                        <td>B/b</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>TestableChocolate</b></span>
+            <p>{{$puppy->testableChocolate->getValue()}}</p>
         </div>
         @endif
         @if(!empty($puppy->fluffy))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>Fluffy</b></span>
-            <p> &emsp; &emsp;{{$puppy->fluffy->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>l/l</td>
-                    </tr>
-                    <tr>
-                        <td>L/l</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>Fluffy</b></span>
+            <p>{{$puppy->fluffy->getValue()}}</p>
         </div>
         @endif
 
         @if(!empty($puppy->intensity))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>Intensity</b></span>
-            <p> &emsp; &emsp;{{$puppy->intensity->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>i/i</td>
-                    </tr>
-                    <tr>
-                        <td>I/i</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>Intensity</b></span>
+            <p>{{$puppy->intensity->getValue()}}</p>
         </div>
         @endif
         @if(!empty($puppy->pied))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>Pied</b></span>
-            <p> &emsp; &emsp;{{$puppy->pied->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>s/s</td>
-                    </tr>
-                    <tr>
-                        <td>s/N</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>Pied</b></span>
+            <p>{{$puppy->pied->getValue()}}</p>
         </div>
         @endif
 
         @if(!empty($puppy->brindle))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>Brindle</b></span>
-            <p> &emsp; &emsp;{{$puppy->brindle->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>{{ucfirst('yes')}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ucfirst('no')}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>Brindle</b></span>
+            <p>{{$puppy->brindle->getValue()}}</p>
         </div>
         @endif
         @if(!empty($puppy->merle))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>Merle</b></span>
-            <p> &emsp; &emsp;{{$puppy->merle->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>{{ucfirst('yes')}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ucfirst('no')}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>Merle</b></span>
+            <p>{{$puppy->merle->getValue()}}</p>
         </div>
         @endif
         @if(!empty($puppy->agouti))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>Agouti</b></span>
-            <p> &emsp; &emsp;{{$puppy->agouti->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>(a,a)</td>
-                    </tr>
-                    <tr>
-                        <td>(ay,a)</td>
-                    </tr>
-                    <tr>
-                        <td>(ay,at)</td>
-                    </tr>
-                    <tr>
-                        <td>(ay,ay)</td>
-                    </tr>
-                    <tr>
-                        <td>(at,a)</td>
-                    </tr>
-                    <tr>
-                        <td>(at,at)</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>Agouti</b></span>
+            <p>{{$puppy->agouti->getValue()}}</p>
         </div>
         @endif
         @if(!empty($puppy->eMcir))
         <div class="col-sm-3 my-auto pl-5 text-left">
-            <i class="fa fa-dna"></i> &emsp;<span><b>EMcir</b></span>
-            <p> &emsp; &emsp;{{$puppy->eMcir->getValue()}}</p>
-        </div>
-        <div class=" col-sm-3">
-            <table class="table bg-white text-center">
-                <tbody>
-                    <tr>
-                        <td>(EM,EM)</td>
-                    </tr>
-                    <tr>
-                        <td>(EM,E)</td>
-                    </tr>
-                    <tr>
-                        <td>(EM,e)</td>
-                    </tr>
-                    <tr>
-                        <td>(E,E)</td>
-                    </tr>
-                    <tr>
-                        <td>(E,e)</td>
-                    </tr>
-                    <tr>
-                        <td>(e,e)</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span><b>EMcir</b></span>
+            <p>{{$puppy->eMcir->getValue()}}</p>
         </div>
         @endif
     </div>
-
-
-
 </div>
 
 
@@ -551,12 +398,12 @@
                 if(data.success == '200'){
                     // console.log(data.success);
                     var className = ".fbd-liked-icon"+"-"+$slug;
-                    $(className).css("color","var(--gray)");
+                    $(className).css("color","#6E6F72");
                 }
                 if(data.success == '300'){
                     // console.log(data.success);
                     var className = ".fbd-liked-icon"+"-"+$slug;
-                    $(className).css("color","var(--red)");
+                    $(className).css("color","#BE202E");
                 }
             },
         });
