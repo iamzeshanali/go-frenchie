@@ -144,8 +144,11 @@
                             {{--  PASSWORD  --}}
                             <div class="form-group row mb-0">
 
-                                <div class="col">
+                                <div class="col input-group flex-nowrap">
                                     <input id="password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+                                    <span class="input-group-btn">
+                                        <button onclick="showPassword('password')" class="btn btn-default reveal mt-1" type="button"><i class="fas fa-eye"></i></button>
+                                    </span>
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -157,8 +160,12 @@
                             {{--  CONFIRM-PASSWORD  --}}
                             <div class="form-group row mb-0">
 
-                                <div class="col">
+                                <div class="col input-group flex-nowrap">
                                     <input id="password-confirm" type="password" class="gf-form-field" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                                    <span class="input-group-btn">
+                                        <button onclick="showPassword('password-confirm')" class="btn btn-default reveal mt-1" type="button"><i class="fas fa-eye"></i></button>
+                                    </span>
+
                                 </div>
                             </div>
                             {{--  SUBMIT  --}}

@@ -60,7 +60,7 @@
                     <div class="col-md-4  p-3">
                         <div class="breeder-resources-card">
                             <div class="text-center mb-3">
-                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="100px">
+                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
                             </div>
                             <div class="product-card-info">
                                 <h5>{{$resource->title}}</h5>
@@ -86,7 +86,7 @@
                     <div class="col-md-4  p-3">
                         <div class="breeder-resources-card">
                             <div class="text-center mb-3">
-                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="100px">
+                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
                             </div>
                             <div class="product-card-info">
                                 <h5>{{$resource->title}}</h5>
@@ -112,7 +112,7 @@
                     <div class="col-md-4  p-3">
                         <div class="breeder-resources-card">
                             <div class="text-center mb-3">
-                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="100px">
+                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
                             </div>
                             <div class="product-card-info">
                                 <h5>{{$resource->title}}</h5>
@@ -126,6 +126,7 @@
                 @endforeach
             </div>
         </div>
+
     </div>
 </div>
 @endsection

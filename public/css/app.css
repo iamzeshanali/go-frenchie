@@ -244,7 +244,7 @@ a#navbarDropdown img {
 
 /* 4-- Login page start */
 
-.fbd-login-form .fbd-login-password span.input-group-btn {
+.fbd-login-form .fbd-login-password span.input-group-btn, #LoginModal input[name="password"]+span, #deleteListingModal input[name="password"]+span, #deleteListingModal input[name="password_confirmation"]+span, .gf-breeder-reg-wrapper input[name="password"]+span, .gf-breeder-reg-wrapper input[name="password_confirmation"]+span, .gf-customer-reg-wrapper input[name="password"]+span, .gf-customer-reg-wrapper input[name="password_confirmation"]+span{
     border: 1px solid #6E6F72;
     height: calc(1.5em + .75rem + 2px);
     border-radius: 0px 30px 30px 0px;
@@ -266,7 +266,7 @@ a#navbarDropdown img {
     height: auto;
 }
 
-.gf-login-wrapper .card, .gf-select-user-wrapper .card, .gf-customer-reg-wrapper .card, .gf-breeder-reg-wrapper .card, .gf-email-password-wrapper .card{
+.gf-login-wrapper .card, .gf-select-user-wrapper .card, .gf-customer-reg-wrapper .card, .gf-breeder-reg-wrapper .card, .gf-email-password-wrapper .card, #LoginModal .modal-content, #deleteListingModal .modal-content{
     border: none;
     background-color: #fbebd7;
     border-radius: 12px;
@@ -299,8 +299,8 @@ a#navbarDropdown img {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.gf-login-wrapper form input[type="password"],.gf-login-wrapper form input[type="text"]{
-    width: 89%;
+.gf-login-wrapper form input[type="password"],.gf-login-wrapper form input[type="text"], #LoginModal input[name="password"], #deleteListingModal input[name="password"], #deleteListingModal input[name="password_confirmation"], .gf-breeder-reg-wrapper input[name="password"], .gf-breeder-reg-wrapper input[name="password_confirmation"], .gf-customer-reg-wrapper input[name="password"], .gf-customer-reg-wrapper input[name="password_confirmation"]{
+    /* width: 89%; */
     border-radius: 30px 0px 0px 30px;
 }
 
@@ -400,6 +400,15 @@ input.form-control:focus{
 
 .fbd-sponsured-card, .fbd-standard-card {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+
+.fbd-sponsured-card h4.fbd-sp-list-title+p, .fbd-standard-card h4.fbd-sp-list-title+p{
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 4; /* number of lines to show */
+   -webkit-box-orient: vertical;
 }
 
 /* Sponsured card image slider Start*/
@@ -822,46 +831,15 @@ table.table .avatar {
 
 /* Modal styles */
 
-.modal .modal-dialog {
-    max-width: 400px;
-}
-
-.modal .modal-header, .modal .modal-body, .modal .modal-footer {
-    padding: 20px 30px;
-}
-
-.modal .modal-content {
-    border-radius: 3px;
-    font-size: 14px;
-}
-
-.modal .modal-footer {
-    background: #ecf0f1;
-    border-radius: 0 0 3px 3px;
-}
-
-.modal .modal-title {
-    display: inline-block;
-}
-
-.modal .form-control {
+/* .modal .form-control {
     border-radius: 2px;
     box-shadow: none;
     border-color: #dddddd;
-}
+} */
 
-.modal textarea.form-control {
+/* .modal textarea.form-control {
     resize: vertical;
-}
-
-.modal .btn {
-    border-radius: 2px;
-    min-width: 100px;
-}
-
-.modal form label {
-    font-weight: normal;
-}
+} */
 
 
 /* Add new listing Form */
@@ -904,36 +882,23 @@ table.table .avatar {
     margin-bottom: 8px;
 }
 
-/* .breeder-profile-contact i{
-    color: var(--blue);
-    margin-right: 18px;
-}
-
-.breeder-profile-contact a{
-    color: var(--dark);
-} */
-
 /* Product Card */
 
 .breeder-resources-card{
     background-color: #fbebd7;
     border-radius: 25px;
     border-bottom: 3px solid var(--red);
-    padding: 10px 20px;
+    padding: 20px 20px;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
 }
-.product-card-info h5{
-    /* color: #957AFE;
-    font-family: "Sailec-Medium"; */
-}
 
-.product-card-info p{
+.breeder-resources-card img{
+    height: 150px;
+    width: auto;
 }
 
 .product-card-info a{
     color: var(--dark);
-    display: block;
-    font-family: "Sailec-Medium";
 }
 
 
@@ -941,41 +906,6 @@ table.table .avatar {
 
 .breeder-profile-area {
     background-color: white;
-}
-
-.breeder-profile-title {
-    font-family: "Sailec-Bold";
-    font-size: 22px;
-    color: #242626;
-}
-
-.breeder-profile-location a, .breeder-profile-phone a, .breeder-profile-email a {
-    font-size: 16px;
-    font-family: "Sailec";
-    text-decoration: none;
-    color: #8B77FC;
-}
-
-.breeder-profile-location a:hover, .breeder-profile-phone a:hover, .breeder-profile-email a:hover {
-    text-decoration: none;
-    color: rgba(140, 120, 252, 0.8);
-}
-
-.breeder-profile-description p {
-    font-family: "Sailec";
-    color: #455263cc;
-}
-
-.breeder-profile-social a {
-    font-size: 16px;
-    font-family: "Sailec";
-    text-decoration: none;
-    color: #8B77FC;
-}
-
-.breeder-profile-social a:hover {
-    text-decoration: none;
-    color: rgba(140, 120, 252, 0.8);
 }
 
 /************ Breader Profile End ***************/
