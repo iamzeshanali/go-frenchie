@@ -4,21 +4,20 @@
 
     <div class="container-fluid">
         <h2 class="page-title text-center mb-5">Breader Dashboard</h2>
-
-        <div class="breeder-dashboard-page-content">
+        <div class="gf-dashboard-page-content row align-items-start">
             @include('components.gf-dashboard-menu-area')
-            <div class="breader-dashboard-content p-3 mb-3 rounded">
+            <div class="breader-dashboard-content col-xl-10 col-lg-9">
                 <div class="container-fluid">
                     <div class="table-responsive">
                         <div class="table-wrapper">
                             <div class="table-title">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <h2>Saved <b>Studs</b></h2>
+                                        <h2>Listings <b>Studs</b></h2>
                                     </div>
                                     <div class="col-sm-6">
-                                        <a href="{{route('trashedSavedStuds')}}" class="btn btn-success btn-fbd">
-                                            <i class="fas fa-trash-alt"></i> <span>Recycle Listing</span>
+                                        <a href="{{route('trashedSavedStuds')}}" class="gf-btn-dark">
+                                            <i class="fas fa-plus"></i> <span>Recycle Listing</span>
                                         </a>
                                     </div>
                                 </div>
@@ -124,7 +123,6 @@
                 </div>
 
             </div>
-        <!-- @include('components.adds-area') -->
         </div>
 
     </div>

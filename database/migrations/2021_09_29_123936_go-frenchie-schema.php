@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class FrenchbulldogSchema extends Migration
+class GoFrenchieSchema extends Migration
 {
     /**
      * Run the migrations.
@@ -57,15 +57,15 @@ class FrenchbulldogSchema extends Migration
             $table->enum('type', ['stud', 'puppy'])->comment('(DC2Type:CustomEnum__stud__puppy)');
             $table->enum('sex', ['male', 'female'])->comment('(DC2Type:CustomEnum__male__female)');
             $table->date('dob');
-            $table->string('photo1', 500);
+            $table->string('photo1', 500)->nullable();
             $table->string('photo1_file_name', 255)->nullable();
-            $table->string('photo2', 500);
+            $table->string('photo2', 500)->nullable();
             $table->string('photo2_file_name', 255)->nullable();
-            $table->string('photo3', 500);
+            $table->string('photo3', 500)->nullable();
             $table->string('photo3_file_name', 255)->nullable();
-            $table->string('photo4', 500);
+            $table->string('photo4', 500)->nullable();
             $table->string('photo4_file_name', 255)->nullable();
-            $table->string('photo5', 500);
+            $table->string('photo5', 500)->nullable();
             $table->string('photo5_file_name', 255)->nullable();
             $table->boolean('is_sponsored');
             $table->enum('status', ['active', 'inactive'])->comment('(DC2Type:CustomEnum__active__inactive)');
@@ -91,15 +91,15 @@ class FrenchbulldogSchema extends Migration
             $table->string('title', 255);
             $table->string('decription', 255);
             $table->date('expected_dob');
-            $table->string('photo1', 500);
+            $table->string('photo1', 500)->nullable();
             $table->string('photo1_file_name', 255)->nullable();
-            $table->string('photo2', 500);
+            $table->string('photo2', 500)->nullable();
             $table->string('photo2_file_name', 255)->nullable();
-            $table->string('photo3', 500);
+            $table->string('photo3', 500)->nullable();
             $table->string('photo3_file_name', 255)->nullable();
-            $table->string('photo4', 500);
+            $table->string('photo4', 500)->nullable();
             $table->string('photo4_file_name', 255)->nullable();
-            $table->string('photo5', 500);
+            $table->string('photo5', 500)->nullable();
             $table->string('photo5_file_name', 255)->nullable();
             $table->boolean('is_sponsored');
             $table->enum('status', ['active', 'inactive'])->comment('(DC2Type:CustomEnum__active__inactive)');
@@ -195,7 +195,7 @@ class FrenchbulldogSchema extends Migration
             $table->index('listing_id', 'IDX_6962B17D4619D1A');
         });
 
-        Schema::create('advertises', function (Blueprint $table) {
+        Schema::create('make_adds', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->string('photo', 500);
             $table->string('photo_file_name', 255)->nullable();
@@ -384,7 +384,7 @@ class FrenchbulldogSchema extends Migration
         Schema::drop('dms_users');
         Schema::drop('dms_roles');
         Schema::drop('api_configs');
-        Schema::drop('advertises');
+        Schema::drop('make_adds');
         Schema::drop('saved_litters');
         Schema::drop('saved_listings');
         Schema::drop('saved_searches');

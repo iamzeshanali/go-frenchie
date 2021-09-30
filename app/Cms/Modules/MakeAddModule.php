@@ -7,19 +7,19 @@ use Dms\Core\Common\Crud\CrudModule;
 use Dms\Core\Common\Crud\Definition\CrudModuleDefinition;
 use Dms\Core\Common\Crud\Definition\Form\CrudFormDefinition;
 use Dms\Core\Common\Crud\Definition\Table\SummaryTableDefinition;
-use App\Domain\Services\Persistence\IAdvertiseRepository;
-use App\Domain\Entities\Advertise;
+use App\Domain\Services\Persistence\IMakeAddRepository;
+use App\Domain\Entities\MakeAdd;
 use Dms\Common\Structure\Field;
 use App\Domain\Entities\Enums\ListingsStatusEnum;
 
 /**
- * The advertise module.
+ * The make-add module.
  */
-class AdvertiseModule extends CrudModule
+class MakeAddModule extends CrudModule
 {
 
 
-    public function __construct(IAdvertiseRepository $dataSource, IAuthSystem $authSystem)
+    public function __construct(IMakeAddRepository $dataSource, IAuthSystem $authSystem)
     {
 
         parent::__construct($dataSource, $authSystem);
@@ -32,9 +32,9 @@ class AdvertiseModule extends CrudModule
      */
     protected function defineCrudModule(CrudModuleDefinition $module)
     {
-        $module->name('advertise');
+        $module->name('make-add');
 
-        $module->labelObjects()->fromProperty(/* FIXME: */ Advertise::ID);
+        $module->labelObjects()->fromProperty(/* FIXME: */ MakeAdd::ID);
 
         $module->metadata([
             'icon' => ''
@@ -46,23 +46,23 @@ class AdvertiseModule extends CrudModule
                     Field::create('photo', 'Photo')
                         ->image()
                         ->required()
-                        ->moveToPathWithRandomFileName(public_path('app/advertise'))
-                )->bindToProperty(Advertise::PHOTO),
+                        ->moveToPathWithRandomFileName(public_path('app/make_add'))
+                )->bindToProperty(MakeAdd::PHOTO),
                 //
                 $form->field(
                     Field::create('url', 'Url')->url()->required()
-                )->bindToProperty(Advertise::URL),
+                )->bindToProperty(MakeAdd::URL),
                 //
                 $form->field(
                     Field::create('trashed', 'Trashed')->bool()
-                )->bindToProperty(Advertise::TRASHED),
+                )->bindToProperty(MakeAdd::TRASHED),
                 //
                 $form->field(
                     Field::create('status', 'Status')->enum(ListingsStatusEnum::class, [
                         ListingsStatusEnum::ACTIVE => 'Active',
                         ListingsStatusEnum::INACTIVE => 'Inactive',
                     ])->required()
-                )->bindToProperty(Advertise::STATUS),
+                )->bindToProperty(MakeAdd::STATUS),
                 //
             ]);
 
@@ -71,13 +71,13 @@ class AdvertiseModule extends CrudModule
         $module->removeAction()->deleteFromDataSource();
 
         $module->summaryTable(function (SummaryTableDefinition $table) {
-            $table->mapProperty(Advertise::PHOTO)->to(Field::create('photo', 'Photo')
+            $table->mapProperty(MakeAdd::PHOTO)->to(Field::create('photo', 'Photo')
                 ->image()
                 ->required()
-                ->moveToPathWithRandomFileName(public_path('app/advertise')));
-            $table->mapProperty(Advertise::URL)->to(Field::create('url', 'Url')->url()->required());
-            $table->mapProperty(Advertise::TRASHED)->to(Field::create('trashed', 'Trashed')->bool());
-            $table->mapProperty(Advertise::STATUS)->to(Field::create('status', 'Status')->enum(ListingsStatusEnum::class, [
+                ->moveToPathWithRandomFileName(public_path('app/make_add')));
+            $table->mapProperty(MakeAdd::URL)->to(Field::create('url', 'Url')->url()->required());
+            $table->mapProperty(MakeAdd::TRASHED)->to(Field::create('trashed', 'Trashed')->bool());
+            $table->mapProperty(MakeAdd::STATUS)->to(Field::create('status', 'Status')->enum(ListingsStatusEnum::class, [
                 ListingsStatusEnum::ACTIVE => 'Active',
                 ListingsStatusEnum::INACTIVE => 'Inactive',
             ])->required());

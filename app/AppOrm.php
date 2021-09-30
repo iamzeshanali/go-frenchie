@@ -13,6 +13,7 @@ use App\Domain\Entities\Customers;
 use App\Domain\Entities\EnumsTest;
 use App\Domain\Entities\Listings;
 use App\Domain\Entities\Litters;
+use App\Domain\Entities\MakeAdd;
 use App\Domain\Entities\SavedItems;
 use App\Domain\Entities\SavedListings;
 use App\Domain\Entities\SavedLitters;
@@ -30,6 +31,7 @@ use App\Infrastructure\Persistence\CustomersMapper;
 use App\Infrastructure\Persistence\EnumsTestMapper;
 use App\Infrastructure\Persistence\ListingsMapper;
 use App\Infrastructure\Persistence\LittersMapper;
+use App\Infrastructure\Persistence\MakeAddMapper;
 use App\Infrastructure\Persistence\SavedItemsMapper;
 use App\Infrastructure\Persistence\SavedListingsMapper;
 use App\Infrastructure\Persistence\SavedLittersMapper;
@@ -73,7 +75,7 @@ class AppOrm extends Orm
             SavedListings::class => SavedListingsMapper::class,
             SavedLitters::class => SavedLittersMapper::class,
 //
-            Advertise::class => AdvertiseMapper::class,
+            MakeAdd::class => MakeAddMapper::class,
 
             ApiConfig::class => ApiConfigMapper::class,
 

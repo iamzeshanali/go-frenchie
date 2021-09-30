@@ -11,7 +11,7 @@ use Dms\Core\Model\Object\ClassDefinition;
 use Dms\Core\Model\Object\Entity;
 use Dms\Core\Model\Object\InvalidPropertyDefinitionException;
 
-class Advertise extends Entity
+class MakeAdd extends Entity
 {
     const PHOTO = 'photo';
     const URL = 'url';

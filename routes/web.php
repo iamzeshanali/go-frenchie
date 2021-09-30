@@ -101,7 +101,7 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/update', [App\Http\Controllers\ListingsController::class, 'updateListings'])->name('updateListing');
         Route::delete('/delete-listing/{id}', [App\Http\Controllers\ListingsController::class, 'deleteListings'])->name('deleteListing');
         Route::get('/puppy/trash/{id}', [App\Http\Controllers\ListingsController::class, 'trashListings'])->name('trashListing');
-        Route::get('/trashe-puppies', [App\Http\Controllers\ListingsController::class, 'showTrashedPuppies'])->name('showTrashedPuppies');
+        Route::get('/trashed-puppies/{page}', [App\Http\Controllers\ListingsController::class, 'showTrashedPuppies'])->name('showTrashedPuppies');
         Route::get('/puppies/recycle/{id}', [App\Http\Controllers\ListingsController::class, 'recycleTrashedListings'])->name('recyclePuppies');
         Route::delete('/puppies/delete/{id}', [App\Http\Controllers\ListingsController::class, 'deleteListings'])->name('deletePuppies');
         Route::get('/puppies/deleteAll', [App\Http\Controllers\ListingsController::class, 'deleteAllListings'])->name('deleteAllPuppies');

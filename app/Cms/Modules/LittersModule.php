@@ -74,35 +74,30 @@ class LittersModule extends CrudModule
                 $form->field(
                     Field::create('photo1', 'Photo1')
                         ->image()
-                        ->required()
                         ->moveToPathWithRandomFileName(public_path('app/litters'))
                 )->bindToProperty(Litters::PHOTO1),
                 //
                 $form->field(
                     Field::create('photo2', 'Photo2')
                         ->image()
-                        ->required()
                         ->moveToPathWithRandomFileName(public_path('app/litters'))
                 )->bindToProperty(Litters::PHOTO2),
                 //
                 $form->field(
                     Field::create('photo3', 'Photo3')
                         ->image()
-                        ->required()
                         ->moveToPathWithRandomFileName(public_path('app/litters'))
                 )->bindToProperty(Litters::PHOTO3),
                 //
                 $form->field(
                     Field::create('photo4', 'Photo4')
                         ->image()
-                        ->required()
                         ->moveToPathWithRandomFileName(public_path('app/litters'))
                 )->bindToProperty(Litters::PHOTO4),
                 //
                 $form->field(
                     Field::create('photo5', 'Photo5')
                         ->image()
-                        ->required()
                         ->moveToPathWithRandomFileName(public_path('app/litters'))
                 )->bindToProperty(Litters::PHOTO5),
                 //
@@ -144,10 +139,10 @@ class LittersModule extends CrudModule
             $table->mapProperty(Litters::TITLE)->to(Field::create('title', 'Title')->string()->required());
 //            $table->mapProperty(Litters::DESCRIPTION)->to(Field::create('decription', 'Decription')->string()->required());
 //            $table->mapProperty(Litters::EXPECTED_DOB)->to(Field::create('expected_dob', 'Expected Dob')->date()->required());
-            $table->mapProperty(Litters::PHOTO1)->to(Field::create('photo1', 'Photo1')
-                ->image()
-                ->required()
-                ->moveToPathWithRandomFileName(public_path('app/litters')));
+//            $table->mapProperty(Litters::PHOTO1)->to(Field::create('photo1', 'Photo1')
+//                ->image()
+//                ->required()
+//                ->moveToPathWithRandomFileName(public_path('app/litters')));
 //            $table->mapProperty(Litters::PHOTO2)->to(Field::create('photo2', 'Photo2')
 //                ->image()
 //                ->required()

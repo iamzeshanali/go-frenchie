@@ -42,7 +42,7 @@ class SavedSearchModule extends CrudModule
         $module->labelObjects()->fromProperty(SavedSearch::DNA_COLOR);
 
         $module->metadata([
-            'icon' => ''
+            'icon' => 'eercast'
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {

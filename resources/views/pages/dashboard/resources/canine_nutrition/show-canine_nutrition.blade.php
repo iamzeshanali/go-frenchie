@@ -3,11 +3,9 @@
 @section('content')
 
     <div class="container-fluid">
-        <h2 class="page-title text-center mb-5">Breader Dashboard</h2>
-
-        <div class="breeder-dashboard-page-content">
+        <div class="gf-dashboard-page-content row align-items-start">
             @include('components.gf-dashboard-menu-area')
-            <div class="breader-dashboard-content p-3 mb-3 rounded">
+            <div class="breader-dashboard-content col-xl-10 col-lg-9">
                 <div class="container-fluid">
                     <div class="table-responsive">
                         <div class="table-wrapper">
@@ -17,10 +15,10 @@
                                         <h2>Canine <b> Nutrition</b></h2>
                                     </div>
                                     <div class="col-sm-6">
-                                        <a href="{{route('showTrashedCanineNutrition')}}" class="btn btn-success btn-fbd">
+                                        <a href="{{route('showTrashedCanineNutrition')}}" class="gf-btn-light">
                                             <i class="fas fa-trash-alt"></i> <span>Recycle Listings</span>
                                         </a>
-                                        <a href="{{route('addCanineNutrition')}}" class="btn btn-success btn-fbd">
+                                        <a href="{{route('addCanineNutrition')}}" class="gf-btn-dark">
                                             <i class="fas fa-plus"></i> <span>Add New Listing</span>
                                         </a>
                                     </div>
@@ -65,8 +63,8 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{route('showSingleCanineNutrition',$supply->slug)}}" class="view"><i class="fas fa-eye"></i></a>
-                                                <a href="{{route('editCanineNutrition',$supply->slug)}}" class="edit" data-toggle=""><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="{{route('showSingleCanineGenetics',$supply->slug)}}" class="view"><i class="fas fa-eye"></i></a>
+                                                <a href="{{route('editCanineGenetics',$supply->slug)}}" class="edit" data-toggle=""><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="#deleteListingModal{{$supply->slug}}" class="delete" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
                                                 <div id="deleteListingModal{{$supply->slug}}" class="modal fade">
                                                     <div class="modal-dialog">
@@ -86,7 +84,7 @@
                                                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                                                     </form>
 
-                                                                    <form action="{{route('trashCanineNutrition', $supply->slug)}}" method="get">
+                                                                    <form action="{{route('trashCanineGenetics', $supply->slug)}}" method="get">
                                                                         @csrf
                                                                         <input type="submit" class="btn btn-danger" value="Delete">
                                                                     </form>
@@ -104,19 +102,19 @@
                                 <div class="clearfix">
                                     <div class="hint-text">Showing <b>{{count($Supplies)}}</b> out of <b>{{$total}}</b> entries</div>
                                     <ul class="pagination">
-                                        <li class="page-item {{$page == 1 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-nutrition')}}/{{$page-1}}" class="page-link">Previous</a></li>
+                                        <li class="page-item {{$page == 1 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-genetics')}}/{{$page-1}}" class="page-link">Previous</a></li>
 
                                         @if(($total % 5) == 0)
 
                                             @for($i = 1; $i<=($total/5); $i++)
-                                                <li class="page-item {{$page == $i ? 'active' : ''}}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-nutrition')}}/{{$i}}" class="page-link">{{$i}}</a></li>
+                                                <li class="page-item {{$page == $i ? 'active' : ''}}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-genetics')}}/{{$i}}" class="page-link">{{$i}}</a></li>
                                             @endfor
                                         @else
                                             @for($i = 1; $i<=($total/5)+1; $i++)
-                                                <li class="page-item {{$page == $i ? 'active' : ''}}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-nutrition')}}/{{$i}}" class="page-link">{{$i}}</a></li>
+                                                <li class="page-item {{$page == $i ? 'active' : ''}}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-genetics')}}/{{$i}}" class="page-link">{{$i}}</a></li>
                                             @endfor
                                         @endif
-                                        <li class="page-item {{$page >= $total/5 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-nutrition')}}/{{$page+1}}" class="page-link">Next</a></li>
+                                        <li class="page-item {{$page >= $total/5 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/canine-genetics')}}/{{$page+1}}" class="page-link">Next</a></li>
                                     </ul>
                                 </div>
                             @endif
@@ -127,7 +125,6 @@
                 </div>
 
             </div>
-        <!-- @include('components.adds-area') -->
         </div>
 
     </div>

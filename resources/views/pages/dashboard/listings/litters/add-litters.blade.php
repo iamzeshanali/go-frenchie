@@ -4,243 +4,171 @@
 
     <div class="container-fluid">
 
-
-        @if(isset($litter))
-            <h2 class="page-title text-center mb-5">Edit Litter LISTING</h2>
-        @else
-            <h2 class="page-title text-center mb-5">CREATE Litter LISTING</h2>
-        @endif
-        <div class="page-content">
+        <div class="gf-dashboard-page-content row align-items-start">
             @include('components.gf-dashboard-menu-area')
-            <div class="fbd-create-listing-content-area p-3 mb-3 rounded">
-                @if(isset($litter))
-                    <form method="post" action="{{route('updateLitter')}}" enctype="multipart/form-data" id="create-listing-form mx-5">
-                        @csrf
+            <div class="fbd-create-listing-content-area col-xl-10 col-lg-9">
+
+                <form method="post" action="{{isset($litter) ? route('updateLitter') : route('createLitter')}}" enctype="multipart/form-data" id="create-listing-form mx-5">
+                    @csrf
+                    @if(isset($litter))
                         @method('patch')
                         <input type="hidden" name="id" value="{{$litter->getId()}}"  class="form-control" id="listing Title" placeholder="">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-4 text-right">
-                                <img src="{{asset_file_url($litter->photo1)}}" id="preview-image" class="img-thumbnail my-3" width="350px">
+                    @endif
+                    <input type="hidden" name="type" value="stud"  class="form-control" id="listing Title" placeholder="">
+                    <div class="row justify-content-center p-0">
+                        <div class="col-md-8">
+                            {{--SET FORM TITLE--}}
+                            <h2 class="text-center mb-4 gf-red">{{isset($litter) ? 'Update' : 'Add New'}} Litter</h2>
+                            {{--TITLE--}}
+                            <div class="col">
+                                <input type="text" name="title" value="{{isset($litter) ? $litter->title : ''}}"  class="gf-form-field" id="listing Title" placeholder="Title: *" required autofocus >
                             </div>
-                            <div class="col-4">
-                                @foreach(explode('/',asset_file_url($litter->photo1)) as $img1)
-                                @endforeach
-                                @foreach(explode('/',asset_file_url($litter->photo2)) as $img2)
-                                @endforeach
-                                @foreach(explode('/',asset_file_url($litter->photo3)) as $img3)
-                                @endforeach
-                                @foreach(explode('/',asset_file_url($litter->photo4)) as $img4)
-                                @endforeach
-                                @foreach(explode('/',asset_file_url($litter->photo5)) as $img5)
-                                @endforeach
-                                <div>
-                                    <input type="file" name="photo1" class="image_one" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="hidden" name="photo1_name" value="{{public_path($img1)}}">
-                                        <input type="text" class="form-control @error('image_one') is-invalid @enderror" value="{{$img1}}" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                        @error('image_one')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="file" name="photo2" class="image_two" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="hidden" name="photo2_name" value="{{public_path($img2)}}">
-                                        <input type="text" class="form-control @error('image_two') is-invalid @enderror" value="{{$img2}}" disabled placeholder="Upload Image" id="image_two" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse2 btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="file" name="photo3" class="image_three" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="hidden" name="photo3_name" value="{{public_path($img3)}}">
-                                        <input type="text" class="form-control @error('image_three') is-invalid @enderror" value="{{$img3}}" disabled placeholder="Upload Image" id="image_three" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse3 btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="file" name="photo4" class="image_four" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="hidden" name="photo4_name" value="{{public_path($img4)}}">
-                                        <input type="text" class="form-control @error('image_four') is-invalid @enderror" value="{{$img4}}" disabled placeholder="Upload Image" id="image_four" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse4 btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="file" name="photo5" class="image_five" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="hidden" name="photo5_name" value="{{public_path($img5)}}">
-                                        <input type="text" class="form-control @error('image_five') is-invalid @enderror" value="{{$img5}}" disabled placeholder="Upload Image" id="image_five" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse5 btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-title" class="col-sm-2 col-form-label text-right">Title</label>
-                            <div class="col-sm-8">
-                                <input type="text" name="title" value="{{$litter->title}}"  class="form-control" id="listing Title" placeholder="" required autofocus>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-description" class="col-sm-2 col-form-label text-right">Description</label>
-                            <div class="col-sm-8">
-                        <textarea class="form-control" name="listing-description" id="listing-description" cols="50" rows="5" required autofocus>
-                            {{$litter->decription}}
-                        </textarea>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-dob" class="col-sm-2 col-form-label text-right">Sponsored</label>
-                            <div class="col-sm-3">
-                                <input type="checkbox" name="sponsored" @if((bool)$litter->isSponsored == 1) checked @endif class="form-control" autofocus>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-dob" class="col-sm-2 col-form-label text-right" >Expected Date of Birth</label>
-                            <div class="col-sm-3">
-                                <input type="date" name="dob" value="{{ date('Y-m-d',$litter->expectedDob->getTimestamp())}}" class="form-control" required autofocus>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-sex" class="col-sm-2 col-form-label text-right">DAM</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="dam" value="{{$litter->title}}" class="form-control" id="listing Title" placeholder="" required autofocus>
-                            </div>
-                            <label for="listing-dob" class="col-sm-2 col-form-label text-right" >SIRE</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="sire" value="{{$litter->title}}" class="form-control" id="listing Title" placeholder="" required autofocus>
-                            </div>
-                        </div>
-                        <div class="row my-4">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class=" btn btn-primary btn-fbd px-5">Update Listing</button>
-                            </div>
-                        </div>
-                    </form>
-                @else
-                    <form method="post" action="{{route('createLitter')}}" enctype="multipart/form-data" id="create-listing-form mx-5">
-                        @csrf
-                        <input type="hidden" name="type" value="stud"  class="form-control" id="listing Title" placeholder="">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-4 text-right">
-                                <img src="/images/placeholder.gif" id="preview-image" class="img-thumbnail my-3" width="350px">
-                            </div>
-                            <div class="col-4">
-                                <div>
-                                    <input type="file" name="photo1" class="image_one" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="text" class="form-control @error('image_one') is-invalid @enderror" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                        @error('image_one')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="file" name="photo2" class="image_two" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="text" class="form-control" disabled placeholder="Upload Image" id="image_two" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse2 btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="file" name="photo3" class="image_three" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="text" class="form-control" disabled placeholder="Upload Image" id="image_three" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse3 btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="file" name="photo4" class="image_four" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="text" class="form-control" disabled placeholder="Upload Image" id="image_four" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse4 btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <input type="file" name="photo5" class="image_five" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="text" class="form-control" disabled placeholder="Upload Image" id="image_five" required autofocus>
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse5 btn btn-primary btn-fbd">Browse</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-title" class="col-sm-2 col-form-label text-right">Title</label>
-                            <div class="col-sm-8">
-                                <input type="text" name="title"  class="form-control" id="listing Title" placeholder="" required autofocus>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-description" class="col-sm-2 col-form-label text-right">Description</label>
-                            <div class="col-sm-8">
-                        <textarea class="form-control" name="listing-description" id="listing-description" cols="50" rows="5" required autofocus>
-                        </textarea>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-dob" class="col-sm-2 col-form-label text-right">Sponsored</label>
-                            <div class="col-sm-3">
-                                <input type="checkbox" name="sponsored" class="form-control" autofocus>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-dob" class="col-sm-2 col-form-label text-right" >Expected Date of Birth</label>
-                            <div class="col-sm-3">
-                                <input type="date" name="dob" class="form-control" required autofocus>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <label for="listing-sex" class="col-sm-2 col-form-label text-right">DAM</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="dam"  class="form-control" id="listing Title" placeholder="" required autofocus>
-                            </div>
-                            <label for="listing-dob" class="col-sm-2 col-form-label text-right" >SIRE</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="sire"  class="form-control" id="listing Title" placeholder="" required autofocus>
-                            </div>
-                        </div>
+                            {{--SEX--}}
+                            {{--DAM--}}
 
-                        <div class="row my-4">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class=" btn btn-primary btn-fbd px-5">Add Litter</button>
+                            {{--SIRE--}}
+                            <div class="row align-items-center">
+                                <label for="listing-sex" class="col-sm-2 col-form-label">Dam</label>
+                                <div class="col-sm-4">
+                                        <input type="text" name="dam" value="{{isset($litter) ? $litter->dam : ''}}"  class="gf-form-field" id="listing Title" placeholder="Dam: *" required autofocus >
+                                </div>
+                                {{--SPONSORED--}}
+                                <label for="listing-dob" class="col-sm-2 col-form-label">Sire</label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="sire" value="{{isset($litter) ? $litter->sire : ''}}"  class="gf-form-field" id="listing Title" placeholder="Sire: *" required autofocus >
+                                </div>
                             </div>
+                            <div class="row align-items-center">
+                                <label for="listing-sex" class="col-sm-2 col-form-label">Expected DOB</label>
+                                <div class="col-sm-4">
+                                    <input type="date" name="dob" value="{{ isset($litter) ? date('Y-m-d',$litter->expectedDob->getTimestamp()) : ''}}" class="gf-form-field" required autofocus>
+                                </div>
+                                {{--SPONSORED--}}
+                                <label for="listing-dob" class="col-sm-2 col-form-label">Sponsored</label>
+                                <div class="col-sm-4">
+                                    @if(isset($litter))
+                                        <input type="checkbox" name="sponsored" class="form-control" autofocus style="width: 20px;" {{(bool)$litter->isSponsored ==  1 ? 'checked' : ''}}>
+                                    @else
+                                        <input type="checkbox" name="sponsored" class="form-control" autofocus style="width: 20px;">
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description: *" required autofocus>{{ isset($litter) ? $litter->decription : ''}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row gf-add-listing-image">
+                                <div class="col-md-6 m-auto gf-mw-fit">
+                                    @if(isset($litter))
+                                        <img src="{{$litter->photo1 !=null ? asset_file_url($litter->photo1) : '/images/placeholder.gif'}}" id="preview-image" class="img-thumbnail my-3" width="350px">
+                                    @else
+                                        <img src="/images/placeholder.gif" id="preview-image" class="img-thumbnail my-3" width="350px">
+                                    @endif
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <input type="file" name="photo1" class="image_one" accept="image/*">
+                                        <div class="input-group my-3 flex-nowrap">
+                                            @if(isset($litter) && ($litter->photo1 != null))
+                                                @foreach(explode('/',asset_file_url($litter->photo1)) as $img1)
+                                                @endforeach
+                                                <input type="hidden" name="photo1_name" value="{{public_path($img1)}}">
+                                                <input type="text"  value="{{$img1}}"  class="gf-form-field mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
+                                            @else
+                                                <input type="text" class="gf-form-field mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
+                                            @endif
+                                            <div class="">
+                                                <button type="button" class="browse gf-btn-dark">Browse</button>
+                                            </div>
+                                            @error('image_one')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="file" name="photo2" class="image_two" accept="image/*">
+                                        <div class="input-group my-3 flex-nowrap">
+                                            @if(isset($litter) && ($litter->photo2 != null))
+                                                @foreach(explode('/',asset_file_url($litter->photo2)) as $img2)
+                                                @endforeach
+                                                <input type="hidden" name="photo2_name" value="{{public_path($img2)}}">
+                                                <input type="text"  value="{{$img2}}"  class="gf-form-field mb-0 @error('image_two') is-invalid @enderror" disabled placeholder="Upload Main Image" id="image_two" required autofocus>
+                                            @else
+                                                <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_two" required autofocus>
+                                            @endif
+                                            <div class="">
+                                                <button type="button" class="browse2 gf-btn-dark">Browse</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="file" name="photo3" class="image_three" accept="image/*">
+                                        <div class="input-group my-3 flex-nowrap">
+                                            @if(isset($litter) && ($litter->photo3 != null))
+                                                @foreach(explode('/',asset_file_url($litter->photo3)) as $img3)
+                                                @endforeach
+                                                <input type="hidden" name="photo3_name" value="{{public_path($img3)}}">
+                                                <input type="text"  value="{{$img3}}"  class="gf-form-field mb-0 @error('image_three') is-invalid @enderror" disabled placeholder="Upload Main Image" id="image_three" required autofocus>
+                                            @else
+                                                <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_three" required autofocus>
+                                            @endif
+                                            <div class="">
+                                                <button type="button" class="browse3 gf-btn-dark">Browse</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="file" name="photo4" class="image_four" accept="image/*">
+                                        <div class="input-group my-3 flex-nowrap">
+                                            @if(isset($litter) && ($litter->photo4 != null))
+                                                @foreach(explode('/',asset_file_url($litter->photo4)) as $img4)
+                                                @endforeach
+                                                <input type="hidden" name="photo4_name" value="{{public_path($img4)}}">
+                                                <input type="text"  value="{{$img4}}"  class="gf-form-field mb-0 @error('image_four') is-invalid @enderror" disabled placeholder="Upload Main Image" id="image_four" required autofocus>
+                                            @else
+                                                <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_four" required autofocus>
+                                            @endif
+                                            <div class="">
+                                                <button type="button" class="browse4 gf-btn-dark">Browse</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="file" name="photo5" class="image_five" accept="image/*">
+                                        <div class="input-group my-3 flex-nowrap">
+                                            @if(isset($litter) && ($litter->photo5 != null))
+                                                @foreach(explode('/',asset_file_url($litter->photo5)) as $img5)
+                                                @endforeach
+                                                <input type="hidden" name="photo5_name" value="{{public_path($img5)}}">
+                                                <input type="text"  value="{{$img5}}"  class="gf-form-field mb-0 @error('image_five') is-invalid @enderror" disabled placeholder="Upload Main Image" id="image_five" required autofocus>
+                                            @else
+                                                <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_five" required autofocus>
+                                            @endif
+                                            <div class="">
+                                                <button type="button" class="browse5 gf-btn-dark">Browse</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                    </form>
-                @endif
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="gf-btn-dark px-5">{{isset($litter) ? 'Update' : 'Add New'}} Listing</button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
-            @include('components/adds-area')
         </div>
 
     </div>
 @endsection
+

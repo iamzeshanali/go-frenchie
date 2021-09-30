@@ -43,7 +43,7 @@ class Canine_GeneticsModule extends CrudModule
         $module->labelObjects()->fromProperty(Canine_Genetics::TITLE);
 
         $module->metadata([
-            'icon' => ''
+            'icon' => 'mars-double'
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {

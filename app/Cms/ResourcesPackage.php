@@ -32,7 +32,7 @@ class ResourcesPackage extends Package
         $package->name('Resources');
 
         $package->metadata([
-            'icon' => '',
+            'icon' => 'cubes',
         ]);
 
         $package->modules([

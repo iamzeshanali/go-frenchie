@@ -32,7 +32,7 @@ class SavedItemsPackage extends Package
         $package->name('SavedItems');
 
         $package->metadata([
-            'icon' => '',
+            'icon' => 'heart',
         ]);
 
         $package->modules([

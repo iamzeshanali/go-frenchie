@@ -2,6 +2,7 @@
 
 namespace App\Cms;
 
+use App\Cms\Modules\MakeAddModule;
 use Dms\Core\Package\Definition\PackageDefinition;
 use Dms\Core\Package\Package;
 use App\Cms\Modules\AdvertiseModule;
@@ -32,7 +33,7 @@ class UsersPackage extends Package
         $package->name('Users');
 
         $package->metadata([
-            'icon' => '',
+            'icon' => 'user',
         ]);
 
         $package->modules([

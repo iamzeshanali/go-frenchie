@@ -52,31 +52,11 @@
         <div class="card bg-transparent border-0 pb-2">
             <div class="card-header p-0 bg-transparent border-0" id="headingThree">
                 <h5 class="mb-0">
-                    <button class="btn btn-collapse p-0 link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                        <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-studs')}}/1"><i class="fas fa-paw"></i> &emsp;  Saved Items</a>
-
+                    <button class="btn btn-collapse p-0 link" onclick="location.href='{{\Illuminate\Support\Facades\URL::to('dashboard/saved-studs')}}/1';" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-paw"></i> &emsp;  Saved Items
                     </button>
                 </h5>
             </div>
-
-{{--            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">--}}
-{{--                <div class="card-body">--}}
-{{--                    <ul>--}}
-{{--                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-studs')}}/1">Saved Studs</a></li>--}}
-{{--                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-puppy')}}/1">Saved Puppies</a></li>--}}
-{{--                        <li><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/saved-litters')}}/1">Saved Litters</a></li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </div>--}}
         </div>
-{{--        <div class="card bg-transparent border-0 pb-2">--}}
-{{--            <div class="card-header p-0 bg-transparent border-0" id="headingThree">--}}
-{{--                <h5 class="mb-0">--}}
-{{--                    <button onclick="window.location = '{{\Illuminate\Support\Facades\URL::to('dashboard/saved-search')}}/1'" class="btn btn-collapse p-0 link" aria-expanded="false">--}}
-{{--                        <i class="fas fa-history"></i> &emsp;  Search History--}}
-{{--                    </button>--}}
-{{--                </h5>--}}
-{{--            </div>--}}
-{{--        </div>--}}
     </div>
 </div>

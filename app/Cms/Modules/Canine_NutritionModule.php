@@ -43,7 +43,7 @@ class Canine_NutritionModule extends CrudModule
         $module->labelObjects()->fromProperty(Canine_Nutrition::TITLE);
 
         $module->metadata([
-            'icon' => ''
+            'icon' => 'qq'
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {

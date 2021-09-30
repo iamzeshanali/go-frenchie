@@ -25,488 +25,274 @@
         <div class="gf-dashboard-page-content row align-items-start">
             @include('components.gf-dashboard-menu-area')
             <div class="fbd-create-listing-content-area col-xl-10 col-lg-9">
-                @if(isset($puppy))
-                <form method="post" action="{{route('updateListing')}}" enctype="multipart/form-data" id="create-listing-form mx-5">
-                    @csrf
-                    @method('patch')
-                    <input type="hidden" name="id" value="{{$puppy->getId()}}"  class="form-control" id="listing Title" placeholder="">
-                    <input type="hidden" name="type" value="puppy"  class="form-control" id="listing Title" placeholder="">
 
-                    <div class="row justify-content-center p-0">
-                        <div class="col-md-8">
-                            <h2 class="text-center mb-4">
-                                Edit {{$puppy->title}} Information
-                            </h2>
-                            <div class="col">
-                                <input type="text" name="title"  class="gf-form-field" id="listing Title" value="{{$puppy->title}}" placeholder="Puppy Name" required autofocus >
-                            </div>
-
-                            <div class="row my-3 align-items-center">
-                                <label for="listing-sex" class="col-sm-2 col-form-label">Gender</label>
-                                <div class="col-sm-4">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male">
-                                        <label class="form-check-label" for="gf_puppy_male">Male</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_female" value="female">
-                                        <label class="form-check-label" for="gf_puppy_female">Female</label>
-                                    </div>
-
-                                </div>
-
-                                <label for="listing-dob" class="col-sm-2 col-form-label">Sponsored</label>
-                                <div class="col-sm-4">
-                                    <input type="checkbox" name="sponsored" @if((bool)$puppy->isSponsored == 1) checked @endif class="form-control" autofocus style="width: 20px;">
-                                </div>
-                            </div>
-
-                            <div class="row my-3">
-                                <label for="listing-dob" class="col-sm-2 col-form-label">Date of Birth</label>
-                                <div class="col-sm-4">
-                                    <input type="date" name="dob" value="{{ date('Y-m-d',$puppy->dob->getTimestamp())}}" class="gf-form-field" required autofocus>
-                                </div>
-                            </div>
-
-                            <div class="row my-3">
-                                <div class="col">
-                                        <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" placeholder="Description" required autofocus>{{$puppy->decription}}</textarea>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="row my-3">
-                        <label for="listing-sex" class="col-sm-2 col-form-label text-right">Sex</label>
-                        <div class="col-sm-3">
-                            <?php
-                                $sex = \App\Domain\Entities\Enums\ListingsSexEnum::getAll();
-                            ?>
-                            <select class="form-control" name="listing-sex" id="listing-sex" required autofocus>
-                                @foreach($sex as $s)
-                                    <option value="{{$s->getValue()}}" @if($puppy->sex->getValue() == $s->getValue()) selected @endif>{{ ucfirst($s->getValue())}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <h5 class="text-center my-4">DNA COLOR/COAT CHARACTERISTICS</h5>
-                    <div class="row my-3">
-
-                        <label for="listing-blue" class="col-sm-2 col-form-label text-right">Blue</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-blue" id="listing-blue" required autofocus>
-                                @if($puppy->blue == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($blue as $b)
-                                    <option value="{{$b->getValue()}}">{{$b->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($blue as $b)
-                                        <option value="{{$b->getValue()}}" @if($b->getValue() == $puppy->blue->getValue()) selected @endif>{{$b->getValue()}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <label for="listing-choclote" class="col-sm-2 col-form-label text-right">Chocolate</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-choclote" id="listing-choclote" required autofocus>
-                                @if($puppy->chocolate == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($chocolate as $c)
-                                        <option value="{{$c->getValue()}}">{{$c->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($chocolate as $c)
-                                        <option value="{{$c->getValue()}}" @if($puppy->chocolate->getValue() == $c->getValue()) selected @endif>{{$c->getValue()}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <label for="listing-agouti" class="col-sm-2 col-form-label text-right">Agouti</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-agoutie" id="listing-agouti" required autofocus>
-                                @if($puppy->agouti == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($agouti as $a)
-                                        <option value="{{$a->getValue()}}">{{$a->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($agouti as $a)
-                                        <option value="{{$a->getValue()}}" @if($puppy->agouti->getValue() == $a->getValue()) selected @endif>{{$a->getValue()}}</option>
-                                    @endforeach
-                                @endif
-
-                            </select>
-                        </div>
-                        <label for="listing-testable-chocolate" class="col-sm-2 col-form-label text-right">Testable</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-testable" id="listing-testable" required autofocus>
-                                @if($puppy->testableChocolate == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($testableChocolate as $t)
-                                        <option value="{{$t->getValue()}}">{{$t->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($testableChocolate as $t)
-                                        <option value="{{$t->getValue()}}" @if($puppy->testableChocolate->getValue() == $t->getValue()) selected @endif>{{$t->getValue()}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <label for="listing-fluffy" class="col-sm-2 col-form-label text-right">Fluffy</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-fluffy" id="listing-fluffy" required autofocus>
-                                @if($puppy->fluffy == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($fluffy as $f)
-                                        <option value="{{$f->getValue()}}">{{$f->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($fluffy as $f)
-                                        <option value="{{$f->getValue()}}" @if($puppy->fluffy->getValue() == $f->getValue()) selected @endif>{{$f->getValue()}}</option>
-                                    @endforeach
-                                @endif
-
-                            </select>
-                        </div>
-                        <label for="listing-emcir" class="col-sm-2 col-form-label text-right">E(MCIR)</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-emcir" id="listing-emcir" required autofocus>
-                                @if($puppy->eMcir == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($emcir as $e)
-                                        <option value="{{$e->getValue()}}">{{$e->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($emcir as $e)
-                                        <option value="{{$e->getValue()}}" @if($puppy->eMcir->getValue() == $e->getValue()) selected @endif>{{$e->getValue()}}</option>
-                                    @endforeach
-                                @endif
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <label for="listing-intensity" class="col-sm-2 col-form-label text-right">Intensity</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-intensity" id="listing-intensity" required autofocus>
-                                @if($puppy->intensity == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($intensity as $i)
-                                        <option value="{{$i->getValue()}}">{{$i->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($intensity as $i)
-                                        <option value="{{$i->getValue()}}" @if($puppy->intensity->getValue() == $i->getValue()) selected @endif>{{$i->getValue()}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <label for="listing-pied" class="col-sm-2 col-form-label text-right">PIED</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-pied" id="listing-pied" required autofocus>
-                                @if($puppy->pied == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($pied as $p)
-                                        <option value="{{$p->getValue()}}">{{$p->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($pied as $p)
-                                        <option value="{{$p->getValue()}}" @if($puppy->pied->getValue() == $p->getValue()) selected @endif>{{$p->getValue()}}</option>
-                                    @endforeach
-                                @endif
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <label for="listing-brindle" class="col-sm-2 col-form-label text-right">BRINDLE</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-brindle" id="listing-brindle" required autofocus>
-                                @if($puppy->brindle == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($brindle as $br)
-                                        <option value="{{$br->getValue()}}">{{$br->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($brindle as $br)
-                                        <option value="{{$br->getValue()}}" @if($puppy->brindle->getValue() == $br->getValue()) selected @endif>{{$br->getValue()}}</option>
-                                    @endforeach
-                                @endif
-
-                            </select>
-                        </div>
-                        <label for="listing-merle" class="col-sm-2 col-form-label text-right">MERLE</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="listing-merle" id="listing-merle" required autofocus>
-                                @if($puppy->merle == null)
-                                    <option value="none" selected>None</option>
-                                    @foreach($merle as $m)
-                                        <option value="{{$m->getValue()}}">{{$m->getValue()}}</option>
-                                    @endforeach
-                                @else
-                                    <option value="none">None</option>
-                                    @foreach($merle as $m)
-                                        <option value="{{$m->getValue()}}" @if($puppy->merle->getValue() == $m->getValue()) selected @endif>{{$m->getValue()}}</option>
-                                    @endforeach
-                                @endif
-
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-4 text-right">
-                            <img src="{{asset_file_url($puppy->photo1)}}" id="preview-image" class="img-thumbnail my-3" width="350px">
-                        </div>
-                        <div class="col-4">
-                            @foreach(explode('/',asset_file_url($puppy->photo1)) as $img1)
-                            @endforeach
-                            @foreach(explode('/',asset_file_url($puppy->photo2)) as $img2)
-                            @endforeach
-                            @foreach(explode('/',asset_file_url($puppy->photo3)) as $img3)
-                            @endforeach
-                            @foreach(explode('/',asset_file_url($puppy->photo4)) as $img4)
-                            @endforeach
-                            @foreach(explode('/',asset_file_url($puppy->photo5)) as $img5)
-                            @endforeach
-                            <div>
-                                <input type="file" name="photo1" class="image_one" accept="image/*">
-                                <div class="input-group my-3">
-                                    <input type="hidden" name="photo1_name" value="{{public_path($img1)}}">
-                                    <input type="text" class="form-control" value="{{$img1}}" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
-                                    <div class="input-group-append">
-                                        <button type="button" class="browse gf-btn-dark">Browse</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <input type="file" name="photo2"  class="image_two" accept="image/*">
-                                <div class="input-group my-3">
-                                    <input type="hidden" name="photo2_name" value="{{public_path($img2)}}">
-                                    <input type="text" class="form-control" value="{{$img2}}" disabled placeholder="Upload Image" id="image_two" required autofocus>
-                                    <div class="input-group-append">
-                                        <button type="button" class="browse2 btn btn-primary btn-fbd">Browse</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <input type="file" name="photo3"  class="image_three" accept="image/*">
-                                <div class="input-group my-3">
-                                    <input type="hidden" name="photo3_name" value="{{public_path($img3)}}">
-                                    <input type="text" class="form-control" value="{{$img3}}" disabled placeholder="Upload Image" id="image_three" required autofocus>
-                                    <div class="input-group-append">
-                                        <button type="button" class="browse3 btn btn-primary btn-fbd">Browse</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <input type="file" name="photo4"  class="image_four" accept="image/*">
-                                <div class="input-group my-3">
-                                    <input type="hidden" name="photo4_name" value="{{public_path($img4)}}">
-                                    <input type="text" class="form-control" value="{{$img4}}" disabled placeholder="Upload Image" id="image_four" required autofocus>
-                                    <div class="input-group-append">
-                                        <button type="button" class="browse4 btn btn-primary btn-fbd">Browse</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <input type="file" name="photo5"  class="image_five" accept="image/*">
-                                <div class="input-group my-3">
-                                    <input type="hidden" name="photo5_name" value="{{public_path($img5)}}">
-                                    <input type="text" class="form-control" value="{{$img5}}" disabled placeholder="Upload Image" id="image_five" required autofocus>
-                                    <div class="input-group-append">
-                                        <button type="button" class="browse5 btn btn-primary btn-fbd">Browse</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="row my-4">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class=" btn btn-primary btn-fbd px-5">Update Listing</button>
-                            </div>
-                        </div>
-                </form>
-                    @else
-                    <form method="post" action="{{route('createListing')}}" enctype="multipart/form-data" id="create-listing-form mx-5">
+                    <form method="post" action="{{isset($puppy) ? route('updateListing') : route('createListing')}}" enctype="multipart/form-data" id="create-listing-form mx-5">
                         @csrf
+                        @if(isset($puppy))
+                            @method('patch')
+                            <input type="hidden" name="id" value="{{$puppy->getId()}}"  class="form-control" id="listing Title" placeholder="">
+                        @endif
                         <input type="hidden" name="type" value="puppy"  class="form-control" id="listing Title" placeholder="">
-                        <div class="row justify-content-center p-lg-0">
-                            <div class="col-lg-8 p-0">
-                                <h2 class="text-center mb-4 gf-red">Add New Puppy</h2>
+                        <div class="row justify-content-center p-0">
+                            <div class="col-md-8">
+                                <h2 class="text-center mb-4 gf-red">{{isset($puppy) ? 'Update' : 'Add New'}} Puppy</h2>
                                 <div class="col">
-                                    <input type="text" name="title"  class="gf-form-field" id="listing Title" placeholder="Puppy Name *" required autofocus >
+                                    <input type="text" name="title" value="{{isset($puppy) ? $puppy->title : ''}}"  class="gf-form-field" id="listing Title" placeholder="Puppy Name" required autofocus >
                                 </div>
 
-                                <div class="align-items-center d-flex py-2">
-                                    {{--Gender--}}
-                                    <label for="listing-sex" class="col-4 col-form-label mb-0">Gender *</label>
-                                    <div class="col-8">
+                                <div class="row align-items-center">
+                                    <label for="listing-sex" class="col-sm-2 col-form-label">Gender</label>
+                                    <div class="col-sm-4">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male">
+                                            @if(isset($puppy))
+                                                <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male" {{$puppy->sex->getValue() ==  'male' ? 'checked' : ''}} >
+                                            @else
+                                                <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male">
+                                            @endif
+
                                             <label class="form-check-label" for="gf_puppy_male">Male</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_female" value="female">
+                                            @if(isset($puppy))
+                                                <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male" {{$puppy->sex->getValue() ==  'female' ? 'checked' : ''}} >
+                                            @else
+                                                <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_female" value="female">
+                                            @endif
                                             <label class="form-check-label" for="gf_puppy_female">Female</label>
                                         </div>
+
+                                    </div>
+
+                                    <label for="listing-dob" class="col-sm-2 col-form-label">Sponsored</label>
+                                    <div class="col-sm-4">
+                                        @if(isset($puppy))
+                                            <input type="checkbox" name="sponsored" class="form-control" autofocus style="width: 20px;" {{(bool)$puppy->isSponsored ==  1 ? 'checked' : ''}}>
+                                        @else
+                                            <input type="checkbox" name="sponsored" class="form-control" autofocus style="width: 20px;">
+                                        @endif
                                     </div>
                                 </div>
 
-                                {{--Sponsored--}}
-                                <div class="align-items-center d-flex py-2">
-                                    <label for="listing-dob" class="col-4 col-form-label">Sponsored</label>
-                                    <div class="col-8">
-                                        <input type="checkbox" name="sponsored" class="form-control" autofocus style="width: 20px;">
-                                    </div>
-                                </div>
-
-                                {{--Date of Birth--}}
-                                <div class="align-items-center d-flex py-2">
-                                    <label for="listing-dob" class="col-4 col-form-label">Date of Birth *</label>
-                                    <div class="col-8">
-                                        <input type="date" name="dob" class="gf-form-field" required autofocus>
+                                <div class="row">
+                                    <label for="listing-dob" class="col-sm-2 col-form-label">Date of Birth</label>
+                                    <div class="col-sm-4">
+                                        <input type="date" name="dob" value="{{ isset($puppy) ? date('Y-m-d',$puppy->dob->getTimestamp()) : ''}}" class="gf-form-field" required autofocus>
                                     </div>
 
                                 </div>
 
-                                <div class="py-2">
+                                <div class="row">
                                     <div class="col">
-                                        <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description" required autofocus></textarea>
+                                        <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description" required autofocus>{{ isset($puppy) ? $puppy->decription : ''}}</textarea>
                                     </div>
                                 </div>
-                                {{--DNA COLOR/COAT CHARACTERISTICS--}}
+
                                 <h4 class="col gf-red">DNA COLOR/COAT CHARACTERISTICS</h4>
-                                <div class="align-items-center d-lg-flex py-lg-2">
-                                    <label for="listing-blue" class="col-lg-2 col-form-label ">Blue</label>
-                                    <div class="col-lg-4">
+                                <div class="row">
+                                    <label for="listing-blue" class="col-sm-2 col-form-label ">Blue</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-blue" id="listing-blue" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($blue as $b)
-                                                <option value="{{$b->getValue()}}" >{{$b->getValue()}}</option>
-                                            @endforeach
+
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->blue == null ? '': 'selected'}}>None</option>
+                                                @foreach($blue as $b)
+                                                    <option value="{{$b->getValue()}}" @if($puppy->blue != null){{$b->getValue() == $puppy->blue->getValue() ? 'selected': ''}}@endif>{{$b->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($blue as $b)
+                                                    <option value="{{$b->getValue()}}" >{{$b->getValue()}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
-                                    <label for="listing-choclote" class="col-lg-2 col-form-label">Chocolate</label>
-                                    <div class="col-lg-4">
+                                    <label for="listing-choclote" class="col-sm-2 col-form-label">Chocolate</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-choclote" id="listing-choclote" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($chocolate as $c)
-                                                <option value="{{$c->getValue()}}" >{{$c->getValue()}}</option>
-                                            @endforeach
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->chocolate == null ? '': 'selected'}}>None</option>
+                                                @foreach($chocolate as $c)
+                                                    <option value="{{$c->getValue()}}" @if($puppy->chocolate != null){{$c->getValue() == $puppy->chocolate->getValue() ? 'selected': ''}}@endif>{{$c->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($chocolate as $c)
+                                                    <option value="{{$c->getValue()}}" >{{$c->getValue()}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
-                                <div class="align-items-center d-lg-flex py-lg-2">
-                                    <label for="listing-agouti" class="col-lg-2 col-form-label">Agouti</label>
-                                    <div class="col-lg-4">
+                                <div class="row">
+                                    <label for="listing-agouti" class="col-sm-2 col-form-label">Agouti</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-agoutie" id="listing-agouti" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($agouti as $a)
-                                                <option value="{{$a->getValue()}}" >{{$a->getValue()}}</option>
-                                            @endforeach
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->agouti == null ? '': 'selected'}}>None</option>
+                                                @foreach($agouti as $a)
+                                                    <option value="{{$a->getValue()}}" @if($puppy->agouti != null){{$a->getValue() == $puppy->agouti->getValue() ? 'selected': ''}}@endif>{{$a->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($agouti as $a)
+                                                    <option value="{{$a->getValue()}}" >{{$a->getValue()}}</option>
+                                                @endforeach
+                                            @endif
+
+
                                         </select>
                                     </div>
-                                    <label for="listing-testable-chocolate" class="col-lg-2 col-form-label">Testable</label>
-                                    <div class="col-lg-4">
+                                    <label for="listing-testable-chocolate" class="col-sm-2 col-form-label">Testable</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-testable" id="listing-testable" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($testableChocolate as $t)
-                                                <option value="{{$t->getValue()}}" >{{$t->getValue()}}</option>
-                                            @endforeach
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->testableChocolate == null ? '': 'selected'}}>None</option>
+                                                @foreach($testableChocolate as $t)
+                                                    <option value="{{$t->getValue()}}" @if($puppy->testableChocolate != null){{$t->getValue() == $puppy->testableChocolate->getValue() ? 'selected': ''}}@endif>{{$t->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($testableChocolate as $t)
+                                                    <option value="{{$t->getValue()}}" >{{$t->getValue()}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
-                                <div class="align-items-center d-lg-flex py-lg-2">
-                                    <label for="listing-fluffy" class="col-lg-2 col-form-label">Fluffy</label>
-                                    <div class="col-lg-4">
+                                <div class="row">
+                                    <label for="listing-fluffy" class="col-sm-2 col-form-label">Fluffy</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-fluffy" id="listing-fluffy" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($fluffy as $f)
-                                                <option value="{{$f->getValue()}}" >{{$f->getValue()}}</option>
-                                            @endforeach
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->fluffy == null ? '': 'selected'}}>None</option>
+                                                @foreach($fluffy as $f)
+                                                    <option value="{{$f->getValue()}}" @if($puppy->fluffy != null){{$f->getValue() == $puppy->fluffy->getValue() ? 'selected': ''}}@endif>{{$f->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($fluffy as $f)
+                                                    <option value="{{$f->getValue()}}" >{{$f->getValue()}}</option>
+                                                @endforeach
+                                            @endif
+
                                         </select>
                                     </div>
-                                    <label for="listing-emcir" class="col-lg-2 col-form-label">E(MCIR)</label>
-                                    <div class="col-lg-4">
+                                    <label for="listing-emcir" class="col-sm-2 col-form-label">E(MCIR)</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-emcir" id="listing-emcir" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($emcir as $e)
-                                                <option value="{{$e->getValue()}}" >{{$e->getValue()}}</option>
-                                            @endforeach
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->eMcir == null ? '': 'selected'}}>None</option>
+                                                @foreach($emcir as $e)
+                                                    <option value="{{$e->getValue()}}" @if($puppy->eMcir != null){{$e->getValue() == $puppy->eMcir->getValue() ? 'selected': ''}}@endif>{{$e->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($emcir as $e)
+                                                    <option value="{{$e->getValue()}}" >{{$e->getValue()}}</option>
+                                                @endforeach
+                                            @endif
+
                                         </select>
                                     </div>
                                 </div>
-                                <div class="align-items-center d-lg-flex py-lg-2">
-                                    <label for="listing-intensity" class="col-lg-2 col-form-label">Intensity</label>
-                                    <div class="col-lg-4">
+                                <div class="row">
+                                    <label for="listing-intensity" class="col-sm-2 col-form-label">Intensity</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-intensity" id="listing-intensity" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($intensity as $i)
-                                                <option value="{{$i->getValue()}}" >{{$i->getValue()}}</option>
-                                            @endforeach
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->intensity == null ? '': 'selected'}}>None</option>
+                                                @foreach($intensity as $i)
+                                                    <option value="{{$i->getValue()}}" @if($puppy->intensity != null){{$i->getValue() == $puppy->intensity->getValue() ? 'selected': ''}}@endif>{{$i->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($intensity as $i)
+                                                    <option value="{{$i->getValue()}}" >{{$i->getValue()}}</option>
+                                                @endforeach
+                                            @endif
+
+
                                         </select>
                                     </div>
-                                    <label for="listing-pied" class="col-lg-2 col-form-label">PIED</label>
-                                    <div class="col-lg-4">
+                                    <label for="listing-pied" class="col-sm-2 col-form-label">PIED</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-pied" id="listing-pied" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($pied as $p)
-                                                <option value="{{$p->getValue()}}" >{{$p->getValue()}}</option>
-                                            @endforeach
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->pied == null ? '': 'selected'}}>None</option>
+                                                @foreach($pied as $pi)
+                                                    <option value="{{$pi->getValue()}}" @if($puppy->pied != null){{$pi->getValue() == $puppy->pied->getValue() ? 'selected': ''}}@endif>{{$pi->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($pied as $p)
+                                                    <option value="{{$p->getValue()}}" >{{$p->getValue()}}</option>
+                                                @endforeach
+                                            @endif
+
                                         </select>
                                     </div>
                                 </div>
-                                <div class="align-items-center d-lg-flex py-lg-2">
-                                    <label for="listing-brindle" class="col-lg-2 col-form-label">BRINDLE</label>
-                                    <div class="col-lg-4">
+                                <div class="row">
+                                    <label for="listing-brindle" class="col-sm-2 col-form-label">BRINDLE</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-brindle" id="listing-brindle" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($brindle as $br)
-                                                <option value="{{$br->getValue()}}" >{{$br->getValue()}}</option>
-                                            @endforeach
+
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->brindle == null ? '': 'selected'}}>None</option>
+                                                @foreach($brindle as $br)
+                                                    <option value="{{$br->getValue()}}" @if($puppy->brindle != null){{$br->getValue() == $puppy->brindle->getValue() ? 'selected': ''}}@endif>
+                                                        {{$br->getValue()}}
+                                                    </option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($brindle as $br)
+                                                    <option value="{{$br->getValue()}}" >{{$br->getValue()}}</option>
+                                                @endforeach
+                                            @endif
+
                                         </select>
                                     </div>
-                                    <label for="listing-merle" class="col-lg-2 col-form-label">MERLE</label>
-                                    <div class="col-lg-4">
+                                    <label for="listing-merle" class="col-sm-2 col-form-label">MERLE</label>
+                                    <div class="col-md-4">
                                         <select class="form-control" name="listing-merle" id="listing-merle" required autofocus>
-                                            <option value="none" selected>None</option>
-                                            @foreach($merle as $m)
-                                                <option value="{{$m->getValue()}}" >{{$m->getValue()}}</option>
-                                            @endforeach
+                                            @if(isset($puppy))
+                                                <option value="none" {{$puppy->merle == null ? '': 'selected'}}>None</option>
+                                                @foreach($merle as $m)
+                                                    <option value="{{$m->getValue()}}" @if($puppy->merle != null){{$m->getValue() == $puppy->merle->getValue() ? 'selected': ''}}@endif>{{$m->getValue()}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="none" selected>None</option>
+                                                @foreach($merle as $m)
+                                                    <option value="{{$m->getValue()}}" >{{$m->getValue()}}</option>
+                                                @endforeach
+                                            @endif
+
                                         </select>
                                     </div>
                                 </div>
 
 
-                                <div class="align-items-center d-lg-flex py-lg-2 gf-add-listing-image">
-                                    <div class="col-lg-6 m-auto gf-mw-fit">
-                                        <img src="/images/placeholder.gif" id="preview-image" class="img-thumbnail my-3" width="350px">
+                                <div class="row gf-add-listing-image">
+                                    <div class="col-md-6 m-auto gf-mw-fit">
+                                        @if(isset($puppy))
+                                            <img src="{{$puppy->photo1 !=null ? asset_file_url($puppy->photo1) : '/images/placeholder.gif'}}" id="preview-image" class="img-thumbnail my-3" width="350px">
+                                        @else
+                                            <img src="/images/placeholder.gif" id="preview-image" class="img-thumbnail my-3" width="350px">
+                                        @endif
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-md-6">
                                         <div>
                                             <input type="file" name="photo1" class="image_one" accept="image/*">
                                             <div class="input-group my-3 flex-nowrap">
-                                                <input type="text" class="gf-form-field mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
+                                                @if(isset($puppy) && ($puppy->photo1 != null))
+                                                    @foreach(explode('/',asset_file_url($puppy->photo1)) as $img1)
+                                                    @endforeach
+                                                        <input type="hidden" name="photo1_name" value="{{public_path($img1)}}">
+                                                        <input type="text"  value="{{$img1}}"  class="gf-form-field mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
+                                                @else
+                                                    <input type="text" class="gf-form-field mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Upload Main Image" id="main_image" required autofocus>
+                                                @endif
                                                 <div class="">
                                                     <button type="button" class="browse gf-btn-dark">Browse</button>
                                                 </div>
@@ -520,7 +306,14 @@
                                         <div>
                                             <input type="file" name="photo2" class="image_two" accept="image/*">
                                             <div class="input-group my-3 flex-nowrap">
-                                                <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_two" required autofocus>
+                                                @if(isset($puppy) && ($puppy->photo2 != null))
+                                                    @foreach(explode('/',asset_file_url($puppy->photo2)) as $img2)
+                                                    @endforeach
+                                                        <input type="hidden" name="photo2_name" value="{{public_path($img2)}}">
+                                                        <input type="text"  value="{{$img2}}"  class="gf-form-field mb-0 @error('image_two') is-invalid @enderror" disabled placeholder="Upload Main Image" id="image_two" required autofocus>
+                                                @else
+                                                    <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_two" required autofocus>
+                                                @endif
                                                 <div class="">
                                                     <button type="button" class="browse2 gf-btn-dark">Browse</button>
                                                 </div>
@@ -529,7 +322,14 @@
                                         <div>
                                             <input type="file" name="photo3" class="image_three" accept="image/*">
                                             <div class="input-group my-3 flex-nowrap">
-                                                <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_three" required autofocus>
+                                                @if(isset($puppy) && ($puppy->photo3 != null))
+                                                    @foreach(explode('/',asset_file_url($puppy->photo3)) as $img3)
+                                                    @endforeach
+                                                    <input type="hidden" name="photo3_name" value="{{public_path($img3)}}">
+                                                    <input type="text"  value="{{$img3}}"  class="gf-form-field mb-0 @error('image_three') is-invalid @enderror" disabled placeholder="Upload Main Image" id="image_three" required autofocus>
+                                                @else
+                                                    <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_three" required autofocus>
+                                                @endif
                                                 <div class="">
                                                     <button type="button" class="browse3 gf-btn-dark">Browse</button>
                                                 </div>
@@ -538,7 +338,14 @@
                                         <div>
                                             <input type="file" name="photo4" class="image_four" accept="image/*">
                                             <div class="input-group my-3 flex-nowrap">
-                                                <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_four" required autofocus>
+                                                @if(isset($puppy) && ($puppy->photo4 != null))
+                                                    @foreach(explode('/',asset_file_url($puppy->photo4)) as $img4)
+                                                    @endforeach
+                                                    <input type="hidden" name="photo4_name" value="{{public_path($img4)}}">
+                                                    <input type="text"  value="{{$img4}}"  class="gf-form-field mb-0 @error('image_four') is-invalid @enderror" disabled placeholder="Upload Main Image" id="image_four" required autofocus>
+                                                @else
+                                                    <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_four" required autofocus>
+                                                @endif
                                                 <div class="">
                                                     <button type="button" class="browse4 gf-btn-dark">Browse</button>
                                                 </div>
@@ -547,7 +354,14 @@
                                         <div>
                                             <input type="file" name="photo5" class="image_five" accept="image/*">
                                             <div class="input-group my-3 flex-nowrap">
-                                                <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_five" required autofocus>
+                                                @if(isset($puppy) && ($puppy->photo5 != null))
+                                                    @foreach(explode('/',asset_file_url($puppy->photo5)) as $img5)
+                                                    @endforeach
+                                                    <input type="hidden" name="photo5_name" value="{{public_path($img5)}}">
+                                                    <input type="text"  value="{{$img5}}"  class="gf-form-field mb-0 @error('image_five') is-invalid @enderror" disabled placeholder="Upload Main Image" id="image_five" required autofocus>
+                                                @else
+                                                    <input type="text" class="gf-form-field mb-0" disabled placeholder="Upload Image" id="image_five" required autofocus>
+                                                @endif
                                                 <div class="">
                                                     <button type="button" class="browse5 gf-btn-dark">Browse</button>
                                                 </div>
@@ -559,15 +373,16 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row my-4">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="gf-btn-dark col-sm-8">Add Listing</button>
+                                <button type="submit" class="gf-btn-dark px-5">{{isset($puppy) ? 'Update' : 'Add New'}} Listing</button>
                             </div>
                         </div>
                     </form>
-                    @endif
+
             </div>
         </div>
 
     </div>
 @endsection
+

@@ -43,7 +43,7 @@ class Breeder_SuppliesModule extends CrudModule
         $module->labelObjects()->fromProperty(Breeder_Supplies::SLUG);
 
         $module->metadata([
-            'icon' => ''
+            'icon' => 'tags'
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {
