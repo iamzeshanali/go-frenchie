@@ -31,7 +31,7 @@
                         <a href="{{route('showLitters')}}"><i class="fas fa-paw"></i> <span>Litters</span></a><br>
                         <a href="{{route('resources')}}"><i class="fas fa-paw"></i> <span>Resources</span></a><br>
                         <a href="{{route('dnaMachine')}}"><i class="fas fa-paw"></i> <span>DNA Machine</span></a><br>
-                        <a href=""><i class="fas fa-paw"></i> <span>Account</span></a>
+{{--                        <a href=""><i class="fas fa-paw"></i> <span>Account</span></a>--}}
                     </div>
                 </div>
                 <div class="gf-footer-col4 col-md-3">

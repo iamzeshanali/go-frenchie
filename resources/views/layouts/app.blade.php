@@ -41,7 +41,7 @@
 {{--                Secondary Navbar--}}
                 <div class="secondary-nav px-4 d-flex align-items-center justify-content-end flex-wrap">
                     <a class="mr-4" href="mailto:someone@example.com" title="Email"><i class="mr-2 far fa-envelope"></i>contact@gofrenchee.com</a>
-                    <a class="mr-4" href="tell:331234567" title="Phone"><i class="mr-2 fas fa-phone-alt"></i> +33 123 4567</a>
+                    <a class="mr-4" href="tel:331234567" title="Phone"><i class="mr-2 fas fa-phone-alt"></i> +33 123 4567</a>
                     <a href="#"><i class="d-none d-sm-block far fa-question-circle"></i></a>
                 </div>
 {{--                Primary Navbar--}}

@@ -725,8 +725,8 @@
                                             <div id="LoginModal" class="modal fade">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                        <div class="modal-header align-items-center">
+                                                            <h3 class="modal-title gf-red">Signin to GoFrenchie</h3>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         </div>
                                                         @if (\Session::has('error'))
@@ -742,11 +742,9 @@
                                                                 <input type="hidden" name="type" value="listing">
 
                                                                 {{--  EMAIL-ADDRESS  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <input type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -756,12 +754,12 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                                                <div class="row">
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="login-password" type="password" class="gf-form-field m-0 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter your password">
+                                                                        <span class="input-group-btn">
+                                                                            <button onclick="showPassword('login-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -770,12 +768,18 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
-                                                                    {{ __('Login') }}
-                                                                </button>
+                                                            <div class="row modal-footer justify-content-around p-3">
+{{--                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">--}}
+                                                                <div class="col-6 m-0">
+                                                                    <a href="#deleteListingModal" class="delete" data-toggle="modal">
+                                                                        <input class="gf-btn-light w-100" type="button" data-dismiss="modal" value="Register">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-6 m-0">
+                                                                    <button type="submit" class="gf-btn-dark w-100">
+                                                                        {{ __('Login') }}
+                                                                    </button>
+                                                                </div>
 
                                                             </div>
                                                         </form>
@@ -785,8 +789,8 @@
                                             <div id="deleteListingModal" class="modal fade">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                        <div class="modal-header align-items-center">
+                                                            <h3 class="modal-title gf-red">Register Yourself</h3>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         </div>
                                                         <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
@@ -796,11 +800,9 @@
                                                                 <input type="hidden" name="slug" value="{{$standardPuppy->slug}}">
                                                                 <input type="hidden" name="type" value="listing">
                                                                 {{--  USERNAME  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <input type="text" class="gf-form-field @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="{{ __('Username*') }}">
 
                                                                         @error('username')
                                                                         <span class="invalid-feedback" role="alert">
@@ -810,11 +812,10 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  EMAIL-ADDRESS  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                                                <div class="row">
 
-                                                                    <div class="col-md-6">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                    <div class="col">
+                                                                        <input type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email*') }}">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -824,12 +825,13 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                                                <div class="row">
 
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="register-password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Password*') }}">
+                                                                        <span class="input-group-btn">
+                                                                            <button onclick="showPassword('register-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -838,17 +840,19 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  CONFIRM-PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                                                <div class="row">
 
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="register-confirm-password" type="password" class="gf-form-field m-0" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password*') }}">
+                                                                        <span class="input-group-btn">
+                                                                            <button onclick="showPassword('register-confirm-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                            <div class="row modal-footer justify-content-around p-3">
+{{--                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">--}}
+                                                                <button type="submit" class="gf-btn-dark w-100">
                                                                     {{ __('Register') }}
                                                                 </button>
 
