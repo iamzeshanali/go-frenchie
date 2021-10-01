@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Persistence;
 
+use Dms\Common\Structure\Web\Persistence\HtmlMapper;
 use Dms\Core\Persistence\Db\Mapping\Definition\MapperDefinition;
 use Dms\Core\Persistence\Db\Mapping\EntityMapper;
 use App\Domain\Entities\Listings;
@@ -38,7 +39,8 @@ class ListingsMapper extends EntityMapper
 
         $map->property(Listings::SLUG)->to('slug')->asVarchar(255);
 
-        $map->property(Listings::DESCRIPTION)->to('decription')->asVarchar(255);
+        $map->embedded(Listings::DESCRIPTION)
+            ->using(new HtmlMapper('description'));
 
         $map->enum(Listings::TYPE)->to('type')->usingValuesFromConstants();
 
@@ -68,6 +70,8 @@ class ListingsMapper extends EntityMapper
             ->using(new ImageMapper('photo5', 'photo5_file_name', public_path('app/listings')));
 
         $map->property(Listings::IS_SPONSORED)->to('is_sponsored')->asBool();
+
+        $map->property(Listings::IS_FEATURED)->to('is_featured')->asBool();
 
         $map->enum(Listings::STATUS)->to('status')->usingValuesFromConstants();
 

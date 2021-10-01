@@ -7,6 +7,7 @@ namespace App\Domain\Entities;
 use App\Domain\Entities\Enums\ListingsStatusEnum;
 use Dms\Common\Structure\DateTime\Date;
 use Dms\Common\Structure\FileSystem\Image;
+use Dms\Common\Structure\Web\Html;
 use Dms\Core\Model\Object\ClassDefinition;
 use Dms\Core\Model\Object\Entity;
 use Dms\Core\Model\Object\InvalidPropertyDefinitionException;
@@ -16,7 +17,7 @@ class Litters extends Entity
     const BREEDER = 'breeder';
     const SLUG = 'slug';
     const TITLE = 'title';
-    const DESCRIPTION = 'decription';
+    const DESCRIPTION = 'description';
     const EXPECTED_DOB = 'expectedDob';
     const PHOTO1 = 'photo1';
     const PHOTO2 = 'photo2';
@@ -24,6 +25,7 @@ class Litters extends Entity
     const PHOTO4 = 'photo4';
     const PHOTO5 = 'photo5';
     const IS_SPONSORED = 'isSponsored';
+    const IS_FEATURED = 'isFeatured';
     const STATUS = 'status';
     const DAM = 'dam';
     const SIRE = 'sire';
@@ -45,7 +47,7 @@ class Litters extends Entity
     /**
      * @var string
      */
-    public $decription;
+    public $description;
 
     /**
      * @var Date
@@ -81,7 +83,10 @@ class Litters extends Entity
      * @var Boolean
      */
     public $isSponsored;
-
+    /**
+     * @var Boolean
+     */
+    public $isFeatured;
     /**
      * @var ListingsStatusEnum
      */
@@ -115,7 +120,7 @@ class Litters extends Entity
 
         $class->property($this->title)->asString();
 
-        $class->property($this->decription)->asString();
+        $class->property($this->description)->asObject(Html::class);
 
         $class->property($this->expectedDob)->asObject(Date::class);
 
@@ -130,6 +135,8 @@ class Litters extends Entity
         $class->property($this->photo5)->nullable()->asObject(Image::class);
 
         $class->property($this->isSponsored)->asBool();
+
+        $class->property($this->isFeatured)->asBool();
 
         $class->property($this->status)->asObject(ListingsStatusEnum::class);
 

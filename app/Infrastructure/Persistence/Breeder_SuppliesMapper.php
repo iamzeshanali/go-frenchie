@@ -6,6 +6,7 @@ use Dms\Core\Persistence\Db\Mapping\Definition\MapperDefinition;
 use Dms\Core\Persistence\Db\Mapping\EntityMapper;
 use App\Domain\Entities\Breeder_Supplies;
 use Dms\Common\Structure\FileSystem\Persistence\ImageMapper;
+use Dms\Common\Structure\Web\Persistence\HtmlMapper;
 use Dms\Common\Structure\Web\Persistence\UrlMapper;
 use Dms\Common\Structure\Money\Persistence\MoneyMapper;
 use App\Domain\Entities\Users;
@@ -36,7 +37,8 @@ class Breeder_SuppliesMapper extends EntityMapper
 
         $map->property(Breeder_Supplies::TITLE)->to('title')->asVarchar(255);
 
-        $map->property(Breeder_Supplies::DESCRIPTION)->to('decription')->asVarchar(255);
+        $map->embedded(Breeder_Supplies::DESCRIPTION)
+            ->using(new HtmlMapper('decription'));
 
         $map->embedded(Breeder_Supplies::WEBSITE_URL)
             ->using(new UrlMapper('website_url'));

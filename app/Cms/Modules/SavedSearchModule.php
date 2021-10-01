@@ -42,7 +42,7 @@ class SavedSearchModule extends CrudModule
         $module->labelObjects()->fromProperty(SavedSearch::DNA_COLOR);
 
         $module->metadata([
-            'icon' => 'eercast'
+            'icon' => ''
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {
@@ -80,7 +80,7 @@ class SavedSearchModule extends CrudModule
             $table->mapProperty(SavedSearch::USER)->to(Field::create('user', 'User')
                 ->entityFrom($this->usersRepository)
                 ->required()
-                ->labelledBy(Users::USERNAME));
+                ->labelledBy(Users::FIRST_NAME));
             $table->mapProperty(SavedSearch::DNA_COLOR)->to(Field::create('dna_color', 'Dna Color')->string());
             $table->mapProperty(SavedSearch::DNA_COAT)->to(Field::create('dna_coat', 'Dna Coat')->string());
             $table->mapProperty(SavedSearch::ZIP)->to(Field::create('zip', 'Zip')->string());

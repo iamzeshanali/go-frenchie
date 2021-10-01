@@ -32,30 +32,17 @@
                         <div class="col-md-8">
                             <h2 class="text-center mb-4 gf-red">{{isset($puppy) ? 'Update' : 'Add New'}} Stud</h2>
                             <div class="col">
-                                <input type="text" name="title" value="{{isset($puppy) ? $puppy->title : ''}}"  class="gf-form-field" id="listing Title" placeholder="Puppy Name" required autofocus >
+                                <input type="text" name="title" value="{{isset($puppy) ? $puppy->title : ''}}"  class="gf-form-field" id="listing Title" placeholder="Stud Name: *" required autofocus >
                             </div>
-
+                            <input class="form-check-input" type="hidden" name="listing-sex" id="gf_puppy_male" value="male">
                             <div class="row align-items-center">
-                                <label for="listing-sex" class="col-sm-2 col-form-label">Gender</label>
+                                <label for="listing-dob" class="col-sm-2 col-form-label">Featured</label>
                                 <div class="col-sm-4">
-                                    <div class="form-check form-check-inline">
-                                        @if(isset($puppy))
-                                            <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male" {{$puppy->sex->getValue() ==  'male' ? 'checked' : ''}} >
-                                        @else
-                                            <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male">
-                                        @endif
-
-                                        <label class="form-check-label" for="gf_puppy_male">Male</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        @if(isset($puppy))
-                                            <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_male" value="male" {{$puppy->sex->getValue() ==  'female' ? 'checked' : ''}} >
-                                        @else
-                                            <input class="form-check-input" type="radio" name="listing-sex" id="gf_puppy_female" value="female">
-                                        @endif
-                                        <label class="form-check-label" for="gf_puppy_female">Female</label>
-                                    </div>
-
+                                    @if(isset($puppy))
+                                        <input type="checkbox" name="featured" class="form-control" autofocus style="width: 20px;" {{(bool)$puppy->isFeatured ==  1 ? 'checked' : ''}}>
+                                    @else
+                                        <input type="checkbox" name="featured" class="form-control" autofocus style="width: 20px;">
+                                    @endif
                                 </div>
 
                                 <label for="listing-dob" class="col-sm-2 col-form-label">Sponsored</label>
@@ -69,7 +56,7 @@
                             </div>
 
                             <div class="row">
-                                <label for="listing-dob" class="col-sm-2 col-form-label">Date of Birth</label>
+                                <label for="listing-dob" class="col-sm-3 col-form-label">Date of Birth: *</label>
                                 <div class="col-sm-4">
                                     <input type="date" name="dob" value="{{ isset($puppy) ? date('Y-m-d',$puppy->dob->getTimestamp()) : ''}}" class="gf-form-field" required autofocus>
                                 </div>
@@ -78,7 +65,7 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description" required autofocus>{{ isset($puppy) ? $puppy->decription : ''}}</textarea>
+                                    <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description: *" required autofocus>{{ isset($puppy) ? $puppy->decription : ''}}</textarea>
                                 </div>
                             </div>
 

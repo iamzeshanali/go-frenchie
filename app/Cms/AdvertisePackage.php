@@ -19,9 +19,9 @@ use App\Cms\Modules\UsersModule;
 use App\Cms\Modules\Auth\PasswordResetModule;
 
 /**
- * The Resources package.
+ * The Advertise package.
  */
-class ResourcesPackage extends Package
+class AdvertisePackage extends Package
 {
     /**
      * Defines the structure of this cms package.
@@ -32,16 +32,14 @@ class ResourcesPackage extends Package
      */
     protected function define(PackageDefinition $package)
     {
-        $package->name('Resources');
+        $package->name('Advertise');
 
         $package->metadata([
             'icon' => '',
         ]);
 
         $package->modules([
-            'breeder_-supplies' => Breeder_SuppliesModule::class,
-            'canine_-genetics' => Canine_GeneticsModule::class,
-            'canine_-nutrition' => Canine_NutritionModule::class,
+            'make-add' => MakeAddModule::class,
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Persistence;
 
+use Dms\Common\Structure\Web\Persistence\HtmlMapper;
 use Dms\Core\Persistence\Db\Mapping\Definition\MapperDefinition;
 use Dms\Core\Persistence\Db\Mapping\EntityMapper;
 use App\Domain\Entities\Litters;
@@ -38,7 +39,8 @@ class LittersMapper extends EntityMapper
 
         $map->property(Litters::TITLE)->to('title')->asVarchar(255);
 
-        $map->property(Litters::DESCRIPTION)->to('decription')->asVarchar(255);
+        $map->embedded(Litters::DESCRIPTION)
+            ->using(new HtmlMapper('description'));
 
         $map->embedded(Litters::EXPECTED_DOB)
             ->using(new DateMapper('expected_dob'));
@@ -64,6 +66,8 @@ class LittersMapper extends EntityMapper
             ->using(new ImageMapper('photo5', 'photo5_file_name', public_path('app/litters')));
 
         $map->property(Litters::IS_SPONSORED)->to('is_sponsored')->asBool();
+
+        $map->property(Litters::IS_FEATURED)->to('is_featured')->asBool();
 
         $map->enum(Litters::STATUS)->to('status')->usingValuesFromConstants();
 

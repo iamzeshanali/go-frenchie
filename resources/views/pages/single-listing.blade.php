@@ -190,18 +190,18 @@
     <div class="row mb-5 fbd-single-listing-info">
         <div class="col-md-6 px-5">
             <div class="fbd-single-listing-img p-3 mb-3">
-                <img src="{{asset_file_url($puppy->photo1)}}" alt="">
-                <img src="{{asset_file_url($puppy->photo2)}}" alt="">
-                <img src="{{asset_file_url($puppy->photo3)}}" alt="">
-                <img src="{{asset_file_url($puppy->photo4)}}" alt="">
-                <img src="{{asset_file_url($puppy->photo5)}}" alt="">
+                @if($puppy->photo1)<img src="{{ asset_file_url($puppy->photo1)}}" alt="">@endif
+                @if($puppy->photo2)<img src="{{ asset_file_url($puppy->photo2)}}" alt="">@endif
+                @if($puppy->photo3)<img src="{{ asset_file_url($puppy->photo3)}}" alt="">@endif
+                @if($puppy->photo4)<img src="{{ asset_file_url($puppy->photo4)}}" alt="">@endif
+                @if($puppy->photo5)<img src="{{ asset_file_url($puppy->photo5)}}" alt="">@endif
             </div>
             <div class="fbd-single-listing-thumbs mb-3">
-                <img src="{{asset_file_url($puppy->photo1)}}" alt="">
-                <img src="{{asset_file_url($puppy->photo2)}}" alt="">
-                <img src="{{asset_file_url($puppy->photo3)}}" alt="">
-                <img src="{{asset_file_url($puppy->photo4)}}" alt="">
-                <img src="{{asset_file_url($puppy->photo5)}}" alt="">
+                @if($puppy->photo1)<img src="{{ asset_file_url($puppy->photo1)}}" alt="">@endif
+                @if($puppy->photo2)<img src="{{ asset_file_url($puppy->photo2)}}" alt="">@endif
+                @if($puppy->photo3)<img src="{{ asset_file_url($puppy->photo3)}}" alt="">@endif
+                @if($puppy->photo4)<img src="{{ asset_file_url($puppy->photo4)}}" alt="">@endif
+                @if($puppy->photo5)<img src="{{ asset_file_url($puppy->photo5)}}" alt="">@endif
             </div>
 
         </div>
@@ -244,7 +244,7 @@
     <div class="fbd-single-listing-description row my-4 mx-4">
         <div class="col-md-8">
             <h2 class="gf-red">Description</h2>
-            <p>{{$puppy->decription}}</p>
+            <p>{{$puppy->description->asString()}}}</p>
         </div>
         <div class="col-md-4">
 

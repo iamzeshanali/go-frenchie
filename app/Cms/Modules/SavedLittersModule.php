@@ -59,7 +59,7 @@ class SavedLittersModule extends CrudModule
                     Field::create('customer', 'Customer')
                         ->entityFrom($this->usersRepository)
                         ->required()
-                        ->labelledBy(Users::USERNAME)
+                        ->labelledBy(Users::FIRST_NAME)
                 )->bindToProperty(SavedLitters::CUSTOMER),
                 //
                 $form->field(
@@ -83,7 +83,7 @@ class SavedLittersModule extends CrudModule
             $table->mapProperty(SavedLitters::CUSTOMER)->to(Field::create('customer', 'Customer')
                 ->entityFrom($this->usersRepository)
                 ->required()
-                ->labelledBy(Users::USERNAME));
+                ->labelledBy(Users::FIRST_NAME));
             $table->mapProperty(SavedLitters::LITTERS)->to(Field::create('litters', 'Litters')
                 ->entityFrom($this->littersRepository)
                 ->required()

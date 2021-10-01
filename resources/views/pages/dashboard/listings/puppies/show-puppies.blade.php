@@ -56,6 +56,10 @@
                                                 @else
                                                     <span style="color: darkred">Standard</span>
                                                 @endif
+
+                                                @if($puppy->isFeatured == 1)
+                                                    |<span style="color: #FFC107">  Featured</span>
+                                                @endif
                                             </td>
                                             <td>
                                                 @if($puppy->status->getValue() == 'active')

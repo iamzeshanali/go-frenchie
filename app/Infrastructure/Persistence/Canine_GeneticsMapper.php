@@ -6,6 +6,7 @@ use Dms\Core\Persistence\Db\Mapping\Definition\MapperDefinition;
 use Dms\Core\Persistence\Db\Mapping\EntityMapper;
 use App\Domain\Entities\Canine_Genetics;
 use Dms\Common\Structure\FileSystem\Persistence\ImageMapper;
+use Dms\Common\Structure\Web\Persistence\HtmlMapper;
 use Dms\Common\Structure\Web\Persistence\UrlMapper;
 use Dms\Common\Structure\Money\Persistence\MoneyMapper;
 use App\Domain\Entities\Users;
@@ -36,7 +37,8 @@ class Canine_GeneticsMapper extends EntityMapper
 
         $map->property(Canine_Genetics::SLUG)->to('slug')->asVarchar(255);
 
-        $map->property(Canine_Genetics::DESCRIPTION)->to('decription')->asVarchar(255);
+        $map->embedded(Canine_Genetics::DESCRIPTION)
+            ->using(new HtmlMapper('decription'));
 
         $map->embedded(Canine_Genetics::WEBSITE_URL)
             ->using(new UrlMapper('website_url'));

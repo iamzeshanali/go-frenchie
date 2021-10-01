@@ -7,6 +7,7 @@ namespace App\Domain\Entities;
 use App\Domain\Entities\Enums\ListingsStatusEnum;
 use Dms\Common\Structure\FileSystem\Image;
 use Dms\Common\Structure\Money\Money;
+use Dms\Common\Structure\Web\Html;
 use Dms\Common\Structure\Web\Url;
 use Dms\Core\Model\Object\ClassDefinition;
 use Dms\Core\Model\Object\Entity;
@@ -86,7 +87,7 @@ class Canine_Genetics extends Entity{
         $class->property($this->logo)->asObject(Image::class);
         $class->property($this->slug)->asString();
         $class->property($this->title)->asString();
-        $class->property($this->decription)->asString();
+        $class->property($this->decription)->asObject(Html::class);
         $class->property($this->websiteUrl)->asObject(Url::class);
         $class->property($this->couponCode)->asString();
         $class->property($this->price)->asObject(Money::class);

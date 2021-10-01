@@ -10,6 +10,7 @@ use App\Domain\Entities\Breeder_Supplies;
 use App\Domain\Entities\Canine_Genetics;
 use App\Domain\Entities\Canine_Nutrition;
 use App\Domain\Entities\Customers;
+use App\Domain\Entities\EmailLogs;
 use App\Domain\Entities\EnumsTest;
 use App\Domain\Entities\Listings;
 use App\Domain\Entities\Litters;
@@ -28,6 +29,7 @@ use App\Infrastructure\Persistence\BreederMapper;
 use App\Infrastructure\Persistence\Canine_GeneticsMapper;
 use App\Infrastructure\Persistence\Canine_NutritionMapper;
 use App\Infrastructure\Persistence\CustomersMapper;
+use App\Infrastructure\Persistence\EmailLogsMapper;
 use App\Infrastructure\Persistence\EnumsTestMapper;
 use App\Infrastructure\Persistence\ListingsMapper;
 use App\Infrastructure\Persistence\LittersMapper;
@@ -66,7 +68,7 @@ class AppOrm extends Orm
             PasswordReset::class => PasswordResetMapper::class,
             Listings::class => ListingsMapper::class,
             Litters::class => LittersMapper::class,
-//
+
             Breeder_Supplies::class => Breeder_SuppliesMapper::class,
             Canine_Genetics::class => Canine_GeneticsMapper::class,
             Canine_Nutrition::class => Canine_NutritionMapper::class,
@@ -75,7 +77,9 @@ class AppOrm extends Orm
             SavedListings::class => SavedListingsMapper::class,
             SavedLitters::class => SavedLittersMapper::class,
 //
+
             MakeAdd::class => MakeAddMapper::class,
+            EmailLogs::class => EmailLogsMapper::class,
 
             ApiConfig::class => ApiConfigMapper::class,
 

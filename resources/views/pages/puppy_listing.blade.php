@@ -2,16 +2,18 @@
 @section('title', 'Puppies')
 @section('content')
 
+
+
     {{--Homepage Banner Section--}}
     <div class="wrapper gf-resources-banner-wrapper d-flex justify-content-center">
         <div class="container row align-items-center">
             <div class="gf-resources-banner-text col-md-6">
                 <h1>
-                    <span style="color:#be202e;">Featured Puppies</span><br>
+                    <span style="color:#be202e;">Friendly Puppy</span><br>
                     For Frenchie Lovers</h1>
             </div>
             <div class="col-md-6 text-center">
-                <img src="/images/homepage/gf-subscribe-image.png" loading="lazy" width="800" height="695" alt="">
+                <img src="/images/frenchie-reading-book.png" loading="lazy" width="800" height="431" alt="">
             </div>
         </div>
     </div>
@@ -22,53 +24,30 @@
             <div class="fbd-filter-area p-0 pb-1 mb-3 col-xl-2 col-lg-3">
                 <div id="accordion">
                     <!-- Your Search -->
-{{--                    @if($data != null)--}}
-{{--                        <div class="card p-3 mb-4 rounded">--}}
-{{--                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">--}}
-{{--                                <span class="heading mb-0">Your Search</span>--}}
-{{--                                <span class="results-number" title="Total Results"> Results</span>--}}
-{{--                            </div>--}}
-{{--                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">--}}
-{{--                                <div class="card-body">--}}
-{{--                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->--}}
-{{--                                    <ul class="tags-list" id="primary-recent-search">--}}
-{{--                                        <li> {{$data['dnaColor']}} <small>{{$data['dnaCoat']}} </small> <span aria-hidden="true" title="close" onclick="cancelRecentSearch('{{$data['dnaColor']}}', '{{$data['dnaCoat']}}')">&times;</span></li>--}}
-{{--                                    </ul>--}}
-{{--                                    <div id="secondary-recent-search">--}}
+                    @if($data != null)
+                        <div class="card p-3 mb-4 rounded">
+                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
+                                <span class="heading mb-0">Your Search</span>
+                                <span class="results-number" title="Total Results"> Results</span>
+                            </div>
+                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
+                                <div class="card-body">
+                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
+                                    <ul class="tags-list" id="primary-recent-search">
+                                        <li> {{$data['dnaColor']}} <small>{{$data['dnaCoat']}} </small> <span aria-hidden="true" title="close" onclick="cancelRecentSearch('{{$data['dnaColor']}}', '{{$data['dnaCoat']}}')">&times;</span></li>
+                                    </ul>
+                                    <div id="secondary-recent-search">
 
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @else--}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
 
-{{--                        <div id="secondary-recent-search">--}}
+                        <div id="secondary-recent-search">
 
-{{--                        </div>--}}
-{{--                    @endif--}}
-
-{{--                    @if(Auth::user())--}}
-{{--                        --}}{{--Saved Search--}}
-{{--                        <div class="card p-3 mb-4 rounded">--}}
-{{--                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">--}}
-{{--                                <span class="heading mb-0">Search History</span>--}}
-{{--                                <?php--}}
-{{--                                $allSavedSearch = app('App\Http\Controllers\ListingsController')->showAllSavedSearchedListings();--}}
-{{--                                ?>--}}
-{{--                                <span class="results-number" title="Total Results">{{count($allSavedSearch)}} Results</span>--}}
-{{--                            </div>--}}
-{{--                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">--}}
-{{--                                <div class="card-body">--}}
-{{--                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->--}}
-{{--                                    <ul class="tags-list" id="primary-recent-search">--}}
-{{--                                        @foreach($allSavedSearch AS $saved)--}}
-{{--                                            <li style="cursor: pointer"  onmouseenter="this.style.backgroundColor='#8B77FC';this.style.color='white'" onmouseleave="this.style.backgroundColor='#f8f8f8';this.style.color='black'" onclick="previousSearch('{{$saved->dnaColor}}','{{$saved->dnaCoat}}','{{$saved->zip}}','{{$saved->type}}')"> {{$saved->dnaColor}} <small>{{$saved->dnaCoat}} </small></li>--}}
-{{--                                        @endforeach--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                @endif--}}
+                        </div>
+                @endif
                 <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
 
@@ -432,7 +411,7 @@
 
                 <div id="primary-listing-data" class="fbd-listing-area">
 
-                    {{--                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> out of <b>12</b> listings</p>--}}
+                    <p class="listing-count">Showing <b>{{count($sponsoredPuppies)}}</b> listings</p>
                     <h3 class="listing-type">SPONSORED LISTINGS</h3>
                     @if(empty($sponsoredPuppies))
                         <div class="fbd-standard-listing p-3">
@@ -447,7 +426,7 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($sponsoredPuppy->photo1)}}" width="250" height="250" alt="">
+                                            <img src="{{$sponsoredPuppy->photo1 ? asset_file_url($sponsoredPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
@@ -456,7 +435,7 @@
 
                                         <div onclick="singlePuppy('{{$sponsoredPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
                                             <h4 class="fbd-sp-list-title d-inline">{{$sponsoredPuppy->title}}</h4>
-                                            <p>{{$sponsoredPuppy->decription}}</p>
+                                            <p>{{$sponsoredPuppy->description->asString()}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
                                             <div class="col-xl-6 pl-0">
@@ -508,22 +487,22 @@
                                                     }
                                                     ?>
                                                     @if($matched == false)
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @else
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #BE202E;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @endif
 
                                                 @else
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                 @endif
                                             @else
-                                                <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
+                                                <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
                                             @endif
                                             <div id="LoginModal" class="modal fade">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                            <h4 class="modal-title">Login Yourself</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         </div>
                                                         @if (\Session::has('error'))
@@ -540,10 +519,8 @@
 
                                                                 {{--  EMAIL-ADDRESS  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                    <div class="col-md-12">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="E-mail Address: *" autocomplete="email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -554,10 +531,8 @@
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                    <div class="col-md-12">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password: *" autocomplete="new-password">
 
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
@@ -570,7 +545,7 @@
                                                             <div class="modal-footer">
                                                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                                                 <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                <button type="submit" class="btn btn-primary btn-fbd">
                                                                     {{ __('Login') }}
                                                                 </button>
 
@@ -594,10 +569,8 @@
                                                                 <input type="hidden" name="type" value="listing">
                                                                 {{--  USERNAME  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                                    <div class="col-md-12">
+                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required placeholder="Username: *" autocomplete="username" autofocus>
 
                                                                         @error('username')
                                                                         <span class="invalid-feedback" role="alert">
@@ -608,10 +581,8 @@
                                                                 </div>
                                                                 {{--  EMAIL-ADDRESS  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                    <div class="col-md-12">
+                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="E-Mail: *" autocomplete="email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -622,10 +593,8 @@
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                                    <div class="col-md-12">
+                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password: *" autocomplete="new-password">
 
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
@@ -636,16 +605,15 @@
                                                                 </div>
                                                                 {{--  CONFIRM-PASSWORD  --}}
                                                                 <div class="form-group row">
-                                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                    <div class="col-md-12">
+                                                                        <input type="password" class="form-control" name="password_confirmation" required placeholder="Confirm-Password: *" autocomplete="new-password">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                                <a href="#LoginModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Login"></a>
+                                                                <button type="submit" class="btn btn-primary btn-fbd">
                                                                     {{ __('Register') }}
                                                                 </button>
 
@@ -666,7 +634,7 @@
                         @endforeach
 
                     @endif
-                    {{--                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> out of <b>5</b> listings</p>--}}
+                    <p class="listing-count">Showing <b>{{count($standardPuppies)}}</b> listings</p>
                     <h3 class="listing-type my-3">STANDARD LISTINGS</h3>
 
                     @if(empty($standardPuppies))
@@ -691,7 +659,7 @@
 
                                         <div onclick="singlePuppy('{{$standardPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
                                             <h4 class="fbd-sp-list-title d-inline">{{$standardPuppy->title}}</h4>
-                                            <p>{{$standardPuppy->decription}}</p>
+                                            <p>{{$standardPuppy->description->asString()}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
                                             <div class="col-xl-6 pl-0">
@@ -743,22 +711,22 @@
                                                     }
                                                     ?>
                                                     @if($matched == false)
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @else
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #BE202E;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @endif
 
                                                 @else
-                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                    <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                 @endif
                                             @else
-                                                <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #6E6F72;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
+                                                <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
                                             @endif
                                             <div id="LoginModal" class="modal fade">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                        <div class="modal-header align-items-center">
+                                                            <h3 class="modal-title gf-red">Signin to GoFrenchie</h3>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         </div>
                                                         @if (\Session::has('error'))
@@ -774,11 +742,9 @@
                                                                 <input type="hidden" name="type" value="listing">
 
                                                                 {{--  EMAIL-ADDRESS  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <input type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -788,12 +754,12 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                                                <div class="row">
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="login-password" type="password" class="gf-form-field m-0 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter your password">
+                                                                        <span class="input-group-btn">
+                                                                            <button onclick="showPassword('login-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -802,12 +768,18 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
-                                                                    {{ __('Login') }}
-                                                                </button>
+                                                            <div class="row modal-footer justify-content-around p-3">
+                                                                {{--                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">--}}
+                                                                <div class="col-6 m-0">
+                                                                    <a href="#deleteListingModal" class="delete" data-toggle="modal">
+                                                                        <input class="gf-btn-light w-100" type="button" data-dismiss="modal" value="Register">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-6 m-0">
+                                                                    <button type="submit" class="gf-btn-dark w-100">
+                                                                        {{ __('Login') }}
+                                                                    </button>
+                                                                </div>
 
                                                             </div>
                                                         </form>
@@ -817,8 +789,8 @@
                                             <div id="deleteListingModal" class="modal fade">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                        <div class="modal-header align-items-center">
+                                                            <h3 class="modal-title gf-red">Register Yourself</h3>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         </div>
                                                         <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
@@ -828,11 +800,9 @@
                                                                 <input type="hidden" name="slug" value="{{$standardPuppy->slug}}">
                                                                 <input type="hidden" name="type" value="listing">
                                                                 {{--  USERNAME  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                                                    <div class="col-md-6">
-                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <input type="text" class="gf-form-field @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="{{ __('Username*') }}">
 
                                                                         @error('username')
                                                                         <span class="invalid-feedback" role="alert">
@@ -842,11 +812,10 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  EMAIL-ADDRESS  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                                                <div class="row">
 
-                                                                    <div class="col-md-6">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                                    <div class="col">
+                                                                        <input type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email*') }}">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -856,12 +825,13 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                                                <div class="row">
 
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="register-password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Password*') }}">
+                                                                        <span class="input-group-btn">
+                                                                            <button onclick="showPassword('register-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -870,17 +840,19 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  CONFIRM-PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                                                <div class="row">
 
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="register-confirm-password" type="password" class="gf-form-field m-0" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password*') }}">
+                                                                        <span class="input-group-btn">
+                                                                            <button onclick="showPassword('register-confirm-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <button type="submit" class="btn btn-danger btn-fbd">
+                                                            <div class="row modal-footer justify-content-around p-3">
+                                                                {{--                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">--}}
+                                                                <button type="submit" class="gf-btn-dark w-100">
                                                                     {{ __('Register') }}
                                                                 </button>
 
@@ -910,53 +882,53 @@
             </div>
 
             {{--            Adds Area--}}
-            <div class="gf-adds-area mb-3 p-0 col-xl-2">
+            <div class="gf-adds-area mb-3 col-xl-2">
                 @include('components/adds-area')
             </div>
         </div>
     </div>
 
 
-{{--Testimonials Slider--}}
-<div class="wrapper gf-testimonials d-flex justify-content-center">
-    <div class="container row align-items-center justify-content-center">
-        {{--        <div class="col-md-6 text-center">--}}
-        {{--            <img src="/images/homepage/gf-home-banner-dog.png" alt="">--}}
-        {{--        </div>--}}
-        <div class="col-md-9">
-            <h2 class="text-center mb-4">Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
+    {{--Testimonials Slider--}}
+    <div class="wrapper gf-testimonials d-flex justify-content-center">
+        <div class="container row align-items-center justify-content-center">
+            {{--        <div class="col-md-6 text-center">--}}
+            {{--            <img src="/images/homepage/gf-home-banner-dog.png" alt="">--}}
+            {{--        </div>--}}
+            <div class="col-md-9">
+                <h2 class="text-center mb-4">Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
 
-            <div class="gf-home-testimonial-slider">
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
+                <div class="gf-home-testimonial-slider">
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
+                    <div>
+                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+                        <span>Caroline Bryan</span><br>
+                        <span>Very Affordably Priced</span>
+                    </div>
                 </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
+
             </div>
-
         </div>
     </div>
-</div>
 
 
     {{--Contact Section--}}
@@ -990,6 +962,7 @@
     </div>
 
     <script type="text/javascript">
+
         // To uncheck child elements when parent element is unchecked
         $("#filterBlue").change(function() {
             if(!this.checked) {
@@ -1191,12 +1164,12 @@
                     if(data.success == '200'){
                         // console.log(data.success);
                         var className = ".fbd-liked-icon"+"-"+$slug;
-                        $(className).css("color","#be202e");
+                        $(className).css("color","#8b77fc");
                     }
                     if(data.success == '300'){
                         // console.log(data.success);
                         var className = ".fbd-liked-icon"+"-"+$slug;
-                        $(className).css("color","#6E6F72");
+                        $(className).css("color","#c4bfbf");
                     }
                 },
 
@@ -1410,6 +1383,13 @@
                 });
             }
 
+
+        }
+        function arrayRemove(arr, value) {
+
+            return arr.filter(function(geeks){
+                return geeks != value;
+            });
 
         }
         function findValueForAgoutiEmcir(){

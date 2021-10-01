@@ -24,6 +24,7 @@ use App\Domain\Services\Persistence\ISavedSearchRepository;
 use App\Domain\Services\Persistence\IUsersRepository;
 use Dms\Common\Structure\DateTime\Date;
 use Dms\Common\Structure\FileSystem\Image;
+use Dms\Common\Structure\Web\Html;
 use Dms\Core\Auth\IAdminRepository;
 use Dms\Core\Model\Object\Entity;
 use Dms\Core\Model\Object\Enum;
@@ -60,6 +61,14 @@ class ListingsController extends Controller
 
     }
 
+    public function featuredListings(){
+        $allFeatured= $this->listingsRepository->matching(
+            $this->listingsRepository->criteria()
+                ->where(Listings::IS_FEATURED,'=',true)
+                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+        );
+        return $allFeatured;
+    }
     public function showAllSavedSearchedListings()
     {
         $savedSearch = $this->savedSearchRepository->matching(
@@ -418,11 +427,12 @@ class ListingsController extends Controller
         }else{
             $puppy->slug = $title;
         }
-        $puppy->decription = $request->get('listing-description');
+        $puppy->description = new Html($request->get('listing-description'));
         $puppy->type = new ListingsTypeEnum( $request->get('type'));
         $puppy->status = new ListingsStatusEnum('inactive');
 //        dd((bool)$request->sponsored);
         $puppy->isSponsored = (bool)$request->sponsored;
+        $puppy->isFeatured = (bool)$request->featured;
         $puppy->sex = new ListingsSexEnum($request->get('listing-sex'));
         $date = explode('-', $request->get('dob'));
         $puppy->dob = new Date($date[0], $date[1], $date[2]);
@@ -559,9 +569,10 @@ class ListingsController extends Controller
 
             $singleListing[0]->breeder = Auth::user();
             $singleListing[0]->title = $request->get('title');
-            $singleListing[0]->decription = $request->get('listing-description');
+            $singleListing[0]->description = new Html($request->get('listing-description'));
 //            dd((bool)$request->input('sponsored'));
             $singleListing[0]->isSponsored = (bool)$request->sponsored;
+            $singleListing[0]->isFeatured = (bool)$request->featured;
             $singleListing[0]->sex = new ListingsSexEnum($request->get('listing-sex'));
             $date = explode('-', $request->get('dob'));
             $singleListing[0]->dob = new Date($date[0], $date[1], $date[2]);
