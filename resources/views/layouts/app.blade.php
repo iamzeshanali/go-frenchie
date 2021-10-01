@@ -122,7 +122,7 @@
 
                                             <hr>
                                             <p><a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></p>
-                                            <p><a href=""><i class="fas fa-cog"></i>Account Settings</a></p>
+                                            <p><a href="{{ route('breedersetting') }}"><i class="fas fa-cog"></i>Account Settings</a></p>
                                             <p><a href=""><i class="fas fa-heart"></i> Liked Items</a></p>
                                             <p>
                                                 <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -139,8 +139,6 @@
                             </ul>
                         </div>
                     </div>
-
-
 
                 </nav>
 
