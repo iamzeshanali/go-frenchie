@@ -49,7 +49,7 @@
                             <div onclick="singleBreeder({{$bs->getId()}})" style="cursor: pointer;" class="col-xl-4 col-md-6 py-3">
                                 <div class="breeder-resource-card rounded p-3">
                                     <div class="gf-resource-card-image text-center">
-                                        <img src="{{asset_file_url($bs->logo)}}" alt="kennel logo" height="200" width=auto>
+                                        <img src="{{$bs->logo ? asset_file_url($bs->logo): '/images/notfound/gf-not-found.png'}}" alt="kennel logo" height="200" width=auto>
                                     </div>
                                     <div class="resource-card-details my-3 d-flex flex-column align-items-center">
                                         <h5><a title="Breeder">{{$bs->username}}</a></h5>

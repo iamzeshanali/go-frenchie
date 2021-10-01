@@ -139,25 +139,25 @@ class LittersModule extends CrudModule
                 ->entityFrom($this->usersRepository)
                 ->required()
                 ->labelledBy(Users::FIRST_NAME));
-            $table->mapProperty(Litters::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
+//            $table->mapProperty(Litters::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
             $table->mapProperty(Litters::TITLE)->to(Field::create('title', 'Title')->string()->required());
-            $table->mapProperty(Litters::DESCRIPTION)->to(Field::create('description', 'Description')->html()->required());
+//            $table->mapProperty(Litters::DESCRIPTION)->to(Field::create('description', 'Description')->html()->required());
             $table->mapProperty(Litters::EXPECTED_DOB)->to(Field::create('expected_dob', 'Expected Dob')->date()->required());
-            $table->mapProperty(Litters::PHOTO1)->to(Field::create('photo1', 'Photo1')
-                ->image()
-                ->moveToPathWithRandomFileName(public_path('app/litters')));
-            $table->mapProperty(Litters::PHOTO2)->to(Field::create('photo2', 'Photo2')
-                ->image()
-                ->moveToPathWithRandomFileName(public_path('app/litters')));
-            $table->mapProperty(Litters::PHOTO3)->to(Field::create('photo3', 'Photo3')
-                ->image()
-                ->moveToPathWithRandomFileName(public_path('app/litters')));
-            $table->mapProperty(Litters::PHOTO4)->to(Field::create('photo4', 'Photo4')
-                ->image()
-                ->moveToPathWithRandomFileName(public_path('app/litters')));
-            $table->mapProperty(Litters::PHOTO5)->to(Field::create('photo5', 'Photo5')
-                ->image()
-                ->moveToPathWithRandomFileName(public_path('app/litters')));
+//            $table->mapProperty(Litters::PHOTO1)->to(Field::create('photo1', 'Photo1')
+//                ->image()
+//                ->moveToPathWithRandomFileName(public_path('app/litters')));
+//            $table->mapProperty(Litters::PHOTO2)->to(Field::create('photo2', 'Photo2')
+//                ->image()
+//                ->moveToPathWithRandomFileName(public_path('app/litters')));
+//            $table->mapProperty(Litters::PHOTO3)->to(Field::create('photo3', 'Photo3')
+//                ->image()
+//                ->moveToPathWithRandomFileName(public_path('app/litters')));
+//            $table->mapProperty(Litters::PHOTO4)->to(Field::create('photo4', 'Photo4')
+//                ->image()
+//                ->moveToPathWithRandomFileName(public_path('app/litters')));
+//            $table->mapProperty(Litters::PHOTO5)->to(Field::create('photo5', 'Photo5')
+//                ->image()
+//                ->moveToPathWithRandomFileName(public_path('app/litters')));
             $table->mapProperty(Litters::IS_SPONSORED)->to(Field::create('is_sponsored', 'Is Sponsored')->bool());
             $table->mapProperty(Litters::IS_FEATURED)->to(Field::create('is_featured', 'Is Featured')->bool());
             $table->mapProperty(Litters::STATUS)->to(Field::create('status', 'Status')->enum(ListingsStatusEnum::class, [

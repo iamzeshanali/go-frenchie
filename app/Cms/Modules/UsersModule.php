@@ -132,32 +132,32 @@ class UsersModule extends CrudModule
         $module->removeAction()->deleteFromDataSource();
 
         $module->summaryTable(function (SummaryTableDefinition $table) {
-            $table->mapProperty(Users::FIRST_NAME)->to(Field::create('first_name', 'First Name')->string());
-            $table->mapProperty(Users::LAST_NAME)->to(Field::create('last_name', 'Last Name')->string());
+//            $table->mapProperty(Users::FIRST_NAME)->to(Field::create('first_name', 'First Name')->string());
+//            $table->mapProperty(Users::LAST_NAME)->to(Field::create('last_name', 'Last Name')->string());
             $table->mapProperty(Users::USERNAME)->to(Field::create('username', 'Username')->string()->required());
             $table->mapProperty(Users::ROLE)->to(Field::create('role', 'Role')->enum(UserRoleEnum::class, [
                 UserRoleEnum::BREEDER => 'Breeder',
                 UserRoleEnum::CUSTOMER => 'Customer',
             ])->required());
             $table->mapProperty(Users::IS_ACTIVE)->to(Field::create('is_active', 'Is Active')->bool());
-            $table->mapProperty(Users::HASHED_PASSWORD)->to(Field::create('hashed_password', 'Hashed Password')->string()->required());
-            $table->mapProperty(Users::REMEMBER_TOKEN)->to(Field::create('remember_token', 'Remember Token')->string());
+//            $table->mapProperty(Users::HASHED_PASSWORD)->to(Field::create('hashed_password', 'Hashed Password')->string()->required());
+//            $table->mapProperty(Users::REMEMBER_TOKEN)->to(Field::create('remember_token', 'Remember Token')->string());
             $table->mapProperty(Users::EMAIL)->to(Field::create('email', 'Email')->email()->required());
-            $table->mapProperty(Users::PHONE)->to(Field::create('phone', 'Phone')->string());
+//            $table->mapProperty(Users::PHONE)->to(Field::create('phone', 'Phone')->string());
             $table->mapProperty(Users::KENNEL_NAME)->to(Field::create('kennel_name', 'Kennel Name')->string());
-            $table->mapProperty(Users::PROFILE_IMAGE)->to(Field::create('profile_image', 'Profile Image')
-                ->image()
-                ->moveToPathWithRandomFileName(public_path('app/users')));
+//            $table->mapProperty(Users::PROFILE_IMAGE)->to(Field::create('profile_image', 'Profile Image')
+//                ->image()
+//                ->moveToPathWithRandomFileName(public_path('app/users')));
             $table->mapProperty(Users::ADDRESS)->to(Field::create('address', 'Address')->string());
             $table->mapProperty(Users::ZIP)->to(Field::create('zip', 'Zip')->string());
-            $table->mapProperty(Users::STATE)->to(Field::create('state', 'State')->string());
-            $table->mapProperty(Users::CITY)->to(Field::create('city', 'City')->string());
-            $table->mapProperty(Users::FB_ACCOUNT)->to(Field::create('fb_account_url', 'Fb Account Url')->url());
-            $table->mapProperty(Users::IG_ACCOUNT)->to(Field::create('ig_account_url', 'Ig Account Url')->url());
-            $table->mapProperty(Users::WEBSITE)->to(Field::create('website', 'Website')->url());
-            $table->mapProperty(Users::LOGO)->to(Field::create('logo', 'Logo')
-                ->image()
-                ->moveToPathWithRandomFileName(public_path('app/users')));
+//            $table->mapProperty(Users::STATE)->to(Field::create('state', 'State')->string());
+//            $table->mapProperty(Users::CITY)->to(Field::create('city', 'City')->string());
+//            $table->mapProperty(Users::FB_ACCOUNT)->to(Field::create('fb_account_url', 'Fb Account Url')->url());
+//            $table->mapProperty(Users::IG_ACCOUNT)->to(Field::create('ig_account_url', 'Ig Account Url')->url());
+//            $table->mapProperty(Users::WEBSITE)->to(Field::create('website', 'Website')->url());
+//            $table->mapProperty(Users::LOGO)->to(Field::create('logo', 'Logo')
+//                ->image()
+//                ->moveToPathWithRandomFileName(public_path('app/users')));
 
 
             $table->view('all', 'All')

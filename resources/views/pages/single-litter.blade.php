@@ -187,19 +187,19 @@
         </div>
         <div class="row mb-5 fbd-single-listing-info">
             <div class="col-md-5 px-5">
-                <div class="fbd-single-listing-img mb-3">
-                    <img src="{{asset_file_url($litter->photo1)}}" alt="">
-                    <img src="{{asset_file_url($litter->photo2)}}" alt="">
-                    <img src="{{asset_file_url($litter->photo3)}}" alt="">
-                    <img src="{{asset_file_url($litter->photo4)}}" alt="">
-                    <img src="{{asset_file_url($litter->photo5)}}" alt="">
+                <div class="fbd-single-listing-img p-3 mb-3">
+                    @if($litter->photo1)<img src="{{ asset_file_url($litter->photo1)}}" alt="">@endif
+                    @if($litter->photo2)<img src="{{ asset_file_url($litter->photo2)}}" alt="">@endif
+                    @if($litter->photo3)<img src="{{ asset_file_url($litter->photo3)}}" alt="">@endif
+                    @if($litter->photo4)<img src="{{ asset_file_url($litter->photo4)}}" alt="">@endif
+                    @if($litter->photo5)<img src="{{ asset_file_url($litter->photo5)}}" alt="">@endif
                 </div>
-                <div class="fbd-single-listing-thumbs">
-                    <img src="{{asset_file_url($litter->photo1)}}" alt="">
-                    <img src="{{asset_file_url($litter->photo2)}}" alt="">
-                    <img src="{{asset_file_url($litter->photo3)}}" alt="">
-                    <img src="{{asset_file_url($litter->photo4)}}" alt="">
-                    <img src="{{asset_file_url($litter->photo5)}}" alt="">
+                <div class="fbd-single-listing-thumbs mb-3">
+                    @if($litter->photo1)<img src="{{ asset_file_url($litter->photo1)}}" alt="">@endif
+                    @if($litter->photo2)<img src="{{ asset_file_url($litter->photo2)}}" alt="">@endif
+                    @if($litter->photo3)<img src="{{ asset_file_url($litter->photo3)}}" alt="">@endif
+                    @if($litter->photo4)<img src="{{ asset_file_url($litter->photo4)}}" alt="">@endif
+                    @if($litter->photo5)<img src="{{ asset_file_url($litter->photo5)}}" alt="">@endif
                 </div>
 
             </div>
@@ -313,7 +313,7 @@
         <div class="fbd-single-listing-description row my-4 mx-4">
             <h4>Description</h4>
             <p class="ml-2">
-                {{$litter->decription}}
+                {{$litter->description->asString()}}
             </p>
             <div class="col-sm-3 my-auto pl-5 text-left">
                 <i class="fa fa-dna"></i> &emsp;<span><b>Expected DOB</b></span>

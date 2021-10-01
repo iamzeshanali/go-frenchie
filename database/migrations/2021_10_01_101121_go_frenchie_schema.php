@@ -151,7 +151,7 @@ class GoFrenchieSchema extends Migration
         Schema::create('canine__nutritions', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->string('logo', 500);
+            $table->string('logo', 500)->nullable();
             $table->string('logo_file_name', 255)->nullable();
             $table->string('title', 255);
             $table->string('slug', 255);

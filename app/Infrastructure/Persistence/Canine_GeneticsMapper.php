@@ -31,6 +31,7 @@ class Canine_GeneticsMapper extends EntityMapper
         $map->idToPrimaryKey('id');
 
         $map->embedded(Canine_Genetics::LOGO)
+            ->withIssetColumn('logo')
             ->using(new ImageMapper('logo', 'logo_file_name', public_path('app/canine__genetics')));
 
         $map->property(Canine_Genetics::TITLE)->to('title')->asVarchar(255);

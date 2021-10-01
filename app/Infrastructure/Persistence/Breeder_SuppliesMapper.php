@@ -31,6 +31,7 @@ class Breeder_SuppliesMapper extends EntityMapper
         $map->idToPrimaryKey('id');
 
         $map->embedded(Breeder_Supplies::LOGO)
+            ->withIssetColumn('logo')
             ->using(new ImageMapper('logo', 'logo_file_name', public_path('app/breeder__supplies')));
 
         $map->property(Breeder_Supplies::SLUG)->to('slug')->asVarchar(255);

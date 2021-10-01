@@ -147,7 +147,6 @@ class SavedItemsController extends Controller
 
         }else{
 
-
             $allSaved = $this->getAllListings();
             $relatedSavedListings= [];
 
@@ -179,8 +178,9 @@ class SavedItemsController extends Controller
 
                 $savedListings->customer = $user[0];
                 $savedListings->trashed = false;
-
+//                return response()->json(['success'=>$savedListings->customer->lastName]);
                 $this->savedListingsRepository->save($savedListings);
+
                 return response()->json(['success'=>'200']);
             }
 
