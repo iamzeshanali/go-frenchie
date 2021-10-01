@@ -46,41 +46,45 @@
                 </div>
 {{--                Primary Navbar--}}
                 <nav class="gf-nav navbar navbar-expand-lg navbar-light px-0">
-                    <div class="container-fluid" style="max-height:70px;">
+                    <div class="container-fluid flex-nowrap" style="max-height:70px;">
+
+                        {{--Site Logo--}}
                         <a class="navbar-brand mr-0" href="{{ url('/') }}">
                             <img src="/images/GoFrenchie-logo.png" alt="Logo not found" width="144" height="115"> {{--Logo image--}}
                         <!-- {{ config('app.name', 'Laravel') }} -->
                         </a>
 
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                            <i class="fas fa-bars"></i>
-    {{--                        <span class="navbar-toggler-icon"></span>--}}
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="z-index:1">
-                            <!-- Left Side Of Navbar -->
-                            <ul class="navbar-nav flex-grow-1 justify-content-center">
-                                <li class="nav-item {{  request()->routeIs('') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item {{  request()->routeIs('showStuds') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('showStuds') }}">STUDS</a>
-                                </li>
-                                <li class="nav-item {{  request()->routeIs('showPuppies') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('showPuppies') }}">PUPPIES</a>
-                                </li>
-                                <li class="nav-item {{  request()->routeIs('showLitters') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{route('showLitters')}}">LITTERS</a>
-                                </li>
-                                <li class="nav-item {{  request()->routeIs('resources') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{route('resources')}}">RESOURCES</a>
-                                </li>
-                                <li class="nav-item {{  request()->routeIs('dnaMachine') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{route('dnaMachine')}}">DNA MACHINE</a>
-                                </li>
-                            </ul>
+                        <div class="col d-flex justify-content-end">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                                <i class="fas fa-bars"></i>
+                            </button>
+
+                            <div class="collapse navbar-collapse d-none d-lg-block" id="navbarSupportedContent" style="z-index:1">
+                                <!-- Left Side Of Navbar -->
+                                <ul class="navbar-nav flex-grow-1 justify-content-center">
+                                    <li class="nav-item {{  request()->routeIs('') ? 'active' : '' }}">
+                                        <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item {{  request()->routeIs('showStuds') ? 'active' : '' }}">
+                                        <a class="nav-link" href="{{ route('showStuds') }}">STUDS</a>
+                                    </li>
+                                    <li class="nav-item {{  request()->routeIs('showPuppies') ? 'active' : '' }}">
+                                        <a class="nav-link" href="{{ route('showPuppies') }}">PUPPIES</a>
+                                    </li>
+                                    <li class="nav-item {{  request()->routeIs('showLitters') ? 'active' : '' }}">
+                                        <a class="nav-link" href="{{route('showLitters')}}">LITTERS</a>
+                                    </li>
+                                    <li class="nav-item {{  request()->routeIs('resources') ? 'active' : '' }}">
+                                        <a class="nav-link" href="{{route('resources')}}">RESOURCES</a>
+                                    </li>
+                                    <li class="nav-item {{  request()->routeIs('dnaMachine') ? 'active' : '' }}">
+                                        <a class="nav-link" href="{{route('dnaMachine')}}">DNA MACHINE</a>
+                                    </li>
+                                </ul>
+                            </div>
 
                             <!-- Right Side Of Navbar -->
-                            <ul class="navbar-nav ml-auto flex-row justify-content-right justify-content-lg-end">
+                            <ul class="navbar-nav flex-row justify-content-right justify-content-lg-end">
                                 <!-- Authentication Links -->
                                 @guest
                                     @if (Route::has('login'))
@@ -102,16 +106,26 @@
                                     <li class="nav-item">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             <img class="" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="40px" height="40px">
+                                            <span>{{ ucfirst(Auth::user()->firstName) }}</span>
                                         </a>
                                         <div class="breeder-db-login-dropdown dropdown-menu p-3" aria-labelledby="navbarDropdown">
-                                            <p><a class="dropdown-item" href="{{ Auth::user()->role->getValue() == 'breeder' ? route('breederProfile') : route('customerProfile') }}"><b>{{ ucfirst(Auth::user()->username) }}</b></a></p>
-                                            <p><a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></p>
-                                            <p><a href=""><i class="fas fa-heart"></i> Liked Items</a></p>
-                                            <p><a href=""><i class="fas fa-cog"></i> Settings</a></p>
+
+                                                <div>
+                                                    <a class="d-flex align-items-center" href="{{ Auth::user()->role->getValue() == 'breeder' ? route('breederProfile') : route('customerProfile') }}">
+                                                        <img class="" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="60px" height="60px">
+                                                        <div class="ml-3">
+                                                            <div class="gf-dark"><b>{{ ucfirst(Auth::user()->firstName) }} {{ ucfirst(Auth::user()->lastName) }}</b></div>
+                                                            <span class="gf-gray">See your profile</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
 
                                             <hr>
+                                            <p><a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></p>
+                                            <p><a href=""><i class="fas fa-cog"></i>Account Settings</a></p>
+                                            <p><a href=""><i class="fas fa-heart"></i> Liked Items</a></p>
                                             <p>
-                                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
                                                     <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                                                 </a>
@@ -125,7 +139,37 @@
                             </ul>
                         </div>
                     </div>
+
+
+
                 </nav>
+
+                <div class="gf-smallScreen-menu-dropdown d-block d-lg-none position-absolute w-100">
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent" style="z-index:1">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav flex-grow-1 justify-content-center">
+                            <li class="nav-item {{  request()->routeIs('') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('showStuds') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('showStuds') }}">STUDS</a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('showPuppies') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('showPuppies') }}">PUPPIES</a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('showLitters') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{route('showLitters')}}">LITTERS</a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('resources') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{route('resources')}}">RESOURCES</a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('dnaMachine') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{route('dnaMachine')}}">DNA MACHINE</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </header>
 
 

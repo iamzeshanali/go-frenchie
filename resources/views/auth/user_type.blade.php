@@ -17,20 +17,23 @@
                     <div class="card-body">
 
                         <div class="row text-center justify-content-around">
-                            <div class="col-md-6">
-                                <a href="{{ route('registercustomer') }}" class="d-inline-block">
-                                    <img src="/images/gf-customer-icon.png" width="150" height="221" alt="Image not found">
-                                    <br>
-                                    {{ __('CUSTOMER') }}
-                                </a>
+
+                            <div class="col-sm-6">
+                                <a href="{{ route('registerbreeder') }}" class="gf-btn-dark w-100">{{ __('BREEDER') }}</a>
+{{--                                <a href="{{ route('registerbreeder') }}" type="button" class="d-inline-block gf-dark">--}}
+{{--                                    <img src="/images/gf-breeder-icon.png" width="150" height="221" alt="Image not found">--}}
+{{--                                    {{ __('BREEDER') }}--}}
+{{--                                </a>--}}
                             </div>
-                            <div class="col-md-6">
-                                <a href="{{ route('registerbreeder') }}" type="button" class="d-inline-block">
-                                    <img src="/images/gf-breeder-icon.png" width="150" height="221" alt="Image not found">
-                                    <br>
-                                    {{ __('BREEDER') }}
-                                </a>
+
+                            <div class="col-sm-6">
+                                <a href="{{ route('registercustomer') }}" class="gf-btn-dark w-100">{{ __('CUSTOMER') }}</a>
+{{--                                <a href="{{ route('registercustomer') }}" class="d-inline-block gf-dark">--}}
+{{--                                    <img src="/images/gf-customer-icon.png" width="150" height="221" alt="Image not found">--}}
+{{--                                    {{ __('CUSTOMER') }}--}}
+{{--                                </a>--}}
                             </div>
+
                         </div>
                     </div>
                 </div>

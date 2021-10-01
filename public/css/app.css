@@ -91,25 +91,29 @@
 
 /* 3-- *********** Navbar Start ***************/
 
+header.sticky{
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
 
-header{
-    /* position: fixed;
-    width: 100%;
-    z-index: 999; */
+header.sticky .secondary-nav{
+    display: none !important;
 }
 
 .secondary-nav{
-    background-color: #BE202E;
+    background-color: var(--red);
     padding: 5px 0px;
 }
 .secondary-nav a,.secondary-nav a:hover{
     color: #ffffff;
 }
 
+
+
 nav.gf-nav{
     box-shadow: 0px 3px 3px 0px rgb(0 0 0 / 12%), inset 0px 0px 0px 0px rgb(218 220 224 / 0%);
 }
-
 
 nav.gf-nav.active {
     z-index: 999;
@@ -122,7 +126,6 @@ nav.gf-nav.active {
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12), inset 0px 0px 0px 0px rgba(218, 220, 224, 0.004);
 
 }
-
 
 header nav.gf-nav .navbar-brand img{
     margin-top: -40px;
@@ -144,6 +147,11 @@ nav.gf-nav button.navbar-toggler{
 }
 
 @media only screen and (max-width: 991px){
+    header.sticky .gf-smallScreen-menu-dropdown{
+        top: 70px;
+        z-index: 9999;
+    }
+
     .navbar-brand{
         margin-left: 15px;
     }
@@ -156,11 +164,13 @@ nav.gf-nav button.navbar-toggler{
         margin-right: 15px;
     }
     .navbar-collapse{
-        /* padding-bottom: 12px; */
+        position: relative;
+        top: 0px;
         background-color: #ffffff;
         border-radius: 0px 0px 20px 20px;
         box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.12), inset 0px 0px 0px 0px rgba(218, 220, 224, 0.004);
         transition: all 1s ease !important;
+        
     }
     .navbar-collapse .nav-item{
         border-right: 0px !important;
@@ -171,8 +181,8 @@ nav.gf-nav button.navbar-toggler{
     }
 }
 
-nav.navbar .nav-item .nav-link {
-    color: var(--dark);
+header .nav-item .nav-link {
+    color: var(--dark) !important;
     font-family: Sanson;
     letter-spacing: 2px;
 }
@@ -217,8 +227,11 @@ nav.navbar .nav-item .nav-link {
 }
 
 .breeder-db-login-dropdown {
+    position: absolute !important;
     left: auto !important;
     right: 15px;
+    max-width: 340px;
+    width: 100%;
 }
 
 .breeder-db-login-dropdown p {
@@ -227,12 +240,17 @@ nav.navbar .nav-item .nav-link {
 
 .breeder-db-login-dropdown p a {
     text-decoration: none;
-    color: var(--blue);
+    color: var(--dark);
 }
 
 .breeder-db-login-dropdown p a:hover {
     text-decoration: none;
+    color: var(--dark);
+}
+
+.breeder-db-login-dropdown p a i{
     color: var(--blue);
+    width: 30px;
 }
 
 a#navbarDropdown img {
@@ -325,10 +343,6 @@ a#navbarDropdown img {
     /* transform: scale(1.1); */
     background-color: #ffffff;
     transition: all 0.2s ease;
-}
-
-.gf-select-user-wrapper .card-body a{
-    color: var(--dark);
 }
 
 

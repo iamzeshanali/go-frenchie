@@ -171,14 +171,17 @@ $('.carousel .carousel-item').each(function() {
 // GF Redesign JS
 // Header JS
 const nav = document.querySelector('nav')
+const header = document.querySelector('header')
 window.addEventListener('scroll', fixNav)
 
 function fixNav() {
 
     if(window.scrollY > nav.offsetHeight + 150) {
         nav.classList.add('active')
+        header.classList.add('sticky')
     } else {
         nav.classList.remove('active')
+        header.classList.remove('sticky')
     }
 }
 
