@@ -862,6 +862,22 @@ table.table .avatar {
     width: 78%;
     border-radius: 30px 0px 0px 30px;
 }
+/*Upper Duplicate for generalize */
+.gf-form-field.gf-form-field-inline-left{
+    border-radius: 30px 0px 0px 30px;
+}
+.gf-form-field.gf-form-field-inline-right{
+    border-radius: 0px 30px 30px 0px;
+}
+
+.gf-form-field-inline-icon{
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+    border-color: var(--dark);
+    border-radius: 30px 0px 0px 30px;
+    height: calc(1.5em + .75rem + 2px);
+}
+
 
 .gf-add-listing-image button.gf-btn-dark, .gf-breeder-reg-wrapper .browse-b-logo.gf-btn-dark {
     border-bottom-left-radius: 0px;
@@ -869,6 +885,14 @@ table.table .avatar {
     margin-left: -1px;
     border: none;
 }
+/*Upper Duplicate for generalize */
+.gf-form-field-inline-btn.gf-btn-dark, .gf-form-field-inline-btn.gf-btn-light{
+    border-bottom-left-radius: 0px;
+    padding-block: 7px;
+    margin-left: -1px;
+    border: none;
+}
+
 
 /************ Breader Dashboard End ***************/
 
@@ -1671,7 +1695,7 @@ body a:hover{
 .gf-btn-dark[disabled=disabled], .gf-btn-light[disabled=disabled]{
     pointer-events: none;
     box-shadow: none;
-    color: var(--dark);
+    background-color: #cc9da9;
 
 }
 
@@ -2010,7 +2034,7 @@ body a:hover {
     position: absolute;
     right: 50px;
     top: 40px;
-    color: #6E6F72;
+    color: var(--red);
     font-size: 24px;
     cursor: pointer;
     z-index: 1;
