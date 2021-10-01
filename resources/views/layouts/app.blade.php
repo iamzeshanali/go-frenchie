@@ -59,7 +59,7 @@
                                 <i class="fas fa-bars"></i>
                             </button>
 
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="z-index:1">
+                            <div class="collapse navbar-collapse d-none d-lg-block" id="navbarSupportedContent" style="z-index:1">
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav flex-grow-1 justify-content-center">
                                     <li class="nav-item {{  request()->routeIs('') ? 'active' : '' }}">
@@ -138,9 +138,38 @@
                                 @endguest
                             </ul>
                         </div>
-
                     </div>
+
+
+
                 </nav>
+
+                <div class="gf-smallScreen-menu-dropdown d-block d-lg-none position-absolute w-100">
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent" style="z-index:1">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav flex-grow-1 justify-content-center">
+                            <li class="nav-item {{  request()->routeIs('') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('showStuds') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('showStuds') }}">STUDS</a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('showPuppies') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('showPuppies') }}">PUPPIES</a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('showLitters') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{route('showLitters')}}">LITTERS</a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('resources') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{route('resources')}}">RESOURCES</a>
+                            </li>
+                            <li class="nav-item {{  request()->routeIs('dnaMachine') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{route('dnaMachine')}}">DNA MACHINE</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </header>
 
 
