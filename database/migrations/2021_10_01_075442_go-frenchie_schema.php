@@ -53,7 +53,7 @@ class GoFrenchieSchema extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('title', 255);
             $table->string('slug', 255);
-            $table->string('decription', 255);
+            $table->text('description');
             $table->enum('type', ['stud', 'puppy'])->comment('(DC2Type:CustomEnum__stud__puppy)');
             $table->enum('sex', ['male', 'female'])->comment('(DC2Type:CustomEnum__male__female)');
             $table->date('dob');
@@ -68,6 +68,7 @@ class GoFrenchieSchema extends Migration
             $table->string('photo5', 500)->nullable();
             $table->string('photo5_file_name', 255)->nullable();
             $table->boolean('is_sponsored');
+            $table->boolean('is_featured');
             $table->enum('status', ['active', 'inactive'])->comment('(DC2Type:CustomEnum__active__inactive)');
             $table->enum('blue', ['2copies(d/d)', '1copy(D/d)', 'doesnotcarry', 'unknown'])->comment('(DC2Type:CustomEnum__2copies_d_d___1copy_D_d___doesnotcarry__unknown)')->nullable();
             $table->enum('chocolate', ['2copies(co/co)', '1copy(Co/co)', 'doesnotcarry', 'unknown'])->comment('(DC2Type:CustomEnum__2copies_co_co___1copy_Co_co___doesnotcarry__unknown)')->nullable();
@@ -89,7 +90,7 @@ class GoFrenchieSchema extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('slug', 255);
             $table->string('title', 255);
-            $table->string('decription', 255);
+            $table->text('description');
             $table->date('expected_dob');
             $table->string('photo1', 500)->nullable();
             $table->string('photo1_file_name', 255)->nullable();
@@ -102,6 +103,7 @@ class GoFrenchieSchema extends Migration
             $table->string('photo5', 500)->nullable();
             $table->string('photo5_file_name', 255)->nullable();
             $table->boolean('is_sponsored');
+            $table->boolean('is_featured');
             $table->enum('status', ['active', 'inactive'])->comment('(DC2Type:CustomEnum__active__inactive)');
             $table->string('dam', 255);
             $table->string('sire', 255);
@@ -117,7 +119,7 @@ class GoFrenchieSchema extends Migration
             $table->string('logo_file_name', 255)->nullable();
             $table->string('slug', 255);
             $table->string('title', 255);
-            $table->string('decription', 255);
+            $table->text('decription');
             $table->string('website_url', 2083);
             $table->string('coupon_code', 255);
             $table->integer('price_amount');
@@ -135,7 +137,7 @@ class GoFrenchieSchema extends Migration
             $table->string('logo_file_name', 255)->nullable();
             $table->string('title', 255);
             $table->string('slug', 255);
-            $table->string('decription', 255);
+            $table->text('decription');
             $table->string('website_url', 2083);
             $table->string('coupon_code', 255);
             $table->integer('price_amount');
@@ -153,7 +155,7 @@ class GoFrenchieSchema extends Migration
             $table->string('logo_file_name', 255)->nullable();
             $table->string('title', 255);
             $table->string('slug', 255);
-            $table->string('decription', 255);
+            $table->text('decription');
             $table->string('website_url', 2083);
             $table->string('coupon_code', 255);
             $table->integer('price_amount');
@@ -178,21 +180,19 @@ class GoFrenchieSchema extends Migration
         Schema::create('saved_listings', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('listing_id')->unsigned();
+            $table->integer('listings_id')->unsigned();
             $table->boolean('trashed');
 
             $table->index('user_id', 'IDX_F49ADEA6A76ED395');
-            $table->index('listing_id', 'IDX_F49ADEA6D4619D1A');
         });
 
         Schema::create('saved_litters', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('listing_id')->unsigned();
+            $table->integer('listings_id')->unsigned();
             $table->boolean('trashed');
 
             $table->index('user_id', 'IDX_6962B17A76ED395');
-            $table->index('listing_id', 'IDX_6962B17D4619D1A');
         });
 
         Schema::create('make_adds', function (Blueprint $table) {
@@ -202,6 +202,18 @@ class GoFrenchieSchema extends Migration
             $table->string('url', 2083);
             $table->boolean('trashed');
             $table->enum('status', ['active', 'inactive'])->comment('(DC2Type:CustomEnum__active__inactive)');
+
+        });
+
+        Schema::create('email_logs', function (Blueprint $table) {
+            $table->integer('id')->autoIncrement()->unsigned();
+            $table->string('name', 255)->nullable();
+            $table->string('from', 254);
+            $table->text('to')->nullable();
+            $table->string('subject', 255)->nullable();
+            $table->text('message')->nullable();
+            $table->text('other_data')->nullable();
+            $table->string('sent_time', 255);
 
         });
 
@@ -328,7 +340,7 @@ class GoFrenchieSchema extends Migration
                     ->references('id')
                     ->on('users')
                     ->onUpdate('cascade');
-            $table->foreign('listing_id', 'fk_saved_listings_listing_id_listings')
+            $table->foreign('user_id', 'fk_saved_listings_user_id_listings')
                     ->references('id')
                     ->on('listings')
                     ->onUpdate('cascade');
@@ -339,7 +351,7 @@ class GoFrenchieSchema extends Migration
                     ->references('id')
                     ->on('users')
                     ->onUpdate('cascade');
-            $table->foreign('listing_id', 'fk_saved_litters_listing_id_litters')
+            $table->foreign('user_id', 'fk_saved_litters_user_id_litters')
                     ->references('id')
                     ->on('litters')
                     ->onUpdate('cascade');
@@ -384,6 +396,7 @@ class GoFrenchieSchema extends Migration
         Schema::drop('dms_users');
         Schema::drop('dms_roles');
         Schema::drop('api_configs');
+        Schema::drop('email_logs');
         Schema::drop('make_adds');
         Schema::drop('saved_litters');
         Schema::drop('saved_listings');

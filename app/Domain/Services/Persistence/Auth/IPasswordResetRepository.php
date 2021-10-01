@@ -8,7 +8,7 @@ use Dms\Core\Persistence\IRepository;
 use App\Domain\Entities\Auth\PasswordReset;
 
 /**
- * The repository for the App\Domain\Entities\Auth\PasswordResetMailService entity.
+ * The repository for the App\Domain\Entities\Auth\PasswordReset entity.
  */
 interface IPasswordResetRepository extends IRepository
 {

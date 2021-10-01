@@ -435,7 +435,7 @@
 
                                         <div onclick="singlePuppy('{{$sponsoredPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
                                             <h4 class="fbd-sp-list-title d-inline">{{$sponsoredPuppy->title}}</h4>
-                                            <p>{{$sponsoredPuppy->decription}}</p>
+                                            <p>{{$sponsoredPuppy->description->asString()}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
                                             <div class="col-xl-6 pl-0">
@@ -659,7 +659,7 @@
 
                                         <div onclick="singlePuppy('{{$standardPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
                                             <h4 class="fbd-sp-list-title d-inline">{{$standardPuppy->title}}</h4>
-                                            <p>{{$standardPuppy->decription}}</p>
+                                            <p>{{$standardPuppy->description->asString()}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
                                             <div class="col-xl-6 pl-0">

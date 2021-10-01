@@ -35,7 +35,7 @@
                                     <thead>
                                     <tr>
                                         <th>Title</th>
-                                        <th>Sex</th>
+                                        <th>Kennel</th>
                                         <th>Image</th>
                                         <th>Preference</th>
                                         <th>Status</th>
@@ -44,10 +44,11 @@
                                     </thead>`
                                     <tbody>
                                     @foreach($Puppies as $puppy)
+                                        <?php /*dd($puppy);*/?>
                                         <tr>
                                             <td>{{$puppy->title}}</td>
-                                            {{--                                            <td>{{$puppy->breeder->kennelName}}</td>--}}
-                                            <td>{{ucfirst($puppy->sex->getValue())}}</td>
+                                            <td>{{$puppy->breeder->kennelName}} , {{$puppy->breeder->city}} , {{$puppy->breeder->zip}}</td>
+
                                             <td><img src="{{ $puppy->photo1 ? asset_file_url($puppy->photo1) : '/images/notfound/gf-not-found.png'}}" alt="" width="60px"></td>
 
                                             <td>
@@ -55,6 +56,9 @@
                                                     <span style="color: #00a65a">Sponsored</span>
                                                 @else
                                                     <span style="color: darkred">Standard</span>
+                                                @endif
+                                                @if($puppy->isFeatured == 1)
+                                                    |<span style="color: #FFC107">  Featured</span>
                                                 @endif
                                             </td>
                                             <td>

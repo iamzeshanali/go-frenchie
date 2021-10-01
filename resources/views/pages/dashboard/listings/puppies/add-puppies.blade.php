@@ -37,11 +37,11 @@
                             <div class="col-md-8">
                                 <h2 class="text-center mb-4 gf-red">{{isset($puppy) ? 'Update' : 'Add New'}} Puppy</h2>
                                 <div class="col">
-                                    <input type="text" name="title" value="{{isset($puppy) ? $puppy->title : ''}}"  class="gf-form-field" id="listing Title" placeholder="Puppy Name" required autofocus >
+                                    <input type="text" name="title" value="{{isset($puppy) ? $puppy->title : ''}}"  class="gf-form-field" id="listing Title" placeholder="Puppy Name: *" required autofocus >
                                 </div>
 
                                 <div class="row align-items-center">
-                                    <label for="listing-sex" class="col-sm-2 col-form-label">Gender</label>
+                                    <label for="listing-sex" class="col-sm-2 col-form-label">Gender: *</label>
                                     <div class="col-sm-4">
                                         <div class="form-check form-check-inline">
                                             @if(isset($puppy))
@@ -74,16 +74,24 @@
                                 </div>
 
                                 <div class="row">
-                                    <label for="listing-dob" class="col-sm-2 col-form-label">Date of Birth</label>
+                                    <label for="listing-dob" class="col-sm-2 col-form-label">Date of Birth: *</label>
                                     <div class="col-sm-4">
                                         <input type="date" name="dob" value="{{ isset($puppy) ? date('Y-m-d',$puppy->dob->getTimestamp()) : ''}}" class="gf-form-field" required autofocus>
+                                    </div>
+                                    <label for="listing-dob" class="col-sm-2 col-form-label">Featured</label>
+                                    <div class="col-sm-4">
+                                        @if(isset($puppy))
+                                            <input type="checkbox" name="featured" class="form-control" autofocus style="width: 20px;" {{(bool)$puppy->isFeatured ==  1 ? 'checked' : ''}}>
+                                        @else
+                                            <input type="checkbox" name="featured" class="form-control" autofocus style="width: 20px;">
+                                        @endif
                                     </div>
 
                                 </div>
 
                                 <div class="row">
                                     <div class="col">
-                                        <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description" required autofocus>{{ isset($puppy) ? $puppy->decription : ''}}</textarea>
+                                        <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description: *" required autofocus>{{ isset($puppy) ? $puppy->description->asString() : ''}}</textarea>
                                     </div>
                                 </div>
 

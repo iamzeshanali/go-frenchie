@@ -42,162 +42,51 @@
 
         <div class="col-md-9">
             <div class="gf-featured-frenchies-slider row">
-                <div class="px-3">
-                    <div class="gf-slide">
-                        <a href="#" class="gf-frenchie-slide-like">
-                            <i class="fas fa-heart float-right"></i>
-                        </a>
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <img src="/images/homepage/gf-home-contact-image.png" width="150" height="auto" loading="lazy" alt="Featured Frenchie Image">
-                            </div>
-                            <div class="col-md-9 gf-frenchie-slide-details p-0">
-                                <div class="col">
-                                    <h4>Voluptatem Do asper</h4> <i class="fas fa-venus ml-2" style="font-size:24px; color:#f07e92;"></i>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
-                                </div>
-                                <div class="row p-0 align-items-center">
-                                    <div class="col-xl-6 gf-frenchie-dob">
-                                        <i class="fa fa-calendar-alt"></i>
-                                        <span>2018-11-10</span>
+                <?php
+                    $allFeautred = app(\App\Http\Controllers\ListingsController::class)->featuredListings();
+//                    dd($allFeautred);
+                ?>
+                @foreach($allFeautred as $featured)
+                        <div class="px-3">
+                            <div class="gf-slide">
+                                <a href="#" class="gf-frenchie-slide-like">
+                                    <i class="fas fa-heart float-right"></i>
+                                </a>
+                                <div class="row align-items-center">
+                                    <div class="col-md-3">
+                                        <img src="{{$featured->photo1 ? asset_file_url($featured->photo1): '/images/notfound/gf-not-found.png'}}" width="150" height="auto" loading="lazy" alt="Featured Frenchie Image">
                                     </div>
-                                    <div class="col-xl-6 gf-frenchie-kennel">
-                                        <i class="fa fa-igloo"></i>
-                                        <span>Patience Stein</span>
-                                    </div>
+                                    <div class="col-md-9 gf-frenchie-slide-details p-0">
+                                        <div class="col">
+                                            <h4>{{$featured->title}}</h4> <i class="fas fa-venus ml-2" style="font-size:24px; color:#f07e92;"></i>
+                                            <p>{{$featured->description->asString()}}</p>
+                                        </div>
+                                        <div class="row p-0 align-items-center">
+                                            <div class="col-xl-6 gf-frenchie-dob">
+                                                <i class="fa fa-calendar-alt"></i>
+                                                <span>{{date('Y-m-d',$featured->dob->getTimestamp())}}</span>
+                                            </div>
+                                            <div class="col-xl-6 gf-frenchie-kennel">
+                                                <i class="fa fa-igloo"></i>
+                                                <span>{{$featured->breeder->kennelName}}</span>
+                                            </div>
 
-                                </div>
-                                <div class="row p-0 align-items-center">
-                                    <div class="col-xl-6 gf-frenchie-mail">
-                                        <i class="fa fa-envelope"></i>
-                                        <span>jigofix@mailinator.com</span>
-                                    </div>
-                                    <div class="col-xl-6 gf-frenchie-phone">
-                                        <i class="fa fa-phone-alt"></i>
-                                        <span>+1 (653) 847-8052</span>
+                                        </div>
+                                        <div class="row p-0 align-items-center">
+                                            <div class="col-xl-6 gf-frenchie-mail">
+                                                <i class="fa fa-envelope"></i>
+                                                <span>{{$featured->breeder->email->asString()}}</span>
+                                            </div>
+                                            <div class="col-xl-6 gf-frenchie-phone">
+                                                <i class="fa fa-phone-alt"></i>
+                                                <span>{{$featured->breeder->phone}}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="px-3">
-                    <div class="gf-slide">
-                        <a href="#" class="gf-frenchie-slide-like">
-                            <i class="fas fa-heart float-right"></i>
-                        </a>
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <img src="/images/homepage/gf-home-contact-image.png" width="150" height="auto" loading="lazy" alt="Featured Frenchie Image">
-                            </div>
-                            <div class="col-md-9 gf-frenchie-slide-details p-0">
-                                <div class="col">
-                                    <h4>Voluptatem Do asper</h4> <i class="fas fa-mars ml-2" style="font-size:24px;"></i>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
-                                </div>
-                                <div class="row p-0 align-items-center">
-                                    <div class="col-xl-6 gf-frenchie-dob">
-                                        <i class="fa fa-calendar-alt"></i>
-                                        <span>2018-11-10</span>
-                                    </div>
-                                    <div class="col-xl-6 gf-frenchie-kennel">
-                                        <i class="fa fa-igloo"></i>
-                                        <span>Patience Stein</span>
-                                    </div>
-
-                                </div>
-                                <div class="row p-0 align-items-center">
-                                    <div class="col-xl-6 gf-frenchie-mail">
-                                        <i class="fa fa-envelope"></i>
-                                        <span>jigofix@mailinator.com</span>
-                                    </div>
-                                    <div class="col-xl-6 gf-frenchie-phone">
-                                        <i class="fa fa-phone-alt"></i>
-                                        <span>+1 (653) 847-8052</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="px-3">
-                    <div class="gf-slide">
-                        <a href="#" class="gf-frenchie-slide-like">
-                            <i class="fas fa-heart float-right"></i>
-                        </a>
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <img src="/images/homepage/gf-home-contact-image.png" width="150" height="auto" loading="lazy" alt="Featured Frenchie Image">
-                            </div>
-                            <div class="col-md-9 gf-frenchie-slide-details p-0">
-                                <div class="col">
-                                    <h4>Voluptatem Do asper</h4> <i class="fas fa-mars ml-2" style="font-size:24px;"></i>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
-                                </div>
-                                <div class="row p-0 align-items-center">
-                                    <div class="col-xl-6 gf-frenchie-dob">
-                                        <i class="fa fa-calendar-alt"></i>
-                                        <span>2018-11-10</span>
-                                    </div>
-                                    <div class="col-xl-6 gf-frenchie-kennel">
-                                        <i class="fa fa-igloo"></i>
-                                        <span>Patience Stein</span>
-                                    </div>
-
-                                </div>
-                                <div class="row p-0 align-items-center">
-                                    <div class="col-xl-6 gf-frenchie-mail">
-                                        <i class="fa fa-envelope"></i>
-                                        <span>jigofix@mailinator.com</span>
-                                    </div>
-                                    <div class="col-xl-6 gf-frenchie-phone">
-                                        <i class="fa fa-phone-alt"></i>
-                                        <span>+1 (653) 847-8052</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="px-3">
-                    <div class="gf-slide">
-                        <a href="#" class="gf-frenchie-slide-like">
-                            <i class="fas fa-heart float-right"></i>
-                        </a>
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <img src="/images/homepage/gf-home-contact-image.png" width="150" height="auto" loading="lazy" alt="Featured Frenchie Image">
-                            </div>
-                            <div class="col-md-9 gf-frenchie-slide-details p-0">
-                                <div class="col">
-                                    <h4>Voluptatem Do asper</h4> <i class="fas fa-mars ml-2" style="font-size:24px;"></i>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
-                                </div>
-                                <div class="row p-0 align-items-center">
-                                    <div class="col-xl-6 gf-frenchie-dob">
-                                        <i class="fa fa-calendar-alt"></i>
-                                        <span>2018-11-10</span>
-                                    </div>
-                                    <div class="col-xl-6 gf-frenchie-kennel">
-                                        <i class="fa fa-igloo"></i>
-                                        <span>Patience Stein</span>
-                                    </div>
-
-                                </div>
-                                <div class="row p-0 align-items-center">
-                                    <div class="col-xl-6 gf-frenchie-mail">
-                                        <i class="fa fa-envelope"></i>
-                                        <span>jigofix@mailinator.com</span>
-                                    </div>
-                                    <div class="col-xl-6 gf-frenchie-phone">
-                                        <i class="fa fa-phone-alt"></i>
-                                        <span>+1 (653) 847-8052</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 

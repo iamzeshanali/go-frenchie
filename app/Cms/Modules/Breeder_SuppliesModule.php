@@ -43,7 +43,7 @@ class Breeder_SuppliesModule extends CrudModule
         $module->labelObjects()->fromProperty(Breeder_Supplies::SLUG);
 
         $module->metadata([
-            'icon' => 'tags'
+            'icon' => ''
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {
@@ -64,7 +64,7 @@ class Breeder_SuppliesModule extends CrudModule
                 )->bindToProperty(Breeder_Supplies::TITLE),
                 //
                 $form->field(
-                    Field::create('decription', 'Decription')->string()->required()
+                    Field::create('decription', 'Decription')->html()->required()
                 )->bindToProperty(Breeder_Supplies::DESCRIPTION),
                 //
                 $form->field(
@@ -110,7 +110,7 @@ class Breeder_SuppliesModule extends CrudModule
                 ->moveToPathWithRandomFileName(public_path('app/breeder__supplies')));
             $table->mapProperty(Breeder_Supplies::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
             $table->mapProperty(Breeder_Supplies::TITLE)->to(Field::create('title', 'Title')->string()->required());
-            $table->mapProperty(Breeder_Supplies::DESCRIPTION)->to(Field::create('decription', 'Decription')->string()->required());
+            $table->mapProperty(Breeder_Supplies::DESCRIPTION)->to(Field::create('decription', 'Decription')->html()->required());
             $table->mapProperty(Breeder_Supplies::WEBSITE_URL)->to(Field::create('website_url', 'Website Url')->url()->required());
             $table->mapProperty(Breeder_Supplies::COUPON_CODE)->to(Field::create('coupon_code', 'Coupon Code')->string()->required());
             $table->mapProperty(Breeder_Supplies::PRICE)->to(Field::create('price', 'Price')->money()->required());

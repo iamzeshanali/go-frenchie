@@ -9,7 +9,7 @@ use Dms\Common\Structure\Web\Persistence\EmailAddressMapper;
 use Dms\Common\Structure\DateTime\Persistence\DateTimeMapper;
 
 /**
- * The App\Domain\Entities\Auth\PasswordResetMailService entity mapper.
+ * The App\Domain\Entities\Auth\PasswordReset entity mapper.
  */
 class PasswordResetMapper extends EntityMapper
 {

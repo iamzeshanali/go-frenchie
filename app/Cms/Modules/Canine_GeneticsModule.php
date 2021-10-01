@@ -43,7 +43,7 @@ class Canine_GeneticsModule extends CrudModule
         $module->labelObjects()->fromProperty(Canine_Genetics::TITLE);
 
         $module->metadata([
-            'icon' => 'mars-double'
+            'icon' => ''
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {
@@ -64,7 +64,7 @@ class Canine_GeneticsModule extends CrudModule
                 )->bindToProperty(Canine_Genetics::SLUG),
                 //
                 $form->field(
-                    Field::create('decription', 'Decription')->string()->required()
+                    Field::create('decription', 'Decription')->html()->required()
                 )->bindToProperty(Canine_Genetics::DESCRIPTION),
                 //
                 $form->field(
@@ -110,7 +110,7 @@ class Canine_GeneticsModule extends CrudModule
                 ->moveToPathWithRandomFileName(public_path('app/canine__genetics')));
             $table->mapProperty(Canine_Genetics::TITLE)->to(Field::create('title', 'Title')->string()->required());
             $table->mapProperty(Canine_Genetics::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
-            $table->mapProperty(Canine_Genetics::DESCRIPTION)->to(Field::create('decription', 'Decription')->string()->required());
+            $table->mapProperty(Canine_Genetics::DESCRIPTION)->to(Field::create('decription', 'Decription')->html()->required());
             $table->mapProperty(Canine_Genetics::WEBSITE_URL)->to(Field::create('website_url', 'Website Url')->url()->required());
             $table->mapProperty(Canine_Genetics::COUPON_CODE)->to(Field::create('coupon_code', 'Coupon Code')->string()->required());
             $table->mapProperty(Canine_Genetics::PRICE)->to(Field::create('price', 'Price')->money()->required());

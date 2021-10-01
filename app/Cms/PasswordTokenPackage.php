@@ -4,12 +4,14 @@ namespace App\Cms;
 
 use Dms\Core\Package\Definition\PackageDefinition;
 use Dms\Core\Package\Package;
-use App\Cms\Modules\AdvertiseModule;
+use App\Cms\Modules\ApiConfigModule;
 use App\Cms\Modules\Breeder_SuppliesModule;
 use App\Cms\Modules\Canine_GeneticsModule;
 use App\Cms\Modules\Canine_NutritionModule;
+use App\Cms\Modules\EmailLogsModule;
 use App\Cms\Modules\ListingsModule;
 use App\Cms\Modules\LittersModule;
+use App\Cms\Modules\MakeAddModule;
 use App\Cms\Modules\SavedListingsModule;
 use App\Cms\Modules\SavedLittersModule;
 use App\Cms\Modules\SavedSearchModule;
@@ -17,7 +19,7 @@ use App\Cms\Modules\UsersModule;
 use App\Cms\Modules\Auth\PasswordResetModule;
 
 /**
- * The Password_Token package.
+ * The PasswordToken package.
  */
 class PasswordTokenPackage extends Package
 {
@@ -30,7 +32,7 @@ class PasswordTokenPackage extends Package
      */
     protected function define(PackageDefinition $package)
     {
-        $package->name('Password_Token');
+        $package->name('PasswordToken');
 
         $package->metadata([
             'icon' => '',

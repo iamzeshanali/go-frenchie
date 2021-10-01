@@ -64,7 +64,7 @@ class LittersModule extends CrudModule
                 )->bindToProperty(Litters::TITLE),
                 //
                 $form->field(
-                    Field::create('decription', 'Decription')->string()->required()
+                    Field::create('description', 'Description')->html()->required()
                 )->bindToProperty(Litters::DESCRIPTION),
                 //
                 $form->field(
@@ -106,6 +106,10 @@ class LittersModule extends CrudModule
                 )->bindToProperty(Litters::IS_SPONSORED),
                 //
                 $form->field(
+                    Field::create('is_featured', 'Is Featured')->bool()
+                )->bindToProperty(Litters::IS_FEATURED),
+                //
+                $form->field(
                     Field::create('status', 'Status')->enum(ListingsStatusEnum::class, [
                         ListingsStatusEnum::ACTIVE => 'Active',
                         ListingsStatusEnum::INACTIVE => 'Inactive',
@@ -134,39 +138,35 @@ class LittersModule extends CrudModule
             $table->mapProperty(Litters::BREEDER)->to(Field::create('breeder', 'Breeder')
                 ->entityFrom($this->usersRepository)
                 ->required()
-                ->labelledBy(Users::USERNAME));
-//            $table->mapProperty(Litters::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
+                ->labelledBy(Users::FIRST_NAME));
+            $table->mapProperty(Litters::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
             $table->mapProperty(Litters::TITLE)->to(Field::create('title', 'Title')->string()->required());
-//            $table->mapProperty(Litters::DESCRIPTION)->to(Field::create('decription', 'Decription')->string()->required());
-//            $table->mapProperty(Litters::EXPECTED_DOB)->to(Field::create('expected_dob', 'Expected Dob')->date()->required());
-//            $table->mapProperty(Litters::PHOTO1)->to(Field::create('photo1', 'Photo1')
-//                ->image()
-//                ->required()
-//                ->moveToPathWithRandomFileName(public_path('app/litters')));
-//            $table->mapProperty(Litters::PHOTO2)->to(Field::create('photo2', 'Photo2')
-//                ->image()
-//                ->required()
-//                ->moveToPathWithRandomFileName(public_path('app/litters')));
-//            $table->mapProperty(Litters::PHOTO3)->to(Field::create('photo3', 'Photo3')
-//                ->image()
-//                ->required()
-//                ->moveToPathWithRandomFileName(public_path('app/litters')));
-//            $table->mapProperty(Litters::PHOTO4)->to(Field::create('photo4', 'Photo4')
-//                ->image()
-//                ->required()
-//                ->moveToPathWithRandomFileName(public_path('app/litters')));
-//            $table->mapProperty(Litters::PHOTO5)->to(Field::create('photo5', 'Photo5')
-//                ->image()
-//                ->required()
-//                ->moveToPathWithRandomFileName(public_path('app/litters')));
+            $table->mapProperty(Litters::DESCRIPTION)->to(Field::create('description', 'Description')->html()->required());
+            $table->mapProperty(Litters::EXPECTED_DOB)->to(Field::create('expected_dob', 'Expected Dob')->date()->required());
+            $table->mapProperty(Litters::PHOTO1)->to(Field::create('photo1', 'Photo1')
+                ->image()
+                ->moveToPathWithRandomFileName(public_path('app/litters')));
+            $table->mapProperty(Litters::PHOTO2)->to(Field::create('photo2', 'Photo2')
+                ->image()
+                ->moveToPathWithRandomFileName(public_path('app/litters')));
+            $table->mapProperty(Litters::PHOTO3)->to(Field::create('photo3', 'Photo3')
+                ->image()
+                ->moveToPathWithRandomFileName(public_path('app/litters')));
+            $table->mapProperty(Litters::PHOTO4)->to(Field::create('photo4', 'Photo4')
+                ->image()
+                ->moveToPathWithRandomFileName(public_path('app/litters')));
+            $table->mapProperty(Litters::PHOTO5)->to(Field::create('photo5', 'Photo5')
+                ->image()
+                ->moveToPathWithRandomFileName(public_path('app/litters')));
             $table->mapProperty(Litters::IS_SPONSORED)->to(Field::create('is_sponsored', 'Is Sponsored')->bool());
+            $table->mapProperty(Litters::IS_FEATURED)->to(Field::create('is_featured', 'Is Featured')->bool());
             $table->mapProperty(Litters::STATUS)->to(Field::create('status', 'Status')->enum(ListingsStatusEnum::class, [
                 ListingsStatusEnum::ACTIVE => 'Active',
                 ListingsStatusEnum::INACTIVE => 'Inactive',
             ])->required());
-//            $table->mapProperty(Litters::DAM)->to(Field::create('dam', 'Dam')->string()->required());
-//            $table->mapProperty(Litters::SIRE)->to(Field::create('sire', 'Sire')->string()->required());
-//            $table->mapProperty(Litters::TRASHED)->to(Field::create('trashed', 'Trashed')->bool());
+            $table->mapProperty(Litters::DAM)->to(Field::create('dam', 'Dam')->string()->required());
+            $table->mapProperty(Litters::SIRE)->to(Field::create('sire', 'Sire')->string()->required());
+            $table->mapProperty(Litters::TRASHED)->to(Field::create('trashed', 'Trashed')->bool());
 
 
             $table->view('all', 'All')

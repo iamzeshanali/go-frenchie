@@ -33,11 +33,11 @@ class SavedLittersMapper extends EntityMapper
             ->manyToOne()
             ->withRelatedIdAs('user_id');
 
-        $map->column('listing_id')->asUnsignedInt();
+        $map->column('listings_id')->asUnsignedInt();
         $map->relation(SavedLitters::LITTERS)
             ->to(Litters::class)
             ->manyToOne()
-            ->withRelatedIdAs('listing_id');
+            ->withRelatedIdAs('user_id');
 
         $map->property(SavedLitters::TRASHED)->to('trashed')->asBool();
 

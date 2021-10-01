@@ -9,7 +9,7 @@ use App\Domain\Services\Persistence\Auth\IPasswordResetRepository;
 use App\Domain\Entities\Auth\PasswordReset;
 
 /**
- * The database repository implementation for the App\Domain\Entities\Auth\PasswordResetMailService entity.
+ * The database repository implementation for the App\Domain\Entities\Auth\PasswordReset entity.
  */
 class DbPasswordResetRepository extends DbRepository implements IPasswordResetRepository
 {

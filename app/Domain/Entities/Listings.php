@@ -17,6 +17,7 @@ use App\Domain\Entities\Enums\PiedEnum;
 use App\Domain\Entities\Enums\TestableChocolateEnum;
 use Dms\Common\Structure\DateTime\Date;
 use Dms\Common\Structure\FileSystem\Image;
+use Dms\Common\Structure\Web\Html;
 use Dms\Core\Model\Object\ClassDefinition;
 use Dms\Core\Model\Object\Entity;
 use Dms\Core\Model\Object\InvalidPropertyDefinitionException;
@@ -27,7 +28,7 @@ class  Listings extends Entity {
     const BREEDER = 'breeder';
     const TITLE = 'title';
     const SLUG = 'slug';
-    const DESCRIPTION = 'decription';
+    const DESCRIPTION = 'description';
     const TYPE = 'type';
     const SEX = 'sex';
     const DOB = 'dob';
@@ -37,6 +38,7 @@ class  Listings extends Entity {
     const PHOTO4 = 'photo4';
     const PHOTO5 = 'photo5';
     const IS_SPONSORED = 'isSponsored';
+    const IS_FEATURED = 'isFeatured';
     const STATUS = 'status';
     const BLUE = 'blue';
     const CHOCOLATE = 'chocolate';
@@ -68,7 +70,7 @@ class  Listings extends Entity {
     /**
      * @var string
      */
-    public $decription;
+    public $description;
 
     /**
      * @var ListingsTypeEnum
@@ -114,6 +116,11 @@ class  Listings extends Entity {
      * @var Boolean
      */
     public $isSponsored;
+
+    /**
+     * @var Boolean
+     */
+    public $isFeatured;
 
     /**
      * @var ListingsStatusEnum
@@ -188,7 +195,7 @@ class  Listings extends Entity {
 
         $class->property($this->slug)->asString();
 
-        $class->property($this->decription)->asString();
+        $class->property($this->description)->asObject(Html::class);
 
         $class->property($this->type)->asObject(ListingsTypeEnum::class);
 
@@ -207,6 +214,8 @@ class  Listings extends Entity {
         $class->property($this->photo5)->nullable()->asObject(Image::class);
 
         $class->property($this->isSponsored)->asBool();
+
+        $class->property($this->isFeatured)->asBool();
 
         $class->property($this->status)->asObject(ListingsStatusEnum::class);
 

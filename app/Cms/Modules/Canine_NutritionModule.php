@@ -43,7 +43,7 @@ class Canine_NutritionModule extends CrudModule
         $module->labelObjects()->fromProperty(Canine_Nutrition::TITLE);
 
         $module->metadata([
-            'icon' => 'qq'
+            'icon' => ''
         ]);
 
         $module->crudForm(function (CrudFormDefinition $form) {
@@ -64,7 +64,7 @@ class Canine_NutritionModule extends CrudModule
                 )->bindToProperty(Canine_Nutrition::SLUG),
                 //
                 $form->field(
-                    Field::create('decription', 'Decription')->string()->required()
+                    Field::create('decription', 'Decription')->html()->required()
                 )->bindToProperty(Canine_Nutrition::DESCRIPTION),
                 //
                 $form->field(
@@ -110,7 +110,7 @@ class Canine_NutritionModule extends CrudModule
                 ->moveToPathWithRandomFileName(public_path('app/canine__nutrition')));
             $table->mapProperty(Canine_Nutrition::TITLE)->to(Field::create('title', 'Title')->string()->required());
             $table->mapProperty(Canine_Nutrition::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
-            $table->mapProperty(Canine_Nutrition::DESCRIPTION)->to(Field::create('decription', 'Decription')->string()->required());
+            $table->mapProperty(Canine_Nutrition::DESCRIPTION)->to(Field::create('decription', 'Decription')->html()->required());
             $table->mapProperty(Canine_Nutrition::WEBSITE_URL)->to(Field::create('website_url', 'Website Url')->url()->required());
             $table->mapProperty(Canine_Nutrition::COUPON_CODE)->to(Field::create('coupon_code', 'Coupon Code')->string()->required());
             $table->mapProperty(Canine_Nutrition::PRICE)->to(Field::create('price', 'Price')->money()->required());

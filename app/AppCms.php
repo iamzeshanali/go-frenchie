@@ -5,6 +5,7 @@ namespace App;
 use App\Cms\AdvertisementsPackage;
 use App\Cms\AdvertisePackage;
 use App\Cms\ApiConfigPackage;
+use App\Cms\EmailLogsPackage;
 use App\Cms\ListingsPackage;
 use App\Cms\MakeModelPackage;
 use App\Cms\PasswordTokenPackage;
@@ -37,14 +38,15 @@ class AppCms extends Cms
             'analytics' => AnalyticsPackage::class,
 
             // TODO: Register your application cms packages...
-////
+//
             'Users' => UsersPackage::class,
             'Resources' => ResourcesPackage::class,
             'SavedItems' => SavedItemsPackage::class,
             'Listings' => ListingsPackage::class,
             'ApiConfig' => ApiConfigPackage::class,
-            'Advertisement' => MakeModelPackage::class,
-//            'Password_Token' => PasswordTokenPackage::class,
+            'Advertise' => AdvertisePackage::class,
+            'PasswordToken' => PasswordTokenPackage::class,
+            'EmailLogs' => EmailLogsPackage::class,
 
         ]);
     }

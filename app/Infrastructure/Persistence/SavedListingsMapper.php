@@ -33,11 +33,12 @@ class SavedListingsMapper extends EntityMapper
             ->manyToOne()
             ->withRelatedIdAs('user_id');
 
-        $map->column('listing_id')->asUnsignedInt();
+        $map->column('listings_id')->asUnsignedInt();
         $map->relation(SavedListings::LISTINGS)
             ->to(Listings::class)
             ->manyToOne()
-            ->withRelatedIdAs('listing_id');
+            ->withRelatedIdAs('user_id');
+
 
         $map->property(SavedListings::TRASHED)->to('trashed')->asBool();
 
