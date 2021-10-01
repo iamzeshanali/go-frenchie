@@ -383,7 +383,12 @@
         <div class="col-lg-6">
             <div class="gf-contactform-area">
                 <h4>Contact Us With Any Questions </h4>
-                <form onsubmit="javascript:{ if(!$('#output').hasClass('correctCaptcha')){ alert('Invalid Captcha'); return false;} }" action="{{route('contactUsMail')}}" method="POST">
+                <form onsubmit="javascript:{
+                    if(!$('#output').hasClass('correctCaptcha')){
+                        alert('Invalid Captcha'); return false;
+                    }
+
+                }" action="{{route('contactUsMail')}}" method="POST">
                     @csrf
                     <div class="col-md-12">
                         @if(\Illuminate\Support\Facades\Session::get('status'))
@@ -397,7 +402,7 @@
                     </div>
                     <input type="text" name="name" placeholder="Name" required>
                     <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" cols="30" rows="5" placeholder="Message" requirede></textarea>
+                    <textarea name="message" cols="30" rows="5" placeholder="Message" required></textarea>
                     <label for="captchaWrap">To continue, please type the characters below:</label>
                     <div id="captchaWrap" class="captchaWrap d-flex align-items-center text-align-center">
                         <canvas id="captcha"></canvas>
@@ -406,7 +411,6 @@
                     </div>
                     <div class="mb-2">
                         <input id="textBox" class="captcha-textBox mr-2" type="text" name="text" placeholder="Captcha Text" required>
-                        <button type="button" id="submitButton" class="gf-btn-light">Check</button>
                     </div>
                     <button type="submit" id="btn-submit-contact-us" class="gf-btn-dark">SUBMIT</button>
                 </form>
