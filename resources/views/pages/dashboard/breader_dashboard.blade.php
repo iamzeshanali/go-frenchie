@@ -8,9 +8,6 @@
     <div class="gf-dashboard-page-content row align-items-start">
         @include('components.gf-dashboard-menu-area')
         @include('components.gf-dashboard-content')
-{{--        <div class="dashboard-adds-area col-xl-2">--}}
-{{--            @include('components.adds-area')--}}
-{{--        </div>--}}
 
     </div>
 
