@@ -115,7 +115,7 @@
                                                         <img class="" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="60px" height="60px">
                                                         <div class="ml-3">
                                                             <div class="gf-dark"><b>{{ ucfirst(Auth::user()->firstName) }} {{ ucfirst(Auth::user()->lastName) }}</b></div>
-                                                            <span class="gf-gray">See your profile</span>
+                                                            <span class="gf-gray">See profile</span>
                                                         </div>
                                                     </a>
                                                 </div>

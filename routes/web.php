@@ -183,6 +183,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('breedersetting', function () {
         return view('pages/dashboard/breeder-account-setting');
     })->name('breedersetting');
+    Route::get('customersetting', function () {
+        return view('pages/dashboard/customer_account_setting');
+    })->name('customersetting');
 
 });
 

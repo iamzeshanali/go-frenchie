@@ -587,7 +587,7 @@ input.form-control:focus{
     background-color: white;
 }
 
-.image_one, .image_two, .image_three, .image_four, .image_five, .breeder-logo {
+.image_one, .image_two, .image_three, .image_four, .image_five, .breeder_logo {
     visibility: hidden;
     position: absolute;
 }
@@ -873,9 +873,14 @@ table.table .avatar {
 .gf-form-field-inline-icon{
     border-width: 1px 0px 1px 1px;
     border-style: solid;
-    border-color: var(--dark);
+    border-color: #6E6F72;
     border-radius: 30px 0px 0px 30px;
     height: calc(1.5em + .75rem + 2px);
+}
+
+.gf-form-field-inline-icon i{
+    margin-top: 0.5rem;
+    font-size: 20px;
 }
 
 

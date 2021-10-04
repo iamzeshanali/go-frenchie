@@ -1,17 +1,17 @@
+<?php
 @extends('./layouts.app')
 
 @section('content')
 
     <div class="container-fluid">
         <div class="gf-dashboard-page-content row align-items-start">
-            @include('components.gf-dashboard-menu-area')
             <div class="breader-account-settings col-xl-10 col-lg-9">
                 <div class="container-fluid">
                     <form method="post" action="" enctype="multipart/form-data" id="update-user-form mx-5">
 
                         <div class="row justify-content-center p-0">
                             <div class="col-md-8">
-                                <h2 class="text-center mb-4 gf-red">Update Breeder Settings</h2>
+                                <h2 class="text-center mb-4 gf-red">Update Customer Settings</h2>
 
                                 <div class="form-group row mb-0 py-1">
                                     {{--First Name--}}

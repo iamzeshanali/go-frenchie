@@ -78,7 +78,6 @@ $(document).ready(function() {
     $('.image_four').change(function(e) {
         var fileName = e.target.files[0].name;
         $("#image_four").val(fileName);
-
     });
 
     $(document).on("click", ".browse5", function() {
@@ -91,18 +90,26 @@ $(document).ready(function() {
 
     });
 
-
     // Breeder Registration Form Kennel Logo Browse
     $(document).on("click", ".browse-b-logo", function() {
-        var file = $(this).parents().find(".breeder-logo");
+        var file = $(this).parents().find(".breeder_logo");
         file.trigger("click");
     });
-    $('.breeder-logo').change(function(e) {
+    $('.breeder_logo').change(function(e) {
         var fileName = e.target.files[0].name;
         $("#breeder-logo").val(fileName);
-
     });
-    // Breader Dashboard content
+
+    var breederProfileReader = new FileReader();
+    breederProfileReader.onload = function(e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("preview-profile-image").src = e.target.result;
+        console.log("e.target.result");
+};
+    // read the image file as a data URL.
+    // breederProfileReader.readAsDataURL(this.files[0]);
+
+
 
     // Activate tooltip
     $('[data-toggle="tooltip"]').tooltip();
