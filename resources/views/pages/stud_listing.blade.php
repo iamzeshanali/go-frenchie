@@ -489,7 +489,7 @@
                                                     @if($matched == false)
                                                         <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @else
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @endif
 
                                                 @else
@@ -713,7 +713,7 @@
                                                     @if($matched == false)
                                                         <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @else
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @endif
 
                                                 @else
@@ -1164,7 +1164,7 @@
                     if(data.success == '200'){
                         // console.log(data.success);
                         var className = ".fbd-liked-icon"+"-"+$slug;
-                        $(className).css("color","#8b77fc");
+                        $(className).css("color","#be202e");
                     }
                     if(data.success == '300'){
                         // console.log(data.success);
