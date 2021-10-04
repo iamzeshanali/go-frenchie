@@ -8,6 +8,8 @@ use App\Domain\Entities\Litters;
 use App\Domain\Services\Persistence\ILittersRepository;
 use Dms\Common\Structure\DateTime\Date;
 use Dms\Common\Structure\FileSystem\Image;
+use Dms\Common\Structure\Type\StringValueObject;
+use Dms\Common\Structure\Web\Html;
 use Dms\Core\Model\Object\Enum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -96,10 +98,11 @@ class LittersController extends Controller
         $litter->breeder = Auth::user();
         $litter->title = $request->get('title');
         $litter->slug = str_replace(' ','-', strtolower($litter->title));
-        $litter->decription = $request->get('listing-description');
+        $litter->description = new Html($request->get('listing-description'));
         $litter->status = new ListingsStatusEnum('inactive');
 //        dd((bool)$request->sponsored);
         $litter->isSponsored = (bool)$request->sponsored;
+        $litter->isFeatured = (bool)$request->featured;
         $date = explode('-', $request->get('dob'));
         $litter->expectedDob = new Date($date[0], $date[1], $date[2]);
         $litter->dam = $request->get('dam');
@@ -181,9 +184,10 @@ class LittersController extends Controller
         } else {
 
             $singleLitter[0]->title = $request->get('title');
-            $singleLitter[0]->decription = $request->get('listing-description');
+            $singleLitter[0]->description = new Html($request->get('listing-description'));
 //            dd((bool)$request->input('sponsored'));
             $singleLitter[0]->isSponsored = (bool)$request->sponsored;
+            $singleLitter[0]->isFeatured = (bool)$request->featured;
             $date = explode('-', $request->get('dob'));
             $singleLitter[0]->expectedDob = new Date($date[0], $date[1], $date[2]);
 

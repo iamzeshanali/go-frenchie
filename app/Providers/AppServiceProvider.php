@@ -76,7 +76,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(ISavedListingsRepository::class, DbSavedListingsRepository::class);
         $this->app->singleton(ISavedLittersRepository::class, DbSavedLittersRepository::class);
-        $this->app->singleton(ISavedSearchRepository::class, DbSavedSearchRepository::class);
 
         $this->app->singleton(IBreeder_SuppliesRepository::class, DbBreeder_SuppliesRepository::class);
         $this->app->singleton(ICanine_GeneticsRepository::class, DbCanine_GeneticsRepository::class);

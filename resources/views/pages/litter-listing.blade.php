@@ -44,7 +44,7 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($standardPuppy->photo1)}}" width="250" height="250" alt="">
+                                            <img src="{{$standardPuppy->photo1 ? asset_file_url($standardPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
@@ -53,7 +53,7 @@
 
                                         <div onclick="singlePuppy('{{$standardPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
                                             <h4 class="fbd-sp-list-title d-inline">{{$standardPuppy->title}}</h4>
-                                            <p>{{$standardPuppy->decription}}</p>
+                                            <p>{{$standardPuppy->description->asString()}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
                                             <div class="col-xl-6 pl-0">
@@ -280,7 +280,7 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($standardPuppy->photo1)}}" width="250" height="250" alt="">
+                                            <img src="{{$standardPuppy->photo1 ? asset_file_url($standardPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
@@ -289,7 +289,7 @@
 
                                         <div onclick="singlePuppy('{{$standardPuppy->slug}}')" style="cursor: pointer;" class="fbd-sp-list-title-description">
                                             <h4 class="fbd-sp-list-title d-inline">{{$standardPuppy->title}}</h4>
-                                            <p>{{$standardPuppy->decription}}</p>
+                                            <p>{{$standardPuppy->description->asString()}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
                                             <div class="col-xl-6 pl-0">

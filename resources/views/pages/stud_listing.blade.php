@@ -426,7 +426,7 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($sponsoredPuppy->photo1)}}" width="250" height="250" alt="">
+                                            <img src="{{$sponsoredPuppy->photo1 ? asset_file_url($sponsoredPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
@@ -489,7 +489,7 @@
                                                     @if($matched == false)
                                                         <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @else
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @endif
 
                                                 @else
@@ -650,7 +650,7 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($standardPuppy->photo1)}}" width="250" height="250" alt="">
+                                            <img src="{{$standardPuppy->photo1 ? asset_file_url($standardPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
@@ -713,7 +713,7 @@
                                                     @if($matched == false)
                                                         <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @else
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @endif
 
                                                 @else
@@ -1160,11 +1160,11 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    // console.log(data.success);
+                    console.log(data.success);
                     if(data.success == '200'){
                         // console.log(data.success);
                         var className = ".fbd-liked-icon"+"-"+$slug;
-                        $(className).css("color","#8b77fc");
+                        $(className).css("color","#be202e");
                     }
                     if(data.success == '300'){
                         // console.log(data.success);

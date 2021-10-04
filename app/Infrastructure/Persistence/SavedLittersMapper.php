@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\Persistence;
 
+use App\Domain\Entities\Listings;
+use App\Domain\Entities\SavedListings;
 use Dms\Core\Persistence\Db\Mapping\Definition\MapperDefinition;
 use Dms\Core\Persistence\Db\Mapping\EntityMapper;
 use App\Domain\Entities\SavedLitters;
@@ -33,11 +35,12 @@ class SavedLittersMapper extends EntityMapper
             ->manyToOne()
             ->withRelatedIdAs('user_id');
 
-        $map->column('listings_id')->asUnsignedInt();
+        $map->column('litters_id')->asUnsignedInt();
         $map->relation(SavedLitters::LITTERS)
             ->to(Litters::class)
             ->manyToOne()
-            ->withRelatedIdAs('user_id');
+            ->withRelatedIdAs('litters_id');
+
 
         $map->property(SavedLitters::TRASHED)->to('trashed')->asBool();
 

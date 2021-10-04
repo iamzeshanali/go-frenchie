@@ -37,8 +37,7 @@ class SavedListingsMapper extends EntityMapper
         $map->relation(SavedListings::LISTINGS)
             ->to(Listings::class)
             ->manyToOne()
-            ->withRelatedIdAs('user_id');
-
+            ->withRelatedIdAs('listings_id');
 
         $map->property(SavedListings::TRASHED)->to('trashed')->asBool();
 

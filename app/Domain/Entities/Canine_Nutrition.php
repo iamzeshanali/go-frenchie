@@ -84,7 +84,7 @@ class Canine_Nutrition extends Entity
      */
     protected function defineEntity(ClassDefinition $class)
     {
-        $class->property($this->logo)->asObject(Image::class);
+        $class->property($this->logo)->nullable()->asObject(Image::class);
         $class->property($this->slug)->asString();
         $class->property($this->title)->asString();
         $class->property($this->decription)->asObject(Html::class);

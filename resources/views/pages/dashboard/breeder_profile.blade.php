@@ -8,7 +8,7 @@
             <div class="col-md-4">
                 <div class="breeder-profile-image text-center">
 
-                    <img src="{{ \Illuminate\Support\Facades\Auth::User()->profileImage ? asset_file_url(\Illuminate\Support\Facades\Auth::User()->profileImage): 'images/user.png'}}" alt="Breeder Profile Image" width="250px">
+                    <img src="{{ \Illuminate\Support\Facades\Auth::User()->profileImage ? asset_file_url(\Illuminate\Support\Facades\Auth::User()->profileImage): '/images/user.png'}}" alt="Breeder Profile Image" width="250px">
                 </div>
             </div>
             <div class="breeder-profile-info col-md-8 d-flex flex-column align-items-start">
@@ -34,7 +34,7 @@
                     </p>
                 </div>
                 <div class="col-md-4 text-center">
-                    <img src="{{\Illuminate\Support\Facades\Auth::User()->logo ? asset_file_url(\Illuminate\Support\Facades\Auth::User()->logo): '/images/kennel-logo.png'}}" alt="Kennel Logo" title="Kennel Logo" width="350">
+                    <img src="{{\Illuminate\Support\Facades\Auth::User()->logo ? asset_file_url(\Illuminate\Support\Facades\Auth::User()->logo): '/images/kennel-logo.png'}}" alt="Kennel Logo" title="Kennel Logo" width="250">
                 </div>
 
             </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="product-card-info">
                                 <h5>{{$resource->title}}</h5>
-                                <p>{{$resource->decription}}</p>
+                                <p>{{$resource->decription->asString()}}</p>
                                 <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
                                 <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
                             </div>

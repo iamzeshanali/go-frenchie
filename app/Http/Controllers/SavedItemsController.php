@@ -32,16 +32,14 @@ class SavedItemsController extends Controller
     public $savedListingsRepository;
     public $savedLittersRepository;
     public $userRepository;
-    public $savedSearchRepository;
 
-    public function __construct(IListingsRepository $listingsRepository,ILittersRepository $littersRepository, IUsersRepository $usersRepository, ISavedLittersRepository $savedLittersRepository, ISavedListingsRepository $savedListingsRepository, ISavedSearchRepository $savedSearchRepository)
+    public function __construct(IListingsRepository $listingsRepository,ILittersRepository $littersRepository, IUsersRepository $usersRepository, ISavedLittersRepository $savedLittersRepository, ISavedListingsRepository $savedListingsRepository)
     {
         $this->listingsRepository = $listingsRepository;
         $this->littersRepository = $littersRepository;
         $this->usersRepository = $usersRepository;
         $this->savedListingsRepository  = $savedListingsRepository;
         $this->savedLittersRepository  = $savedLittersRepository;
-        $this->savedSearchRepository  = $savedSearchRepository;
     }
 
     public function getAllListings(){
@@ -147,7 +145,6 @@ class SavedItemsController extends Controller
 
         }else{
 
-
             $allSaved = $this->getAllListings();
             $relatedSavedListings= [];
 
@@ -179,8 +176,9 @@ class SavedItemsController extends Controller
 
                 $savedListings->customer = $user[0];
                 $savedListings->trashed = false;
-
+//                return response()->json(['success'=>$savedListings->customer->lastName]);
                 $this->savedListingsRepository->save($savedListings);
+
                 return response()->json(['success'=>'200']);
             }
 
@@ -366,47 +364,6 @@ class SavedItemsController extends Controller
         return redirect()->back();
     }
 
-    public function searchHistory(Request $request)
-    {
-        $page = $request->page;
-        $totaSavedSearch = $this->savedSearchRepository->matching(
-            $this->savedSearchRepository->criteria()
-            ->where(SavedSearch::USER, '=', Auth::user())
-        );
-        $savedSearch = $this->savedSearchRepository->matching(
-            $this->savedSearchRepository->criteria()
-                ->where(SavedSearch::USER, '=', Auth::user())
-                ->skip(((int) $page - 1) * 5)->limit(5)
-        );
-//        dd($savedSearch);
-        return view('pages/dashboard/search_history', [
-            'savedSearch' => $savedSearch,
-            'total'=>count($totaSavedSearch),
-            'page'=>$page
-        ]);
-    }
 
-    public function deleteSearchHistory(Request $request)
-    {
-        dd("DONE");
-        $savedSearch = $this->savedSearchRepository->matching(
-            $this->savedSearchRepository->criteria()
-                ->where(SavedSearch::USER, '=', Auth::user())
-                ->where(SavedSearch::TYPE, '=', 'puppy')
-        );
-
-        return $savedSearch;
-    }
-    public function clearAllSearchHistory(Request $request)
-    {
-        $page = $request->page;
-        $savedSearch = $this->savedSearchRepository->getAll();
-        $this->savedSearchRepository->removeAll($savedSearch);
-        return view('pages/dashboard/search_history', [
-            'savedSearch' => [],
-            'total'=>0,
-            'page'=>$page
-        ]);
-    }
 }
 

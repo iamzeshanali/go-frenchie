@@ -72,8 +72,7 @@ class AppOrm extends Orm
             Breeder_Supplies::class => Breeder_SuppliesMapper::class,
             Canine_Genetics::class => Canine_GeneticsMapper::class,
             Canine_Nutrition::class => Canine_NutritionMapper::class,
-//
-            SavedSearch::class => SavedSearchMapper::class,
+
             SavedListings::class => SavedListingsMapper::class,
             SavedLitters::class => SavedLittersMapper::class,
 //

@@ -41,6 +41,7 @@ class ListingsPackage extends Package
         $package->modules([
             'listings' => ListingsModule::class,
             'litters' => LittersModule::class,
+            'saved-litters' => SavedLittersModule::class,
         ]);
     }
 }

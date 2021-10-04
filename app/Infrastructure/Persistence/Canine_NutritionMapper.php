@@ -31,6 +31,7 @@ class Canine_NutritionMapper extends EntityMapper
         $map->idToPrimaryKey('id');
 
         $map->embedded(Canine_Nutrition::LOGO)
+            ->withIssetColumn('logo')
             ->using(new ImageMapper('logo', 'logo_file_name', public_path('app/canine__nutrition')));
 
         $map->property(Canine_Nutrition::TITLE)->to('title')->asVarchar(255);

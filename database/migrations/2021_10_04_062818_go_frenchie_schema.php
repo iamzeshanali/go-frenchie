@@ -115,7 +115,7 @@ class GoFrenchieSchema extends Migration
         Schema::create('breeder__supplies', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->string('logo', 500);
+            $table->string('logo', 500)->nullable();
             $table->string('logo_file_name', 255)->nullable();
             $table->string('slug', 255);
             $table->string('title', 255);
@@ -133,7 +133,7 @@ class GoFrenchieSchema extends Migration
         Schema::create('canine__genetics', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->string('logo', 500);
+            $table->string('logo', 500)->nullable();
             $table->string('logo_file_name', 255)->nullable();
             $table->string('title', 255);
             $table->string('slug', 255);
@@ -151,7 +151,7 @@ class GoFrenchieSchema extends Migration
         Schema::create('canine__nutritions', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->string('logo', 500);
+            $table->string('logo', 500)->nullable();
             $table->string('logo_file_name', 255)->nullable();
             $table->string('title', 255);
             $table->string('slug', 255);
@@ -166,17 +166,6 @@ class GoFrenchieSchema extends Migration
             $table->index('user_id', 'IDX_7020967EA76ED395');
         });
 
-        Schema::create('saved_searches', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement()->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->string('dna_color', 255)->nullable();
-            $table->string('dna_coat', 255)->nullable();
-            $table->string('zip', 255)->nullable();
-            $table->string('type', 255)->nullable();
-
-            $table->index('user_id', 'IDX_EF93F31A76ED395');
-        });
-
         Schema::create('saved_listings', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->integer('user_id')->unsigned();
@@ -184,15 +173,17 @@ class GoFrenchieSchema extends Migration
             $table->boolean('trashed');
 
             $table->index('user_id', 'IDX_F49ADEA6A76ED395');
+            $table->index('listings_id', 'IDX_F49ADEA61AC725C2');
         });
 
         Schema::create('saved_litters', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('listings_id')->unsigned();
+            $table->integer('litters_id')->unsigned();
             $table->boolean('trashed');
 
             $table->index('user_id', 'IDX_6962B17A76ED395');
+            $table->index('litters_id', 'IDX_6962B17D30DEE33');
         });
 
         Schema::create('make_adds', function (Blueprint $table) {
@@ -328,19 +319,12 @@ class GoFrenchieSchema extends Migration
                     ->onUpdate('cascade');
         });
 
-        Schema::table('saved_searches', function (Blueprint $table) {
-            $table->foreign('user_id', 'fk_saved_searches_user_id_users')
-                    ->references('id')
-                    ->on('users')
-                    ->onUpdate('cascade');
-        });
-
         Schema::table('saved_listings', function (Blueprint $table) {
             $table->foreign('user_id', 'fk_saved_listings_user_id_users')
                     ->references('id')
                     ->on('users')
                     ->onUpdate('cascade');
-            $table->foreign('user_id', 'fk_saved_listings_user_id_listings')
+            $table->foreign('listings_id', 'fk_saved_listings_listings_id_listings')
                     ->references('id')
                     ->on('listings')
                     ->onUpdate('cascade');
@@ -351,7 +335,7 @@ class GoFrenchieSchema extends Migration
                     ->references('id')
                     ->on('users')
                     ->onUpdate('cascade');
-            $table->foreign('user_id', 'fk_saved_litters_user_id_litters')
+            $table->foreign('litters_id', 'fk_saved_litters_litters_id_litters')
                     ->references('id')
                     ->on('litters')
                     ->onUpdate('cascade');
@@ -400,7 +384,6 @@ class GoFrenchieSchema extends Migration
         Schema::drop('make_adds');
         Schema::drop('saved_litters');
         Schema::drop('saved_listings');
-        Schema::drop('saved_searches');
         Schema::drop('canine__nutritions');
         Schema::drop('canine__genetics');
         Schema::drop('breeder__supplies');
