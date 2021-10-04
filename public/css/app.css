@@ -608,7 +608,6 @@ form#create-listing-form label {
     height: auto;
     max-width: 200px;
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
-
 }
 
 .gf-dashboard-menu-area .card-header button:not(.link):after {
@@ -640,7 +639,6 @@ form#create-listing-form label {
 }
 
 /* Dashboard Content Area */
-
 
 .table-title .btn-group {
     float: right;
@@ -855,6 +853,65 @@ table.table .avatar {
     resize: vertical;
 } */
 
+/* Breeder Dashboard Main page */
+
+.gf-breeder-db-main-card{
+    color: #ffffff;
+}
+
+.gf-breeder-db-main-card.first{
+    background-color: var(--champagne);
+}
+.gf-breeder-db-main-card.second{
+    background-color: var(--blue);
+}
+.gf-breeder-db-main-card.third{
+    background-color: var(--red);
+}
+.gf-breeder-db-main-card.fourth{
+    background-color: var(--gray);
+}
+
+.gf-breeder-db-main-card p{
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 50px;
+    margin-bottom: 0px;
+}
+
+.gf-breeder-db-main-card-icon i{
+    font-size: 60px;
+}
+
+.gf-breeder-db-main-card.first .gf-breeder-db-main-card-icon i{
+    color: #ea9a2e;
+}
+.gf-breeder-db-main-card.second .gf-breeder-db-main-card-icon i{
+    color: #21618b;
+}
+.gf-breeder-db-main-card.third .gf-breeder-db-main-card-icon i{
+    color: #75141c;
+}
+.gf-breeder-db-main-card.fourth .gf-breeder-db-main-card-icon i{
+    color: #444547;
+}
+
+.gf-breeder-db-main-card.first .gf-breeder-db-card-bottom{
+    background-color: #f2bf7b;
+}
+.gf-breeder-db-main-card.second .gf-breeder-db-card-bottom{
+    background-color: #2e87c2;
+}
+.gf-breeder-db-main-card.third .gf-breeder-db-card-bottom{
+    background-color: #af1e2a;
+}
+.gf-breeder-db-main-card.fourth .gf-breeder-db-card-bottom{
+    background-color: #555658;
+}
+
+.gf-breeder-db-card-bottom a, .gf-breeder-db-card-bottom a:hover{
+    color: #ffffff;
+}
 
 /* Add new listing Form */
 
