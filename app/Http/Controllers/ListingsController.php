@@ -1008,7 +1008,6 @@ class ListingsController extends Controller
         $finalListings = [];
 
         if($zipCode == null){
-//            return response()->json(['success'=>'200']);
             $kennels = $this->userRepository->getAll();
 
             if($type == 'all'){
@@ -1025,6 +1024,8 @@ class ListingsController extends Controller
                     }
                 }
             }else{
+
+
                 foreach ($kennels as $key=>$breeder){
                     $allListings = [];
                     $allListings = $this->listingsRepository->matching(
@@ -1079,6 +1080,7 @@ class ListingsController extends Controller
 //        return response()->json(['success'=>count($finalListings)]);
 
         $afterFilters = [];
+//        return response()->json(['success'=>count($finalListings)]);
         $afterFilters = $this->filterByAttributes($finalListings, $request);
 //        return response()->json(['success'=>count($afterFilters)]);
         $parentDNA = $request->get('parentDNA');
@@ -1214,6 +1216,7 @@ class ListingsController extends Controller
                 array_push($standardPuppies,$af);
             }
         }
+//        return response()->json(['success'=>count($standardPuppies)]);
 
         $data = null;
         $blue = $request->get('blue');
@@ -1224,12 +1227,12 @@ class ListingsController extends Controller
         $pied = $request->get('pied');
         $merle = $request->get('merle');
         $brindle = $request->get('brindle');
-//        return response()->json(['success'=>count($sponsoredPuppies)]);
+//        return response()->json(['success'=>$chocolate]);
         $recentSearch = view('pages/recent-search-data')
             ->with(
                 compact('blue','chocolate','testable','fluffy','intensity','pied','merle','brindle')
             )->render();
-//        return response()->json(['success'=>count($sponsoredPuppies)]);
+
         $matched = false;
         $allListings = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
@@ -1246,6 +1249,7 @@ class ListingsController extends Controller
             }
         }
 
+//        return response()->json(['success'=>count($standardPuppies)]);
         $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched','totalSponsoredPuppies','totalStandardPuppies'))->render();
 //        return response()->json(['success'=>count($sponsoredPuppies)]);
 

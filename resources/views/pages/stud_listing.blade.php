@@ -1635,7 +1635,6 @@
                 DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "emcir");
             }
 
-
             $.ajax({
                 type:'POST',
                 url: '{{route('filterByDNA')}}',
