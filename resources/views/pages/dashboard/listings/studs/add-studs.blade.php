@@ -65,7 +65,7 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description: *" required autofocus>{{ isset($puppy) ? $puppy->decription : ''}}</textarea>
+                                    <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description: *" required autofocus>{{ isset($puppy) ? $puppy->description->asString() : ''}}</textarea>
                                 </div>
                             </div>
 

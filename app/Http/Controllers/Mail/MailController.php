@@ -67,13 +67,13 @@ class MailController extends Controller
         }
 //        dd($emailUsers);
 //        'to' will be the breeder associated with this entity
-//        Mail::to($breederEmail)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
+        Mail::to($breederEmail)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
         $sentEmails = '';
         foreach($emailUsers as $emailUser){
             $emailArray = (array)($emailUser);
             $emailname = (array)$emailArray["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["emailAddress"];
             $email = $emailname["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["string"];
-//            Mail::to($email)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
+            Mail::to($email)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
             $sentEmails= $sentEmails.''.$email.',';
         }
 
@@ -125,14 +125,15 @@ class MailController extends Controller
             Mail::to($email)->send(new ContactUs($name,$email,$data));
             $sentEmails= $sentEmails.''.$email.',';
         }
-
+        date_default_timezone_set("Asia/Karachi");
+        $date = date("Y-m-d H:i:s e");
         $newEmail = new EmailLogs();
         $newEmail->name = $name;
         $newEmail->from = new EmailAddress($email);
         $newEmail->to = new Html($sentEmails);
-        $newEmail->subject = $subject;
+        $newEmail->subject = 'Contact Us by '.$name;
         $newEmail->message = new Html($request->message);
-        $OtherData = (string)$listing->getId();
+        $OtherData = '';
         $newEmail->otherData = new Html($OtherData);
         $newEmail->sentTime = $date;
 

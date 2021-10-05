@@ -8,24 +8,31 @@
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body style="background-color: #f9f9f9;margin: 0;padding: 0;">
 
-<div class="main" style="position: absolute;width:40%; height: fit-content; background: white; margin-inline: 5%; padding: 2%;">
-    <h3>Hello {{$username ?? ''}},</h3>
-    <p>
-        Please click below the link to reset password
-    </p>
-    <div class="inner" style="text-align: center;">
-        <a href='{{\Illuminate\Support\Facades\URL::to('password/reset')}}/{{$token}}' target="_blank" style="color: blue;">
-            <u> {{$token}}</u>
-        </a>
+
+<body style="background-color: #f9f9f9;margin: 0;padding: 0;display: flex;justify-content: center;">
+
+<div class="main" style=" height: fit-content;  margin-inline: 5%;">
+
+    <div class="header" style="background-color: #BE202E;">
+        <h1 style="text-align: center; color: #ffffff; margin: 0px;  padding: 4%;">Password Reset Link</h1>
     </div>
-    <p>
-        Need help? Contact our support team or hit us up on Twitter @Frenchbulldog.
-    </p>
-    <p>
-        Want to give us feedback? Let us know what you think on our feedback site.
-    </p>
+
+    <div class="content" style="padding: 2%;">
+        <h3>Hello {{$firstName ?? ''}}  {{$lastName ?? ''}},</h3>
+        <p>
+            Please click below the link to reset password
+        </p>
+        <div class="inner" style="">
+            <a href='{{\Illuminate\Support\Facades\URL::to('password/reset')}}/{{$token}}' target="_blank" style="color: blue;">
+                <u> {{$token}}</u>
+            </a>
+        </div>
+    </div>
+    {{--    <hr>--}}
+    <div class="footer" style="padding: 1% 2% ; background-color: #BE202E; color: #FFFFFF;">
+        <p>Need help? Contact our support team or hit us up on.</p>
+    </div>
 </div>
 
 </body>

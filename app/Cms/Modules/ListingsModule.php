@@ -261,9 +261,9 @@ class ListingsModule extends CrudModule
                 ListingsSexEnum::FEMALE => 'Female',
             ])->required());
             $table->mapProperty(Listings::DOB)->to(Field::create('dob', 'Dob')->date()->required());
-            $table->mapProperty(Listings::PHOTO1)->to(Field::create('photo1', 'Photo1')
-                ->image()
-                ->moveToPathWithRandomFileName(public_path('app/listings')));
+//            $table->mapProperty(Listings::PHOTO1)->to(Field::create('photo1', 'Photo1')
+//                ->image()
+//                ->moveToPathWithRandomFileName(public_path('app/listings')));
 //            $table->mapProperty(Listings::PHOTO2)->to(Field::create('photo2', 'Photo2')
 //                ->image()
 //                ->moveToPathWithRandomFileName(public_path('app/listings')));

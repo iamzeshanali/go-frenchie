@@ -426,7 +426,7 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($sponsoredPuppy->photo1)}}" width="250" height="250" alt="">
+                                            <img src="{{$sponsoredPuppy->photo1 ? asset_file_url($sponsoredPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
@@ -489,7 +489,7 @@
                                                     @if($matched == false)
                                                         <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @else
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @endif
 
                                                 @else
@@ -650,7 +650,7 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{asset_file_url($standardPuppy->photo1)}}" width="250" height="250" alt="">
+                                            <img src="{{$standardPuppy->photo1 ? asset_file_url($standardPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
@@ -713,7 +713,7 @@
                                                     @if($matched == false)
                                                         <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @else
-                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+                                                        <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardPuppy->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardPuppy->slug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
                                                     @endif
 
                                                 @else
@@ -890,76 +890,11 @@
 
 
 {{--Testimonials Slider--}}
-<div class="wrapper gf-testimonials d-flex justify-content-center">
-    <div class="container row align-items-center justify-content-center">
-        {{--        <div class="col-md-6 text-center">--}}
-        {{--            <img src="/images/homepage/gf-home-banner-dog.png" alt="">--}}
-        {{--        </div>--}}
-        <div class="col-md-9">
-            <h2 class="text-center mb-4">Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
-
-            <div class="gf-home-testimonial-slider">
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-                <div>
-                    <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                    <span>Caroline Bryan</span><br>
-                    <span>Very Affordably Priced</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
+@include('components.sections.gf-testimonials')
 
 
 {{--Contact Section--}}
-<div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
-    <div class="container row align-items-center">
-        <div class="col-md-6">
-            <img src="/images/homepage/gf-home-contact-image.png" width="450" loading="lazy" alt="">
-        </div>
-        <div class="col-md-6">
-            <div class="gf-contactform-area">
-                <h4>Contact Us With Any Questions </h4>
-                <form action="">
-                    <input type="text" placeholder="Name">
-                    <input type="email" placeholder="Email">
-                    <textarea name="Message" cols="30" rows="5" placeholder="Message"></textarea>
-                    <label for="captchaWrap">To continue, please type the characters below:</label>
-                    <div id="captchaWrap" class="captchaWrap d-flex align-items-center text-align-center">
-                        <canvas id="captcha"></canvas>
-                        <button type="button" id="refreshButton" class="captcha-refresh-btn"><i class="fas fa-redo"></i></button>
-                        <span id="output" class="ml-2"></span>
-                    </div>
-                    <div class="mb-2">
-                        <input id="textBox" class="captcha-textBox mr-2" type="text" name="text" placeholder="Captcha Text">
-                        <button type="button" id="submitButton" class="gf-btn-light">Check</button>
-                    </div>
-                    <button type="submit" class="gf-btn-dark">SUBMIT</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+@include('components.sections.gf-contact-form')
 
     <script type="text/javascript">
 
@@ -1160,11 +1095,11 @@
                 },
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 success: function(data){
-                    // console.log(data.success);
+                    console.log(data.success);
                     if(data.success == '200'){
                         // console.log(data.success);
                         var className = ".fbd-liked-icon"+"-"+$slug;
-                        $(className).css("color","#8b77fc");
+                        $(className).css("color","#be202e");
                     }
                     if(data.success == '300'){
                         // console.log(data.success);

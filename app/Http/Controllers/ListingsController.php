@@ -47,10 +47,9 @@ class ListingsController extends Controller
     public $token;
     public $userRepository;
 
-    public function __construct(IListingsRepository $listingsRepository, ISavedSearchRepository $savedSearchRepository, IApiConfigRepository $apiConfigRepository, IUsersRepository $userRepository)
+    public function __construct(IListingsRepository $listingsRepository,IApiConfigRepository $apiConfigRepository, IUsersRepository $userRepository)
     {
         $this->listingsRepository = $listingsRepository;
-        $this->savedSearchRepository = $savedSearchRepository;
         $this->userRepository = $userRepository;
         $allTokens = $apiConfigRepository->getAll();
         if (count($allTokens) > 0){
@@ -68,36 +67,6 @@ class ListingsController extends Controller
                 ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
         );
         return $allFeatured;
-    }
-    public function showAllSavedSearchedListings()
-    {
-        $savedSearch = $this->savedSearchRepository->matching(
-            $this->savedSearchRepository->criteria()
-                ->where(SavedSearch::USER, '=', Auth::user())
-                ->where(SavedSearch::TYPE, '=', 'all')
-        );
-        return $savedSearch;
-    }
-
-
-    public function showAllSavedSearchedPuppy()
-    {
-        $savedSearch = $this->savedSearchRepository->matching(
-            $this->savedSearchRepository->criteria()
-            ->where(SavedSearch::USER, '=', Auth::user())
-            ->where(SavedSearch::TYPE, '=', 'puppy')
-            ->orderByDesc(SavedSearch::ID)
-        );
-        return $savedSearch;
-    }
-    public function showAllSavedSearchedStuds()
-    {
-        $savedSearch = $this->savedSearchRepository->matching(
-            $this->savedSearchRepository->criteria()
-                ->where(SavedSearch::USER, '=', Auth::user())
-                ->where(SavedSearch::TYPE, '=', 'stud')
-        );
-        return $savedSearch;
     }
 
 

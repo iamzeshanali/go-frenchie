@@ -39,24 +39,34 @@
                                 </div>
                             </div>
                             <div class="row align-items-center">
-                                <label for="listing-sex" class="col-sm-2 col-form-label">Expected DOB</label>
+                                <label for="listing-dob" class="col-sm-2 col-form-label">Featured</label>
                                 <div class="col-sm-4">
-                                    <input type="date" name="dob" value="{{ isset($litter) ? date('Y-m-d',$litter->expectedDob->getTimestamp()) : ''}}" class="gf-form-field" required autofocus>
+                                    @if(isset($puppy))
+                                        <input type="checkbox" name="featured" class="form-control" autofocus style="width: 20px;" {{(bool)$litter->isFeatured ==  1 ? 'checked' : ''}}>
+                                    @else
+                                        <input type="checkbox" name="featured" class="form-control" autofocus style="width: 20px;">
+                                    @endif
                                 </div>
-                                {{--SPONSORED--}}
+
                                 <label for="listing-dob" class="col-sm-2 col-form-label">Sponsored</label>
                                 <div class="col-sm-4">
-                                    @if(isset($litter))
+                                    @if(isset($puppy))
                                         <input type="checkbox" name="sponsored" class="form-control" autofocus style="width: 20px;" {{(bool)$litter->isSponsored ==  1 ? 'checked' : ''}}>
                                     @else
                                         <input type="checkbox" name="sponsored" class="form-control" autofocus style="width: 20px;">
                                     @endif
                                 </div>
                             </div>
+                            <div class="row align-items-center">
+                                <label for="listing-sex" class="col-sm-2 col-form-label">Expected DOB</label>
+                                <div class="col-sm-4">
+                                    <input type="date" name="dob" value="{{ isset($litter) ? date('Y-m-d',$litter->expectedDob->getTimestamp()) : ''}}" class="gf-form-field" required autofocus>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col">
-                                    <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description: *" required autofocus>{{ isset($litter) ? $litter->decription : ''}}</textarea>
+                                    <textarea class="gf-form-field h-auto" name="listing-description" id="listing-description" rows="7" placeholder="Description: *" required autofocus>{{ isset($litter) ? $litter->description->asString() : ''}}</textarea>
                                 </div>
                             </div>
                             <div class="row gf-add-listing-image">

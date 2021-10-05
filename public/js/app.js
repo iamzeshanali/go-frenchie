@@ -91,24 +91,58 @@ $(document).ready(function() {
     });
 
     // Breeder Registration Form Kennel Logo Browse
-    $(document).on("click", ".browse-b-logo", function() {
-        var file = $(this).parents().find(".breeder_logo");
+    $(document).on("click", ".browse-b-register-logo", function() {
+        var file = $(this).parents().find(".register-breeder-logo");
         file.trigger("click");
     });
-    $('.breeder_logo').change(function(e) {
+    $('.register-breeder-logo').change(function(e) {
         var fileName = e.target.files[0].name;
-        $("#breeder-logo").val(fileName);
+        $("#register-breeder-logo").val(fileName);
     });
+
+
+
+
+
+
+    //Breeder Profile Image in Update Form
+    $(document).on("click", ".browse-breeder-profile-image", function() {
+        var file = $(this).parents().find(".breeder_profile_image");
+        file.trigger("click");
+    });
+    $('.breeder_profile_image').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $("#breeder_profile_image").val(fileName);
 
     var breederProfileReader = new FileReader();
     breederProfileReader.onload = function(e) {
         // get loaded data and render thumbnail.
+        document.getElementById("gf-preview-profile-image").src = e.target.result;
+    };
+    // read the image file as a data URL.
+    breederProfileReader.readAsDataURL(this.files[0]);
+    });
+
+
+
+    //Breeder Kennel Logo in update form
+    $(document).on("click", ".browse-kennel-logo", function() {
+        var file = $(this).parents().find(".kennel-logo-image");
+        file.trigger("click");
+    });
+    $('.kennel-logo-image').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $("#kennel-logo-image").val(fileName);
+
+    var kennelLogoReader = new FileReader();
+    kennelLogoReader.onload = function(e) {
+        // get loaded data and render thumbnail.
         document.getElementById("preview-profile-image").src = e.target.result;
         console.log("e.target.result");
-};
+    };
     // read the image file as a data URL.
-    // breederProfileReader.readAsDataURL(this.files[0]);
-
+    kennelLogoReader.readAsDataURL(this.files[0]);
+    });
 
 
     // Activate tooltip
@@ -250,74 +284,60 @@ $('.gf-kennel-slider').slick({
 });
 
 ////////Captcha on contact form js
+
+////////Captcha on contact form js
 let captchaText = document.querySelector('#captcha');
 if (captchaText){
-        var ctx = captchaText.getContext("2d");
-        // console.log(captchaText);
-        var ctx = captchaText.getContext("2d");
-        ctx.font = "48px Proxima-Nova";
-        ctx.fillStyle = "#BE202E";
-        let userText = document.querySelector('#textBox');
-        let submitButton = document.querySelector('#submitButton');
-        let output = document.querySelector('#output');
-        let refreshButton = document.querySelector('#refreshButton');
+    var ctx = captchaText.getContext("2d");
+    // console.log(captchaText);
+    var ctx = captchaText.getContext("2d");
+    ctx.font = "48px Proxima-Nova";
+    ctx.fillStyle = "#BE202E";
+    let userText = document.querySelector('#textBox');
+    let submitButton = document.querySelector('#submitButton');
+    let output = document.querySelector('#output');
+    let refreshButton = document.querySelector('#refreshButton');
 
     // alphaNums contains the characters with which you want to create the CAPTCHA
-        let alphaNums = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-        let emptyArr = [];
+    let alphaNums = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let emptyArr = [];
     // This loop generates a random string of 7 characters using alphaNums
     // Further this string is displayed as a CAPTCHA
-        for (let i = 1; i <= 7; i++) {
-            emptyArr.push(alphaNums[Math.floor(Math.random() * alphaNums.length)]);
-        }
-        var c = emptyArr.join('');
-        ctx.fillText(emptyArr.join(''),captchaText.width/4, captchaText.height/2);
+    for (let i = 1; i <= 7; i++) {
+        emptyArr.push(alphaNums[Math.floor(Math.random() * alphaNums.length)]);
+    }
+    var c = emptyArr.join('');
+    ctx.fillText(emptyArr.join(''),captchaText.width/4, captchaText.height/2);
 
     // This event listener is stimulated whenever the user press the "Enter" button
     // "Correct!" or "Incorrect, please try again" message is
     // displayed after validating the input text with CAPTCHA
-        userText.addEventListener('keyup', function(e) {
-            // Key Code Value of "Enter" Button is 13
-            if (e.keyCode === 13) {
-                if (userText.value === c) {
-                    output.classList.add("correctCaptcha");
-                    output.innerHTML = "Correct!";
-                } else {
-                    output.classList.add("incorrectCaptcha");
-                    output.innerHTML = "Incorrect, please try again";
-                    $("btn-submit-contact-us").attr('disabled', true);
-                }
-            }
-        });
-    // This event listener is stimulated whenever the user clicks the "Submit" button
-    // "Correct!" or "Incorrect, please try again" message is
-    // displayed after validating the input text with CAPTCHA
-        submitButton.addEventListener('click', function() {
-            if (userText.value === c) {
-                output.classList.add("correctCaptcha");
-                output.classList.remove("incorrectCaptcha");
-                output.innerHTML = "Correct!";
-                // $('#btn-submit-contact-us').attr('disabled',false);
-
-            } else {
-                output.classList.add("incorrectCaptcha");
-                output.classList.remove("correctCaptcha");
-                output.innerHTML = "Incorrect text, please try again";
-            }
-        });
+    userText.addEventListener('keyup', function(e) {
+        $("#btn-submit-contact-us").attr('disabled', true);
+        // console.log(c);
+        if(userText.value === c){
+            output.classList.add("correctCaptcha");
+            output.innerHTML = "Correct!";
+            $("#btn-submit-contact-us").attr('disabled', false);
+        }else{
+            output.classList.add("incorrectCaptcha");
+            output.innerHTML = "Incorrect, please try again";
+            $("#btn-submit-contact-us").attr('disabled', true);
+        }
+    });
     // This event listener is stimulated whenever the user press the "Refresh" button
     // A new random CAPTCHA is generated and displayed after the user clicks the "Refresh" button
-        refreshButton.addEventListener('click', function() {
-            userText.value = "";
-            let refreshArr = [];
-            for (let j = 1; j <= 7; j++) {
-                refreshArr.push(alphaNums[Math.floor(Math.random() * alphaNums.length)]);
-            }
-            ctx.clearRect(0, 0, captchaText.width, captchaText.height);
-            c = refreshArr.join('');
-            ctx.fillText(refreshArr.join(''),captchaText.width/4, captchaText.height/2);
-            output.innerHTML = "";
-        });
+    refreshButton.addEventListener('click', function() {
+        userText.value = "";
+        let refreshArr = [];
+        for (let j = 1; j <= 7; j++) {
+            refreshArr.push(alphaNums[Math.floor(Math.random() * alphaNums.length)]);
+        }
+        ctx.clearRect(0, 0, captchaText.width, captchaText.height);
+        c = refreshArr.join('');
+        ctx.fillText(refreshArr.join(''),captchaText.width/4, captchaText.height/2);
+        output.innerHTML = "";
+    });
 }
 
 

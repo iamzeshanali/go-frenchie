@@ -26,7 +26,7 @@
                         <form method="POST" action="{{ route('createCustomer') }}">
                             @csrf
                             {{--  FIRST NAME  --}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 {{--                                <label for="firstName" class=" col-form-label text-md-right">{{ __('First Name') }}</label>--}}
 
                                 <div class="col-md-6">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>--}}
                             {{--  EMAIL-ADDRESS  --}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col">
                                     <input id="email" type="email" onblur="checkForEmail(value)" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             {{--  PHONE  --}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col">
                                     <input id="phone" type="text" class="gf-form-field @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus placeholder="Phone">
@@ -142,12 +142,12 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
                             {{--  PASSWORD  --}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col input-group flex-nowrap">
-                                    <input id="password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+                                    <input id="register-password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
                                     <span class="input-group-btn">
-                                        <button onclick="showPassword('password')" class="btn btn-default reveal mt-1" type="button"><i class="fas fa-eye"></i></button>
+                                        <button onclick="showPassword('register-password')" class="btn btn-default reveal mt-1" type="button"><i class="fas fa-eye"></i></button>
                                     </span>
 
                                     @error('password')
@@ -158,21 +158,26 @@
                                 </div>
                             </div>
                             {{--  CONFIRM-PASSWORD  --}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col input-group flex-nowrap">
-                                    <input id="password-confirm" type="password" class="gf-form-field" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                                    <input id="password-confirm" type="password" class="gf-form-field" onchange="checkForPassword(value)" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                                     <span class="input-group-btn">
                                         <button onclick="showPassword('password-confirm')" class="btn btn-default reveal mt-1" type="button"><i class="fas fa-eye"></i></button>
                                     </span>
-
                                 </div>
                             </div>
+                            <span id="password-error" class="invalid-feedback d-none col" style="margin-top: -14px;" role="alert">
+                                <strong>{{ __('The password confirmation does not match.') }}</strong>
+                            </span>
+
                             {{--  SUBMIT  --}}
-                            <div class="form-group row mb-0">
-                                <button type="submit" id="btn-submit" class="col gf-btn-dark">
-                                    {{ __('Register') }}
-                                </button>
+                            <div class="form-group row mb-0 p-0">
+                                <div class="col">
+                                    <button type="submit" id="btn-submit" class="col gf-btn-dark">
+                                        {{ __('Register') }}
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -203,9 +208,23 @@
                     $("#email-error").addClass('d-none');
                     $("#btn-submit").attr("disabled", false);
                 }
-
             },
-
         });
+    }
+    checkForPassword = (value) => {
+        // console.log(value);
+        let password = document.querySelector('#register-password');
+        let submit = document.querySelector('#btn-submit');
+
+        if (password.value === value){
+            $(submit).attr('disabled', false);
+            $("#password-error").removeClass('d-block');
+            $("#password-error").addClass('d-none');
+        }
+        else{
+            $(submit).attr('disabled', true);
+            $('#password-error').removeClass('d-none');
+            $('#password-error').addClass('d-block');
+        }
     }
 </script>
