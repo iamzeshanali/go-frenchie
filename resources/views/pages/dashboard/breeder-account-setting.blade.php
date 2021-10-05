@@ -100,7 +100,7 @@
                                 <div class="form-group row mb-0 py-1">
                                     <div class="col">
                                         <div class="input-group mb-0 flex-nowrap">
-                                            <label for="b-facebook" class="col-1 text-center gf-form-field-inline-icon mb-0"><i class="fab fa-facebook-f gf-blue"></i></label>
+                                            <label for="b-facebook" class="col-2 text-center gf-form-field-inline-icon mb-0 gf-bg-red border-0"><i class="fab fa-facebook-f text-white"></i></label>
                                             <input id="b-facebook" type="url" class="col gf-form-field gf-form-field-inline-right" value="http://facebook.com/" name="b-facebook" autocomplete="b-facebook">
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                                 <div class="form-group row mb-0 py-1">
                                     <div class="col">
                                         <div class="input-group mb-0 flex-nowrap">
-                                            <label for="b-instagram" class="col-1 text-center gf-form-field-inline-icon mb-0"><i class="fab fa-instagram gf-blue"></i></label>
+                                            <label for="b-instagram" class="col-2 text-center gf-form-field-inline-icon mb-0 gf-bg-red border-0"><i class="fab fa-instagram text-white"></i></label>
                                             <input id="b-instagram" type="url" class="gf-form-field gf-form-field-inline-right" value="https://www.instagram.com/" name="b-instagram" autocomplete="b-instagram">
                                         </div>
                                     </div>
@@ -123,58 +123,63 @@
                                 <div class="form-group row mb-0 py-1">
                                     <div class="col">
                                         <div class="input-group mb-0 flex-nowrap">
-                                            <label for="b-website" class="col-1 text-center gf-form-field-inline-icon mb-0"><i class="fas fa-globe gf-blue"></i></label>
+                                            <label for="b-website" class="col-2 text-center gf-form-field-inline-icon mb-0 gf-bg-red border-0"><i class="fas fa-globe text-white"></i></label>
                                             <input id="b-website" type="url" class="gf-form-field gf-form-field-inline-right" value="http://frenchbulldog.test/" name="b-website" autocomplete="b-instagram">
                                         </div>
                                     </div>
                                 </div>
 
-                                {{--BREEDER PROFILE IMAGE--}}
+
                                 <div class="row gf-breeder-profile-image align-items-center">
-                                    <div class="col-md-6">
+                                    {{--BREEDER PROFILE IMAGE--}}
+                                    <div class="col">
+                                        <img src="/images/notfound/gf-not-found.png" id="gf-preview-profile-image" class="img-thumbnail m-auto" width="200" height="200" alt="Profile image not found">
+
+
+                                        <input type="file" name="photo1" class="breeder_profile_image invisible position-absolute" accept="image/*">
+                                        <div class="input-group my-3 flex-nowrap">
+                                            <input type="text" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Breeder Profile Image" id="breeder_profile_image" required autofocus>
+                                            <div class="">
+                                                <button type="button" class="browse-breeder-profile-image gf-btn-dark gf-form-field-inline-btn">Browse Profile Image</button>
+                                            </div>
+                                            @error('image_one')
+                                            <span class="invalid-feedback" role="alert"></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row gf-breeder-profile-image align-items-center">
+                                    {{--KENNEL LOGO IMAGE--}}
+                                    <div class="col">
                                         <img src="/images/notfound/gf-not-found.png" id="preview-profile-image" class="img-thumbnail m-auto" width="200" height="200" alt="Profile image not found">
 
 
-                                        <input type="file" name="photo1" class="breeder_logo" accept="image/*">
+                                        <input type="file" name="photo2" class="kennel-logo-image invisible position-absolute" accept="image/*">
                                         <div class="input-group my-3 flex-nowrap">
-                                            <input type="text" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Breeder Profile Image" id="breeder-logo" required autofocus>
+                                            <input type="text" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Kennel Logo" id="kennel-logo-image" required autofocus>
                                             <div class="">
-                                                <button type="button" class="browse-b-logo gf-btn-light gf-form-field-inline-btn">Browse</button>
+                                                <button type="button" class="browse-kennel-logo gf-btn-dark gf-form-field-inline-btn">Browse Kennel Logo</button>
                                             </div>
                                             @error('image_one')
                                             <span class="invalid-feedback" role="alert"></span>
                                             @enderror
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <img src="/images/notfound/gf-not-found.png" id="preview-image" class="img-thumbnail m-auto" width="200" height="200" alt="Profile image not found">
-
-
-                                        <input type="file" name="photo1" class="image_one" accept="image/*">
-                                        <div class="input-group my-3 flex-nowrap">
-                                            <input type="text" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Kennel Logo" id="main_image" required autofocus>
-                                            <div class="">
-                                                <button type="button" class="browse gf-btn-light gf-form-field-inline-btn">Browse</button>
-                                            </div>
-                                            @error('image_one')
-                                            <span class="invalid-feedback" role="alert"></span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
                                 </div>
 
-                                {{--BREEDER KENNEL LOGO--}}
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="col gf-btn-dark px-5">Update User</button>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
 
-                        <div class="row my-4">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="gf-btn-dark px-5">Update User</button>
-                            </div>
-                        </div>
+
+
+
                     </form>
                 </div>
 

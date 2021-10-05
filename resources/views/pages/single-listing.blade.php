@@ -4,12 +4,25 @@
 
 
 <div class="single-listing-wrapper container">
-    <div class="breadcrumbs row align-items-center mb-2">
-        <a href="" title="Dashboard"><i class="fas fa-tachometer-alt gf-blue"></i>&emsp; Dashboard</a> &emsp;
-        <i class="fas fa-angle-right"></i> &emsp;
-        <a href="" title="View Listing"><i class="fas fa-th-list gf-blue"></i>&emsp; View Listing</a> &emsp;
-    </div>
+
+{{--    <nav aria-label="breadcrumb">--}}
+{{--        <ol class="breadcrumb">--}}
+{{--            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>--}}
+{{--            <li class="breadcrumb-item"><a href="#">Puppies</a></li>--}}
+{{--            <li class="breadcrumb-item active" aria-current="page">Single Puppy</li>--}}
+{{--        </ol>--}}
+{{--    </nav>--}}
+
     <div class="row">
+        <div class="btn-group btn-breadcrumb breadcrumb-info">
+            <a href="#" class="btn btn-info visible-lg-block visible-md-block">Dashboard</a>
+            <a href="#" class="btn btn-info visible-lg-block visible-md-block">Puppies</a>
+            <a href="#" class="btn btn-info visible-lg-block visible-md-block">Single Puppy</a>
+        </div>
+    </div>
+
+
+    <div class="row py-2">
         <div class="col-md-6">
             <h2 class="fbd-single-listing-title gf-red">{{$puppy->title}}</h2>
         </div>
@@ -242,11 +255,11 @@
     </div> -->
 
     <div class="fbd-single-listing-description row my-4 mx-4">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <h2 class="gf-red">Description</h2>
             <p>{{$puppy->description->asString()}}}</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
 
             <div class="fbd-single-listing-contactForm">
                 <form action="{{route('contactBreederMail')}}" method="POST" enctype="multipart/form-data">
@@ -307,77 +320,155 @@
     </div>
 
 
-    <div class="fbd-single-listing-description row my-4 mx-4">
+    <div class="fbd-single-listing-description row">
         <h2 class="gf-red">DNA Characteristics</h2>
 
     </div>
-    <div class="fbd-single-listing-dna row">
+{{--    <div class="fbd-single-listing-dna row">--}}
 
-        @if(!empty($puppy->blue))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>Blue</b></span>
-            <p>{{$puppy->blue->getValue()}}</p>
-        </div>
-        @endif
-        @if(!empty($puppy->chocolate))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>Chocolate</b></span>
-            <p>{{$puppy->chocolate->getValue()}}</p>
-        </div>
-        @endif
+{{--        @if(!empty($puppy->blue))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>Blue</b></span>--}}
+{{--            <p>{{$puppy->blue->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
+{{--        @if(!empty($puppy->chocolate))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>Chocolate</b></span>--}}
+{{--            <p>{{$puppy->chocolate->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
 
-        @if(!empty($puppy->testableChocolate))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>TestableChocolate</b></span>
-            <p>{{$puppy->testableChocolate->getValue()}}</p>
-        </div>
-        @endif
-        @if(!empty($puppy->fluffy))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>Fluffy</b></span>
-            <p>{{$puppy->fluffy->getValue()}}</p>
-        </div>
-        @endif
+{{--        @if(!empty($puppy->testableChocolate))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>TestableChocolate</b></span>--}}
+{{--            <p>{{$puppy->testableChocolate->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
+{{--        @if(!empty($puppy->fluffy))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>Fluffy</b></span>--}}
+{{--            <p>{{$puppy->fluffy->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
 
-        @if(!empty($puppy->intensity))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>Intensity</b></span>
-            <p>{{$puppy->intensity->getValue()}}</p>
-        </div>
-        @endif
-        @if(!empty($puppy->pied))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>Pied</b></span>
-            <p>{{$puppy->pied->getValue()}}</p>
-        </div>
-        @endif
+{{--        @if(!empty($puppy->intensity))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>Intensity</b></span>--}}
+{{--            <p>{{$puppy->intensity->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
+{{--        @if(!empty($puppy->pied))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>Pied</b></span>--}}
+{{--            <p>{{$puppy->pied->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
 
-        @if(!empty($puppy->brindle))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>Brindle</b></span>
-            <p>{{$puppy->brindle->getValue()}}</p>
-        </div>
-        @endif
-        @if(!empty($puppy->merle))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>Merle</b></span>
-            <p>{{$puppy->merle->getValue()}}</p>
-        </div>
-        @endif
-        @if(!empty($puppy->agouti))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>Agouti</b></span>
-            <p>{{$puppy->agouti->getValue()}}</p>
-        </div>
-        @endif
-        @if(!empty($puppy->eMcir))
-        <div class="col-sm-3 my-auto pl-5 text-left">
-            <span><b>EMcir</b></span>
-            <p>{{$puppy->eMcir->getValue()}}</p>
-        </div>
-        @endif
+{{--        @if(!empty($puppy->brindle))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>Brindle</b></span>--}}
+{{--            <p>{{$puppy->brindle->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
+{{--        @if(!empty($puppy->merle))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>Merle</b></span>--}}
+{{--            <p>{{$puppy->merle->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
+{{--        @if(!empty($puppy->agouti))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>Agouti</b></span>--}}
+{{--            <p>{{$puppy->agouti->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
+{{--        @if(!empty($puppy->eMcir))--}}
+{{--        <div class="col-sm-3 my-auto pl-5 text-left">--}}
+{{--            <span><b>EMcir</b></span>--}}
+{{--            <p>{{$puppy->eMcir->getValue()}}</p>--}}
+{{--        </div>--}}
+{{--        @endif--}}
+{{--    </div>--}}
+
+    <div class="gf-dna-table-wrapper">
+        <table class="table table-bordered table-striped">
+            @if(!empty($puppy->blue))
+                <tr>
+                    <td><span><b>Blue</b></span></td>
+                    <td><span>{{$puppy->blue->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->chocolate))
+                <tr>
+                    <td><span><b>Chocolate</b></span></td>
+                    <td><span>{{$puppy->chocolate->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->testableChocolate))
+                <tr>
+                    <td><span><b>TestableChocolate</b></span></td>
+                    <td><span>{{$puppy->testableChocolate->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->fluffy))
+                <tr>
+                    <td><span><b>Fluffy</b></span></td>
+                    <td><span>{{$puppy->fluffy->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->intensity))
+                <tr>
+                    <td><span><b>Intensity</b></span></td>
+                    <td><span>{{$puppy->intensity->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->pied))
+                <tr>
+                    <td><span><b>Pied</b></span></td>
+                    <td><span>{{$puppy->pied->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->brindle))
+                <tr>
+                    <td><span><b>Brindle</b></span></td>
+                    <td><span>{{$puppy->brindle->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->merle))
+                <tr>
+                    <td><span><b>Merle</b></span></td>
+                    <td><span>{{$puppy->merle->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->agouti))
+                <tr>
+                    <td><span><b>Agouti</b></span></td>
+                    <td><span>{{$puppy->agouti->getValue()}}</span></td>
+                </tr>
+            @endif
+
+            @if(!empty($puppy->eMcir))
+                <tr>
+                    <td><span><b>EMcir</b></span></td>
+                    <td><span>{{$puppy->eMcir->getValue()}}</span></td>
+                </tr>
+            @endif
+
+
+        </table>
     </div>
+
 </div>
+
 
 
 <script type="text/javascript">

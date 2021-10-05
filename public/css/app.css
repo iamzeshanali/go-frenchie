@@ -284,19 +284,19 @@ a#navbarDropdown img {
     height: auto;
 }
 
-.gf-login-wrapper .card, .gf-select-user-wrapper .card, .gf-customer-reg-wrapper .card, .gf-breeder-reg-wrapper .card, .gf-email-password-wrapper .card, #LoginModal .modal-content, #deleteListingModal .modal-content{
+.gf-login-wrapper .card, .gf-select-user-wrapper .card, .gf-customer-reg-wrapper .card, .gf-breeder-reg-wrapper .card, .gf-email-password-wrapper .card, #LoginModal .modal-content, #deleteListingModal .modal-content, .gf-reset-password-wrapper .card{
     border: none;
     background-color: #fbebd7;
     border-radius: 12px;
     box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(245 206 154 / 30%) 0px 3px 7px -3px;
 }
 
-.gf-login-wrapper .card-header, .gf-select-user-wrapper .card-header, .gf-customer-reg-wrapper .card-header, .gf-breeder-reg-wrapper .card-header, .gf-email-password-wrapper .card-header, .fbd-single-listing-contactForm .card-header{
+.gf-login-wrapper .card-header, .gf-select-user-wrapper .card-header, .gf-customer-reg-wrapper .card-header, .gf-breeder-reg-wrapper .card-header, .gf-email-password-wrapper .card-header, .fbd-single-listing-contactForm .card-header, .gf-reset-password-wrapper .card-header{
     background-color: transparent;
     border: none;
 }
 
-.gf-login-wrapper .card-header h3, .gf-select-user-wrapper .card-header h3, .gf-customer-reg-wrapper .card-header h3, .gf-breeder-reg-wrapper .card-header h3{
+.gf-login-wrapper .card-header h3, .gf-select-user-wrapper .card-header h3, .gf-customer-reg-wrapper .card-header h3, .gf-breeder-reg-wrapper .card-header h3, .gf-reset-password-wrapper .card-header h3{
     color: var(--red);
 }
 
@@ -587,7 +587,7 @@ input.form-control:focus{
     background-color: white;
 }
 
-.image_one, .image_two, .image_three, .image_four, .image_five, .breeder_logo {
+.image_one, .image_two, .image_three, .image_four, .image_five, .breeder_logo, .register-breeder-logo{
     visibility: hidden;
     position: absolute;
 }
@@ -925,6 +925,7 @@ table.table .avatar {
 }
 .gf-form-field.gf-form-field-inline-right{
     border-radius: 0px 30px 30px 0px;
+    border-left-width: 0px;
 }
 
 .gf-form-field-inline-icon{
@@ -941,7 +942,7 @@ table.table .avatar {
 }
 
 
-.gf-add-listing-image button.gf-btn-dark, .gf-breeder-reg-wrapper .browse-b-logo.gf-btn-dark {
+.gf-add-listing-image button.gf-btn-dark {
     border-bottom-left-radius: 0px;
     padding-block: 7px;
     margin-left: -1px;
@@ -955,6 +956,9 @@ table.table .avatar {
     border: none;
 }
 
+.gf-form-field-inline-btn.gf-btn-dark:hover, .gf-form-field-inline-btn.gf-btn-light:hover{
+    border-width: 0px;
+}
 
 /************ Breader Dashboard End ***************/
 
@@ -1697,7 +1701,11 @@ html:root{
 .gf-dark{color: var(--dark);}
 .gf-gray{color: var(--gray);}
 .gf-champagne{color: var(--champagne);}
-
+.gf-bg-blue{background-color: var(--blue);}
+.gf-bg-red{background-color: var(--red);}
+.gf-bg-dark{background-color: var(--dark);}
+.gf-bg-gray{background-color: var(--gray);}
+.gf-bg-chambagne{background-color: var(--champagne);}
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--dark);
@@ -1724,6 +1732,7 @@ body a:hover{
     box-shadow: 0 0 0 3em #BE202E inset;
     -webkit-appearance: button;
     cursor: pointer;
+    white-space: nowrap;
 }
 .gf-btn-dark:hover{
     color: #BE202E;
@@ -1747,6 +1756,7 @@ body a:hover{
     background-color: #ffffff;
     -webkit-appearance: button;
     cursor: pointer;
+    white-space: nowrap;
 }
 .gf-btn-light:hover{
     color: #ffffff;
@@ -1823,6 +1833,10 @@ img{
 
 textarea:focus-visible, select:focus-visible, input:focus-visible, button{
     outline: none !important;
+}
+
+body a{
+    color: var(--dark);
 }
 
 body a:hover {
@@ -2251,6 +2265,68 @@ body a:hover {
 }
 
 
+/* Breadcrumbs Styling */
+@media (max-width: 767px) {
+	.btn-breadcrumb { margin-left: 10px; margin-right: 10px; width: calc(100% - 20px) !important; }
+}
+
+.btn-breadcrumb .btn-info{
+    background-color: #3390CE;
+}
+
+.btn-breadcrumb{
+	border-radius: 4px;
+}
+.btn-breadcrumb .btn{
+	border-color: transparent; border: 0px solid transparent;
+	border-right: 1px solid transparent !important; 
+}
+.btn-breadcrumb .btn:last-child {font-weight: bold; text-decoration: underline;}
+.btn-breadcrumb .btn:last-child:after{margin-left: 0px;}
+.btn-breadcrumb .btn:last-child:before{margin-left: -1px;}
+
+.btn-breadcrumb .btn:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -14px;
+  margin-left: 0px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -14px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {padding:6px 12px 6px 24px;}
+.btn-breadcrumb .btn:first-child {padding:6px 6px 6px 10px;}
+.btn-breadcrumb .btn:last-child {padding:6px 18px 6px 24px;}
+
+/** Info button **/
+.btn-breadcrumb .btn.btn-info:after {border-left: 10px solid #5ca6d8;}
+.btn-breadcrumb .btn.btn-info:hover:after {border-left: 10px solid #5ca6d8;}
+.btn-breadcrumb .btn.btn-info:hover:before, .btn-breadcrumb .btn.btn-info:before {border-left: 10px solid #5ca6d8;}
+
+/* ////////////////////////////////////////////////// */
 
 .lg-gf-container{
     width: 80%;

@@ -889,77 +889,12 @@
     </div>
 
 
-    {{--Testimonials Slider--}}
-    <div class="wrapper gf-testimonials d-flex justify-content-center">
-        <div class="container row align-items-center justify-content-center">
-            {{--        <div class="col-md-6 text-center">--}}
-            {{--            <img src="/images/homepage/gf-home-banner-dog.png" alt="">--}}
-            {{--        </div>--}}
-            <div class="col-md-9">
-                <h2 class="text-center mb-4">Our Amazing <span style="color:#BE202E"><br>Testimonials</span></h2>
-
-                <div class="gf-home-testimonial-slider">
-                    <div>
-                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                        <span>Caroline Bryan</span><br>
-                        <span>Very Affordably Priced</span>
-                    </div>
-                    <div>
-                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                        <span>Caroline Bryan</span><br>
-                        <span>Very Affordably Priced</span>
-                    </div>
-                    <div>
-                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                        <span>Caroline Bryan</span><br>
-                        <span>Very Affordably Priced</span>
-                    </div>
-                    <div>
-                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                        <span>Caroline Bryan</span><br>
-                        <span>Very Affordably Priced</span>
-                    </div>
-                    <div>
-                        <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-                        <span>Caroline Bryan</span><br>
-                        <span>Very Affordably Priced</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+{{--Testimonials Slider--}}
+@include('components.sections.gf-testimonials')
 
 
-    {{--Contact Section--}}
-    <div id="contact-form" class="wrapper gf-contactform d-flex justify-content-center p-0">
-        <div class="container row align-items-center">
-            <div class="col-md-6">
-                <img src="/images/homepage/gf-home-contact-image.png" width="450" loading="lazy" alt="">
-            </div>
-            <div class="col-md-6">
-                <div class="gf-contactform-area">
-                    <h4>Contact Us With Any Questions </h4>
-                    <form action="">
-                        <input type="text" placeholder="Name">
-                        <input type="email" placeholder="Email">
-                        <textarea name="Message" cols="30" rows="5" placeholder="Message"></textarea>
-                        <label for="captchaWrap">To continue, please type the characters below:</label>
-                        <div id="captchaWrap" class="captchaWrap d-flex align-items-center text-align-center">
-                            <canvas id="captcha"></canvas>
-                            <button type="button" id="refreshButton" class="captcha-refresh-btn"><i class="fas fa-redo"></i></button>
-                            <span id="output" class="ml-2"></span>
-                        </div>
-                        <div class="mb-2">
-                            <input id="textBox" class="captcha-textBox mr-2" type="text" name="text" placeholder="Captcha Text">
-                            <button type="button" id="submitButton" class="gf-btn-light">Check</button>
-                        </div>
-                        <button type="submit" class="gf-btn-dark">SUBMIT</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--Contact Section--}}
+@include('components.sections.gf-contact-form')
 
     <script type="text/javascript">
 
