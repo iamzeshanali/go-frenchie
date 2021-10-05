@@ -160,8 +160,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/resources/delete-all-canine-nutrition',[App\Http\Controllers\CanineNutritionController::class, 'deleteAllListings'])->name('deleteAllCanineNutrition');
 
         Route::get('saved-items',[App\Http\Controllers\SavedItemsController::class, 'savedItems'])->name('savedItems');
-
-
     });
 
     // PROFILE
