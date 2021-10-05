@@ -26,11 +26,11 @@
                                 @endif
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 {{--FIRST NAME--}}
                                 <div class="col-md-6">
-                                    <input id="firstName" type="text" class="gf-form-field @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('First Name') }}">
+                                    <input id="firstName" type="text" class="gf-form-field @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('First Name *') }}">
 
                                     @error('firstName')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
 
                                 {{--LAST NAME--}}
                                 <div class="col-md-6">
-                                    <input id="lastName" type="text" class="gf-form-field @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="name" autofocus placeholder="{{ __('Last Name') }}">
+                                    <input id="lastName" type="text" class="gf-form-field @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="name" autofocus placeholder="{{ __('Last Name *') }}">
 
                                     @error('lastName')
                                     <span class="invalid-feedback" role="alert">
@@ -65,22 +65,20 @@
                                 </div>
                             </div>--}}
                             {{--EMAIL--}}
-                            <div class="form-group row mb-0">
-
+                            <div class="form-group row mb-0 p-0">
                                 <div class="col">
-                                    <input id="email" type="email" onblur="checkForEmail(value)" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email') }}">
-
-                                    <span id="email-error" class="invalid-feedback d-none" role="alert">
-                                    <strong>{{ __('Email Already Exists') }}</strong>
-                                    </span>
-
+                                    <input id="email" type="email" onchange="checkForEmail(value)" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email *') }}">
                                 </div>
                             </div>
+
+                            <span id="email-error" class="invalid-feedback d-none col" style="margin-top: -14px;" role="alert">
+                                <strong>{{ __('Email Already Exists') }}</strong>
+                            </span>
                             {{--PASSWORD--}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col input-group flex-nowrap">
-                                    <input id="register-password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Password') }}">
+                                    <input id="register-password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Password *') }}">
                                     <span class="input-group-btn">
                                         <button onclick="showPassword('register-password')" class="btn btn-default reveal mt-1" type="button"><i class="fas fa-eye"></i></button>
                                     </span>
@@ -93,27 +91,31 @@
                                 </div>
                             </div>
                             {{--CONFIRM-PASSWORD--}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col input-group flex-nowrap">
-                                    <input id="password-confirm" type="password" class="gf-form-field" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password') }}">
+                                    <input id="password-confirm" type="password" class="gf-form-field" onchange="checkForPassword(value)" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password *') }}">
                                     <span class="input-group-btn">
                                         <button onclick="showPassword('password-confirm')" class="btn btn-default reveal mt-1" type="button"><i class="fas fa-eye"></i></button>
                                     </span>
+
                                 </div>
                             </div>
+                            <span id="password-error" class="invalid-feedback d-none col" style="margin-top: -14px;" role="alert">
+                                <strong>{{ __('The password confirmation does not match.') }}</strong>
+                            </span>
                             {{--PHONE-NUMBER--}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col">
-                                    <input id="phone-number" type="tel" class="gf-form-field" name="phone-number" required autocomplete="phone-number" placeholder="{{ __('Phone') }}">
+                                    <input id="phone-number" type="tel" class="gf-form-field" name="phone-number" required autocomplete="phone-number" placeholder="{{ __('Phone *') }}">
                                 </div>
                             </div>
                             {{--  ADDRESS  --}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col">
-                                    <input id="address" type="text" class="gf-form-field @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus placeholder="{{ __('Street Address') }}">
+                                    <input id="address" type="text" class="gf-form-field @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus placeholder="{{ __('Street Address *') }}">
 
                                     @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -123,11 +125,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 {{--  ZIP  --}}
                                 <div class="col-md-6">
-                                    <input id="zip" type="text" class="gf-form-field @error('zip') is-invalid @enderror" name="zip" value="{{ old('zip') }}" required autocomplete="zip" autofocus placeholder="{{ __('Zip') }}">
+                                    <input id="zip" type="text" class="gf-form-field @error('zip') is-invalid @enderror" name="zip" value="{{ old('zip') }}" required autocomplete="zip" autofocus placeholder="{{ __('Zip *') }}">
 
                                     @error('zip')
                                     <span class="invalid-feedback" role="alert">
@@ -138,7 +140,7 @@
 
                                 {{--  STATE  --}}
                                 <div class="col-md-6">
-                                    <input id="state" type="text" class="gf-form-field @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state" autofocus placeholder="{{ __('State') }}">
+                                    <input id="state" type="text" class="gf-form-field @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state" autofocus placeholder="{{ __('State *') }}">
 
                                     @error('state')
                                     <span class="invalid-feedback" role="alert">
@@ -149,10 +151,10 @@
                             </div>
 
                             {{--  CITY  --}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
 
                                 <div class="col">
-                                    <input id="city" type="text" class="gf-form-field @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus placeholder="{{ __('City') }}">
+                                    <input id="city" type="text" class="gf-form-field @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus placeholder="{{ __('City *') }}">
 
                                     @error('city')
                                     <span class="invalid-feedback" role="alert">
@@ -162,30 +164,40 @@
                                 </div>
                             </div>
                             {{--KENNEL-NAME--}}
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-0 p-0">
                                 <div class="col">
-                                    <input id="kennel-name" type="text" class="gf-form-field" name="kennel-name" required autocomplete="kennel-name" placeholder="{{ __('Kennel Name') }}">
+                                    <input id="kennel-name" type="text" class="gf-form-field" name="kennel-name" required autocomplete="kennel-name" placeholder="{{ __('Kennel Name *') }}">
                                 </div>
                             </div>
                             {{--FACEBOOK-URL--}}
-                            <div class="form-group row mb-0">
-                                <label for="b-facebook" class="col-md-1 col-form-label text-center"><i class="fab fa-facebook-f"></i></label>
+                            <div class="form-group row mb-0 p-0">
                                 <div class="col">
-                                    <input id="b-facebook" type="url" class="gf-form-field" name="b-facebook" autocomplete="b-facebook">
+                                    <div class="input-group mb-0 flex-nowrap">
+                                        <label for="b-facebook" class="col-2 gf-form-field-inline-icon text-center gf-bg-red border-0"><i class="fab fa-facebook-f text-white"></i></label>
+                                        <input id="b-facebook" type="url" class="col gf-form-field gf-form-field-inline-right" name="b-facebook" autocomplete="b-facebook" placeholder="http://facebook.com/username">
+                                    </div>
                                 </div>
                             </div>
                             {{--INSTAGRAM-URL--}}
-                            <div class="form-group row mb-0">
-                                <label for="b-instagram" class="col-md-1 col-form-label text-center"><i class="fab fa-instagram"></i></label>
+                            <div class="form-group row mb-0 p-0">
+
                                 <div class="col">
-                                    <input id="b-instagram" type="url" class="gf-form-field" name="b-instagram" autocomplete="b-instagram">
+                                    <div class="input-group mb-0 flex-nowrap">
+                                        <label for="b-instagram" class="col-2 text-center gf-form-field-inline-icon gf-bg-red border-0"><i class="fab fa-instagram text-white"></i></label>
+                                        <input id="b-instagram" type="url" class="gf-form-field gf-form-field-inline-right" name="b-instagram" autocomplete="b-instagram" placeholder="https://www.instagram.com/username">
+                                    </div>
                                 </div>
+
+
                             </div>
                             {{--WEBSITE-URL--}}
-                            <div class="form-group row mb-0">
-                                <label for="b-website" class="col-md-1 col-form-label text-center"><i class="fas fa-globe"></i></label>
+                            <div class="form-group row mb-0 p-0">
+
                                 <div class="col">
-                                    <input id="b-website" type="url" class="gf-form-field" name="b-website" autocomplete="b-instagram">
+                                    <div class="input-group mb-0 flex-nowrap">
+                                        <label for="b-website" class="col-2 text-center gf-form-field-inline-icon gf-bg-red border-0"><i class="fas fa-globe text-white"></i></label>
+                                        <input id="b-website" type="url" class="gf-form-field gf-form-field-inline-right" name="b-website" autocomplete="b-instagram" placeholder="https://www.web.com/">
+                                    </div>
                                 </div>
                             </div>
                             {{--KENNEL LOGO--}}
@@ -198,20 +210,23 @@
 
 {{--                                </div>--}}
 {{--                            </div>--}}
-                            <div class="row gf-breeder-reg-kennel-logo">
-                                <input type="file" class="breeder-logo" name="b-logo"  accept="image/*">
+                            <div class="row gf-breeder-reg-kennel-logo p-0">
+                                <input type="file" class="register-breeder-logo" name="b-logo"  accept="image/*">
                                 <div class="col input-group flex-nowrap">
-                                    <input id="breeder-logo" type="text" class="gf-form-field" disabled placeholder="Kennel Logo" >
+                                    <input id="register-breeder-logo" type="text" class="gf-form-field" required disabled placeholder="Kennel Logo" >
                                     <div class="">
-                                        <button type="button" class="browse-b-logo gf-btn-dark">Browse</button>
+                                        <button type="button" class="browse-b-register-logo gf-btn-dark gf-form-field-inline-btn">Browse</button>
                                     </div>
                                 </div>
                             </div>
                             {{--SUBMIT--}}
-                            <div class="form-group row col mb-0">
+                            <div class="form-group row col mb-0 p-0">
+                                <div class="col">
                                     <button type="submit" id="btn-submit" class="col gf-btn-dark">
                                         {{ __('Register') }}
                                     </button>
+                                </div>
+
                             </div>
                         </form>
                     </div>
@@ -222,8 +237,7 @@
 </div>
 @endsection
 <script type="text/javascript">
-    function checkForEmail(value){
-        console.log(value);
+    checkForEmail = (value) => {
         $.ajax({
             type:'POST',
             url: '{{route('checkForExistingUser')}}',
@@ -233,18 +247,32 @@
             headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
             success: function(data){
                 if(data.success == '200'){
-                    console.log(data.success);
+                    // console.log(data.success);
                     $("#email-error").addClass('d-block');
                     $("#btn-submit").attr("disabled", true);
                 }else if (data.success == '404'){
-                    console.log(data.success);
+                    // console.log(data.success);
                     $("#email-error").removeClass('d-block');
                     $("#email-error").addClass('d-none');
                     $("#btn-submit").attr("disabled", false);
                 }
-
             },
-
         });
+    }
+    checkForPassword = (value) => {
+        // console.log(value);
+        let password = document.querySelector('#register-password');
+        let submit = document.querySelector('#btn-submit');
+
+        if (password.value === value){
+            $(submit).attr('disabled', false);
+            $("#password-error").removeClass('d-block');
+            $("#password-error").addClass('d-none');
+        }
+        else{
+            $(submit).attr('disabled', true);
+            $('#password-error').removeClass('d-none');
+            $('#password-error').addClass('d-block');
+        }
     }
 </script>

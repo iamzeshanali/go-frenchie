@@ -87,8 +87,6 @@
                                     <button type="submit" class="gf-btn-dark">
                                         {{ __('LOGIN') }}
                                     </button>
-
-
                                 </div>
                             </div>
                         </form>

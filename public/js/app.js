@@ -91,24 +91,58 @@ $(document).ready(function() {
     });
 
     // Breeder Registration Form Kennel Logo Browse
-    $(document).on("click", ".browse-b-logo", function() {
-        var file = $(this).parents().find(".breeder_logo");
+    $(document).on("click", ".browse-b-register-logo", function() {
+        var file = $(this).parents().find(".register-breeder-logo");
         file.trigger("click");
     });
-    $('.breeder_logo').change(function(e) {
+    $('.register-breeder-logo').change(function(e) {
         var fileName = e.target.files[0].name;
-        $("#breeder-logo").val(fileName);
+        $("#register-breeder-logo").val(fileName);
     });
+
+
+
+
+
+
+    //Breeder Profile Image in Update Form
+    $(document).on("click", ".browse-breeder-profile-image", function() {
+        var file = $(this).parents().find(".breeder_profile_image");
+        file.trigger("click");
+    });
+    $('.breeder_profile_image').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $("#breeder_profile_image").val(fileName);
 
     var breederProfileReader = new FileReader();
     breederProfileReader.onload = function(e) {
         // get loaded data and render thumbnail.
+        document.getElementById("gf-preview-profile-image").src = e.target.result;
+    };
+    // read the image file as a data URL.
+    breederProfileReader.readAsDataURL(this.files[0]);
+    });
+
+
+
+    //Breeder Kennel Logo in update form
+    $(document).on("click", ".browse-kennel-logo", function() {
+        var file = $(this).parents().find(".kennel-logo-image");
+        file.trigger("click");
+    });
+    $('.kennel-logo-image').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $("#kennel-logo-image").val(fileName);
+
+    var kennelLogoReader = new FileReader();
+    kennelLogoReader.onload = function(e) {
+        // get loaded data and render thumbnail.
         document.getElementById("preview-profile-image").src = e.target.result;
         console.log("e.target.result");
-};
+    };
     // read the image file as a data URL.
-    // breederProfileReader.readAsDataURL(this.files[0]);
-
+    kennelLogoReader.readAsDataURL(this.files[0]);
+    });
 
 
     // Activate tooltip
@@ -280,7 +314,7 @@ if (captchaText){
     // displayed after validating the input text with CAPTCHA
     userText.addEventListener('keyup', function(e) {
         $("#btn-submit-contact-us").attr('disabled', true);
-        console.log(c);
+        // console.log(c);
         if(userText.value === c){
             output.classList.add("correctCaptcha");
             output.innerHTML = "Correct!";
