@@ -72,6 +72,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('customer', \App\Http\Controllers\CustomerController::class);
 
 Route::middleware(['auth'])->group(function () {
+    Route::patch('/update-user-settings', [App\Http\Controllers\Auth\RegisterController::class, 'updateRegisteredUser'])->name('updateRegisteredUser');
+
     // DASHBOARD
     Route::get('breader-dashboard', function () {return view('pages/dashboard/breader_dashboard'); })->name('dashboard');
 
@@ -87,7 +89,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::patch('/stud/update', [App\Http\Controllers\ListingsController::class, 'updateListings'])->name('updateListing');
         // Route::delete('/stud/delete/{id}', [App\Http\Controllers\ListingsController::class, 'deleteListings'])->name('deleteListing');
         // Route::get('/stud/trash/{id}', [App\Http\Controllers\ListingsController::class, 'trashListings'])->name('trashListing');
-        Route::get('/trashed-studs/trash', [App\Http\Controllers\ListingsController::class, 'showTrashedStuds'])->name('showTrashedStuds');
+        Route::get('/trashed-studs/trash/{page}', [App\Http\Controllers\ListingsController::class, 'showTrashedStuds'])->name('showTrashedStuds');
         // Route::get('/stud/recycle/{id}', [App\Http\Controllers\ListingsController::class, 'recycleTrashedListings'])->name('recyclePuppies');
         // Route::delete('/stud/delete/{id}', [App\Http\Controllers\ListingsController::class, 'deleteListings'])->name('deletePuppies');
         // Route::get('/studs/deleteAll', [App\Http\Controllers\ListingsController::class, 'deleteAllListings'])->name('deleteAllPuppies');
@@ -113,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit-litter/{slug}', [App\Http\Controllers\LittersController::class, 'editLitter'])->name('editLitter');
         Route::patch('/update-litter', [App\Http\Controllers\LittersController::class, 'updateLitter'])->name('updateLitter');
         Route::get('/litter/trash/{id}', [App\Http\Controllers\LittersController::class, 'trashLitter'])->name('trashLitter');
-        Route::get('/trashed-litters/trash', [App\Http\Controllers\LittersController::class, 'showTrashedLitters'])->name('showTrashedLitters');
+        Route::get('/trashed-litters/trash/{page}', [App\Http\Controllers\LittersController::class, 'showTrashedLitters'])->name('showTrashedLitters');
         Route::get('/litter/recycle/{id}', [App\Http\Controllers\LittersController::class, 'recycleLitters'])->name('recycleLitters');
         Route::delete('/litter/delete/{id}', [App\Http\Controllers\LittersController::class, 'deleteLitter'])->name('deleteLitter');
         Route::get('/litters/deleteAll', [App\Http\Controllers\LittersController::class, 'deleteAllLitters'])->name('deleteAllLitters');
@@ -126,7 +128,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/resources/edit-breeder-supplies/{slug}', [App\Http\Controllers\BreederSuppliesController::class, 'editBreederSupplies'])->name('editBreederSupplies');
         Route::patch('/resources/breeder-supplies/update', [App\Http\Controllers\BreederSuppliesController::class, 'updateBreederSupplies'])->name('updateBreederSupplies');
         Route::get('/resources/trash-breeder-supplies/{id}', [App\Http\Controllers\BreederSuppliesController::class, 'trashBreederSupplies'])->name('trashBreederSupplies');
-        Route::get('/resources/trashed-breeder-supplies',[App\Http\Controllers\BreederSuppliesController::class, 'showTrashedSupplies'])->name('showTrashedSupplies');
+        Route::get('/resources/trashed-breeder-supplies/{page}',[App\Http\Controllers\BreederSuppliesController::class, 'showTrashedSupplies'])->name('showTrashedSupplies');
         Route::get('/resources/recycle-breeder-supplies/{id}', [App\Http\Controllers\BreederSuppliesController::class, 'recycleBreederSupplies'])->name('recycleBreederSupplies');
         Route::delete('/resources/delete-breeder-supplies/{id}', [App\Http\Controllers\BreederSuppliesController::class, 'deleteBreederSupplies'])->name('deleteBreederSupplies');
         Route::get('/resources/delete-all-breeder-supplies',[App\Http\Controllers\BreederSuppliesController::class, 'deleteAllBreederSupplies'])->name('deleteAllBreederSupplies');
@@ -139,7 +141,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/resources/edit-canine-genetics/{slug}', [App\Http\Controllers\CanineGeneticsController::class, 'editListings'])->name('editCanineGenetics');
         Route::patch('/resources/canine-genetics/update', [App\Http\Controllers\CanineGeneticsController::class, 'updateListings'])->name('updateCanineGenetics');
         Route::get('/resources/trash-canine-genetics/{id}', [App\Http\Controllers\CanineGeneticsController::class, 'trashListings'])->name('trashCanineGenetics');
-        Route::get('/resources/trashed-canine-genetics',[App\Http\Controllers\CanineGeneticsController::class, 'showTrashedListings'])->name('showTrashedCanineGenetics');
+        Route::get('/resources/trashed-canine-genetics/{page}',[App\Http\Controllers\CanineGeneticsController::class, 'showTrashedListings'])->name('showTrashedCanineGenetics');
         Route::get('/resources/recycle-canine-genetics/{id}', [App\Http\Controllers\CanineGeneticsController::class, 'recycleListings'])->name('recycleCanineGenetics');
         Route::delete('/resources/delete-canine-genetics/{id}', [App\Http\Controllers\CanineGeneticsController::class, 'deleteListings'])->name('deleteCanineGenetics');
         Route::get('/resources/delete-all-canine-genetics',[App\Http\Controllers\CanineGeneticsController::class, 'deleteAllListings'])->name('deleteAllCanineGenetics');
@@ -152,28 +154,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/resources/edit-canine-nutrition/{slug}', [App\Http\Controllers\CanineNutritionController::class, 'editListings'])->name('editCanineNutrition');
         Route::patch('/resources/canine-nutrition/update', [App\Http\Controllers\CanineNutritionController::class, 'updateListings'])->name('updateCanineNutrition');
         Route::get('/resources/trash-canine-nutrition/{id}', [App\Http\Controllers\CanineNutritionController::class, 'trashListings'])->name('trashCanineNutrition');
-        Route::get('/resources/trashed-canine-nutrition',[App\Http\Controllers\CanineNutritionController::class, 'showTrashedListings'])->name('showTrashedCanineNutrition');
+        Route::get('/resources/trashed-canine-nutrition/{page}',[App\Http\Controllers\CanineNutritionController::class, 'showTrashedListings'])->name('showTrashedCanineNutrition');
         Route::get('/resources/recycle-canine-nutrition/{id}', [App\Http\Controllers\CanineNutritionController::class, 'recycleListings'])->name('recycleCanineNutrition');
         Route::delete('/resources/delete-canine-nutrition/{id}', [App\Http\Controllers\CanineNutritionController::class, 'deleteListings'])->name('deleteCanineNutrition');
         Route::get('/resources/delete-all-canine-nutrition',[App\Http\Controllers\CanineNutritionController::class, 'deleteAllListings'])->name('deleteAllCanineNutrition');
 
-        Route::get('saved-studs/{page}',[App\Http\Controllers\SavedItemsController::class, 'savedStuds'])->name('savedStuds');
-        Route::get('trashed-saved-studs',[App\Http\Controllers\SavedItemsController::class, 'trashedSavedStuds'])->name('trashedSavedStuds');
-        Route::get('trash-saved-listing/{slug}',[App\Http\Controllers\SavedItemsController::class, 'softDeleteListing'])->name('softDeleteListing');
-        Route::get('recycle-saved-listing/{slug}',[App\Http\Controllers\SavedItemsController::class, 'recycleTrashedSavedListing'])->name('recycleTrashedSavedListing');
-        Route::delete('delete-saved-listing/{slug}',[App\Http\Controllers\SavedItemsController::class, 'permanentlyDeleteListing'])->name('permanentlyDeleteListing');
-        Route::get('saved-puppy/{page}',[App\Http\Controllers\SavedItemsController::class, 'savedPuppy'])->name('savedPuppy');
-        Route::get('trashed-saved-puppies',[App\Http\Controllers\SavedItemsController::class, 'trashedSavedPuppy'])->name('trashedSavedPuppy');
+        Route::get('saved-items',[App\Http\Controllers\SavedItemsController::class, 'savedItems'])->name('savedItems');
 
-        Route::get('saved-litters/{page}',[App\Http\Controllers\SavedItemsController::class, 'savedLitters'])->name('savedLitters');
-        Route::get('trashed-saved-litters',[App\Http\Controllers\SavedItemsController::class, 'trashedSavedLitters'])->name('trashedSavedLitters');
-        Route::get('trash-saved-litters/{slug}',[App\Http\Controllers\SavedItemsController::class, 'softDeleteLitters'])->name('softDeleteLitters');
-        Route::get('recycle-saved-litters/{slug}',[App\Http\Controllers\SavedItemsController::class, 'recycleTrashedSavedLitters'])->name('recycleTrashedSavedLitters');
-        Route::delete('delete-saved-litters/{slug}',[App\Http\Controllers\SavedItemsController::class, 'permanentlyDeleteLitters'])->name('permanentlyDeleteLitters');
-
-        Route::get('saved-search/{page}',[App\Http\Controllers\SavedItemsController::class, 'searchHistory'])->name('searchHistory');
-        Route::get('delete-search/{id}',[App\Http\Controllers\SavedItemsController::class, 'deleteSearchHistory'])->name('deleteSearchHistory');
-        Route::get('delete-all-saved-search',[App\Http\Controllers\SavedItemsController::class, 'clearAllSearchHistory'])->name('clearAllSearchHistory');
 
     });
 
@@ -183,6 +170,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('breedersetting', function () {
         return view('pages/dashboard/breeder-account-setting');
     })->name('breedersetting');
+
+
+
     Route::get('customersetting', function () {
         return view('pages/dashboard/customer_account_setting');
     })->name('customersetting');

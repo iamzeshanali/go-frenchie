@@ -121,9 +121,11 @@
                                                 </div>
 
                                             <hr>
+                                            @if(Auth::user()->role->getValue() == 'breeder')
                                             <p><a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></p>
+                                            @endif
                                             <p><a href="{{ route('breedersetting') }}"><i class="fas fa-cog"></i>Account Settings</a></p>
-                                            <p><a href=""><i class="fas fa-heart"></i> Liked Items</a></p>
+                                            <p><a href="{{ route('savedItems') }}"><i class="fas fa-heart"></i> Liked Items</a></p>
                                             <p>
                                                 <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">

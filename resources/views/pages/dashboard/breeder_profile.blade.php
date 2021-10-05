@@ -90,7 +90,7 @@
                             </div>
                             <div class="product-card-info">
                                 <h5>{{$resource->title}}</h5>
-                                <p>{{$resource->decription}}</p>
+                                <p>{{$resource->decription->asString()}}</p>
                                 <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
                                 <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
                             </div>
@@ -116,7 +116,7 @@
                             </div>
                             <div class="product-card-info">
                                 <h5>{{$resource->title}}</h5>
-                                <p>{{$resource->decription}}</p>
+                                <p>{{$resource->decription->asString()}}</p>
                                 <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
                                 <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
                             </div>

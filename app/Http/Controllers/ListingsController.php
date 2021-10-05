@@ -68,6 +68,13 @@ class ListingsController extends Controller
         );
         return $allFeatured;
     }
+    public function allListingsofCurrentUser(){
+        $totalListings = $this->listingsRepository->matching(
+            $this->listingsRepository->criteria()
+                ->where(Listings::BREEDER,'=',Auth::user())
+        );
+        return $totalListings;
+    }
 
 
     /**
@@ -1623,16 +1630,25 @@ class ListingsController extends Controller
      *
      * @return Listings
      */
-    public function showTrashedStuds()
+    public function showTrashedStuds(Request $request)
     {
+        $page = $request->page;
+        $totalTrashedPuppies = $this->listingsRepository->matching(
+            $this->listingsRepository->criteria()
+                ->where(Listings::TRASHED,'=',true)
+                ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
+        );
         $Puppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TRASHED,'=',true)
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
                 ->orderByAsc(Listings::ID)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
         return view('pages/dashboard/listings/studs/recycle-studs', [
             'Puppies' => $Puppies,
+            'total' => count($totalTrashedPuppies),
+            'page'=> $page
         ]);
     }
     /**

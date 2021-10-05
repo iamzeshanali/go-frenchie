@@ -11,6 +11,7 @@ use Dms\Common\Structure\FileSystem\Image;
 use Dms\Common\Structure\Money\Currency;
 use Dms\Common\Structure\Money\Money;
 use Dms\Common\Structure\Type\StringValueObject;
+use Dms\Common\Structure\Web\Html;
 use Dms\Common\Structure\Web\Url;
 use Dms\Core\Model\Object\Entity;
 use Dms\Core\Model\Object\Enum;
@@ -29,6 +30,23 @@ class CanineGeneticsController extends Controller
     public function getCanineGenetics()
     {
         return $this->canine_geneticsRepository->getAll();
+    }
+    public function getallCurrentBreederCanineGenetics()
+    {
+        $canineGenetics = $this->canine_geneticsRepository->matching(
+            $this->canine_geneticsRepository->criteria()
+                ->where(Canine_Genetics::BREEDER, '=', Auth::user())
+        );
+        return count($canineGenetics);
+    }
+    public function getCurrentBreederCanineGenetics()
+    {
+        $canineGenetics = $this->canine_geneticsRepository->matching(
+            $this->canine_geneticsRepository->criteria()
+                ->where(Canine_Genetics::BREEDER, '=', Auth::user())
+                ->where(Canine_Genetics::TRASHED, '=', false)
+        );
+        return $canineGenetics;
     }
 
     public function showAllListings(Request $request)
@@ -73,21 +91,18 @@ class CanineGeneticsController extends Controller
 
         $Listings->breeder = Auth::user();
         $Listings->title = $request->get('title');
-        $Listings->decription = $request->get('description');
+        $Listings->decription =  new Html($request->get('description'));
         $Listings->slug = str_replace(' ','-', strtolower($Listings->title));
 
         $file1 =$request->file('logo');
-        if ($file1 == null){
-            $fullPath1 = $request->get('logo_name');
-//            dd($fullPath1);
-            $fullPath1 = substr_replace($fullPath1, 'public/app/BreederResourcesLogo', 44, 6);
-//            dd($myPath);
+
+        if ($request->file('logo')){
+            $file1 =$request->file('logo');
+            $fullPath1 = $file1->move(public_path('app/CanineGenetics'), $file1->getClientOriginalName())->getRealPath();
+            $Listings->logo = new Image($fullPath1);
         }else{
-            $fullPath1 = $file1->move(public_path('app/BreederResourcesLogo'), $file1->getClientOriginalName())->getRealPath();
+            $Listings->logo = null;
         }
-        $Listings->logo = new Image($fullPath1);
-//        dd($Listings->logo);
-        $Listings->decription = $request->get('description');
         $Listings->websiteUrl = new Url($request->get('web_url'));
         $Listings->couponCode = $request->get('coupon');
         $Listings->price = new Money(($request->get('price')*100), new Currency('USD'));
@@ -141,18 +156,22 @@ class CanineGeneticsController extends Controller
 
             $singleListings->breeder = Auth::user();
             $singleListings->title = $request->get('title');
-            $singleListings->decription = $request->get('description');
+            $singleListings->decription =  new Html($request->get('description'));
             $singleListings->slug = str_replace(' ','-', strtolower($singleListings->title));
 
             $file1 =$request->file('logo');
             if ($file1 == null){
-                $fullPath1 = $request->get('logo_name');
-                $fullPath1 = substr_replace($fullPath1, 'public/app/BreederResourcesLogo', 44, 6);
+                if ($request->get('photo1_name')){
+                    $fullPath1 = $request->get('photo1_name');
+                    $fullPath1 = substr_replace($fullPath1, 'public/app/CanineGenetics', 44, 6);
+                    $singleListings->logo = new Image($fullPath1);
+                }else{
+                    $singleListings->logo = null;
+                }
             }else{
-                $fullPath1 = $file1->move(public_path('app/BreederResourcesLogo'), $file1->getClientOriginalName())->getRealPath();
+                $fullPath1 = $file1->move(public_path('app/CanineGenetics'), $file1->getClientOriginalName())->getRealPath();
+                $singleListings->logo = new Image($fullPath1);
             }
-            $singleListings->logo = new Image($fullPath1);
-            $singleListings->decription = $request->get('description');
             $singleListings->websiteUrl = new Url($request->get('web_url'));
             $singleListings->couponCode = $request->get('coupon');
             $singleListings->price = new Money(($request->get('price')*100), new Currency('USD'));
@@ -198,16 +217,25 @@ class CanineGeneticsController extends Controller
         }
     }
 
-    public function showTrashedListings()
+
+    public function showTrashedListings(Request $request)
     {
+        $page = $request->page;
+        $allTrashedCanineGenetics = $this->canine_geneticsRepository->matching(
+            $this->canine_geneticsRepository->criteria()
+                ->where(Canine_Genetics::TRASHED, '=', true)
+        );
         $Listings = $this->canine_geneticsRepository->matching(
             $this->canine_geneticsRepository->criteria()
                 ->where(Canine_Genetics::TRASHED, '=', true)
                 ->orderByAsc(Canine_Genetics::ID)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
-//       dd($Listings);
+
         return view('pages/dashboard/resources/canine_genetics/trashed-canine_genetics', [
             'Supplies' => $Listings,
+            'total' => count($allTrashedCanineGenetics),
+            'page'=>$page
         ]);
     }
 

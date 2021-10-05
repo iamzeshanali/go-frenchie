@@ -15,7 +15,7 @@
                                         <h2>Listings <b>Litters</b></h2>
                                     </div>
                                     <div class="col-sm-6 text-right">
-                                        <a href="{{route('showTrashedLitters')}}" class="gf-btn-light">
+                                        <a href="{{route('showTrashedLitters',1)}}" class="gf-btn-light">
                                             <i class="fas fa-trash-alt"></i> <span>Recycle Listing</span>
                                         </a>
                                         <a href="{{route('addLitter')}}" class="gf-btn-dark">

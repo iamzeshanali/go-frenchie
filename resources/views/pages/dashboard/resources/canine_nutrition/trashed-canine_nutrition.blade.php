@@ -12,9 +12,9 @@
                             <div class="table-title">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <h2>Canine <b> Nutrition</b></h2>
+                                        <h2>Trashed Canine <b>Nutrition</b></h2>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 text-right">
                                         <a href="{{route('deleteAllCanineNutrition')}}" class="gf-btn-dark">
                                             <i class="fas fa-plus"></i> <span>Clear Trash</span>
                                         </a>
@@ -24,8 +24,7 @@
                             @if(empty($Supplies))
                                 <div class="row">
                                     <div class="container" style="text-align: center">
-                                        <img src="/images/placeholder.gif" id="preview-image" class="img-thumbnail my-3" width="350px">
-                                        <h2><b>No Canine Genetics Exist</b></h2>
+                                        <h2><b>No Canine Nutrition Trashed</b></h2>
                                     </div>
                                 </div>
                             @else
@@ -46,7 +45,7 @@
                                         <tr>
                                             <td>{{$supply->title}}</td>
                                             <td>{{$supply->breeder->kennelName}}</td>
-                                            <td><img src="{{asset_file_url($supply->logo)}}" alt="" width="60px"></td>
+                                            <td><img src="{{ $supply->logo? asset_file_url($supply->logo) : '/images/notfound/gf-not-found.png'}}" alt="" width="60px"></td>
                                             <td>
                                                 {{$supply->couponCode}}
                                             </td>
@@ -75,7 +74,7 @@
                                                                     <p class="text-warning"><small>This action cannot be undone.</small></p>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <form action="{{route('showTrashedCanineNutrition')}}" method="get">
+                                                                    <form action="{{route('showTrashedCanineNutrition',1)}}" method="get">
 
                                                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                                                     </form>
@@ -104,7 +103,7 @@
                                                                     <p class="text-warning"><small>This action cannot be undone.</small></p>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <form action="{{route('showTrashedCanineNutrition')}}" method="get">
+                                                                    <form action="{{route('showTrashedCanineNutrition',1)}}" method="get">
 
                                                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                                                     </form>
@@ -125,16 +124,22 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <div class="clearfix">
+                                <div class="gf-dashboard-table-footer d-flex justify-content-between align-items-center clearfix">
                                     <div class="hint-text">Showing <b>{{count($Supplies)}}</b> out of <b>{{count($Supplies)}}</b> entries</div>
                                     <ul class="pagination">
-                                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                        <li class="page-item {{$page == 1 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/breeder-supplies')}}/{{$page-1}}" class="page-link">Previous</a></li>
+
+                                        @if(($total % 5) == 0)
+
+                                            @for($i = 1; $i<=($total/5); $i++)
+                                                <li class="page-item {{$page == $i ? 'active' : ''}}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/breeder-supplies')}}/{{$i}}" class="page-link">{{$i}}</a></li>
+                                            @endfor
+                                        @else
+                                            @for($i = 1; $i<=($total/5)+1; $i++)
+                                                <li class="page-item {{$page == $i ? 'active' : ''}}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/breeder-supplies')}}/{{$i}}" class="page-link">{{$i}}</a></li>
+                                            @endfor
+                                        @endif
+                                        <li class="page-item {{$page >= $total/5 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/breeder-supplies')}}/{{$page+1}}" class="page-link">Next</a></li>
                                     </ul>
                                 </div>
                             @endif

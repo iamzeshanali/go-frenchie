@@ -46,7 +46,12 @@ class SavedItemsController extends Controller
         return $this->savedListingsRepository->getAll();
     }
     public function getAllLitters(){
-        return $this->savedLittersRepository->getAll();
+        $savedLitters = $this->savedLittersRepository->matching(
+            $this->savedLittersRepository->criteria()
+                ->where(SavedLitters::CUSTOMER, '=', Auth::user())
+                ->where(SavedLitters::TRASHED, '=', false)
+        );
+        return $savedLitters;
     }
 
     public function addToFavouriteWithUserLogin(Request $request){
@@ -225,25 +230,16 @@ class SavedItemsController extends Controller
 
         return redirect()->back();
     }
-    public function savedStuds(Request $request){
-        $page = $request->page;
+    public function savedItems(Request $request){
         $savedListings = $this->savedListingsRepository->matching(
             $this->savedListingsRepository->criteria()
                 ->where(SavedListings::CUSTOMER, '=', Auth::user())
-                ->where(SavedListings::TRASHED, '=', false)
-                ->skip(((int) $page - 1) * 5)->limit(5)
         );
-        $savedStuds = [];
-        foreach ($savedListings as $savedListing){
-            if($savedListing->listings->type == new ListingsTypeEnum('stud')){
-                array_push($savedStuds,$savedListing);
-            }
-        }
-//        dd($savedStuds);
-        return view('pages/dashboard/SavedItems/savedStuds/saved-studs', [
-            'listings' => $savedStuds,
-            'total'=>count($savedStuds),
-            'page'=>$page
+
+
+        return view('pages/dashboard/SavedItems/saved-items', [
+            'savedListings' => $savedListings,
+            'matched' => false,
         ]);
     }
     public function trashedSavedStuds(){

@@ -104,16 +104,16 @@ class Breeder_SuppliesModule extends CrudModule
         $module->removeAction()->deleteFromDataSource();
 
         $module->summaryTable(function (SummaryTableDefinition $table) {
-            $table->mapProperty(Breeder_Supplies::LOGO)->to(Field::create('logo', 'Logo')
-                ->image()
-                ->required()
-                ->moveToPathWithRandomFileName(public_path('app/breeder__supplies')));
+//            $table->mapProperty(Breeder_Supplies::LOGO)->to(Field::create('logo', 'Logo')
+//                ->image()
+//                ->required()
+//                ->moveToPathWithRandomFileName(public_path('app/breeder__supplies')));
             $table->mapProperty(Breeder_Supplies::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
             $table->mapProperty(Breeder_Supplies::TITLE)->to(Field::create('title', 'Title')->string()->required());
             $table->mapProperty(Breeder_Supplies::DESCRIPTION)->to(Field::create('decription', 'Decription')->html()->required());
             $table->mapProperty(Breeder_Supplies::WEBSITE_URL)->to(Field::create('website_url', 'Website Url')->url()->required());
             $table->mapProperty(Breeder_Supplies::COUPON_CODE)->to(Field::create('coupon_code', 'Coupon Code')->string()->required());
-            $table->mapProperty(Breeder_Supplies::PRICE)->to(Field::create('price', 'Price')->money()->required());
+//            $table->mapProperty(Breeder_Supplies::PRICE)->to(Field::create('price', 'Price')->money()->required());
             $table->mapProperty(Breeder_Supplies::BREEDER)->to(Field::create('breeder', 'Breeder')
                 ->entityFrom($this->usersRepository)
                 ->required()

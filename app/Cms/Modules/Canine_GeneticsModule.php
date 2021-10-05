@@ -104,10 +104,10 @@ class Canine_GeneticsModule extends CrudModule
         $module->removeAction()->deleteFromDataSource();
 
         $module->summaryTable(function (SummaryTableDefinition $table) {
-            $table->mapProperty(Canine_Genetics::LOGO)->to(Field::create('logo', 'Logo')
-                ->image()
-                ->required()
-                ->moveToPathWithRandomFileName(public_path('app/canine__genetics')));
+//            $table->mapProperty(Canine_Genetics::LOGO)->to(Field::create('logo', 'Logo')
+//                ->image()
+//                ->required()
+//                ->moveToPathWithRandomFileName(public_path('app/canine__genetics')));
             $table->mapProperty(Canine_Genetics::TITLE)->to(Field::create('title', 'Title')->string()->required());
             $table->mapProperty(Canine_Genetics::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
             $table->mapProperty(Canine_Genetics::DESCRIPTION)->to(Field::create('decription', 'Decription')->html()->required());

@@ -104,10 +104,10 @@ class Canine_NutritionModule extends CrudModule
         $module->removeAction()->deleteFromDataSource();
 
         $module->summaryTable(function (SummaryTableDefinition $table) {
-            $table->mapProperty(Canine_Nutrition::LOGO)->to(Field::create('logo', 'Logo')
-                ->image()
-                ->required()
-                ->moveToPathWithRandomFileName(public_path('app/canine__nutrition')));
+//            $table->mapProperty(Canine_Nutrition::LOGO)->to(Field::create('logo', 'Logo')
+//                ->image()
+//                ->required()
+//                ->moveToPathWithRandomFileName(public_path('app/canine__nutrition')));
             $table->mapProperty(Canine_Nutrition::TITLE)->to(Field::create('title', 'Title')->string()->required());
             $table->mapProperty(Canine_Nutrition::SLUG)->to(Field::create('slug', 'Slug')->string()->required());
             $table->mapProperty(Canine_Nutrition::DESCRIPTION)->to(Field::create('decription', 'Decription')->html()->required());

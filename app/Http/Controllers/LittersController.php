@@ -23,6 +23,15 @@ class LittersController extends Controller
         $this->littersRepository = $littersRepository;
     }
 
+
+    public function allLittersofCurrentUser()
+    {
+        $Litters= $this->littersRepository->matching(
+            $this->littersRepository->criteria()
+                ->where(Litters::BREEDER,'=',Auth::user())
+        );
+        return count($Litters);
+    }
     public function showLitters()
     {
         $sponsoredLitters = [];
@@ -284,15 +293,23 @@ class LittersController extends Controller
             }
         }
 
-    public function showTrashedLitters()
+    public function showTrashedLitters(Request $request)
     {
+        $page = $request->page;
+        $totalTrashedPuppies = $this->littersRepository->matching(
+            $this->littersRepository->criteria()
+                ->where(Litters::TRASHED,'=',true)
+        );
         $Puppies = $this->littersRepository->matching(
             $this->littersRepository->criteria()
                 ->where(Litters::TRASHED,'=',true)
                 ->orderByAsc(Litters::ID)
+                ->skip(((int) $page - 1) * 5)->limit(5)
         );
         return view('pages/dashboard/listings/litters/recycle-litters', [
             'Puppies' => $Puppies,
+            'total' => count($totalTrashedPuppies),
+            'page'=> $page
         ]);
 
     }

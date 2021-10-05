@@ -46,7 +46,7 @@
                                             <td>{{$puppy->title}}</td>
                                             <td>{{$puppy->breeder->kennelName}}</td>
                                             <td>{{ucfirst($puppy->sex->getValue())}}</td>
-                                            <td><img src="{{asset_file_url($puppy->photo1)}}" alt="" width="60px"></td>
+                                            <td><img src="{{ $puppy->photo1 ? asset_file_url($puppy->photo1) : '/images/notfound/gf-not-found.png'}}" alt="" width="60px"></td>
                                             <td>
                                                 @if($puppy->isSponsored == 1)
                                                     <span style="color: #00a65a">Sponsored</span>

@@ -52,8 +52,8 @@
         <div class="card bg-transparent border-0 pb-2">
             <div class="card-header p-0 bg-transparent border-0" id="headingThree">
                 <h5 class="mb-0">
-                    <button class="btn btn-collapse p-0 link" onclick="location.href='{{\Illuminate\Support\Facades\URL::to('dashboard/saved-studs')}}/1';" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                        <i class="fas fa-paw"></i> &emsp;  Saved Items
+                    <button class="btn btn-collapse p-0 link" onclick="location.href='{{\Illuminate\Support\Facades\URL::to('dashboard/saved-items')}}';" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-paw"></i> &emsp;  Liked Items
                     </button>
                 </h5>
             </div>

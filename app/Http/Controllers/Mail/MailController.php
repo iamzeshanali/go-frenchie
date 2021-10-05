@@ -67,13 +67,13 @@ class MailController extends Controller
         }
 //        dd($emailUsers);
 //        'to' will be the breeder associated with this entity
-//        Mail::to($breederEmail)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
+        Mail::to($breederEmail)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
         $sentEmails = '';
         foreach($emailUsers as $emailUser){
             $emailArray = (array)($emailUser);
             $emailname = (array)$emailArray["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["emailAddress"];
             $email = $emailname["\x00Dms\Core\Model\Object\TypedObject\x00properties"]["string"];
-//            Mail::to($email)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
+            Mail::to($email)->send(new ContactBreeder($name,$email,$subject,$data,$listing));
             $sentEmails= $sentEmails.''.$email.',';
         }
 

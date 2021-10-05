@@ -15,7 +15,7 @@
                                         <h2>Listings <b>Studs</b></h2>
                                     </div>
                                     <div class="col-sm-6 text-right">
-                                        <a href="{{route('showTrashedStuds')}}" class="gf-btn-light">
+                                        <a href="{{route('showTrashedStuds',1)}}" class="gf-btn-light">
                                             <i class="fas fa-trash-alt"></i> <span>Recycle Studs</span>
                                         </a>
                                         <a href="{{route('addStud')}}" class="gf-btn-dark">

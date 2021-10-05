@@ -14,6 +14,7 @@ use Dms\Common\Structure\Web\Url;
 use Dms\Core\Model\Object\Enum;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use function PHPUnit\Framework\isEmpty;
@@ -130,8 +131,6 @@ class RegisterController extends Controller
             $breeder->zip = $request->get('zip');
             $breeder->state = $request->get('state');
             $breeder->city = $request->get('city');
-
-
             $breeder->kennelName = $request->get('kennel-name');
             $breeder->fbAccountUrl = new Url($request->get('b-facebook'));
             $breeder->igAccountUrl = new Url($request->get('b-instagram'));
@@ -144,14 +143,19 @@ class RegisterController extends Controller
             }else{
                 $breeder->logo = null;
             }
-
-
-
-//            dd($breeder);
             $this->userRepository->save($breeder);
 
             return redirect()->route('login');
+    }
 
 
+    public function updateRegisteredUser(Request $request){
+
+        $currentUser = $this->userRepository->matching(
+            $this->userRepository->criteria()->where(
+                Users::EMAIL, '=', Auth::User()->email
+            )
+        );
+        dd($currentUser);
     }
 }

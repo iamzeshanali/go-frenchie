@@ -15,7 +15,7 @@
                                         <h2>Breeder <b>Supplies</b></h2>
                                     </div>
                                     <div class="col-sm-6">
-                                        <a href="{{route('showTrashedSupplies')}}" class="gf-btn-light">
+                                        <a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/trashed-breeder-supplies')}}/1"  class="gf-btn-light">
                                             <i class="fas fa-trash-alt"></i> <span>Recycle Supplies</span>
                                         </a>
                                         <a href="{{route('addBreederSupplies')}}" class="gf-btn-dark">
@@ -48,7 +48,7 @@
                                         <tr>
                                             <td>{{$supply->title}}</td>
                                             <td>{{$supply->breeder->kennelName}}</td>
-                                            <td><img src="{{asset_file_url($supply->logo)}}" alt="" width="60px"></td>
+                                            <td><img src=" {{ $supply->logo? asset_file_url($supply->logo) : '/images/notfound/gf-not-found.png'}}" alt="" width="60px"></td>
                                             <td>
                                                 {{$supply->couponCode}}
                                             </td>
@@ -63,7 +63,6 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{route('showSingleBreederSupplies',$supply->slug)}}" class="view"><i class="fas fa-eye"></i></a>
                                                 <a href="{{route('editBreederSupplies',$supply->slug)}}" class="edit" data-toggle=""><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="#deleteListingModal{{$supply->slug}}" class="delete" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
                                                 <div id="deleteListingModal{{$supply->slug}}" class="modal fade">
@@ -99,7 +98,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <div class="clearfix">
+                                <div class="gf-dashboard-table-footer d-flex justify-content-between align-items-center clearfix">
                                     <div class="hint-text">Showing <b>{{count($Supplies)}}</b> out of <b>{{$total}}</b> entries</div>
                                     <ul class="pagination">
                                         <li class="page-item {{$page == 1 ? 'disabled' : '' }}"><a href="{{\Illuminate\Support\Facades\URL::to('dashboard/resources/breeder-supplies')}}/{{$page-1}}" class="page-link">Previous</a></li>
