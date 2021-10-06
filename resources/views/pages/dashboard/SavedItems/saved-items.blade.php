@@ -3,17 +3,19 @@
 @section('content')
 
     <div class="container-fluid">
-        <h2 class="page-title text-center mb-5">Breader Dashboard</h2>
-        <div class="gf-dashboard-page-content row align-items-start">
-            @include('components.gf-dashboard-menu-area')
-            <div class="breader-dashboard-content col-xl-10 col-lg-9">
+{{--        <h2 class="page-title text-center mb-5">Breader Dashboard</h2>--}}
+        <div class="gf-dashboard-page-content row align-items-start {{Auth::User()->role->getValue()  == 'breeder' ? '' : 'justify-content-center'}}">
+            @if(Auth::User()->role->getValue()  == 'breeder')
+                @include('components.gf-dashboard-menu-area')
+            @endif
+            <div class="breader-dashboard-content {{Auth::User()->role->getValue()  == 'breeder' ? 'col-xl-10' : 'col-xl-9'}} col-lg-9">
                 <div class="container-fluid">
                     <div class="table-responsive">
                         <div class="table-wrapper">
                             <div class="table-title">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <h2>Liked <b>Listings</b></h2>
+                                        <h2>Your Liked <b>Listings</b></h2>
                                     </div>
                                 </div>
                             </div>

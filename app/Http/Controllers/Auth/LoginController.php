@@ -66,7 +66,11 @@ class LoginController extends Controller
                 $hashed = $matchingUser->hashedPassword;
                 if(password_verify($request->input('password'), $hashed)){
                     Auth::login($matchingUser);
-                    return redirect()->route('dashboard');
+                    if($matchingUser->role->getValue() == 'breeder'){
+                        return redirect()->route('dashboard');
+                    }else{
+                        return redirect()->route('breederProfile');
+                    }
                 }else{
                     return redirect()->back()->with('error', 'Password does not match.');
                 }

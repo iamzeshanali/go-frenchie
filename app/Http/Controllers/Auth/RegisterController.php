@@ -117,6 +117,7 @@ class RegisterController extends Controller
     }
     protected function createBreeder(Request $request)
     {
+        dd("DONE");
             $breeder = new Users();
             $breeder->firstName = $request->get('firstName');
             $breeder->lastName = $request->get('lastName');
@@ -150,12 +151,56 @@ class RegisterController extends Controller
 
 
     public function updateRegisteredUser(Request $request){
-
         $currentUser = $this->userRepository->matching(
             $this->userRepository->criteria()->where(
                 Users::EMAIL, '=', Auth::User()->email
             )
-        );
-        dd($currentUser);
+        )[0] ?? null;
+        $currentUser->firstName = $request->get('firstName');
+        $currentUser->lastName = $request->get('lastName');
+        $currentUser->username = strtolower($currentUser->firstName).''.strtolower($currentUser->lastName);
+        $currentUser->role = new UserRoleEnum($request->get('role'));
+        $currentUser->phone = $request->get('phone-number');
+        $currentUser->address = $request->get('address');
+        $currentUser->zip = $request->get('zip');
+        $currentUser->state = $request->get('state');
+        $currentUser->city = $request->get('city');
+        $currentUser->kennelName = $request->get('kennel-name');
+        $currentUser->fbAccountUrl = new Url($request->get('b-facebook'));
+        $currentUser->igAccountUrl = new Url($request->get('b-instagram'));
+        $currentUser->website = new Url($request->get('b-website'));
+
+        $file1 =$request->file('photo1');
+        if ($file1 == null){
+            if ($request->get('photo1_name')){
+                $fullPath1 = $request->get('photo1_name');
+                $fullPath1 = substr_replace($fullPath1, 'public/app/breeder', 44, 6);
+                $currentUser->profileImage = new Image($fullPath1);
+            }else{
+                $currentUser->profileImage = null;
+            }
+        }else{
+            $fullPath1 = $file1->move(public_path('app/breeder'), $file1->getClientOriginalName())->getRealPath();
+            $currentUser->profileImage = new Image($fullPath1);
+        }
+
+        $file2 =$request->file('photo2');
+        if ($file2 == null){
+            if ($request->get('photo2_name')) {
+                $fullPath2 = $request->get('photo2_name');
+                $fullPath2 = substr_replace($fullPath2, 'public/app/breeder', 44, 6);
+                $currentUser->logo = new Image($fullPath2);
+            }else{
+                $currentUser->logo = null;
+            }
+        }else{
+            $fullPath2 = $file2->move(public_path('app/breeder'), $file2->getClientOriginalName())->getRealPath();
+            $currentUser->logo = new Image($fullPath2);
+        }
+
+//        dd($currentUser);
+        $this->userRepository->save($currentUser);
+
+        return redirect()->route('breedersetting');
     }
 }

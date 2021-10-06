@@ -11,6 +11,7 @@
                     <img src="{{ \Illuminate\Support\Facades\Auth::User()->profileImage ? asset_file_url(\Illuminate\Support\Facades\Auth::User()->profileImage): '/images/user.png'}}" alt="Breeder Profile Image" width="250px">
                 </div>
             </div>
+            @if(Auth::User()->role->getValue()  == 'breeder')
             <div class="breeder-profile-info col-md-8 d-flex flex-column align-items-start">
                 <h2 class="gf-red" title="Kennel Name">{{\Illuminate\Support\Facades\Auth::User()->kennelName}}</h2>
                 <a href="#"><i class="fas fa-map-marker-alt"></i>&nbsp;{{\Illuminate\Support\Facades\Auth::User()->address}}, {{\Illuminate\Support\Facades\Auth::User()->city}}, {{\Illuminate\Support\Facades\Auth::User()->state}},{{\Illuminate\Support\Facades\Auth::User()->zip}} </a>
@@ -21,8 +22,21 @@
                 <a href="{{\Illuminate\Support\Facades\Auth::User()->fbAccountUrl->asString()}}" title="Facebook"><i class="fab fa-facebook-f"></i> /blackrok</a>
                 <a href="{{\Illuminate\Support\Facades\Auth::User()->igAccountUrl->asString()}}" title="Instagram"><i class="fab fa-instagram"></i> /rockkennie</a>
             </div>
+            @endif
+            @if(Auth::User()->role->getValue()  == 'customer')
+                <div class="breeder-profile-info col-md-8 d-flex flex-column align-items-start">
+                    <h2 class="gf-red" title="Kennel Name">{{\Illuminate\Support\Facades\Auth::User()->firstName}} {{\Illuminate\Support\Facades\Auth::User()->lastName}}</h2>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i>&nbsp;{{\Illuminate\Support\Facades\Auth::User()->address}}, {{\Illuminate\Support\Facades\Auth::User()->city}}, {{\Illuminate\Support\Facades\Auth::User()->state}},{{\Illuminate\Support\Facades\Auth::User()->zip}} </a>
+                    <a href="#"><i class="fas fa-globe" title="Website"></i>{{\Illuminate\Support\Facades\Auth::User()->website->asString()}}</a>
+                    {{--                <span><i class="fas fa-ticket-alt"></i>RX-580</span>--}}
+                    <a href="tel:+3333378901" title="call"><i class="fas fa-phone-alt"></i>{{\Illuminate\Support\Facades\Auth::User()->phone}}</a>
+                    <a href="mailto:someone@example.com" title="Email"><i class="far fa-envelope"></i>{{\Illuminate\Support\Facades\Auth::User()->email->asString()}}</a>
+                    <a href="{{\Illuminate\Support\Facades\Auth::User()->fbAccountUrl->asString()}}" title="Facebook"><i class="fab fa-facebook-f"></i> /blackrok</a>
+                    <a href="{{\Illuminate\Support\Facades\Auth::User()->igAccountUrl->asString()}}" title="Instagram"><i class="fab fa-instagram"></i> /rockkennie</a>
+                </div>
+            @endif
         </div>
-
+        @if(Auth::User()->role->getValue()  == 'breeder')
         <div class="gf-breeder-profile-desceiption mt-lg-5">
             <div class="row align-items-center">
                 <div class="col-md-8 text-justify">
@@ -39,11 +53,11 @@
 
             </div>
         </div>
-
+        @endif
     </div>
 
 
-
+    @if(Auth::User()->role->getValue()  == 'breeder')
     <div class="container my-lg-5">
         <div class="text-center my-3">
             <h2 class="gf-red">Breeder Resources</h2>
@@ -128,5 +142,6 @@
         </div>
 
     </div>
+        @endif
 </div>
 @endsection
