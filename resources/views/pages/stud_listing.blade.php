@@ -1790,7 +1790,8 @@
 
         function singlePuppy($slug) {
             // console.log($slug);
-            window.location = "{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug;
+            window.open("{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug, "_blank");
+
         }
 
         function getZip(){
