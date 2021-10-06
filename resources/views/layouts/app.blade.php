@@ -111,7 +111,7 @@
                                         <div class="breeder-db-login-dropdown dropdown-menu p-3" aria-labelledby="navbarDropdown">
 
                                                 <div>
-                                                    <a class="d-flex align-items-center" href="{{ Auth::user()->role->getValue() == 'breeder' ? route('breederProfile') : route('customerProfile') }}">
+                                                    <a class="d-flex align-items-center" href="{{ route('breederProfile') }}">
                                                         <img class="" src="{{ Auth::user()->profileImage ? asset_file_url(Auth::user()->profileImage) : '/images/user.png'}}" alt="" width="60px" height="60px">
                                                         <div class="ml-3">
                                                             <div class="gf-dark"><b>{{ ucfirst(Auth::user()->firstName) }} {{ ucfirst(Auth::user()->lastName) }}</b></div>

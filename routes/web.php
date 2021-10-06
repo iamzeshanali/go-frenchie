@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -72,7 +73,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('customer', \App\Http\Controllers\CustomerController::class);
 
 Route::middleware(['auth'])->group(function () {
-    Route::patch('/update-user-settings', [App\Http\Controllers\Auth\RegisterController::class, 'updateRegisteredUser'])->name('updateRegisteredUser');
+    Route::post('/user-settings-update', function (Request $request) {app(App\Http\Controllers\Auth\RegisterController::class)->updateRegisteredUser($request); })->name('updateRegisteredUser');
 
     // DASHBOARD
     Route::get('breader-dashboard', function () {return view('pages/dashboard/breader_dashboard'); })->name('dashboard');
@@ -161,6 +162,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('saved-items',[App\Http\Controllers\SavedItemsController::class, 'savedItems'])->name('savedItems');
     });
+
+//    Route::post('/settings', [App\Http\Controllers\Auth\RegisterController::class, 'updateRegisteredUser'])->name('user.update');
 
     // PROFILE
     Route::get('/profile/', function () {return view('pages/dashboard/breeder_profile');})->name('breederProfile');

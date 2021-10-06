@@ -3,16 +3,17 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="gf-dashboard-page-content row align-items-start">
-            @include('components.gf-dashboard-menu-area')
+        <div class="gf-dashboard-page-content row align-items-start {{Auth::User()->role->getValue()  == 'breeder' ? '':'justify-content-center'}}">
+            @if(Auth::User()->role->getValue()  == 'breeder')
+                @include('components.gf-dashboard-menu-area')
+            @endif
             <div class="breader-account-settings col-xl-10 col-lg-9">
                 <div class="container-fluid">
                     <form method="post" action="{{route('updateRegisteredUser')}}" enctype="multipart/form-data" id="update-user-form mx-5">
                         @csrf
-                        @method('patch')
                         <div class="row justify-content-center p-0">
                             <div class="col-md-8">
-                                <h2 class="text-center mb-4 gf-red">Update Breeder Settings</h2>
+                                <h2 class="text-center mb-4 gf-red">Update Settings</h2>
 
 <!--                                --><?php // dd(Auth::User());?>
                                 <div class="form-group row mb-0 py-1">
@@ -20,7 +21,7 @@
                                     <div class="col-md-6">
                                         <input type="text" name="firstName" value="{{Auth::User()->firstName}}"  class="gf-form-field" id="" placeholder="First Name: *" required autofocus >
                                     </div>
-
+                                    <input type="hidden" name="role" value="{{Auth::User()->role->getValue()  == 'breeder' ? 'breeder' : 'customer'}}"  class="gf-form-field" id="" placeholder="First Name: *" required autofocus >
                                     {{--Last Name--}}
                                     <div class="col-md-6">
                                         <input type="text" name="lastName" value="{{Auth::User()->lastName}}"  class="gf-form-field" id="" placeholder="Last Name: *" required autofocus>
@@ -81,13 +82,14 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                @if(Auth::User()->role->getValue()  == 'breeder')
                                 {{--KENNEL-NAME--}}
                                 <div class="form-group row mb-0 py-1">
                                     <div class="col">
                                         <input id="kennel-name" type="text" class="gf-form-field" name="kennel-name" value="{{Auth::User()->kennelName}}" required autocomplete="kennel-name" placeholder="{{ __('Kennel Name') }}">
                                     </div>
                                 </div>
+                                @endif
 
                                 {{--FACEBOOK-URL--}}
                                 <div class="form-group row mb-0 py-1">
@@ -166,7 +168,15 @@
 
                                         <input type="file" name="photo1" class="breeder_profile_image invisible position-absolute" accept="image/*">
                                         <div class="input-group my-3 flex-nowrap">
-                                            <input type="text" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Breeder Profile Image" id="breeder_profile_image" required autofocus>
+                                            @if((Auth::User()->profileImage != null))
+                                                @foreach(explode('/',asset_file_url(Auth::User()->profileImage )) as $img1)
+                                                @endforeach
+                                                <input type="hidden" name="photo1_name" value="{{public_path($img1)}}">
+                                                <input type="text" value="{{$img1}}" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Breeder Profile Image" id="breeder_profile_image" required autofocus>
+                                            @else
+                                                <input type="text" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Breeder Profile Image" id="breeder_profile_image" required autofocus>
+                                            @endif
+
                                             <div class="">
                                                 <button type="button" class="browse-breeder-profile-image gf-btn-dark gf-form-field-inline-btn">Browse Profile Image</button>
                                             </div>
@@ -177,15 +187,22 @@
                                     </div>
                                 </div>
 
+                                @if(Auth::User()->role->getValue()  == 'breeder')
                                 <div class="row gf-breeder-profile-image align-items-center">
                                     {{--KENNEL LOGO IMAGE--}}
                                     <div class="col">
                                         <img src="{{Auth::User()->logo !=null ? asset_file_url(Auth::User()->logo) : '/images/notfound/gf-not-found.png'}}" id="preview-profile-image" class="img-thumbnail m-auto" width="200" height="200" alt="Profile image not found">
-
-
                                         <input type="file" name="photo2" class="kennel-logo-image invisible position-absolute" accept="image/*">
                                         <div class="input-group my-3 flex-nowrap">
-                                            <input type="text" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Kennel Logo" id="kennel-logo-image" required autofocus>
+
+                                            @if((Auth::User()->logo != null))
+                                                @foreach(explode('/',asset_file_url(Auth::User()->logo )) as $img2)
+                                                @endforeach
+                                                <input type="hidden" name="photo2_name" value="{{public_path($img2)}}">
+                                                <input type="text" value="{{$img2}}" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Kennel Logo" id="breeder_profile_image" required autofocus>
+                                            @else
+                                                <input type="text" class="gf-form-field gf-form-field-inline-left mb-0 @error('image_one') is-invalid @enderror" disabled placeholder="Kennel Logo" id="breeder_profile_image" required autofocus>
+                                            @endif
                                             <div class="">
                                                 <button type="button" class="browse-kennel-logo gf-btn-dark gf-form-field-inline-btn">Browse Kennel Logo</button>
                                             </div>
@@ -195,6 +212,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
 
                                 <div class="row">
                                     <div class="col-md-12 text-center">
