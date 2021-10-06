@@ -128,7 +128,7 @@
                                         </div>
                                         {{-- Chocolate --}}
                                         <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' class="{{ $data['dnaColor'] === 'Chocolate' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Chocolate' ? 'checked':''}} id="filterChocolate" name="Parentfilter" value="chocolate">
-                                        <label for="filterChocolate"> Chocolate</label><br>
+                                        <label for="filterChocolate"> Cocoa</label><br>
                                         <div id="collapseChocolate" class="collapse pl-4 {{ $data['dnaColor'] === 'Chocolate' ? 'show':''}}">
                                             <input type="checkbox" id="chocolate2copy" name="chocolate" onchange="(findValue())" value="2copies(co/co)" {{ $data['dnaCoat'] === '2copies(co/co)' ? 'checked': ''}}>
                                             <label for="chocolate2copy"> 2 copies(co/co) </label><br>
@@ -142,7 +142,7 @@
 
                                         {{-- Testable Chocolate --}}
                                         <input type="checkbox" data-toggle='collapse' data-target='#collapseTestable' class="{{ $data['dnaColor'] === 'Testable_Chocolate' ? '':'collapsed'}}" {{ $data['dnaColor'] === 'Testable_Chocolate' ? 'checked':''}} id="filterTestable" name="Parentfilter" value="testable">
-                                        <label for="filterTestable"> Testable Chocolate</label><br>
+                                        <label for="filterTestable"> Testable Chocolate/Rojo</label><br>
                                         <div id="collapseTestable" class="collapse pl-4 {{ $data['dnaColor'] === 'Testable_Chocolate' ? 'show':''}}">
                                             <input type="checkbox" id="filterTestableChocolate2copy" name="testable" onchange="(findValue())" value="2copies(b/b)" {{ $data['dnaCoat'] === '2copies(b/b)' ? 'checked': ''}}>
                                             <label for="filterTestableChocolate2copy"> 2 copies(b/b) </label><br>
@@ -272,7 +272,7 @@
                                     </div>
                                     {{-- Chocolate --}}
                                     <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' id="filterChocolate" name="Parentfilter" value="chocolate">
-                                    <label for="filterChocolate"> Chocolate</label><br>
+                                    <label for="filterChocolate"> Cocoa</label><br>
                                     <div id="collapseChocolate" class="collapse pl-4">
                                         <input type="checkbox" id="chocolate2copy" name="chocolate" onchange="(findValue())" value="2copies(co/co)">
                                         <label for="chocolate2copy"> 2 copies(co/co) </label><br>
@@ -286,12 +286,12 @@
 
                                     {{-- Testable Chocolate --}}
                                     <input type="checkbox" data-toggle='collapse' data-target='#collapseTestable' id="filterTestable" name="Parentfilter" value="testable">
-                                    <label for="filterTestable"> Testable Chocolate</label><br>
+                                    <label for="filterTestable"> Testable Chocolate/Rojo</label><br>
                                     <div id="collapseTestable" class="collapse pl-4">
                                         <input type="checkbox" id="filterTestableChocolate2copy" name="testable" onchange="(findValue())" value="2copies(b/b)">
-                                        <label for="filterTestableChocolate2copy"> 2 copies(co/co) </label><br>
+                                        <label for="filterTestableChocolate2copy"> 2 copies(b/b) </label><br>
                                         <input type="checkbox" id="filterTestableChocolate1copy" name="testable" onchange="(findValue())" value="1copy(B/b)">
-                                        <label for="filterTestableChocolate1copy"> 1 copy(Co/co) </label><br>
+                                        <label for="filterTestableChocolate1copy"> 1 copy(B/b) </label><br>
                                         <input type="checkbox" id="filterTestableChocolateDd" name="testable" onchange="(findValue())" value="doesnotcarry">
                                         <label for="filterTestableChocolateDd"> Does not carry </label><br>
                                         <input type="checkbox" id="filterTestableChocolateUnknown" name="testable" onchange="(findValue())" value="unknown">
@@ -303,9 +303,9 @@
                                     <label for="filterFluffy"> Fluffy</label><br>
                                     <div id="collapseFluffy" class="collapse pl-4">
                                         <input type="checkbox" id="filterAfluffy2copy" name="fluffy" onchange="(findValue())" value="2copies(l/l)">
-                                        <label for="filterAfluffy2copy"> 2 copies(co/co) </label><br>
+                                        <label for="filterAfluffy2copy"> 2 copies </label><br>
                                         <input type="checkbox" id="filterAfluffy1copy" name="fluffy" onchange="(findValue())" value="1copy(L/l)" >
-                                        <label for="filterAfluffy1copy"> 1 copy(Co/co) </label><br>
+                                        <label for="filterAfluffy1copy"> 1 copy </label><br>
                                         <input type="checkbox" id="filterAfluffyDd" name="fluffy" onchange="(findValue())" value="doesnotcarry">
                                         <label for="filterAfluffyDd"> Does not carry </label><br>
                                         <input type="checkbox" id="filterAfluffyUnknown" name="fluffy" onchange="(findValue())" value="unknown">
@@ -317,9 +317,9 @@
                                     <label for="filterIntensity"> Intensity</label><br>
                                     <div id="collapseIntensity" class="collapse pl-4">
                                         <input type="checkbox" id="filterAintensity2copy" name="intensity" onchange="(findValue())" value="2copies(i/i)">
-                                        <label for="filterAintensity2copy"> 2 copies(co/co) </label><br>
+                                        <label for="filterAintensity2copy"> 2 copies(i/i) </label><br>
                                         <input type="checkbox" id="filterAintensity1copy" name="intensity" onchange="(findValue())" value="1copy(I/i)">
-                                        <label for="filterAintensity1copy"> 1 copy(Co/co) </label><br>
+                                        <label for="filterAintensity1copy"> 1 copy(I/i) </label><br>
                                         <input type="checkbox" id="filterAintensityDd" name="intensity" onchange="(findValue())" value="doesnotcarry">
                                         <label for="filterAintensityDd"> Does not carry </label><br>
                                         <input type="checkbox" id="filterAintensityUnknown" name="intensity" onchange="(findValue())" value="unknown">
@@ -331,9 +331,9 @@
                                     <label for="filterPied"> Pied</label><br>
                                     <div id="collapsePied" class="collapse pl-4">
                                         <input type="checkbox" id="filterApied2copy" name="pied" onchange="(findValue())" value="2copies(s/s)">
-                                        <label for="filterApied2copy"> 2 copies(co/co) </label><br>
+                                        <label for="filterApied2copy"> 2 copies(s/s) </label><br>
                                         <input type="checkbox" id="filterApied1copy" name="pied" onchange="(findValue())" value="1copy(s/N)">
-                                        <label for="filterApied1copy"> 1 copy(Co/co) </label><br>
+                                        <label for="filterApied1copy"> 1 copy(S/s) </label><br>
                                         <input type="checkbox" id="filterApiedDd" name="pied" onchange="(findValue())" value="doesnotcarry">
                                         <label for="filterApiedDd"> Does not carry </label><br>
                                         <input type="checkbox" id="filterApiedUnknown" name="pied" onchange="(findValue())" value="unknown">

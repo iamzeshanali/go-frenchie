@@ -9,7 +9,7 @@
         <div class="container row align-items-center">
             <div class="gf-resources-banner-text col-md-6">
                 <h1>
-                    <span style="color:#be202e;">Inborn Litters</span><br>
+                    <span style="color:#be202e;">Upcoming Litters</span><br>
                     For Frenchie Lovers</h1>
             </div>
             <div class="col-md-6 text-center">
@@ -56,14 +56,14 @@
                                             <p>{{$standardPuppy->description->asString()}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
-                                            <div class="col-xl-6 pl-0">
-                                                <i class="fa fa-venus"></i>
-                                                <span>{{$standardPuppy->dam}}</span>
-                                            </div>
-                                            <div class="col-xl-6 fbd-sp-list-detail-second pl-0">
-                                                <i class="fa fa-mars"></i>
-                                                <span>{{$standardPuppy->sire}}</span>
-                                            </div>
+{{--                                            <div class="col-xl-6 pl-0">--}}
+{{--                                                <i class="fa fa-venus"></i>--}}
+{{--                                                <span>{{$standardPuppy->dam}}</span>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-xl-6 fbd-sp-list-detail-second pl-0">--}}
+{{--                                                <i class="fa fa-mars"></i>--}}
+{{--                                                <span>{{$standardPuppy->sire}}</span>--}}
+{{--                                            </div>--}}
                                             <div class="col-xl-6 pl-0">
                                                 <i class="fa fa-phone-alt"></i>
                                                 <span>{{$standardPuppy->breeder->phone}}</span>
@@ -72,10 +72,10 @@
                                                 <i class="fa fa-calendar-alt"></i>
                                                 <span>{{date('Y-m-d',$standardPuppy->expectedDob->getTimestamp())}}</span>
                                             </div>
-                                            <div class="col-xl-6 fbd-sp-list-kennel-second pl-0">
-                                                <i class="fa fa-envelope"></i>
-                                                <span>{{$standardPuppy->breeder->email->asString()}}</span>
-                                            </div>
+{{--                                            <div class="col-xl-6 fbd-sp-list-kennel-second pl-0">--}}
+{{--                                                <i class="fa fa-envelope"></i>--}}
+{{--                                                <span>{{$standardPuppy->breeder->email->asString()}}</span>--}}
+{{--                                            </div>--}}
                                             <div class="col-xl-6 fbd-sp-list-kennel-first pl-0">
                                                 <i class="fa fa-igloo"></i>
                                                 <span>{{$standardPuppy->breeder->kennelName}}</span>
@@ -292,14 +292,14 @@
                                             <p>{{$standardPuppy->description->asString()}}</p>
                                         </div>
                                         <div class="fbd-sp-list-detail row">
-                                            <div class="col-xl-6 pl-0">
-                                                <i class="fa fa-venus"></i>
-                                                <span>{{$standardPuppy->dam}}</span>
-                                            </div>
-                                            <div class="col-xl-6 fbd-sp-list-detail-second pl-0">
-                                                <i class="fa fa-mars"></i>
-                                                <span>{{$standardPuppy->sire}}</span>
-                                            </div>
+{{--                                            <div class="col-xl-6 pl-0">--}}
+{{--                                                <i class="fa fa-venus"></i>--}}
+{{--                                                <span>{{$standardPuppy->dam}}</span>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-xl-6 fbd-sp-list-detail-second pl-0">--}}
+{{--                                                <i class="fa fa-mars"></i>--}}
+{{--                                                <span>{{$standardPuppy->sire}}</span>--}}
+{{--                                            </div>--}}
                                             <div class="col-xl-6 pl-0">
                                                 <i class="fa fa-phone-alt"></i>
                                                 <span>{{$standardPuppy->breeder->phone}}</span>
@@ -308,10 +308,10 @@
                                                 <i class="fa fa-calendar-alt"></i>
                                                 <span>{{date('Y-m-d',$standardPuppy->expectedDob->getTimestamp())}}</span>
                                             </div>
-                                            <div class="col-xl-6 fbd-sp-list-kennel-second pl-0">
-                                                <i class="fa fa-envelope"></i>
-                                                <span>{{$standardPuppy->breeder->email->asString()}}</span>
-                                            </div>
+{{--                                            <div class="col-xl-6 fbd-sp-list-kennel-second pl-0">--}}
+{{--                                                <i class="fa fa-envelope"></i>--}}
+{{--                                                <span>{{$standardPuppy->breeder->email->asString()}}</span>--}}
+{{--                                            </div>--}}
                                             <div class="col-xl-6 fbd-sp-list-kennel-first pl-0">
                                                 <i class="fa fa-igloo"></i>
                                                 <span>{{$standardPuppy->breeder->kennelName}}</span>

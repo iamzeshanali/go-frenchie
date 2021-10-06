@@ -62,7 +62,7 @@
                             <div class="collapse navbar-collapse d-none d-lg-block" id="navbarSupportedContent" style="z-index:1">
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav flex-grow-1 justify-content-center">
-                                    <li class="nav-item {{  request()->routeIs('') ? 'active' : '' }}">
+                                    <li class="nav-item {{  request()->routeIs('/') ? 'active' : '' }}">
                                         <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item {{  request()->routeIs('showStuds') ? 'active' : '' }}">
@@ -84,11 +84,11 @@
                             </div>
 
                             <!-- Right Side Of Navbar -->
-                            <ul class="navbar-nav flex-row justify-content-right justify-content-lg-end">
+                            <ul class="navbar-nav flex-row justify-content-right justify-content-lg-end align-items-center">
                                 <!-- Authentication Links -->
                                 @guest
                                     @if (Route::has('login'))
-                                        <li class="nav-item border-0">
+                                        <li class="nav-item border-0 mr-1">
                                             <div class="h-login">
                                                 <a href="{{ route('login') }}" class="gf-btn-dark"><i class="fas fa-sign-in-alt"></i> {{ __('LOGIN') }}</a>
                                             </div>

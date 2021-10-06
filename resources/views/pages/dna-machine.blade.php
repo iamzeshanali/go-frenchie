@@ -7,8 +7,8 @@
     <div class="container row align-items-center">
         <div class="gf-home-banner-text col-md-6">
             <h1>
-                <span style="color:#be202e;">The Place to Find</span><br>
-                Your Frenchie</h1>
+                <span style="color:#be202e;">French Bulldog</span><br>
+                DNA </h1>
         </div>
         <div class="col-md-6 text-center">
             <img src="/images/home4.png" loading="lazy" alt="">
