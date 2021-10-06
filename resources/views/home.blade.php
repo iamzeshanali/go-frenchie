@@ -4,44 +4,47 @@
 @section('content')
 
 {{--Homepage Banner Section--}}
-<div class="wrapper gf-home-banner-wrapper d-flex justify-content-center">
+<div class="wrapper gf-home-banner-wrapper d-flex justify-content-center pb-0">
     <div class="container row align-items-center">
-        <div class="gf-home-banner-text col-md-6">
+        <div class="gf-home-banner-text col-md-6 py-3 mb-4">
 {{--            <p>We Provide The Best Care</p>--}}
+{{--            <h1>--}}
+{{--                <span style="color:#be202e;">The #1 Place to <br> Buy or Sell</span><br>--}}
+{{--                Your Frenchie</h1>--}}
             <h1>
-                <span style="color:#be202e;">The #1 Place to <br> Buy or Sell</span><br>
-                Your Frenchie</h1>
+                <span style="color:#be202e;">The #1 Play to <br> find your</span><br>
+                Next Frenchie</h1>
             <div class="gf-home-banner-detail d-flex align-items-center">
                 <div class="">
-                        <h4>Search</h4>
+                        <h4>Select below...</h4>
 {{--                    <h4>Get Best Pets Near You</h4>--}}
 {{--                    <p>We offer quick & easy services for dogs of various breeds. The best pets clinic in City, more than 20.000+ customers happy.</p>--}}
                 </div>
             </div>
-            <div class="gf-home-banner-button">
-                <button class="gf-btn-light mr-4" onclick="location.href='{{ route('showStuds') }}'">STUDS</button>
-                <button class="gf-btn-dark" onclick="location.href='{{ route('showPuppies') }}'">PUPPIES</button>
+            <div class="gf-home-banner-button mt-2 d-flex align-items-center justify-content-around">
+                <button class="col-4 gf-btn-dark mr-4" onclick="location.href='{{ route('showStuds') }}'">STUDS</button>
+                <button class="col-4 gf-btn-dark" onclick="location.href='{{ route('showPuppies') }}'">PUPPIES</button>
             </div>
         </div>
         <div class="col-md-6 text-center">
-            <img src="/images/homepage/gf-home-banner-dog.png" loading="lazy" alt="">
+            <img src="/images/homepage/gf-home-banner-dog.png" loading="lazy" alt="" width="400" height="561">
         </div>
     </div>
 </div>
 
 {{--Featured Frenchies --}}
-<div class="wrapper gf-home-featured-frenchies d-flex justify-content-center">
+<div class="wrapper gf-home-featured-frenchies d-flex justify-content-center gf-bg-dark mb-4">
     <div class="container row align-items-center">
 
         <div class="col-md-3">
-            <span>OUR FRIENDS</span>
-            <h2>Featured<span style="color:#BE202E"><br>Frenchies</span></h2>
-            <p>We take the responsibility of caring for pets very seriously. They are members of your family.</p>
+            <span class="text-white">OUR FRIENDS</span>
+            <h2 class="text-white">Spotlight<span style="color:#BE202E"><br>Litters</span></h2>
+            <p class="text-white">We take the responsibility of caring for pets very seriously. They are members of your family.</p>
 {{--            <a href="#contact-form" class="gf-btn-dark">FIND MORE</a>--}}
         </div>
 
-        <div class="col-md-9">
-            <div class="gf-featured-frenchies-slider row">
+        <div class="col-md-9 p-0">
+            <div class="gf-featured-frenchies-slider row p-0">
                 <?php
                     $allFeautred = app(\App\Http\Controllers\ListingsController::class)->featuredListings();
 //                    dd($allFeautred);
@@ -58,7 +61,7 @@
                                             <img src="{{$featured->photo1 ? asset_file_url($featured->photo1): '/images/notfound/gf-not-found.png'}}" width="150" height="auto" loading="lazy" alt="Featured Frenchie Image">
                                         </div>
                                         <div class="col-md-9 gf-frenchie-slide-details p-0">
-                                            <div class="col">
+                                            <div class="col gf-home-featured-slider-description">
                                                 <h4>{{$featured->title}}</h4> <i class="fas fa-venus ml-2" style="font-size:24px; color:#f07e92;"></i>
                                                 <p>{{$featured->description->asString()}}</p>
                                             </div>
@@ -132,6 +135,160 @@
             </div>
         </div>
 
+    </div>
+</div>
+
+{{--Featured Stud --}}
+<div class="wrapper gf-home-featured-kennel d-flex justify-content-center">
+    <div class="container row align-items-center">
+        <div class="col-md-6 text-center">
+            <img src="/images/homepage/gf-home-banner-dog.png" width="300" height="421" loading="lazy" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2>Featured <span style="color:#BE202E"><br>Stud</span></h2>
+            <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+            <button class="gf-btn-dark">STUD DETAILS</button>
+        </div>
+    </div>
+</div>
+
+{{--Spotlight Studs--}}
+<div class="wrapper gf-home-kennels-carousel">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <span>OUR STARS</span>
+                <h2>Spotlight<span style="color:#BE202E"><br>STUDS</span></h2>
+                <p>We take the responsibility of caring for pets very seriously. They are members of your family.</p>
+                <a href="{{ route('resources') }}" class="gf-btn-dark">VISIT STUDS</a>
+            </div>
+            <div class="col-md-9">
+                <div class="gf-kennel-slider row">
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/homepage/gf-home-banner-dog.png" width="200" height=auto loading="lazy" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/homepage/gf-home-banner-dog.png" width="200" height=auto loading="lazy" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/homepage/gf-home-banner-dog.png" width="200" height=auto loading="lazy" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/homepage/gf-home-banner-dog.png" width="200" height=auto loading="lazy" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{--Featured Kennel --}}
+<div class="wrapper gf-home-featured-kennel d-flex justify-content-center">
+    <div class="container row align-items-center">
+        <div class="col-md-6 text-center">
+            <img src="/images/breeder-kennel.png" width="300" height="300" loading="lazy" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2>Featured <span style="color:#BE202E"><br>Kennel</span></h2>
+            <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
+            <button class="gf-btn-dark">KENNEL PROFILE</button>
+        </div>
+    </div>
+</div>
+
+{{--Spotlight Kennels--}}
+<div class="wrapper gf-home-kennels-carousel">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <span>OUR STARS</span>
+                <h2>Spotlight<span style="color:#BE202E"><br>Kennels</span></h2>
+                <p>We take the responsibility of caring for pets very seriously. They are members of your family.</p>
+                <a href="{{ route('resources') }}" class="gf-btn-dark">VISIT KENNELS</a>
+            </div>
+            <div class="col-md-9">
+                <div class="gf-kennel-slider row">
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder-kennel-4.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder-kennel-2.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder-kennel-3.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="px-3">
+                        <div class="gf-slide">
+                            <img src="/images/breeder-kennel.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
+                            <h4>Kennel 1</h4>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{--Featured Resources--}}
+<div class="wrapper gf-home-third-quality">
+    <div class="lg-gf-container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>Featured Resources<span style="color:#BE202E"><br>For Frenchie Lovers</span></h2>
+                <p>Our puppies and other very active dogs have plenty of space to run and romp, and comfy blankets. We offer quick & easy services for both dogs and cat of various breeds. No matter their size or age, we can provide positive grooming experience.</p>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
+                        <span class="ml-2">CANINE GENETICS</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
+                        <span class="ml-2">CANINE NUTRITION</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
+                        <span class="ml-2">VACCINATION</span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button class="gf-btn-dark mr-4" onclick="location.href='{{ route('resources') }}'">VIEW MORE</button>
+
+                </div>
+            </div>
+            <div class="col-md-6 text-left">
+                <img src="images/homepage/featured-resources.png" width="400" loading="lazy" alt="">
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -217,66 +374,6 @@
 
 </div>
 
-{{--Featured Kennel --}}
-<div class="wrapper gf-home-featured-kennel d-flex justify-content-center">
-    <div class="container row align-items-center">
-        <div class="col-md-6 text-center">
-            <img src="/images/breeder-kennel.png" width="300" height="300" loading="lazy" alt="">
-        </div>
-        <div class="col-md-6">
-            <h2>Featured <span style="color:#BE202E"><br>Kennel</span></h2>
-            <p>Your pet’s health and well-being are our top priority.. We are fully committed to the health and hygiene of your furry best friends. We offer free estimates and consultations to help your pet look and feel their best!</p>
-            <button class="gf-btn-dark">KENNEL PROFILE</button>
-        </div>
-    </div>
-</div>
-
-{{--kennels slider--}}
-<div class="wrapper gf-home-kennels-carousel">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-3">
-                <span>OUR STARS</span>
-                <h2>Spotlight<span style="color:#BE202E"><br>Breeders</span></h2>
-                <p>We take the responsibility of caring for pets very seriously. They are members of your family.</p>
-                <a href="{{ route('resources') }}" class="gf-btn-dark">VISIT KENNELS</a>
-            </div>
-            <div class="col-md-9">
-                <div class="gf-kennel-slider row">
-                    <div class="px-3">
-                        <div class="gf-slide">
-                            <img src="/images/breeder-kennel-4.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
-                            <h4>Kennel 1</h4>
-                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="px-3">
-                        <div class="gf-slide">
-                            <img src="/images/breeder-kennel-2.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
-                            <h4>Kennel 1</h4>
-                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="px-3">
-                        <div class="gf-slide">
-                            <img src="/images/breeder-kennel-3.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
-                            <h4>Kennel 1</h4>
-                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="px-3">
-                        <div class="gf-slide">
-                            <img src="/images/breeder-kennel.png" width="300" height=auto loading="lazy" alt="Breeder Logo Not found">
-                            <h4>Kennel 1</h4>
-                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 {{--Testimonials Slider--}}
 @include('components.sections.gf-testimonials')
 
@@ -287,7 +384,7 @@
             <div class="row px-5 align-items-center">
                 <div class="col-md-6 my-4 text-center">
                     <h4>Keep in touch!</h4>
-                    <span>Join our mailing list for exclusive discounts.</span>
+                    <span>Join our Mailing List for exclusive discounts</span>
                     <form class="mt-3" action="#">
                         <input class="d-block mb-3 mx-auto" type="text" placeholder="Email">
                         <button type="submit" name="submit" class="gf-btn-dark">SUBSCRIBE</button>
@@ -301,40 +398,6 @@
 {{--                </div>--}}
             </div>
         </div>
-</div>
-
-{{--Featured Resources--}}
-<div class="wrapper gf-home-third-quality">
-    <div class="lg-gf-container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <h2>Featured Resources<span style="color:#BE202E"><br>For Frenchie Lovers</span></h2>
-                <p>Our puppies and other very active dogs have plenty of space to run and romp, and comfy blankets. We offer quick & easy services for both dogs and cat of various breeds. No matter their size or age, we can provide positive grooming experience.</p>
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <div class="d-flex align-items-center">
-                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span class="ml-2">CANINE GENETICS</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span class="ml-2">CANINE NUTRITION</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <img src="/images/homepage/gf-pet-paw-sign.png" width="20" alt="">
-                        <span class="ml-2">VACCINATION</span>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <button class="gf-btn-dark mr-4" onclick="location.href='{{ route('resources') }}'">VIEW MORE</button>
-
-                </div>
-            </div>
-            <div class="col-md-6 text-left">
-                <img src="images/homepage/featured-resources.png" width="400" loading="lazy" alt="">
-            </div>
-
-        </div>
-    </div>
 </div>
 
 {{--Contact Section--}}

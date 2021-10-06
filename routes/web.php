@@ -168,18 +168,12 @@ Route::middleware(['auth'])->group(function () {
     // PROFILE
     Route::get('/profile/', function () {return view('pages/dashboard/breeder_profile');})->name('breederProfile');
     Route::get('/user/profile/', function () {return view('pages/dashboard/customer_profile');})->name('customerProfile');
-    Route::get('breedersetting', function () {
-        return view('pages/dashboard/breeder-account-setting');
-    })->name('breedersetting');
+    Route::get('breedersetting', function () {return view('pages/dashboard/breeder-account-setting');})->name('breedersetting');
 
 
 
-    Route::get('customersetting', function () {
-        return view('pages/dashboard/customer_account_setting');
-    })->name('customersetting');
-    Route::get('email', function () {
-        return view('layouts/reset-password-mail');
-    })->name('email');
+    Route::get('customersetting', function () {return view('pages/dashboard/customer_account_setting');})->name('customersetting');
+    Route::get('email', function () {return view('layouts/reset-password-mail');})->name('email');
 
 });
 

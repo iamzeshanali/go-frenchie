@@ -112,6 +112,7 @@ header.sticky .secondary-nav{
 
 
 nav.gf-nav{
+    background-color: #a5cdea;
     box-shadow: 0px 3px 3px 0px rgb(0 0 0 / 12%), inset 0px 0px 0px 0px rgb(218 220 224 / 0%);
 }
 
@@ -119,7 +120,7 @@ nav.gf-nav.active {
     z-index: 999;
     position: fixed;
     top: 0;
-    background-color: #ffffff;
+    background-color: #a5cdea;
     width: 100%;
     transition: all 0.7s ease;
     height: 70px;
@@ -166,7 +167,7 @@ nav.gf-nav button.navbar-toggler{
     .navbar-collapse{
         position: relative;
         top: 0px;
-        background-color: #ffffff;
+        background-color: #a5cdea;
         border-radius: 0px 0px 20px 20px;
         box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.12), inset 0px 0px 0px 0px rgba(218, 220, 224, 0.004);
         transition: all 1s ease !important;
@@ -182,13 +183,25 @@ nav.gf-nav button.navbar-toggler{
 }
 
 header .nav-item .nav-link {
-    color: var(--dark) !important;
+    color: #ffffff !important;
+    /* color: var(--dark) !important; */
     font-family: Sanson;
     letter-spacing: 2px;
+    font-size: 24px;
 }
 
+@media only screen and (max-width: 1200px){
+    header .nav-item .nav-link {
+        font-size: 18px;
+        }
+    }
+
 .nav-item{
-    padding-inline: 3px;
+    /* padding-inline: 3px; */
+}
+
+li.nav-item.active a{
+    color: var(--red) !important;
 }
 
 /* //////////////////// */
@@ -414,6 +427,7 @@ input.form-control:focus{
 
 .fbd-sponsured-card, .fbd-standard-card {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: #fdf5eb;
 }
 
 
@@ -552,7 +566,7 @@ input.form-control:focus{
     }
 }
 .gf-listing-card-social-icon{
-    background-color: hsla(34, 82%, 78%, 0.2);
+    background-color: var(--blue);
     border-radius: 0px 0.25rem 0.25rem 0px;
 }
 .fbd-sp-list-social{
@@ -561,7 +575,7 @@ input.form-control:focus{
 
 .fbd-sp-list-social a {
     margin: auto;
-    color: var(--blue);
+    color: white;
     font-size:20px;
 }
 
@@ -1853,6 +1867,11 @@ body a:hover {
     background-position: top right;
 }
 
+.gf-home-banner-wrapper .gf-home-banner-text{
+    background-color: #fbebd7;
+    border-radius: 25px;
+}
+
 .gf-home-banner-text p:first-child{
     font-size: 20px;
     font-weight: 600;
@@ -1873,15 +1892,11 @@ body a:hover {
 }
 }
 
-.gf-home-banner-detail{
-    margin: 20px 0px 0px;
-}
-
 .gf-home-banner-text h4{
     font-family: Proxima-Nova;
 }
 
-.gf-home-banner-button a{
+/* .gf-home-banner-button a{
     display: inline-block;
     color: #ffffff!important;
     border-width: 0px!important;
@@ -1902,7 +1917,7 @@ body a:hover {
     -moz-transform: rotate(10deg);
     -ms-transform: rotate(10deg);
     transform: rotate(10deg);
-}
+} */
 
 .gf-home-featured-kennel, .gf-contactform{
     background-image: url("/images/homepage/gf-home-second-intro-bg.jpg");
@@ -2140,6 +2155,14 @@ body a:hover {
 .gf-featured-frenchies-slider ul.slick-dots li button:before{
     color: var(--red);
     font-size: 10px;
+}
+
+.gf-frenchie-slide-details .gf-home-featured-slider-description p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 

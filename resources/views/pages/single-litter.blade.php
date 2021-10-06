@@ -3,186 +3,190 @@
 @section('content')
 
 
+    <div class="single-litters-wrapper container">
+
+    </div>
+
     <div class="container">
-        <div class="breadcrumbs row align-items-center mb-2">
-            <a href="" title="Dashboard"><i class="fas fa-tachometer-alt"></i>&emsp; Dashboard</a> &emsp;
-            <i class="fas fa-angle-right"></i> &emsp;
-            <a href="" title="View Listing">View Listing</a> &emsp;
-        </div>
+{{--        <div class="breadcrumbs row align-items-center mb-2">--}}
+{{--            <a href="" title="Dashboard"><i class="fas fa-tachometer-alt"></i>&emsp; Dashboard</a> &emsp;--}}
+{{--            <i class="fas fa-angle-right"></i> &emsp;--}}
+{{--            <a href="" title="View Listing">View Listing</a> &emsp;--}}
+{{--        </div>--}}
         <div class="row mb-3">
             <div class="col-md-6">
                 <h2 class="fbd-single-listing-title">{{$litter->title}}</h2>
             </div>
             <div class="col-md-6">
-                <div class="fbd-single-listing-social text-right mb-3">
-                    @if(Auth::user())
-                        <?php
-                        $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllLitters();
-                        //                                            dd($allSavedListings);
-                        ?>
-                        @if(count($allSavedListings) > 0)
-                            <?php
-                            foreach ($allSavedListings as $saved) {
-                                if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
-                                {
-                                    if(($saved->litters->slug == $litter->slug)){
-                                        $matched = true;
-                                        break;
-                                    }else{
-                                        $matched = false;
-                                    }
+{{--                <div class="fbd-single-listing-social text-right mb-3">--}}
+{{--                    @if(Auth::user())--}}
+{{--                        <?php--}}
+{{--                        $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllLitters();--}}
+{{--                        //                                            dd($allSavedListings);--}}
+{{--                        ?>--}}
+{{--                        @if(count($allSavedListings) > 0)--}}
+{{--                            <?php--}}
+{{--                            foreach ($allSavedListings as $saved) {--}}
+{{--                                if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)--}}
+{{--                                {--}}
+{{--                                    if(($saved->litters->slug == $litter->slug)){--}}
+{{--                                        $matched = true;--}}
+{{--                                        break;--}}
+{{--                                    }else{--}}
+{{--                                        $matched = false;--}}
+{{--                                    }--}}
 
-                                }
-                            }
-                            ?>
-                            @if($matched == false)
-                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$litter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$litter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
-                            @else
-                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$litter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$litter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
-                            @endif
+{{--                                }--}}
+{{--                            }--}}
+{{--                            ?>--}}
+{{--                            @if($matched == false)--}}
+{{--                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$litter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$litter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>--}}
+{{--                            @else--}}
+{{--                                <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #8b77fc;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$litter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$litter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>--}}
+{{--                            @endif--}}
 
-                        @else
-                            <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$litter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$litter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
-                        @endif
-                    @else
-                        <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
-                    @endif
-                    <div id="LoginModal" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Register Yourself</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                @if (\Session::has('error'))
-                                    <div class="alert alert-danger">
-                                        {{ \Session::get('error') }}
-                                    </div>
-                                @endif
-                                <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
-                                    @csrf
-                                    <div class="modal-body">
+{{--                        @else--}}
+{{--                            <a  class="delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$litter->slug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$litter->slug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>--}}
+{{--                        @endif--}}
+{{--                    @else--}}
+{{--                        <a href="#LoginModal" class="delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>--}}
+{{--                    @endif--}}
+{{--                    <div id="LoginModal" class="modal fade">--}}
+{{--                        <div class="modal-dialog">--}}
+{{--                            <div class="modal-content">--}}
+{{--                                <div class="modal-header">--}}
+{{--                                    <h4 class="modal-title">Register Yourself</h4>--}}
+{{--                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
+{{--                                </div>--}}
+{{--                                @if (\Session::has('error'))--}}
+{{--                                    <div class="alert alert-danger">--}}
+{{--                                        {{ \Session::get('error') }}--}}
+{{--                                    </div>--}}
+{{--                                @endif--}}
+{{--                                <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">--}}
+{{--                                    @csrf--}}
+{{--                                    <div class="modal-body">--}}
 
-                                        <input type="hidden" name="slug" value="{{$litter->slug}}">
-                                        <input type="hidden" name="type" value="litters">
+{{--                                        <input type="hidden" name="slug" value="{{$litter->slug}}">--}}
+{{--                                        <input type="hidden" name="type" value="litters">--}}
 
-                                        {{--  EMAIL-ADDRESS  --}}
-                                        <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+{{--                                        --}}{{--  EMAIL-ADDRESS  --}}
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
 
-                                            <div class="col-md-6">
-                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+{{--                                            <div class="col-md-6">--}}
+{{--                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">--}}
 
-                                                @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        {{--  PASSWORD  --}}
-                                        <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+{{--                                                @error('email')--}}
+{{--                                                <span class="invalid-feedback" role="alert">--}}
+{{--                                                                            <strong>{{ $message }}</strong>--}}
+{{--                                                                        </span>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        --}}{{--  PASSWORD  --}}
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
 
-                                            <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+{{--                                            <div class="col-md-6">--}}
+{{--                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">--}}
 
-                                                @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
-                                        <button type="submit" class="btn btn-danger btn-fbd">
-                                            {{ __('Login') }}
-                                        </button>
+{{--                                                @error('password')--}}
+{{--                                                <span class="invalid-feedback" role="alert">--}}
+{{--                                                                            <strong>{{ $message }}</strong>--}}
+{{--                                                                        </span>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="modal-footer">--}}
+{{--                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">--}}
+{{--                                        <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>--}}
+{{--                                        <button type="submit" class="btn btn-danger btn-fbd">--}}
+{{--                                            {{ __('Login') }}--}}
+{{--                                        </button>--}}
 
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="deleteListingModal" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Register Yourself</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
-                                    @csrf
-                                    <div class="modal-body">
+{{--                                    </div>--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div id="deleteListingModal" class="modal fade">--}}
+{{--                        <div class="modal-dialog">--}}
+{{--                            <div class="modal-content">--}}
+{{--                                <div class="modal-header">--}}
+{{--                                    <h4 class="modal-title">Register Yourself</h4>--}}
+{{--                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
+{{--                                </div>--}}
+{{--                                <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">--}}
+{{--                                    @csrf--}}
+{{--                                    <div class="modal-body">--}}
 
-                                        <input type="hidden" name="slug" value="{{$litter->slug}}">
-                                        <input type="hidden" name="type" value="litters">
-                                        {{--  USERNAME  --}}
-                                        <div class="form-group row">
-                                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+{{--                                        <input type="hidden" name="slug" value="{{$litter->slug}}">--}}
+{{--                                        <input type="hidden" name="type" value="litters">--}}
+{{--                                        --}}{{--  USERNAME  --}}
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>--}}
 
-                                            <div class="col-md-6">
-                                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+{{--                                            <div class="col-md-6">--}}
+{{--                                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>--}}
 
-                                                @error('username')
-                                                <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        {{--  EMAIL-ADDRESS  --}}
-                                        <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+{{--                                                @error('username')--}}
+{{--                                                <span class="invalid-feedback" role="alert">--}}
+{{--                                                                            <strong>{{ $message }}</strong>--}}
+{{--                                                                        </span>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        --}}{{--  EMAIL-ADDRESS  --}}
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
 
-                                            <div class="col-md-6">
-                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+{{--                                            <div class="col-md-6">--}}
+{{--                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">--}}
 
-                                                @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        {{--  PASSWORD  --}}
-                                        <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+{{--                                                @error('email')--}}
+{{--                                                <span class="invalid-feedback" role="alert">--}}
+{{--                                                                            <strong>{{ $message }}</strong>--}}
+{{--                                                                        </span>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        --}}{{--  PASSWORD  --}}
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
 
-                                            <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+{{--                                            <div class="col-md-6">--}}
+{{--                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">--}}
 
-                                                @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        {{--  CONFIRM-PASSWORD  --}}
-                                        <div class="form-group row">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+{{--                                                @error('password')--}}
+{{--                                                <span class="invalid-feedback" role="alert">--}}
+{{--                                                                            <strong>{{ $message }}</strong>--}}
+{{--                                                                        </span>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        --}}{{--  CONFIRM-PASSWORD  --}}
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>--}}
 
-                                            <div class="col-md-6">
-                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <button type="submit" class="btn btn-danger btn-fbd">
-                                            {{ __('Register') }}
-                                        </button>
+{{--                                            <div class="col-md-6">--}}
+{{--                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="modal-footer">--}}
+{{--                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">--}}
+{{--                                        <button type="submit" class="btn btn-danger btn-fbd">--}}
+{{--                                            {{ __('Register') }}--}}
+{{--                                        </button>--}}
 
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--                                    </div>--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
         <div class="row mb-5 fbd-single-listing-info">
@@ -333,6 +337,13 @@
 
 
     </div>
+
+
+
+
+
+
+
     <script type="text/javascript">
         function addOrRemoveToFavourite($slug, $email, $type){
             // console.log($slug, $email, $type);
