@@ -5,14 +5,6 @@
 
 <div class="single-listing-wrapper container">
 
-{{--    <nav aria-label="breadcrumb">--}}
-{{--        <ol class="breadcrumb">--}}
-{{--            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>--}}
-{{--            <li class="breadcrumb-item"><a href="#">Puppies</a></li>--}}
-{{--            <li class="breadcrumb-item active" aria-current="page">Single Puppy</li>--}}
-{{--        </ol>--}}
-{{--    </nav>--}}
-
     <div class="row">
         <div class="btn-group btn-breadcrumb breadcrumb-info">
             <a href="#" class="btn btn-info visible-lg-block visible-md-block">Dashboard</a>

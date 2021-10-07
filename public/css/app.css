@@ -560,15 +560,21 @@ input.form-control:focus{
     color: var(--dark);
 }
 
+.gf-listing-card-social-icon{
+    background-color: var(--blue);
+    border-radius: 0px 0px 0.25rem 0.25rem;
+    
+}
+
 @media only screen and (min-width: 992px){
 .gf-listing-card-like-icon{
     margin-bottom:60px !important;
     }
+    .gf-listing-card-social-icon{
+        border-radius: 0px 0.25rem 0.25rem 0px;
+    }
 }
-.gf-listing-card-social-icon{
-    background-color: var(--blue);
-    border-radius: 0px 0.25rem 0.25rem 0px;
-}
+
 .fbd-sp-list-social{
     height: 100%;
 }
@@ -2304,7 +2310,7 @@ body a:hover {
 	border-color: transparent; border: 0px solid transparent;
 	border-right: 1px solid transparent !important; 
 }
-.btn-breadcrumb .btn:last-child {font-weight: bold; text-decoration: underline;}
+/* .btn-breadcrumb .btn:last-child {font-weight: bold; text-decoration: underline;} */
 .btn-breadcrumb .btn:last-child:after{margin-left: 0px;}
 .btn-breadcrumb .btn:last-child:before{margin-left: -1px;}
 
@@ -2313,17 +2319,17 @@ body a:hover {
   display: block;
   width: 0;
   height: 0;
-  border-top: 13px solid transparent;
-  border-bottom: 14px solid transparent;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
   border-left: 10px solid white;
   position: absolute;
   top: 50%;
-  margin-top: -14px;
+  margin-top: -16px;
   margin-left: 0px;
   left: 100%;
   z-index: 3;
 }
-.btn-breadcrumb .btn:before {
+/* .btn-breadcrumb .btn:before {
   content: " ";
   display: block;
   width: 0;
@@ -2337,11 +2343,11 @@ body a:hover {
   margin-left: 1px;
   left: 100%;
   z-index: 3;
-}
+} */
 
 /** The Spacing **/
 .btn-breadcrumb .btn {padding:6px 12px 6px 24px;}
-.btn-breadcrumb .btn:first-child {padding:6px 6px 6px 10px;}
+.btn-breadcrumb .btn:first-child {padding:6px 18px 6px 30px;}
 .btn-breadcrumb .btn:last-child {padding:6px 18px 6px 24px;}
 
 /** Info button **/
@@ -2380,6 +2386,10 @@ body a:hover {
 
 .btn:focus{
     box-shadow: none !important;
+}
+
+#LoginModal.modal, #deleteListingModal.modal{
+    top: 20%;
 }
 
 

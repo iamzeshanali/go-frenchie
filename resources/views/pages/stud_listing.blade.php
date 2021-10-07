@@ -18,6 +18,8 @@
     </div>
 </div>
 
+
+
     <div class="container-fluid">
         <div class="page-content d-lg-flex align-items-start">
             {{--Filter area--}}
@@ -407,6 +409,7 @@
             </div>
             {{--End Filter area--}}
 
+            {{--Studs Listings Area--}}
             <div class="fbd-content-area mb-3 col-xl-8 col-lg-9">
 
                 <div id="primary-listing-data" class="fbd-listing-area">
@@ -499,11 +502,11 @@
                                             @else
                                                 <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
                                             @endif
-                                            <div id="LoginModal" class="modal fade">
+                                            <div id="LoginModal" class="modal fade ">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Login Yourself</h4>
+                                                        <div class="modal-header align-items-center">
+                                                            <h4 class="modal-title gf-red">Login Yourself</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         </div>
                                                         @if (\Session::has('error'))
@@ -513,15 +516,15 @@
                                                         @endif
                                                         <form method="POST" action="{{ route('addToFavouriteWithUserLogin') }}">
                                                             @csrf
-                                                            <div class="modal-body">
+                                                            <div class="modal-body pb-0">
 
                                                                 <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
                                                                 <input type="hidden" name="type" value="listing">
 
                                                                 {{--  EMAIL-ADDRESS  --}}
-                                                                <div class="form-group row">
+                                                                <div class="row p-0">
                                                                     <div class="col-md-12">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="E-mail Address: *" autocomplete="email">
+                                                                        <input type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="E-mail Address: *" autocomplete="email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -531,9 +534,12 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <div class="col-md-12">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password: *" autocomplete="new-password">
+                                                                <div class="row p-0">
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="login-password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required placeholder="Password: *" autocomplete="new-password">
+                                                                        <span class="input-group-btn">
+                                                                            <button onclick="showPassword('login-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
 
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
@@ -543,12 +549,16 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <a href="#deleteListingModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Register"></a>
-                                                                <button type="submit" class="btn btn-primary btn-fbd">
-                                                                    {{ __('Login') }}
-                                                                </button>
+                                                            <div class="modal-footer m-0">
+{{--                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">--}}
+                                                                <a href="#deleteListingModal" class="delete col-6 m-0" data-toggle="modal">
+                                                                    <input type="button" class="gf-btn-light w-100" data-dismiss="modal" value="Register">
+                                                                </a>
+                                                                <div class="col m-0">
+                                                                    <button type="submit" class="gf-btn-dark m-0 w-100">
+                                                                        {{ __('Login') }}
+                                                                    </button>
+                                                                </div>
 
                                                             </div>
                                                         </form>
@@ -558,32 +568,32 @@
                                             <div id="deleteListingModal" class="modal fade">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Register Yourself</h4>
+                                                        <div class="modal-header align-items-center">
+                                                            <h4 class="modal-title gf-red">Register Yourself</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         </div>
                                                         <form method="POST" action="{{ route('addToFavouriteWithUserRegister') }}">
                                                             @csrf
-                                                            <div class="modal-body">
+                                                            <div class="modal-body pb-0">
 
                                                                 <input type="hidden" name="slug" value="{{$sponsoredPuppy->slug}}">
                                                                 <input type="hidden" name="type" value="listing">
                                                                 {{--  USERNAME  --}}
-                                                                <div class="form-group row">
-                                                                    <div class="col-md-12">
-                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required placeholder="Username: *" autocomplete="username" autofocus>
+{{--                                                                <div class="form-group row">--}}
+{{--                                                                    <div class="col-md-12">--}}
+{{--                                                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required placeholder="Username: *" autocomplete="username" autofocus>--}}
 
-                                                                        @error('username')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
+{{--                                                                        @error('username')--}}
+{{--                                                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                                                            <strong>{{ $message }}</strong>--}}
+{{--                                                                        </span>--}}
+{{--                                                                        @enderror--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
                                                                 {{--  EMAIL-ADDRESS  --}}
-                                                                <div class="form-group row">
-                                                                    <div class="col-md-12">
-                                                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="E-Mail: *" autocomplete="email">
+                                                                <div class="row p-0">
+                                                                    <div class="col">
+                                                                        <input type="email" class="gf-form-field @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="E-Mail: *" autocomplete="email">
 
                                                                         @error('email')
                                                                         <span class="invalid-feedback" role="alert">
@@ -593,30 +603,41 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <div class="col-md-12">
-                                                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password: *" autocomplete="new-password">
+                                                                <div class="row p-0">
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="register-password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required placeholder="Password: *" autocomplete="new-password">
+                                                                        <span class="input-group-btn">
+                                                                        <button onclick="showPassword('register-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
 
                                                                         @error('password')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
                                                                         </span>
                                                                         @enderror
+
                                                                     </div>
                                                                 </div>
+
                                                                 {{--  CONFIRM-PASSWORD  --}}
-                                                                <div class="form-group row">
-                                                                    <div class="col-md-12">
-                                                                        <input type="password" class="form-control" name="password_confirmation" required placeholder="Confirm-Password: *" autocomplete="new-password">
+                                                                <div class="row p-0">
+                                                                    <div class="col input-group flex-nowrap">
+                                                                        <input id="register-confirm-password" type="password" class="gf-form-field" name="password_confirmation" required placeholder="Confirm-Password: *" autocomplete="new-password">
+                                                                        <span class="input-group-btn">
+                                                                            <button onclick="showPassword('register-confirm-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <a href="#LoginModal" class="delete" data-toggle="modal"><input type="button" class="btn btn-danger" data-dismiss="modal" value="Login"></a>
-                                                                <button type="submit" class="btn btn-primary btn-fbd">
-                                                                    {{ __('Register') }}
-                                                                </button>
+                                                            <div class="modal-footer m-0 flex-nowrap">
+                                                                <a href="#LoginModal" class="delete col-6" data-toggle="modal">
+                                                                    <input type="button" class="gf-btn-light w-100" data-dismiss="modal" value="Login">
+                                                                </a>
+                                                                <div class="col m-0">
+                                                                    <button type="submit" class="gf-btn-dark m-0 w-100">
+                                                                        {{ __('Register') }}
+                                                                    </button>
+                                                                </div>
 
                                                             </div>
                                                         </form>
@@ -883,7 +904,7 @@
 
             </div>
 
-{{--            Adds Area--}}
+            {{--Adds Area--}}
             <div class="gf-adds-area mb-3 col-xl-2">
                 @include('components/adds-area')
             </div>
@@ -1790,7 +1811,8 @@
 
         function singlePuppy($slug) {
             // console.log($slug);
-            window.location = "{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug;
+            window.open("{{\Illuminate\Support\Facades\URL::to('puppy-listing')}}/"+$slug, "_blank");
+
         }
 
         function getZip(){
