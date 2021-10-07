@@ -55,6 +55,7 @@ class SavedItemsController extends Controller
     }
 
     public function addToFavouriteWithUserLogin(Request $request){
+//        return response()->json(['success'=>$request->slug]);
         $matchingUser = $this->usersRepository->matching(
                 $this->usersRepository->criteria()->where(
                     Users::EMAIL, '=', new EmailAddress($request->input('email'))
@@ -105,7 +106,7 @@ class SavedItemsController extends Controller
 //        return response()->json(['success'=>"ADD"]);
         $slug = $request->get('slug');
 
-
+//        return response()->json(['success'=>$slug]);
         $email = $request->get('email');
         $type = $request->get('type');
 

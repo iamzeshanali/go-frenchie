@@ -42,8 +42,13 @@ use App\Infrastructure\Persistence\DbSavedListingsRepository;
 use App\Infrastructure\Persistence\DbSavedLittersRepository;
 use App\Infrastructure\Persistence\DbSavedSearchRepository;
 use App\Infrastructure\Persistence\DbUsersRepository;
+use App\View\Components\likeSponsored;
+use App\View\Components\likeStandard;
+use App\View\Components\login;
+use App\View\Components\register;
 use Dms\Core\ICms;
 use Dms\Core\Persistence\Db\Mapping\IOrm;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -55,7 +60,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::component('like-sponsored', likeSponsored::class);
+        Blade::component('like-standard', likeStandard::class);
     }
 
     /**
