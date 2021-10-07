@@ -426,7 +426,11 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{$sponsoredPuppy->photo1 ? asset_file_url($sponsoredPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
+                                            @if($sponsoredPuppy->photo1)<img src="{{ asset_file_url($sponsoredPuppy->photo1)}}" width="250" height="250" alt="">@endif
+                                            @if($sponsoredPuppy->photo2)<img src="{{ asset_file_url($sponsoredPuppy->photo2)}}" width="250" height="250" alt="">@endif
+                                            @if($sponsoredPuppy->photo3)<img src="{{ asset_file_url($sponsoredPuppy->photo3)}}" width="250" height="250" alt="">@endif
+                                            @if($sponsoredPuppy->photo4)<img src="{{ asset_file_url($sponsoredPuppy->photo4)}}" width="250" height="250" alt="">@endif
+                                            @if($sponsoredPuppy->photo5)<img src="{{ asset_file_url($sponsoredPuppy->photo5)}}" width="250" height="250" alt="">@endif
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
@@ -650,7 +654,11 @@
                                 <div class="fbd-sponsured-card rounded row align-items-stretch p-lg-0 pb-0">
                                     <div class="col-lg-3 p-0 m-auto">
                                         <div class="fbd-sp-listing-img">
-                                            <img src="{{$standardPuppy->photo1 ? asset_file_url($standardPuppy->photo1): '/images/notfound/gf-not-found.png'}}" width="250" height="250" alt="">
+                                            @if($standardPuppy->photo1)<img src="{{ asset_file_url($standardPuppy->photo1)}}" width="250" height="250" alt="">@endif
+                                            @if($standardPuppy->photo2)<img src="{{ asset_file_url($standardPuppy->photo2)}}" width="250" height="250" alt="">@endif
+                                            @if($standardPuppy->photo3)<img src="{{ asset_file_url($standardPuppy->photo3)}}" width="250" height="250" alt="">@endif
+                                            @if($standardPuppy->photo4)<img src="{{ asset_file_url($standardPuppy->photo4)}}" width="250" height="250" alt="">@endif
+                                            @if($standardPuppy->photo5)<img src="{{ asset_file_url($standardPuppy->photo5)}}" width="250" height="250" alt="">@endif
                                         </div>
                                     </div>
                                     <div class="col-lg-8 pt-2 d-flex flex-column justify-content-between">
