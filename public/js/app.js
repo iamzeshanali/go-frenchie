@@ -11,25 +11,21 @@ function showPassword(password) {
 $(document).ready(function() {
 
     // Listing card Images Slider
-    // $('.fbd-sp-listing-img').slick({
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     fade: true,
-    //     arrows: true,
-    //     focusOnSelect: true,
-    //     asNavFor: '.fbd-sp-listing-thumbs'
-    // });
+    $('.fbd-sp-listing-img').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        fade: true,
+        focusOnSelect: true
+    });
+
     // $('.fbd-sp-listing-thumbs').slick({
     //     slidesToShow: 5,
     //     slidesToScroll: 1,
     //     asNavFor: '.fbd-sp-listing-img',
     //     focusOnSelect: true,
     //     arrows: false
-    // });
-
-    // Listing Card Liked Icon
-    // $(".fbd-liked-icon").click(function() {
-    //     $(".fbd-liked-icon").toggleClass("liked");
     // });
 
 

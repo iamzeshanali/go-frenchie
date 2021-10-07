@@ -13,67 +13,6 @@
 13--Social Links
 -- footer*/
 
-/*1-- Font Include Start  */
-
-/* @font-face {
-    font-family: Sailec-Bold;
-    src:
-    local(Sailec),
-    local(Sailec-Bold),
-    url(/fonts/Sailec-Bold.ttf);
-}
-
-@font-face {
-    font-family: Sailec-Light;
-    src: url(/fonts/Sailec-Light.ttf);
-}
-
-@font-face {
-    font-family: Sailec-Medium;
-    src: url(/fonts/Sailec-Medium.ttf);
-}
-
-@font-face {
-    font-family: Sailec-Thin;
-    src: url(/fonts/Sailec-Thin.ttf);
-}
-
-@font-face {
-    font-family: Sailec;
-    src: url(/fonts/Sailec.ttf);
-} */
-
-/* Font Include End */
-
-/*2-- General For Multiple pages Start*/
-/* .bg-peach {
-    background-color: transparent !important;
-} */
-/* .select-display{
-    display: none !important;
-} */
-/* .btn-fbd {
-    font-family: "Sailec-Medium";
-    border: none !important;
-    background-image: -moz-linear-gradient( 0deg, #3390CE 0%, #3390CE 100%);
-    background-image: -webkit-linear-gradient( 0deg, #3390CE 0%, #3390CE 100%);
-    background-image: -ms-linear-gradient( 0deg, #3390CE 0%, #3390CE 100%);
-} */
-
-/* .btn-fbd:active:focus {
-    box-shadow: none !important;
-}
-
-.btn-fbd:hover {
-    background-image: -moz-linear-gradient( 0deg, #BE202E 0%, #BE202E 100%);
-    background-image: -webkit-linear-gradient( 0deg, #BE202E 0%, #BE202E 100%);
-    background-image: -ms-linear-gradient( 0deg, #BE202E 0%, #BE202E 100%);
-}
-
-.btn-fbd:focus {
-    box-shadow: none;
-} */
-
 .fa-dna {
     color: var(--blue);
 }
@@ -87,9 +26,8 @@
 /*    padding: 5px 0;*/
 /*}*/
 
-/* General For Multiple pages End */
 
-/* 3-- *********** Navbar Start ***************/
+/* 3-- *********** Header & Navbar Start ***************/
 
 header.sticky{
     position: sticky;
@@ -109,8 +47,6 @@ header.sticky .secondary-nav{
     color: #ffffff;
 }
 
-
-
 nav.gf-nav{
     background-color: #a5cdea;
     box-shadow: 0px 3px 3px 0px rgb(0 0 0 / 12%), inset 0px 0px 0px 0px rgb(218 220 224 / 0%);
@@ -125,7 +61,6 @@ nav.gf-nav.active {
     transition: all 0.7s ease;
     height: 70px;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12), inset 0px 0px 0px 0px rgba(218, 220, 224, 0.004);
-
 }
 
 header nav.gf-nav .navbar-brand img{
@@ -152,7 +87,6 @@ nav.gf-nav button.navbar-toggler{
         top: 70px;
         z-index: 9999;
     }
-
     .navbar-brand{
         margin-left: 15px;
     }
@@ -171,7 +105,6 @@ nav.gf-nav button.navbar-toggler{
         border-radius: 0px 0px 20px 20px;
         box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.12), inset 0px 0px 0px 0px rgba(218, 220, 224, 0.004);
         transition: all 1s ease !important;
-        
     }
     .navbar-collapse .nav-item{
         border-right: 0px !important;
@@ -448,7 +381,6 @@ input.form-control:focus{
     
 }
 
-
 .fbd-sp-listing-img img {
     width: 100%;
     object-fit: contain;
@@ -463,19 +395,33 @@ input.form-control:focus{
         object-fit: contain;
         border-radius: 20px;
     }
-    .fbd-sp-listing-img{
+    .fbd-sp-listing-img .slick-slide div:first-of-type{
         margin:auto;
+        max-width: fit-content;
     }
     }
-
-
 
 .fbd-sp-listing-img img:hover {
-    -webkit-transform: scale(1.1);
+    /* -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
-    transition: 3s ease;
+    transition: 3s ease; */
 }
+
+.fbd-sp-listing-img.slick-slider{
+    margin-bottom: 0px;
+    padding: 10px 10px 30px 10px;
+}
+
+.fbd-sp-listing-img ul.slick-dots{
+    bottom: 0px;
+    margin-bottom: 0px;
+}
+.fbd-sp-listing-img ul.slick-dots li button:before{
+    color: var(--red);
+    font-size: 9px;
+}
+
 
 .fbd-sp-listing-liked {
     position: absolute;
