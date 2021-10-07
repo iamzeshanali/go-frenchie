@@ -117,7 +117,7 @@ class RegisterController extends Controller
     }
     protected function createBreeder(Request $request)
     {
-        dd("DONE");
+//        dd("DONE");
             $breeder = new Users();
             $breeder->firstName = $request->get('firstName');
             $breeder->lastName = $request->get('lastName');

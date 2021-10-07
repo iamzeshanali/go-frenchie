@@ -107,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trashed-puppies/{page}', [App\Http\Controllers\ListingsController::class, 'showTrashedPuppies'])->name('showTrashedPuppies');
         Route::get('/puppies/recycle/{id}', [App\Http\Controllers\ListingsController::class, 'recycleTrashedListings'])->name('recyclePuppies');
         Route::delete('/puppies/delete/{id}', [App\Http\Controllers\ListingsController::class, 'deleteListings'])->name('deletePuppies');
-        Route::get('/puppies/deleteAll', [App\Http\Controllers\ListingsController::class, 'deleteAllListings'])->name('deleteAllPuppies');
+        Route::get('/puppies/delete/All', [App\Http\Controllers\ListingsController::class, 'deleteAllListings'])->name('deleteAllPuppies');
 
         Route::get('/litters/{page}',[App\Http\Controllers\LittersController::class, 'showLittersInDashboard'])->name('showAllLitters');
         Route::get('/litter/{slug}',[App\Http\Controllers\LittersController::class, 'showSingleLitter'])->name('showSingleLitter');
@@ -119,7 +119,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trashed-litters/trash/{page}', [App\Http\Controllers\LittersController::class, 'showTrashedLitters'])->name('showTrashedLitters');
         Route::get('/litter/recycle/{id}', [App\Http\Controllers\LittersController::class, 'recycleLitters'])->name('recycleLitters');
         Route::delete('/litter/delete/{id}', [App\Http\Controllers\LittersController::class, 'deleteLitter'])->name('deleteLitter');
-        Route::get('/litters/deleteAll', [App\Http\Controllers\LittersController::class, 'deleteAllLitters'])->name('deleteAllLitters');
+        Route::get('/litters/delete/All', [App\Http\Controllers\LittersController::class, 'deleteAllLitters'])->name('deleteAllLitters');
 
         // BREEDER SUPPLIES
         Route::get('/resources/breeder-supplies/{page}',[App\Http\Controllers\BreederSuppliesController::class, 'showAllBreederSupplies'])->name('showAllBreederSupplies');

@@ -3,6 +3,15 @@
 @section('content')
 
     <div class="container-fluid">
+        <div class="row pb-0">
+            <div class="btn-group btn-breadcrumb breadcrumb-info">
+                <a href="{{route('dashboard')}}" class="btn btn-info visible-lg-block visible-md-block">Dashboard</a>
+                <a href="#" class="btn btn-info visible-lg-block visible-md-block">Resources</a>
+                <a href="{{route('showAllBreederSupplies',1)}}" disabled class="btn btn-info visible-lg-block visible-md-block">Breeder Supplies</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
         <div class="gf-dashboard-page-content row align-items-start">
             @include('components.gf-dashboard-menu-area')
             <div class="breader-dashboard-content col-xl-10 col-lg-9">

@@ -351,7 +351,7 @@ class LittersController extends Controller
             $this->littersRepository->criteria()
                 ->where(Litters::TRASHED,'=',true)
         );
-        if(empty($singleListing)){
+        if(empty($Listings)){
 
         }else{
             $this->littersRepository->removeAll($Listings);

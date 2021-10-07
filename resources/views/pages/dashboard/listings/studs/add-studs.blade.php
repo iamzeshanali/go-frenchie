@@ -1,7 +1,15 @@
 @extends('./layouts.app')
 
 @section('content')
-
+    <div class="container-fluid">
+        <div class="row pb-0">
+            <div class="btn-group btn-breadcrumb breadcrumb-info">
+                <a href="{{route('dashboard')}}" class="btn btn-info visible-lg-block visible-md-block">Dashboard</a>
+                <a href="#" class="btn btn-info visible-lg-block visible-md-block">Listings</a>
+                <a href="{{route('showAllStuds',1)}}" disabled class="btn btn-info visible-lg-block visible-md-block">Studs</a>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
 
         <?php

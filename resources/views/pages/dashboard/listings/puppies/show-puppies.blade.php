@@ -1,7 +1,15 @@
 @extends('./layouts.app')
 
 @section('content')
-
+    <div class="container-fluid">
+        <div class="row pb-0">
+            <div class="btn-group btn-breadcrumb breadcrumb-info">
+                <a href="{{route('dashboard')}}" class="btn btn-info visible-lg-block visible-md-block">Dashboard</a>
+                <a href="#" class="btn btn-info visible-lg-block visible-md-block">Listings</a>
+                <a href="{{route('showAllPuppies',1)}}" disabled class="btn btn-info visible-lg-block visible-md-block">Puppies</a>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="gf-dashboard-page-content row align-items-start">
         @include('components.gf-dashboard-menu-area')
@@ -10,6 +18,7 @@
                     <div class="table-responsive">
                         <div class="table-wrapper">
                             <div class="table-title">
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <h2>Listings <b>Puppies</b></h2>
@@ -46,7 +55,7 @@
                                     @foreach($Puppies as $puppy)
                                         <tr>
                                             <td>{{$puppy->title}}</td>
-{{--                                            <td>{{$puppy->breeder->kennelName}}</td>--}}
+                                            {{--                                            <td>{{$puppy->breeder->kennelName}}</td>--}}
                                             <td>{{ucfirst($puppy->sex->getValue())}}</td>
                                             <td><img src="{{ $puppy->photo1 ? asset_file_url($puppy->photo1) : '/images/notfound/gf-not-found.png'}}" alt="" width="60px"></td>
 

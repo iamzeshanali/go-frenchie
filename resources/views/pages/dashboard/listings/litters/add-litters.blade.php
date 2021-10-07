@@ -1,7 +1,15 @@
 @extends('./layouts.app')
 
 @section('content')
-
+    <div class="container-fluid">
+        <div class="row pb-0">
+            <div class="btn-group btn-breadcrumb breadcrumb-info">
+                <a href="{{route('dashboard')}}" class="btn btn-info visible-lg-block visible-md-block">Dashboard</a>
+                <a href="#" class="btn btn-info visible-lg-block visible-md-block">Listings</a>
+                <a href="{{route('showAllLitters',1)}}" disabled class="btn btn-info visible-lg-block visible-md-block">Litters</a>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
 
         <div class="gf-dashboard-page-content row align-items-start">

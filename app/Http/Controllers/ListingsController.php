@@ -1699,15 +1699,18 @@ class ListingsController extends Controller
      */
     public function deleteAllListings()
     {
+//        dd('done');
         $Listings = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TRASHED,'=',true)
         );
-        if(empty($singleListing)){
+//        dd($Listings);
+        if(empty($Listings)){
 
         }else{
             $this->listingsRepository->removeAll($Listings);
             return redirect()->back();
+//            return route('showTrashedPuppies',1);
         }
 
     }

@@ -1,7 +1,14 @@
 @extends('./layouts.app')
 
 @section('content')
-
+    <div class="container-fluid">
+        <div class="row pb-0">
+            <div class="btn-group btn-breadcrumb breadcrumb-info">
+                <a href="{{route('dashboard')}}" class="btn btn-info visible-lg-block visible-md-block">Dashboard</a>
+                <a href="#" class="btn btn-info visible-lg-block visible-md-block">Liked Items</a>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
 {{--        <h2 class="page-title text-center mb-5">Breader Dashboard</h2>--}}
         <div class="gf-dashboard-page-content row align-items-start {{Auth::User()->role->getValue()  == 'breeder' ? '' : 'justify-content-center'}}">
