@@ -96,7 +96,6 @@ class SavedItemsController extends Controller
             $this->usersRepository->save($customer);
             $this->addOrRemoveToFavourite($request);
 
-            return redirect()->back();
         }else{
             return redirect()->back()->with('error', 'Customer already exists.');
         }

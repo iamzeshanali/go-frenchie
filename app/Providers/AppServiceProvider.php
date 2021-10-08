@@ -43,7 +43,9 @@ use App\Infrastructure\Persistence\DbSavedLittersRepository;
 use App\Infrastructure\Persistence\DbSavedSearchRepository;
 use App\Infrastructure\Persistence\DbUsersRepository;
 use App\View\Components\likeSponsored;
+use App\View\Components\likeSponsoredLitters;
 use App\View\Components\likeStandard;
+use App\View\Components\likeStandardLitters;
 use App\View\Components\login;
 use App\View\Components\register;
 use Dms\Core\ICms;
@@ -62,6 +64,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::component('like-sponsored', likeSponsored::class);
         Blade::component('like-standard', likeStandard::class);
+        Blade::component('like-sponsored-litters', likeSponsoredLitters::class);
+        Blade::component('like-standard-litters', likeStandardLitters::class);
     }
 
     /**

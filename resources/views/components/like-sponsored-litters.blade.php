@@ -1,3 +1,4 @@
+
 @if(Auth::user())
     <?php
     $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
@@ -10,7 +11,7 @@
         foreach ($allSavedListings as $saved) {
             if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
             {
-                if(($saved->listings->slug == $standardSlug)){
+                if(($saved->listings->slug == $sponsoredSlug)){
                     $matched = true;
                     break;
                 }else{
@@ -21,18 +22,19 @@
         }
         ?>
         @if($matched == false)
-            <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+            <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredSlug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
         @else
-            <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+            <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredSlug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
         @endif
 
     @else
-        <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+        <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$sponsoredSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$sponsoredSlug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
     @endif
 @else
-    <a href="#LoginModalStandard" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
+    <a href="#LoginModal" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
 @endif
-<div id="LoginModalStandard" class="modal fade">
+{{--{{$sponsoredSlug}}--}}
+<div id="LoginModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header align-items-center">
@@ -48,8 +50,8 @@
                 @csrf
                 <div class="modal-body">
 
-                    <input type="hidden" name="slug" value="{{$standardSlug}}">
-                    <input type="hidden" name="type" value="listing">
+                    <input type="hidden" name="slug" value="{{$sponsoredSlug}}">
+                    <input type="hidden" name="type" value="litters">
 
                     {{--  EMAIL-ADDRESS  --}}
                     <div class="row">
@@ -66,9 +68,9 @@
                     {{--  PASSWORD  --}}
                     <div class="row">
                         <div class="col input-group flex-nowrap">
-                            <input id="login-password-standard" type="password" class="gf-form-field m-0 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter your password">
+                            <input id="login-password" type="password" class="gf-form-field m-0 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter your password">
                             <span class="input-group-btn">
-                                                                            <button onclick="showPassword('login-password-standard')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                            <button onclick="showPassword('login-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
                                                                         </span>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -81,7 +83,7 @@
                 <div class="row modal-footer justify-content-around p-3">
                     {{--                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">--}}
                     <div class="col-6 m-0">
-                        <a href="#registerModalStandard" class="delete" data-toggle="modal">
+                        <a href="#deleteListingModal" class="delete" data-toggle="modal">
                             <input class="gf-btn-light w-100" type="button" data-dismiss="modal" value="Register">
                         </a>
                     </div>
@@ -96,7 +98,7 @@
         </div>
     </div>
 </div>
-<div id="registerModalStandard" class="modal fade">
+<div id="deleteListingModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header align-items-center">
@@ -107,8 +109,8 @@
                 @csrf
                 <div class="modal-body">
 
-                    <input type="hidden" name="slug" value="{{$standardSlug}}">
-                    <input type="hidden" name="type" value="listing">
+                    <input type="hidden" name="slug" value="{{$sponsoredSlug}}">
+                    <input type="hidden" name="type" value="litters">
                     {{--  USERNAME  --}}
                     <div class="row">
                         <div class="col">
@@ -138,9 +140,9 @@
                     <div class="row">
 
                         <div class="col input-group flex-nowrap">
-                            <input id="register-password-standard" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Password*') }}">
+                            <input id="register-password" type="password" class="gf-form-field @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Password*') }}">
                             <span class="input-group-btn">
-                                                                            <button onclick="showPassword('register-password-standard')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                            <button onclick="showPassword('register-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
                                                                         </span>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -153,9 +155,9 @@
                     <div class="row">
 
                         <div class="col input-group flex-nowrap">
-                            <input id="standard-register-confirm-password" type="password" class="gf-form-field m-0" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password*') }}">
+                            <input id="register-confirm-password" type="password" class="gf-form-field m-0" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password*') }}">
                             <span class="input-group-btn">
-                                                                            <button onclick="showPassword('standard-register-confirm-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                                                                            <button onclick="showPassword('register-confirm-password')" class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
                                                                         </span>
                         </div>
                     </div>

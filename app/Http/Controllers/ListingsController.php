@@ -135,6 +135,7 @@ class ListingsController extends Controller
 
     public function showStuds()
     {
+//        dd("DONE");
         $sponsoredPuppies = [];
         $standardPuppies = [];
         $user = Auth::user();
@@ -1041,7 +1042,6 @@ class ListingsController extends Controller
                             ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
                             ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
                             ->orderByAsc(Listings::ID)
-                            ->limit(5)
                     );
                     foreach ($allListings as $listing){
                         array_push($finalListings, $listing);

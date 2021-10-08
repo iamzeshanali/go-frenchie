@@ -7,18 +7,13 @@
 <div class="wrapper gf-home-banner-wrapper d-flex justify-content-center pb-0">
     <div class="container row align-items-center">
         <div class="gf-home-banner-text col-md-6 py-3 mb-4">
-{{--            <p>We Provide The Best Care</p>--}}
-{{--            <h1>--}}
-{{--                <span style="color:#be202e;">The #1 Place to <br> Buy or Sell</span><br>--}}
-{{--                Your Frenchie</h1>--}}
             <h1>
                 <span style="color:#be202e;">The #1 Play to <br> find your</span><br>
-                Next Frenchie</h1>
+                Next Frenchie
+            </h1>
             <div class="gf-home-banner-detail d-flex align-items-center">
                 <div class="">
                         <h4>Select below...</h4>
-{{--                    <h4>Get Best Pets Near You</h4>--}}
-{{--                    <p>We offer quick & easy services for dogs of various breeds. The best pets clinic in City, more than 20.000+ customers happy.</p>--}}
                 </div>
             </div>
             <div class="gf-home-banner-button mt-2 d-flex align-items-center justify-content-around">

@@ -38,7 +38,7 @@ Route::post('add-or-remove-to-favourite',[App\Http\Controllers\SavedItemsControl
 Route::post('add-to-favourite-with-user-register',[App\Http\Controllers\SavedItemsController::class, 'addToFavouriteWithUserRegister'])->name('addToFavouriteWithUserRegister');
 Route::post('add-to-favourite-with-user-login',[App\Http\Controllers\SavedItemsController::class, 'addToFavouriteWithUserLogin'])->name('addToFavouriteWithUserLogin');
 Route::get('litter-listings', [App\Http\Controllers\LittersController::class, 'showLitters'])->name('showLitters');
-Route::get('/show-litter/{slug}',[App\Http\Controllers\LittersController::class, 'showSingleLitter'])->name('showSingleLitter');
+Route::get('/show-litter/{slug}',[App\Http\Controllers\LittersController::class, 'showSingleLitter'])->name('showLitter');
 Route::get('show-kennel/{id}',[App\Http\Controllers\BreederController::class, 'singleKennel'])->name('singleKennel');
 
 Route::get('selecttype', function () {return view('auth/user_type');})->name('selecttype');

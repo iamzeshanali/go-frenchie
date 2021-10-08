@@ -1,6 +1,8 @@
+
 @if(Auth::user())
     <?php
     $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
+    $matched = false;
     //                                            dd($allSavedListings);
     ?>
 

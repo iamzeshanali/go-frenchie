@@ -21,13 +21,13 @@
         }
         ?>
         @if($matched == false)
-            <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+            <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
         @else
-            <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+            <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #be202e;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
         @endif
 
     @else
-        <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'listings')"></i></a>
+        <a  class="gf-listing-card-like-icon delete" data-toggle="modal"><i id="likedIcon" style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon-{{$standardSlug}} fas fa-heart float-right" onclick="addOrRemoveToFavourite('{{$standardSlug}}', '{{Auth::user()->email->asString()}}', 'litters')"></i></a>
     @endif
 @else
     <a href="#LoginModalStandard" class="gf-listing-card-like-icon delete" data-toggle="modal"><i style="color: #c4bfbf;font-size: 24px;cursor: pointer;" class="fbd-liked-icon fas fa-heart float-right"></i></a>
@@ -49,7 +49,7 @@
                 <div class="modal-body">
 
                     <input type="hidden" name="slug" value="{{$standardSlug}}">
-                    <input type="hidden" name="type" value="listing">
+                    <input type="hidden" name="type" value="litters">
 
                     {{--  EMAIL-ADDRESS  --}}
                     <div class="row">
@@ -108,7 +108,7 @@
                 <div class="modal-body">
 
                     <input type="hidden" name="slug" value="{{$standardSlug}}">
-                    <input type="hidden" name="type" value="listing">
+                    <input type="hidden" name="type" value="litters">
                     {{--  USERNAME  --}}
                     <div class="row">
                         <div class="col">
