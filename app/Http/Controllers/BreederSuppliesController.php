@@ -57,11 +57,13 @@ class BreederSuppliesController extends Controller
         $totalBreederSupplies = $this->breeder_SuppliesRepository->matching(
             $this->breeder_SuppliesRepository->criteria()
                 ->where(Breeder_Supplies::TRASHED, '=', false)
+                ->where(Breeder_Supplies::BREEDER, '=', Auth::user())
                 ->orderByAsc(Breeder_Supplies::ID)
         );
        $breederSupplies = $this->breeder_SuppliesRepository->matching(
            $this->breeder_SuppliesRepository->criteria()
                ->where(Breeder_Supplies::TRASHED, '=', false)
+               ->where(Breeder_Supplies::BREEDER, '=', Auth::user())
                ->orderByAsc(Breeder_Supplies::ID)
                ->skip(((int) $page - 1) * 5)->limit(5)
        );

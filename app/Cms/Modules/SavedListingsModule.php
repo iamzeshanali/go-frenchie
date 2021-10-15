@@ -83,7 +83,7 @@ class SavedListingsModule extends CrudModule
             $table->mapProperty(SavedListings::CUSTOMER)->to(Field::create('customer', 'Customer')
                 ->entityFrom($this->usersRepository)
                 ->required()
-                ->labelledBy(Users::FIRST_NAME));
+                ->labelledBy(Users::USERNAME));
             $table->mapProperty(SavedListings::LISTINGS)->to(Field::create('listings', 'Listings')
                 ->entityFrom($this->listingsRepository)
                 ->required()

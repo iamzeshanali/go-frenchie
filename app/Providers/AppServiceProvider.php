@@ -48,6 +48,7 @@ use App\View\Components\likeStandard;
 use App\View\Components\likeStandardLitters;
 use App\View\Components\login;
 use App\View\Components\register;
+use App\View\Components\registeredSuccess;
 use Dms\Core\ICms;
 use Dms\Core\Persistence\Db\Mapping\IOrm;
 use Illuminate\Support\Facades\Blade;
@@ -66,6 +67,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('like-standard', likeStandard::class);
         Blade::component('like-sponsored-litters', likeSponsoredLitters::class);
         Blade::component('like-standard-litters', likeStandardLitters::class);
+        Blade::component('registered-success', registeredSuccess::class);
     }
 
     /**

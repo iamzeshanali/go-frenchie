@@ -96,11 +96,7 @@
         </div>
         <div class="row pt-lg-0">
             @if(empty($allListings))
-                <div class="row">
-                    <div class="col-sm-6">
-                        No Puupy Exists
-                    </div>
-                </div>
+
             @else
                 <table class="bd-content-table table table-striped table-hover">
                     <thead>

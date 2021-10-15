@@ -31,7 +31,7 @@
                             @if(empty($savedListings))
                                 <div class="fbd-standard-listing p-3">
                                     <div class="fbd-standard-card rounded row p-3">
-                                        <p class="text-center">No Sponsored Listings</p>
+                                        <p class="text-center">No Liked Listings</p>
                                     </div>
                                 </div>
                             @else

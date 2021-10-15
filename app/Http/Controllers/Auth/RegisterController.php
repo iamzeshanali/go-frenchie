@@ -83,7 +83,7 @@ class RegisterController extends Controller
             $customer->lastName = $request->get('lastName');
             $customer->username = strtolower($customer->firstName).''.strtolower($customer->lastName);
             $customer->role = new UserRoleEnum('customer');
-            $customer->isActive = false;
+            $customer->isActive = true;
             $customer->email = new EmailAddress($request->get('email'));
             $customer->phone = $request->get('phone');
             $customer->address = $request->get('address');
@@ -123,7 +123,7 @@ class RegisterController extends Controller
             $breeder->lastName = $request->get('lastName');
             $breeder->username = strtolower($breeder->firstName).''.strtolower($breeder->lastName);
             $breeder->role = new UserRoleEnum('breeder');
-            $breeder->isActive = false;
+            $breeder->isActive = true;
             $breeder->email = new EmailAddress($request->get('email'));
             $breeder->hashedPassword = bcrypt($request->get('password'));
             $breeder->rememberToken = null;
@@ -166,15 +166,34 @@ class RegisterController extends Controller
         $currentUser->state = $request->get('state');
         $currentUser->city = $request->get('city');
         $currentUser->kennelName = $request->get('kennel-name');
-        $currentUser->fbAccountUrl = new Url($request->get('b-facebook'));
-        $currentUser->igAccountUrl = new Url($request->get('b-instagram'));
-        $currentUser->website = new Url($request->get('b-website'));
+        if ($request->get('b-facebook')){
+            $currentUser->fbAccountUrl = new Url($request->get('b-facebook'));
+        }else{
+            $currentUser->fbAccountUrl = null;
+        }
+
+        if ($request->get('b-instagram')){
+            $currentUser->igAccountUrl = new Url($request->get('b-instagram'));
+        }else{
+            $currentUser->igAccountUrl = null;
+        }
+
+        if ($request->get('b-website')){
+            $currentUser->website = new Url($request->get('b-website'));
+        }else{
+            $currentUser->website = null;
+        }
 
         $file1 =$request->file('photo1');
         if ($file1 == null){
             if ($request->get('photo1_name')){
                 $fullPath1 = $request->get('photo1_name');
-                $fullPath1 = substr_replace($fullPath1, 'public/app/breeder', 44, 6);
+
+                $name = explode('/',$fullPath1);
+                $temp = $name[count($name)-2];
+                $name[count($name)-2] = $temp.'/app/breeder';
+                $fullPath1 = implode('/',$name);
+
                 $currentUser->profileImage = new Image($fullPath1);
             }else{
                 $currentUser->profileImage = null;
@@ -188,7 +207,12 @@ class RegisterController extends Controller
         if ($file2 == null){
             if ($request->get('photo2_name')) {
                 $fullPath2 = $request->get('photo2_name');
-                $fullPath2 = substr_replace($fullPath2, 'public/app/breeder', 44, 6);
+
+                $name = explode('/',$fullPath2);
+                $temp = $name[count($name)-2];
+                $name[count($name)-2] = $temp.'/app/breeder';
+                $fullPath2 = implode('/',$name);
+
                 $currentUser->logo = new Image($fullPath2);
             }else{
                 $currentUser->logo = null;
@@ -198,9 +222,7 @@ class RegisterController extends Controller
             $currentUser->logo = new Image($fullPath2);
         }
 
-//        dd($currentUser);
+//        dd($currentUser->role->getValue());
         $this->userRepository->save($currentUser);
-
-        return redirect()->route('breedersetting');
     }
 }

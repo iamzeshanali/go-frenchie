@@ -176,7 +176,7 @@
             <main class="">
                 <!-- Loader Modal -->
                 <div class="modal fade" id="loaderModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document" autofocus>
                     <div class="modal-content" style="background: transparent;border: none;">
                     <div class="modal-body" style="text-align: center;">
                         <img src="/images/GoFrenchie-logo.png" alt="Logo not found" height="80px">

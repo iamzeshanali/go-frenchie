@@ -174,7 +174,7 @@
                                 <div class="col">
                                     <div class="input-group mb-0 flex-nowrap">
                                         <label for="b-facebook" class="col-2 gf-form-field-inline-icon text-center gf-bg-red border-0"><i class="fab fa-facebook-f text-white"></i></label>
-                                        <input id="b-facebook" type="url" class="col gf-form-field gf-form-field-inline-right" name="b-facebook" autocomplete="b-facebook" placeholder="http://facebook.com/username">
+                                        <input id="b-facebook" type="url" class="col gf-form-field gf-form-field-inline-right" name="b-facebook" autocomplete="b-facebook" required placeholder="http://facebook.com/username">
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@
                                 <div class="col">
                                     <div class="input-group mb-0 flex-nowrap">
                                         <label for="b-instagram" class="col-2 text-center gf-form-field-inline-icon gf-bg-red border-0"><i class="fab fa-instagram text-white"></i></label>
-                                        <input id="b-instagram" type="url" class="gf-form-field gf-form-field-inline-right" name="b-instagram" autocomplete="b-instagram" placeholder="https://www.instagram.com/username">
+                                        <input id="b-instagram" type="url" class="gf-form-field gf-form-field-inline-right" name="b-instagram" autocomplete="b-instagram" required placeholder="https://www.instagram.com/username">
                                     </div>
                                 </div>
 
@@ -196,7 +196,7 @@
                                 <div class="col">
                                     <div class="input-group mb-0 flex-nowrap">
                                         <label for="b-website" class="col-2 text-center gf-form-field-inline-icon gf-bg-red border-0"><i class="fas fa-globe text-white"></i></label>
-                                        <input id="b-website" type="url" class="gf-form-field gf-form-field-inline-right" name="b-website" autocomplete="b-instagram" placeholder="https://www.web.com/">
+                                        <input id="b-website" type="url" class="gf-form-field gf-form-field-inline-right" name="b-website" autocomplete="b-instagram" required placeholder="https://www.web.com/">
                                     </div>
                                 </div>
                             </div>

@@ -361,8 +361,6 @@ class GoFrenchieSchema extends Migration
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });
-
-
     }
 
     /**

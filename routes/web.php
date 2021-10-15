@@ -73,7 +73,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('customer', \App\Http\Controllers\CustomerController::class);
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/user-settings-update', function (Request $request) {app(App\Http\Controllers\Auth\RegisterController::class)->updateRegisteredUser($request); })->name('updateRegisteredUser');
+    Route::post('/user-settings-update', function (Request $request) {
+        app(App\Http\Controllers\Auth\RegisterController::class)->updateRegisteredUser($request);
+        if (Auth::user()->role->getValue() == 'breeder'){
+            return redirect()->route('breederProfile');
+        }else{
+            return redirect()->route('customerProfile');
+        }
+    })->name('updateRegisteredUser');
+//    Route::post('/updateUser',[App\Http\Controllers\Auth\RegisterController::class, 'updateRegisteredUser'])->name('updateRegisteredUser');
 
     // DASHBOARD
     Route::get('breader-dashboard', function () {return view('pages/dashboard/breader_dashboard'); })->name('dashboard');

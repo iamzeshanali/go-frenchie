@@ -89,13 +89,13 @@ class SavedItemsController extends Controller
             $customer = new Users();
             $customer->username = $request->get('username');
             $customer->role = new UserRoleEnum('customer');
-            $customer->isActive = false;
+            $customer->isActive = true;
             $customer->email = new EmailAddress($request->get('email'));
             $customer->hashedPassword = bcrypt($request->get('password'));
 //            dd($customer);
             $this->usersRepository->save($customer);
             $this->addOrRemoveToFavourite($request);
-
+            return redirect()->back()->with('code', '300');
         }else{
             return redirect()->back()->with('error', 'Customer already exists.');
         }
@@ -167,6 +167,7 @@ class SavedItemsController extends Controller
                 $this->usersRepository->criteria()
                     ->where(Users::EMAIL,'=',new EmailAddress($email))
             );
+//            dd($user);
             if (count($relatedSavedListings) > 0){
                 $this->savedListingsRepository->removeMatching(
                     $this->savedListingsRepository->criteria()

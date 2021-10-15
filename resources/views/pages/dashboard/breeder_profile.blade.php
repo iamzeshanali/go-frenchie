@@ -27,12 +27,12 @@
                 <div class="breeder-profile-info col-md-8 d-flex flex-column align-items-start">
                     <h2 class="gf-red" title="Kennel Name">{{\Illuminate\Support\Facades\Auth::User()->firstName}} {{\Illuminate\Support\Facades\Auth::User()->lastName}}</h2>
                     <a href="#"><i class="fas fa-map-marker-alt"></i>&nbsp;{{\Illuminate\Support\Facades\Auth::User()->address}}, {{\Illuminate\Support\Facades\Auth::User()->city}}, {{\Illuminate\Support\Facades\Auth::User()->state}},{{\Illuminate\Support\Facades\Auth::User()->zip}} </a>
-                    <a href="#"><i class="fas fa-globe" title="Website"></i>{{\Illuminate\Support\Facades\Auth::User()->website->asString()}}</a>
+                    @if(\Illuminate\Support\Facades\Auth::User()->website != null)<a href="#"><i class="fas fa-globe" title="Website"></i>{{ \Illuminate\Support\Facades\Auth::User()->website->asString()}}</a> @endif
                     {{--                <span><i class="fas fa-ticket-alt"></i>RX-580</span>--}}
                     <a href="tel:+3333378901" title="call"><i class="fas fa-phone-alt"></i>{{\Illuminate\Support\Facades\Auth::User()->phone}}</a>
                     <a href="mailto:someone@example.com" title="Email"><i class="far fa-envelope"></i>{{\Illuminate\Support\Facades\Auth::User()->email->asString()}}</a>
-                    <a href="{{\Illuminate\Support\Facades\Auth::User()->fbAccountUrl->asString()}}" title="Facebook"><i class="fab fa-facebook-f"></i> /blackrok</a>
-                    <a href="{{\Illuminate\Support\Facades\Auth::User()->igAccountUrl->asString()}}" title="Instagram"><i class="fab fa-instagram"></i> /rockkennie</a>
+                    @if(\Illuminate\Support\Facades\Auth::User()->fbAccountUrl != null)<a href="{{ \Illuminate\Support\Facades\Auth::User()->fbAccountUrl->asString()}}" title="Facebook"><i class="fab fa-facebook-f"></i> /blackrok</a> @endif
+                    @if(\Illuminate\Support\Facades\Auth::User()->igAccountUrl != null)<a href="{{ \Illuminate\Support\Facades\Auth::User()->igAccountUrl->asString()}}" title="Instagram"><i class="fab fa-instagram"></i> /rockkennie</a> @endif
                 </div>
             @endif
         </div>
@@ -63,83 +63,90 @@
             <h2 class="gf-red">Breeder Resources</h2>
         </div>
 
-        <div>
-            <h3 class="gf-dark">Breeder Resources</h3>
-        </div>
 
-        <div class="breeder-profile-resources">
-            <div class="row breeder-resources-cards">
-                <?php $allResources = app('App\Http\Controllers\BreederSuppliesController')->getCurrentBreederResources(); ?>
-                @foreach($allResources as $resource)
-                    <div class="col-md-4  p-3">
-                        <div class="breeder-resources-card">
-                            <div class="text-center mb-3">
-                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
+        <?php $allSupplies = app('App\Http\Controllers\BreederSuppliesController')->getCurrentBreederResources(); ?>
+        @if(count($allSupplies) > 0)
+            <div>
+                <h3 class="gf-dark">Supplies</h3>
+            </div>0
+            <div class="breeder-profile-resources">
+                <div class="row breeder-resources-cards">
+
+                    @foreach($allSupplies as $resource)
+                        <div class="col-md-4  p-3">
+                            <div class="breeder-resources-card">
+                                <div class="text-center mb-3">
+                                    <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
+                                </div>
+                                <div class="product-card-info">
+                                    <h5>{{$resource->title}}</h5>
+                                    <p>{!! $resource->decription->asString() !!}</p>
+                                    <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
+                                    <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
+                                </div>
                             </div>
-                            <div class="product-card-info">
-                                <h5>{{$resource->title}}</h5>
-                                <p>{{$resource->decription->asString()}}</p>
-                                <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
-                                <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
-                            </div>
+
                         </div>
-
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
 
-        <div>
-            <h3 class="gf-dark">Cannie Genetics</h3>
-        </div>
 
-        <div class="breeder-profile-resources">
-            <div class="row breeder-resources-cards">
-                <?php $allResources = app('App\Http\Controllers\CanineGeneticsController')->getCanineGenetics(); ?>
-                @foreach($allResources as $resource)
-                    <div class="col-md-4  p-3">
-                        <div class="breeder-resources-card">
-                            <div class="text-center mb-3">
-                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
+        <?php $allGenetics = app('App\Http\Controllers\CanineGeneticsController')->getCanineGenetics(); ?>
+        @if(count($allGenetics) > 0)
+            <div>
+                <h3 class="gf-dark">Cannie Genetics</h3>
+            </div>
+            <div class="breeder-profile-resources">
+                <div class="row breeder-resources-cards">
+                    @foreach($allGenetics as $resource)
+                        <div class="col-md-4  p-3">
+                            <div class="breeder-resources-card">
+                                <div class="text-center mb-3">
+                                    <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
+                                </div>
+                                <div class="product-card-info">
+                                    <h5>{{$resource->title}}</h5>
+                                    <p>{!! $resource->decription->asString() !!}</p>
+                                    <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
+                                    <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
+                                </div>
                             </div>
-                            <div class="product-card-info">
-                                <h5>{{$resource->title}}</h5>
-                                <p>{{$resource->decription->asString()}}</p>
-                                <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
-                                <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
-                            </div>
+
                         </div>
-
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
 
-        <div>
-            <h3 class="gf-dark">Cannie Nutrition</h3>
-        </div>
+        <?php $allNutritions = app('App\Http\Controllers\CanineNutritionController')->getCanineNutrition(); ?>
+        @if(count($allNutritions) > 0)
+            <div>
+                <h3 class="gf-dark">Cannie Nutrition</h3>
+            </div>
+            <div class="breeder-profile-resources">
+                <div class="row breeder-resources-cards">
 
-        <div class="breeder-profile-resources">
-            <div class="row breeder-resources-cards">
-                <?php $allResources = app('App\Http\Controllers\CanineNutritionController')->getCanineNutrition(); ?>
-                @foreach($allResources as $resource)
-                    <div class="col-md-4  p-3">
-                        <div class="breeder-resources-card">
-                            <div class="text-center mb-3">
-                                <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
+                    @foreach($allNutritions as $resource)
+                        <div class="col-md-4  p-3">
+                            <div class="breeder-resources-card">
+                                <div class="text-center mb-3">
+                                    <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
+                                </div>
+                                <div class="product-card-info">
+                                    <h5>{{$resource->title}}</h5>
+                                    <p>{!! $resource->decription->asString() !!}</p>
+                                    <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
+                                    <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
+                                </div>
                             </div>
-                            <div class="product-card-info">
-                                <h5>{{$resource->title}}</h5>
-                                <p>{{$resource->decription->asString()}}</p>
-                                <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
-                                <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
-                            </div>
+
                         </div>
-
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
 
     </div>
         @endif

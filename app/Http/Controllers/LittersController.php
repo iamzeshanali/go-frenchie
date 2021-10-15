@@ -299,10 +299,12 @@ class LittersController extends Controller
         $totalTrashedPuppies = $this->littersRepository->matching(
             $this->littersRepository->criteria()
                 ->where(Litters::TRASHED,'=',true)
+                ->where(Litters::BREEDER,'=',Auth::user())
         );
         $Puppies = $this->littersRepository->matching(
             $this->littersRepository->criteria()
                 ->where(Litters::TRASHED,'=',true)
+                ->where(Litters::BREEDER,'=',Auth::user())
                 ->orderByAsc(Litters::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
         );

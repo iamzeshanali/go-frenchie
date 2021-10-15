@@ -2,6 +2,7 @@
 
 namespace App\Cms\Modules;
 
+use Dms\Common\Structure\Web\Html;
 use Dms\Core\Auth\IAuthSystem;
 use Dms\Core\Common\Crud\CrudModule;
 use Dms\Core\Common\Crud\Definition\CrudModuleDefinition;
@@ -10,6 +11,7 @@ use Dms\Core\Common\Crud\Definition\Table\SummaryTableDefinition;
 use App\Domain\Services\Persistence\IApiConfigRepository;
 use App\Domain\Entities\ApiConfig;
 use Dms\Common\Structure\Field;
+use http\Url;
 
 /**
  * The api-config module.
@@ -48,6 +50,21 @@ class ApiConfigModule extends CrudModule
             ]);
 
         });
+        $module->action('change-zipcode-api')
+            ->returns(Html::class)
+            ->handler(function () {
+
+                return new Html('
+                             <h3>Follow these instructions to change the API:</h3>
+                             <ol>
+                             <li>Visit the link given below and copy the Demo API from the Input field.</li>
+                             <li>Close this popup box and edit the existing row in ApiConfig table.</li>
+                             <li>Paste the copied API content to the existing Field.</li>
+                             <li>Save the field and you are good to Go..</li>
+                             </ol>
+                            <a href="https://www.zipcodeapi.com/API#radius" target="_blank">Click here to change API</a>
+                            ');
+            });
 
         $module->removeAction()->deleteFromDataSource();
 

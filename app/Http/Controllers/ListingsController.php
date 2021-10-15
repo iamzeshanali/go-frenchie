@@ -72,6 +72,7 @@ class ListingsController extends Controller
         $totalListings = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::BREEDER,'=',Auth::user())
+                ->limit(5)
         );
         return $totalListings;
     }
@@ -1032,8 +1033,6 @@ class ListingsController extends Controller
                     }
                 }
             }else{
-
-
                 foreach ($kennels as $key=>$breeder){
                     $allListings = [];
                     $allListings = $this->listingsRepository->matching(
@@ -1050,173 +1049,61 @@ class ListingsController extends Controller
             }
         }else{
             $kennels = app('App\Http\Controllers\GeoLocationController')->findKennels($this->token, $responseType, $zipCode, $distance, $unit);
-            if($type == 'all'){
-//            return response()->json(['success'=>'200']);
-                foreach ($kennels as $key=>$breeder){
-                    $allListings = [];
-                    $allListings = $this->listingsRepository->matching(
-                        $this->listingsRepository->criteria()
-                            ->where(Listings::BREEDER,'=',$breeder[0])
-                            ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                            ->orderByAsc(Listings::ID)
-                            ->limit(5)
-                    );
-                    foreach ($allListings as $listing){
-                        array_push($finalListings, $listing);
-                    }
-                }
-            }else{
-                foreach ($kennels as $key=>$breeder){
-                    $allListings = [];
-                    $allListings = $this->listingsRepository->matching(
-                        $this->listingsRepository->criteria()
-                            ->where(Listings::BREEDER,'=',$breeder[0])
-                            ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
-                            ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-                            ->orderByAsc(Listings::ID)
-                            ->limit(5)
-                    );
-                    foreach ($allListings as $listing){
-                        array_push($finalListings, $listing);
-                    }
-                }
-            }
+//            return response()->json(['success'=>count($kennels)]);
+
+            foreach ($kennels as $key=>$breeder){
+                   $allListings = [];
+                   $allListings = $this->listingsRepository->matching(
+                       $this->listingsRepository->criteria()
+                           ->where(Listings::BREEDER,'=',$breeder)
+                           ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
+                           ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
+                           ->orderByAsc(Listings::ID)
+                   );
+                   foreach ($allListings as $listing){
+                       array_push($finalListings, $listing);
+                   }
+               }
+
         }
-//        return response()->json(['success'=>count($kennels)]);
 
 //        return response()->json(['success'=>count($finalListings)]);
-
         $afterFilters = [];
-//        return response()->json(['success'=>count($finalListings)]);
         $afterFilters = $this->filterByAttributes($finalListings, $request);
 //        return response()->json(['success'=>count($afterFilters)]);
         $parentDNA = $request->get('parentDNA');
-//        return response()->json(['success'=>$parentDNA]);
-        $parentFilteredEntities = [];
-        if (isset($parentDNA) && isset($afterFilters)){
-            foreach ($parentDNA as $parentColor){
-                switch ($parentColor){
-                    case 'blue':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->blue != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                    return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'chocolate':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->chocolate != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'testable':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->testableChocolate != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'fluffy':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->fluffy != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'intensity':
-//                        return response()->json(['success'=>'200']);
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->intensity != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'pied':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->pied != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'merle':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->merle != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'brindle':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->brindle != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'agouti':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->agouti != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                    case 'emcir':
-                        $parentFilteredEntities = [];
-                        foreach ($afterFilters as $list){
-                            if ($list->eMcir != null){
-                                array_push($parentFilteredEntities,$list);
-                            }
-                        }
-                        $afterFilters = $parentFilteredEntities;
-//                        return response()->json(['success'=>count($parentFilteredEntities)]);
-                        break;
-                }
+        if (isset($parentDNA) && isset($finalListings)){
+            $afterParentDNAfilters = $this->filterByParentDNA($finalListings,$parentDNA);
+            foreach ($afterParentDNAfilters as $filter){
+                array_push($afterFilters,$filter);
             }
-
         }
 
+//        return response()->json(['success'=>count($afterFilters)]);
+//        return response()->json(['success'=>$afterFilters[0]->getId()]);
+        $uniqueDataList = [];
+        $idList = [];
+        $count = 0;
+        foreach ($afterFilters as $filter){
+            $count++;
+            if(!(in_array($filter->getId(),$idList))) {
+                array_push($idList,$filter->getId());
+                array_push($uniqueDataList,$filter);
+            }
+        }
 
-//        return response()->json(['success'=>count($parentFilteredEntities)]);
-//        return response()->json(['success'=>count($afterFilters)]);
-//        foreach ($parentFilteredEntities as $entity){
-//            array_push($afterFilters, $entity);
-//        }
-//        return response()->json(['success'=>count($afterFilters)]);
+//        return response()->json(['success'=>count($uniqueDataList)]);
+//
+//        return response()->json(['success'=>$parentDNA]);
+
         $dataIds = [];
-        foreach ($finalListings as $list){
+        foreach ($uniqueDataList as $list){
             array_push($dataIds, $list->getId());
         }
         Session::put('ids',$dataIds);
         $sponsoredPuppies = [];
         $standardPuppies = [];
-        foreach ($afterFilters as $af) {
+        foreach ($uniqueDataList as $af) {
             if($af->isSponsored){
                 array_push($sponsoredPuppies,$af);
             }else{
@@ -1241,27 +1128,93 @@ class ListingsController extends Controller
             )->render();
 
         $matched = false;
-        $allListings = $this->listingsRepository->matching(
-            $this->listingsRepository->criteria()
-                ->where(Listings::TYPE,'=',new ListingsTypeEnum($request->get('type')))
-                ->where(Listings::STATUS,'=',new ListingsStatusEnum('active'))
-        );
-        $totalSponsoredPuppies = [];
-        $totalStandardPuppies = [];
-        foreach ($allListings as $af) {
-            if($af->isSponsored){
-                array_push($totalSponsoredPuppies,$af);
-            }else{
-                array_push($totalStandardPuppies,$af);
-            }
-        }
 
 //        return response()->json(['success'=>count($standardPuppies)]);
-        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched','totalSponsoredPuppies','totalStandardPuppies'))->render();
+        $html = view('pages/puppy-listing-data')->with(compact('sponsoredPuppies','standardPuppies', 'data','matched'))->render();
 //        return response()->json(['success'=>count($sponsoredPuppies)]);
 
         return response()->json(['success'=>'Form is successfully submitted!','response'=>200, 'html'=>$html, 'recentSearch'=>$recentSearch]);
 
+    }
+
+    public function filterByParentDNA($afterFilters, $parentDNA){
+        $parentFilteredEntities = [];
+        foreach ($parentDNA as $parentColor){
+            switch ($parentColor){
+                case 'blue':
+                    foreach ($afterFilters as $list){
+                        if ($list->blue != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+                case 'chocolate':
+                    foreach ($afterFilters as $list){
+                        if ($list->chocolate != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+                case 'testable':
+                    foreach ($afterFilters as $list){
+                        if ($list->testableChocolate != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+                case 'fluffy':
+                    foreach ($afterFilters as $list){
+                        if ($list->fluffy != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+                case 'intensity':
+                    foreach ($afterFilters as $list){
+                        if ($list->intensity != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+                case 'pied':
+                    foreach ($afterFilters as $list){
+                        if ($list->pied != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    $afterFilters = $parentFilteredEntities;
+                    break;
+                case 'merle':
+                    foreach ($afterFilters as $list){
+                        if ($list->merle != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+                case 'brindle':
+                    foreach ($afterFilters as $list){
+                        if ($list->brindle != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+                case 'agouti':
+                    foreach ($afterFilters as $list){
+                        if ($list->agouti != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+                case 'emcir':
+                    foreach ($afterFilters as $list){
+                        if ($list->eMcir != null){
+                            array_push($parentFilteredEntities,$list);
+                        }
+                    }
+                    break;
+            }
+        }
+        return $parentFilteredEntities;
     }
 
     public function filterByAttributes($listingsData, $request){
@@ -1280,120 +1233,83 @@ class ListingsController extends Controller
 
 
         $afterFilters = [];
-        if(!empty($blue)){
-            $afterFilters = $this->innerResult('blue',$blue,$results);
-
-            if(!empty($chocolate)){
-                $afterFilters = $this->innerResult('chocolate',$chocolate,$afterFilters);
-            }
-            if(!empty($testable)){
-                $afterFilters = $this->innerResult('testable',$testable,$afterFilters);
-            }
-            if(!empty($fluffy)){
-                $afterFilters = $this->innerResult('fluffy',$fluffy,$afterFilters);
-            }
-            if(!empty($intensity)){
-                $afterFilters = $this->innerResult('intensity',$intensity,$afterFilters);
-            }
-            if(!empty($pied)){
-                $afterFilters = $this->innerResult('pied',$pied,$afterFilters);
-            }
-            if(!empty($merle)){
-                $afterFilters = $this->innerResult('merle',$merle,$afterFilters);
-            }
-            if(!empty($brindle)){
-                $afterFilters = $this->innerResult('brindle',$brindle,$afterFilters);
-            }
-            return $afterFilters;
-        }
-
-        elseif (!empty($chocolate)){
-            $afterFilters = $this->innerResult('chocolate',$chocolate,$results);
-            if(!empty($testable)){
-                $afterFilters = $this->innerResult('testable',$testable,$afterFilters);
-            }
-            if(!empty($fluffy)){
-                $afterFilters = $this->innerResult('fluffy',$fluffy,$afterFilters);
-            }
-            if(!empty($intensity)){
-                $afterFilters = $this->innerResult('intensity',$intensity,$afterFilters);
-            }
-            if(!empty($pied)){
-                $afterFilters = $this->innerResult('pied',$pied,$afterFilters);
-            }
-            if(!empty($merle)){
-                $afterFilters = $this->innerResult('merle',$merle,$afterFilters);
-            }
-            if(!empty($brindle)){
-                $afterFilters = $this->innerResult('brindle',$brindle,$afterFilters);
-            }
-            return $afterFilters;
-        }elseif (!empty($testable)){
-            $afterFilters = $this->innerResult('testable',$testable,$results);
-            if(!empty($fluffy)){
-                $afterFilters = $this->innerResult('fluffy',$fluffy,$afterFilters);
-            }
-            if(!empty($intensity)){
-                $afterFilters = $this->innerResult('intensity',$intensity,$afterFilters);
-            }
-            if(!empty($pied)){
-                $afterFilters = $this->innerResult('pied',$pied,$afterFilters);
-            }
-            if(!empty($merle)){
-                $afterFilters = $this->innerResult('merle',$merle,$afterFilters);
-            }
-            if(!empty($brindle)){
-                $afterFilters = $this->innerResult('brindle',$brindle,$afterFilters);
-            }
-            return $afterFilters;
-        }elseif (!empty($fluffy)){
-            $afterFilters = $this->innerResult('fluffy',$fluffy,$results);
-            if(!empty($intensity)){
-                $afterFilters = $this->innerResult('intensity',$intensity,$afterFilters);
-            }
-            if(!empty($pied)){
-                $afterFilters = $this->innerResult('pied',$pied,$afterFilters);
-            }
-            if(!empty($merle)){
-                $afterFilters = $this->innerResult('merle',$merle,$afterFilters);
-            }
-            if(!empty($brindle)){
-                $afterFilters = $this->innerResult('brindle',$brindle,$afterFilters);
-            }
-            return $afterFilters;
-        }elseif (!empty($intensity)){
-            $afterFilters = $this->innerResult('intensity',$intensity,$results);
-            if(!empty($pied)){
-                $afterFilters = $this->innerResult('pied',$pied,$afterFilters);
-            }
-            if(!empty($merle)){
-                $afterFilters = $this->innerResult('merle',$merle,$afterFilters);
-            }
-            if(!empty($brindle)){
-                $afterFilters = $this->innerResult('brindle',$brindle,$afterFilters);
-            }
-            return $afterFilters;
-        }elseif (!empty($pied)){
-            $afterFilters = $this->innerResult('pied',$pied,$results);
-            if(!empty($merle)){
-                $afterFilters = $this->innerResult('merle',$merle,$afterFilters);
-            }
-            if(!empty($brindle)){
-                $afterFilters = $this->innerResult('brindle',$brindle,$afterFilters);
-            }
-            return $afterFilters;
-        }elseif (!empty($merle)){
-            $afterFilters = $this->innerResult('merle',$merle,$results);
-            if(!empty($brindle)){
-                $afterFilters = $this->innerResult('brindle',$brindle,$afterFilters);
-            }
-            return $afterFilters;
-        }
-        elseif (!empty($brindle)){
-            $afterFilters = $this->innerResult('brindle',$brindle,$results);
-            return $afterFilters;
-        }else{
+        if(empty($blue) && empty($chocolate) && empty($testable) && empty($fluffy) && empty($intensity) && empty($pied) && empty($merle) && empty($brindle)){
             return $results;
+        }else{
+            if(!empty($blue)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('blue',$blue,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }if (!empty($chocolate)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('chocolate',$chocolate,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }if (!empty($testable)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('testable',$testable,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }if (!empty($fluffy)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('fluffy',$fluffy,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }if (!empty($intensity)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('intensity',$intensity,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }if (!empty($pied)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('pied',$pied,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }if (!empty($merle)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('merle',$merle,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }if (!empty($brindle)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('brindle',$brindle,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }
+            if (!empty($agouti)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('agouti',$agouti,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }
+          if (!empty($emcir)){
+                $returnedResults = [];
+                $returnedResults = $this->innerResult('emcir',$emcir,$results);
+                foreach ($returnedResults as $result){
+                    array_push($afterFilters, $result);
+                }
+//            return $returnedResults;
+            }
+            return $afterFilters;
         }
 
     }
@@ -1520,6 +1436,32 @@ class ListingsController extends Controller
                     }
                 }
                 break;
+            case 'agouti':
+                foreach ($color as $value)
+                {
+                    foreach ($data as $list)
+                    {
+                        if(!empty($list->agouti)){
+                            if($value == ($list->agouti->getValue())){
+                                array_push($finalValue,$list);
+                            }
+                        }
+                    }
+                }
+                break;
+            case 'emcir':
+                foreach ($color as $value)
+                {
+                    foreach ($data as $list)
+                    {
+                        if(!empty($list->emcir)){
+                            if($value == ($list->emcir->getValue())){
+                                array_push($finalValue,$list);
+                            }
+                        }
+                    }
+                }
+                break;
         }
         return $finalValue;
 
@@ -1609,11 +1551,13 @@ class ListingsController extends Controller
             $this->listingsRepository->criteria()
                 ->where(Listings::TRASHED,'=',true)
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
+                ->where(Listings::BREEDER,'=',Auth::user())
         );
         $Puppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TRASHED,'=',true)
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('puppy'))
+                ->where(Listings::BREEDER,'=',Auth::user())
                 ->orderByAsc(Listings::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
         );
@@ -1637,11 +1581,13 @@ class ListingsController extends Controller
             $this->listingsRepository->criteria()
                 ->where(Listings::TRASHED,'=',true)
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
+                ->where(Listings::BREEDER,'=',Auth::user())
         );
         $Puppies = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
                 ->where(Listings::TRASHED,'=',true)
                 ->where(Listings::TYPE,'=',new ListingsTypeEnum('stud'))
+                ->where(Listings::BREEDER,'=',Auth::user())
                 ->orderByAsc(Listings::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
         );

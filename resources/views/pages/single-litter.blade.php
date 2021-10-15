@@ -2,7 +2,9 @@
 
 @section('content')
 
-
+    @if(session('code') == '300')
+        <x-registered-success></x-registered-success>
+    @endif
     <div class="single-listing-wrapper container">
 
         <div class="row">

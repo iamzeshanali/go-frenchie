@@ -55,10 +55,12 @@ class CanineGeneticsController extends Controller
         $totalListings = $this->canine_geneticsRepository->matching(
             $this->canine_geneticsRepository->criteria()
                 ->where(Canine_Genetics::TRASHED, '=', false)
+                ->where(Canine_Genetics::BREEDER, '=', Auth::user())
         );
         $Listings = $this->canine_geneticsRepository->matching(
             $this->canine_geneticsRepository->criteria()
                 ->where(Canine_Genetics::TRASHED, '=', false)
+                ->where(Canine_Genetics::BREEDER, '=', Auth::user())
                 ->orderByAsc(Canine_Genetics::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
         );
@@ -224,10 +226,12 @@ class CanineGeneticsController extends Controller
         $allTrashedCanineGenetics = $this->canine_geneticsRepository->matching(
             $this->canine_geneticsRepository->criteria()
                 ->where(Canine_Genetics::TRASHED, '=', true)
+                ->where(Canine_Genetics::BREEDER, '=', Auth::user())
         );
         $Listings = $this->canine_geneticsRepository->matching(
             $this->canine_geneticsRepository->criteria()
                 ->where(Canine_Genetics::TRASHED, '=', true)
+                ->where(Canine_Genetics::BREEDER, '=', Auth::user())
                 ->orderByAsc(Canine_Genetics::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
         );

@@ -49,14 +49,44 @@
                 <h2 class="gf-red">Breeder Resources</h2>
             </div>
 
-            <div>
-                <h3 class="gf-dark">Breeder Resources</h3>
-            </div>
 
-            <div class="breeder-profile-resources">
+            <?php $allSupplies = app('App\Http\Controllers\BreederSuppliesController')->getCurrentBreederResources(); ?>
+            @if(count($allSupplies) > 0)
+                <div>
+                    <h3 class="gf-dark">Supplies</h3>
+                </div>0
+                <div class="breeder-profile-resources">
+                    <div class="row breeder-resources-cards">
+
+                        @foreach($allSupplies as $resource)
+                            <div class="col-md-4  p-3">
+                                <div class="breeder-resources-card">
+                                    <div class="text-center mb-3">
+                                        <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
+                                    </div>
+                                    <div class="product-card-info">
+                                        <h5>{{$resource->title}}</h5>
+                                        <p>{!! $resource->decription->asString() !!}</p>
+                                        <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
+                                        <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+
+            <?php $allGenetics = app('App\Http\Controllers\CanineGeneticsController')->getCanineGenetics(); ?>
+            @if(count($allGenetics) > 0)
+                <div>
+                    <h3 class="gf-dark">Cannie Genetics</h3>
+                </div>
+                <div class="breeder-profile-resources">
                 <div class="row breeder-resources-cards">
-                    <?php $allResources = app('App\Http\Controllers\BreederSuppliesController')->getCurrentBreederResources(); ?>
-                    @foreach($allResources as $resource)
+                    @foreach($allGenetics as $resource)
                         <div class="col-md-4  p-3">
                             <div class="breeder-resources-card">
                                 <div class="text-center mb-3">
@@ -74,59 +104,35 @@
                     @endforeach
                 </div>
             </div>
+            @endif
 
-            <div>
-                <h3 class="gf-dark">Cannie Genetics</h3>
-            </div>
-
-            <div class="breeder-profile-resources">
-                <div class="row breeder-resources-cards">
-                    <?php $allResources = app('App\Http\Controllers\CanineGeneticsController')->getCanineGenetics(); ?>
-                    @foreach($allResources as $resource)
-                        <div class="col-md-4  p-3">
-                            <div class="breeder-resources-card">
-                                <div class="text-center mb-3">
-                                    <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
-                                </div>
-                                <div class="product-card-info">
-                                    <h5>{{$resource->title}}</h5>
-                                    <p>{!! $resource->decription->asString() !!}</p>
-                                    <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
-                                    <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    @endforeach
+            <?php $allNutritions = app('App\Http\Controllers\CanineNutritionController')->getCanineNutrition(); ?>
+            @if(count($allNutritions) > 0)
+                <div>
+                    <h3 class="gf-dark">Cannie Nutrition</h3>
                 </div>
-            </div>
+                <div class="breeder-profile-resources">
+                    <div class="row breeder-resources-cards">
 
-            <div>
-                <h3 class="gf-dark">Cannie Nutrition</h3>
-            </div>
+                        @foreach($allNutritions as $resource)
+                            <div class="col-md-4  p-3">
+                                <div class="breeder-resources-card">
+                                    <div class="text-center mb-3">
+                                        <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
+                                    </div>
+                                    <div class="product-card-info">
+                                        <h5>{{$resource->title}}</h5>
+                                        <p>{!! $resource->decription->asString() !!}</p>
+                                        <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
+                                        <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
+                                    </div>
+                                </div>
 
-            <div class="breeder-profile-resources">
-                <div class="row breeder-resources-cards">
-                    <?php $allResources = app('App\Http\Controllers\CanineNutritionController')->getCanineNutrition(); ?>
-                    @foreach($allResources as $resource)
-                        <div class="col-md-4  p-3">
-                            <div class="breeder-resources-card">
-                                <div class="text-center mb-3">
-                                    <img src="{{$resource->logo ? asset_file_url($resource->logo) : '/images/resource-bag.png'}}" alt="Product Image" width="250" height="250">
-                                </div>
-                                <div class="product-card-info">
-                                    <h5>{{$resource->title}}</h5>
-                                    <p>{!! $resource->decription->asString() !!}</p>
-                                    <a href="{{$resource->websiteUrl->asString()}}"><i class="fas fa-link gf-blue"></i> &nbsp; {{$resource->websiteUrl->asString()}}</a>
-                                    <div class="price gf-red text-right"><span>${{$resource->price->getAmount()/100}}</span></div>
-                                </div>
                             </div>
-
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-
+            @endif
         </div>
     </div>
 @endsection

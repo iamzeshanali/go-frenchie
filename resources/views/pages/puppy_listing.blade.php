@@ -1,9 +1,9 @@
 @extends('./layouts.app')
 @section('title', 'Puppies')
 @section('content')
-
-
-
+    @if(session('code') == '300')
+    <x-registered-success></x-registered-success>
+    @endif
     {{--Homepage Banner Section--}}
     <div class="wrapper gf-resources-banner-wrapper d-flex justify-content-center">
         <div class="container row align-items-center">
@@ -24,30 +24,30 @@
             <div class="fbd-filter-area p-0 pb-1 mb-3 col-xl-2 col-lg-3">
                 <div id="accordion">
                     <!-- Your Search -->
-                    @if($data != null)
-                        <div class="card p-3 mb-4 rounded">
-                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">
-                                <span class="heading mb-0">Your Search</span>
-                                <span class="results-number" title="Total Results"> Results</span>
-                            </div>
-                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">
-                                <div class="card-body">
-                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->
-                                    <ul class="tags-list" id="primary-recent-search">
-                                        <li> {{$data['dnaColor']}} <small>{{$data['dnaCoat']}} </small> <span aria-hidden="true" title="close" onclick="cancelRecentSearch('{{$data['dnaColor']}}', '{{$data['dnaCoat']}}')">&times;</span></li>
-                                    </ul>
-                                    <div id="secondary-recent-search">
+{{--                    @if($data != null)--}}
+{{--                        <div class="card p-3 mb-4 rounded">--}}
+{{--                            <div class="card-header p-0 border-0 d-flex flex-wrap align-items-center justify-content-between" id="filterLocation">--}}
+{{--                                <span class="heading mb-0">Your Search</span>--}}
+{{--                                <span class="results-number" title="Total Results"> Results</span>--}}
+{{--                            </div>--}}
+{{--                            <div id="collapseSearch" class="collapse mt-3 show" aria-labelledby="filterLocation" data-parent="">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <!-- <button type="button" class="close" aria-label="Close"> Puppies <span aria-hidden="true">&times;</span></button> -->--}}
+{{--                                    <ul class="tags-list" id="primary-recent-search">--}}
+{{--                                        <li> {{$data['dnaColor']}} <small>{{$data['dnaCoat']}} </small> <span aria-hidden="true" title="close" onclick="cancelRecentSearch('{{$data['dnaColor']}}', '{{$data['dnaCoat']}}')">&times;</span></li>--}}
+{{--                                    </ul>--}}
+{{--                                    <div id="secondary-recent-search">--}}
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @else
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @else--}}
 
-                        <div id="secondary-recent-search">
+{{--                        <div id="secondary-recent-search">--}}
 
-                        </div>
-                @endif
+{{--                        </div>--}}
+{{--                    @endif--}}
                 <!-- Location -->
                     <div class="card p-3 mb-4 rounded">
 
@@ -103,12 +103,12 @@
                     <div class="card border-top p-3 rounded">
                         <div class="card-header bg-transparent p-0 border-0 " id="filterA">
                             <h5 class="mb-0">
-                                <button class="btn btn-collapse p-0 d-block collapsed text-left" data-toggle="collapse" data-target="#collapseA" aria-expanded="true" aria-controls="collapseA">
+                                <button class="btn btn-collapse p-0 d-block collapsed text-left" data-toggle="collapse" data-target="#collapseA" aria-expanded="false" aria-controls="collapseA">
                                     DNA Colors
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseA" class="collapse mt-3 show" aria-labelledby="filterA" data-parent="">
+                        <div id="collapseA" class="collapse mt-3" aria-labelledby="filterA" data-parent="">
                             <div class="card-body">
                                 @csrf
                                 @if(!empty($data) && count($data['allListings']) > 0)
@@ -258,145 +258,145 @@
                                     </form>
                                 @else
                                     {{-- Blue --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' id="filterBlue" name="Parentfilter" value="blue">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBlue' id="filterBlue" name="Parentfilter" value="blue" checked>
                                     <label for="filterBlue"> Blue</label><br>
-                                    <div id="collapseBlue" class="collapse pl-4">
-                                        <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)">
+                                    <div id="collapseBlue" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterABlue2copy" name="blue" onchange="(findValue())" value="2copies(d/d)" checked>
                                         <label for="filterABlue2copy"> 2 copies(d/d) </label><br>
-                                        <input type="checkbox" id="filterABlue1copy" name="blue" onchange="(findValue())" value="1copy(D/d)">
+                                        <input type="checkbox" id="filterABlue1copy" name="blue" onchange="(findValue())" value="1copy(D/d)" checked>
                                         <label for="filterABlue1copy"> 1 copy(D/d) </label><br>
-                                        <input type="checkbox" id="filterABlueDd" name="blue" onchange="(findValue())" value="doesnotcarry">
+                                        <input type="checkbox" id="filterABlueDd" name="blue" onchange="(findValue())" value="doesnotcarry" checked>
                                         <label for="filterABlueDd"> Does not carry </label><br>
-                                        <input type="checkbox" id="filterABlueUnknown" name="blue" onchange="(findValue())" value="unknown">
+                                        <input type="checkbox" id="filterABlueUnknown" name="blue" onchange="(findValue())" value="unknown" checked>
                                         <label for="filterABlueUnknown"> Unknown </label><br>
                                     </div>
                                     {{-- Chocolate --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' id="filterChocolate" name="Parentfilter" value="chocolate">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseChocolate' id="filterChocolate" name="Parentfilter" value="chocolate" checked>
                                     <label for="filterChocolate"> Cocoa</label><br>
-                                    <div id="collapseChocolate" class="collapse pl-4">
-                                        <input type="checkbox" id="chocolate2copy" name="chocolate" onchange="(findValue())" value="2copies(co/co)">
+                                    <div id="collapseChocolate" class="collapse pl-4 show">
+                                        <input type="checkbox" id="chocolate2copy" name="chocolate" onchange="(findValue())" value="2copies(co/co)" checked>
                                         <label for="chocolate2copy"> 2 copies(co/co) </label><br>
-                                        <input type="checkbox" id="chocolate1copy" name="chocolate" onchange="(findValue())" value="1copy(Co/co)">
+                                        <input type="checkbox" id="chocolate1copy" name="chocolate" onchange="(findValue())" value="1copy(Co/co)" checked>
                                         <label for="chocolate1copy"> 1 copy(Co/co) </label><br>
-                                        <input type="checkbox" id="chocolateDd" name="chocolate" onchange="(findValue())" value="doesnotcarry">
+                                        <input type="checkbox" id="chocolateDd" name="chocolate" onchange="(findValue())" value="doesnotcarry" checked>
                                         <label for="chocolateDd"> Does not carry </label><br>
-                                        <input type="checkbox" id="chocolateUnknown" name="chocolate" onchange="(findValue())" value="unknown">
+                                        <input type="checkbox" id="chocolateUnknown" name="chocolate" onchange="(findValue())" value="unknown" checked>
                                         <label for="chocolateUnknown"> Unknown </label><br>
                                     </div>
 
                                     {{-- Testable Chocolate --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseTestable' id="filterTestable" name="Parentfilter" value="testable">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseTestable' id="filterTestable" name="Parentfilter" value="testable" checked>
                                     <label for="filterTestable"> Testable Chocolate/Rojo</label><br>
-                                    <div id="collapseTestable" class="collapse pl-4">
-                                        <input type="checkbox" id="filterTestableChocolate2copy" name="testable" onchange="(findValue())" value="2copies(b/b)">
+                                    <div id="collapseTestable" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterTestableChocolate2copy" name="testable" onchange="(findValue())" value="2copies(b/b)" checked>
                                         <label for="filterTestableChocolate2copy"> 2 copies(b/b) </label><br>
-                                        <input type="checkbox" id="filterTestableChocolate1copy" name="testable" onchange="(findValue())" value="1copy(B/b)">
+                                        <input type="checkbox" id="filterTestableChocolate1copy" name="testable" onchange="(findValue())" value="1copy(B/b)" checked>
                                         <label for="filterTestableChocolate1copy"> 1 copy(B/b) </label><br>
-                                        <input type="checkbox" id="filterTestableChocolateDd" name="testable" onchange="(findValue())" value="doesnotcarry">
+                                        <input type="checkbox" id="filterTestableChocolateDd" name="testable" onchange="(findValue())" value="doesnotcarry" checked>
                                         <label for="filterTestableChocolateDd"> Does not carry </label><br>
-                                        <input type="checkbox" id="filterTestableChocolateUnknown" name="testable" onchange="(findValue())" value="unknown">
+                                        <input type="checkbox" id="filterTestableChocolateUnknown" name="testable" onchange="(findValue())" value="unknown" checked>
                                         <label for="filterTestableChocolateUnknown"> Unknown </label><br>
                                     </div>
 
                                     {{-- Fluffy --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseFluffy' id="filterFluffy" name="Parentfilter" value="fluffy">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseFluffy' id="filterFluffy" name="Parentfilter" value="fluffy" checked>
                                     <label for="filterFluffy"> Fluffy</label><br>
-                                    <div id="collapseFluffy" class="collapse pl-4">
-                                        <input type="checkbox" id="filterAfluffy2copy" name="fluffy" onchange="(findValue())" value="2copies(l/l)">
+                                    <div id="collapseFluffy" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterAfluffy2copy" name="fluffy" onchange="(findValue())" value="2copies(l/l)" checked>
                                         <label for="filterAfluffy2copy"> 2 copies </label><br>
-                                        <input type="checkbox" id="filterAfluffy1copy" name="fluffy" onchange="(findValue())" value="1copy(L/l)" >
+                                        <input type="checkbox" id="filterAfluffy1copy" name="fluffy" onchange="(findValue())" value="1copy(L/l)" checked>
                                         <label for="filterAfluffy1copy"> 1 copy </label><br>
-                                        <input type="checkbox" id="filterAfluffyDd" name="fluffy" onchange="(findValue())" value="doesnotcarry">
+                                        <input type="checkbox" id="filterAfluffyDd" name="fluffy" onchange="(findValue())" value="doesnotcarry" checked>
                                         <label for="filterAfluffyDd"> Does not carry </label><br>
-                                        <input type="checkbox" id="filterAfluffyUnknown" name="fluffy" onchange="(findValue())" value="unknown">
+                                        <input type="checkbox" id="filterAfluffyUnknown" name="fluffy" onchange="(findValue())" value="unknown" checked>
                                         <label for="filterAfluffyUnknown"> Unknown </label><br>
                                     </div>
 
                                     {{-- Intensity --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseIntensity' id="filterIntensity" name="Parentfilter" value="intensity">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseIntensity' id="filterIntensity" name="Parentfilter" value="intensity" checked>
                                     <label for="filterIntensity"> Intensity</label><br>
-                                    <div id="collapseIntensity" class="collapse pl-4">
-                                        <input type="checkbox" id="filterAintensity2copy" name="intensity" onchange="(findValue())" value="2copies(i/i)">
+                                    <div id="collapseIntensity" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterAintensity2copy" name="intensity" onchange="(findValue())" value="2copies(i/i)" checked>
                                         <label for="filterAintensity2copy"> 2 copies(i/i) </label><br>
-                                        <input type="checkbox" id="filterAintensity1copy" name="intensity" onchange="(findValue())" value="1copy(I/i)">
+                                        <input type="checkbox" id="filterAintensity1copy" name="intensity" onchange="(findValue())" value="1copy(I/i)" checked>
                                         <label for="filterAintensity1copy"> 1 copy(I/i) </label><br>
-                                        <input type="checkbox" id="filterAintensityDd" name="intensity" onchange="(findValue())" value="doesnotcarry">
+                                        <input type="checkbox" id="filterAintensityDd" name="intensity" onchange="(findValue())" value="doesnotcarry" checked>
                                         <label for="filterAintensityDd"> Does not carry </label><br>
-                                        <input type="checkbox" id="filterAintensityUnknown" name="intensity" onchange="(findValue())" value="unknown">
+                                        <input type="checkbox" id="filterAintensityUnknown" name="intensity" onchange="(findValue())" value="unknown" checked>
                                         <label for="filterAintensityUnknown"> Unknown </label><br>
                                     </div>
 
                                     {{-- Pied --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapsePied' id="filterPied" name="Parentfilter" value="pied">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapsePied' id="filterPied" name="Parentfilter" value="pied" checked>
                                     <label for="filterPied"> Pied</label><br>
-                                    <div id="collapsePied" class="collapse pl-4">
-                                        <input type="checkbox" id="filterApied2copy" name="pied" onchange="(findValue())" value="2copies(s/s)">
+                                    <div id="collapsePied" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterApied2copy" name="pied" onchange="(findValue())" value="2copies(s/s)" checked>
                                         <label for="filterApied2copy"> 2 copies(s/s) </label><br>
-                                        <input type="checkbox" id="filterApied1copy" name="pied" onchange="(findValue())" value="1copy(s/N)">
+                                        <input type="checkbox" id="filterApied1copy" name="pied" onchange="(findValue())" value="1copy(s/N)" checked>
                                         <label for="filterApied1copy"> 1 copy(S/s) </label><br>
-                                        <input type="checkbox" id="filterApiedDd" name="pied" onchange="(findValue())" value="doesnotcarry">
+                                        <input type="checkbox" id="filterApiedDd" name="pied" onchange="(findValue())" value="doesnotcarry" checked>
                                         <label for="filterApiedDd"> Does not carry </label><br>
-                                        <input type="checkbox" id="filterApiedUnknown" name="pied" onchange="(findValue())" value="unknown">
+                                        <input type="checkbox" id="filterApiedUnknown" name="pied" onchange="(findValue())" value="unknown" checked>
                                         <label for="filterApiedUnknown"> Unknown </label><br>
                                     </div>
 
                                     {{-- Merle --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseMerle' id="filterMerle" name="Parentfilter" value="merle">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseMerle' id="filterMerle" name="Parentfilter" value="merle" checked>
                                     <label for="filterMerle"> Merle</label><br>
-                                    <div id="collapseMerle" class="collapse pl-4">
-                                        <input type="checkbox" id="filterMerleYes" name="merle" onchange="(findValue())" value="yes">
+                                    <div id="collapseMerle" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterMerleYes" name="merle" onchange="(findValue())" value="yes" checked>
                                         <label for="filterMerleYes"> Yes </label><br>
-                                        <input type="checkbox" id="filterMerleNo" name="merle" onchange="(findValue())" value="no">
+                                        <input type="checkbox" id="filterMerleNo" name="merle" onchange="(findValue())" value="no" checked>
                                         <label for="filterMerleNo"> No </label><br>
-                                        <input type="checkbox" id="filterMerleUnknown" name="merle" onchange="(findValue())" value="unknown">
+                                        <input type="checkbox" id="filterMerleUnknown" name="merle" onchange="(findValue())" value="unknown" checked>
                                         <label for="filterMerleUnknown"> Unknown </label><br>
                                     </div>
 
                                     {{-- Brindle --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBrindle' id="filterBrindle" name="Parentfilter" value="brindle">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseBrindle' id="filterBrindle" name="Parentfilter" value="brindle" checked>
                                     <label for="filterBrindle"> Brindle</label><br>
-                                    <div id="collapseBrindle" class="collapse pl-4">
-                                        <input type="checkbox" id="filterBrindleYes" name="brindle" onchange="(findValue())" value="yes">
+                                    <div id="collapseBrindle" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterBrindleYes" name="brindle" onchange="(findValue())" value="yes" checked>
                                         <label for="filterBrindleYes"> Yes </label><br>
-                                        <input type="checkbox" id="filterBrindleNo" name="brindle" onchange="(findValue())" value="no">
+                                        <input type="checkbox" id="filterBrindleNo" name="brindle" onchange="(findValue())" value="no" checked>
                                         <label for="filterBrindleNo"> No </label><br>
-                                        <input type="checkbox" id="filterBrindleUnknown" name="brindle" onchange="(findValue())" value="unknown">
+                                        <input type="checkbox" id="filterBrindleUnknown" name="brindle" onchange="(findValue())" value="unknown" checked>
                                         <label for="filterBrindleUnknown"> Unknown </label><br>
                                     </div>
 
                                     {{-- Agouti --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseAgouti' id="filterAgouti" name="Parentfilter" value="agouti">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseAgouti' id="filterAgouti" name="Parentfilter" value="agouti" checked>
                                     <label for="filterAgouti"> Agouti</label><br>
-                                    <div id="collapseAgouti" class="collapse pl-4">
-                                        <input type="checkbox" id="filterAgoutiAa" name="agouti" onchange="(findValue())" value="(a,a)" >
+                                    <div id="collapseAgouti" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterAgoutiAa" name="agouti" onchange="(findValue())" value="(a,a)" checked>
                                         <label for="filterAgoutiAa"> (a, a) </label><br>
-                                        <input type="checkbox" id="filterAgoutiAya" name="agouti" onchange="(findValue())" value="(ay,a)">
+                                        <input type="checkbox" id="filterAgoutiAya" name="agouti" onchange="(findValue())" value="(ay,a)" checked>
                                         <label for="filterAgoutiAya"> (ay, a) </label><br>
-                                        <input type="checkbox" id="filterAgoutiAyat" name="agouti" onchange="(findValue())" value="(ay,at)">
+                                        <input type="checkbox" id="filterAgoutiAyat" name="agouti" onchange="(findValue())" value="(ay,at)" checked>
                                         <label for="filterAgoutiAyat"> (ay, at) </label><br>
-                                        <input type="checkbox" id="filterAgoutiAyay" name="agouti" onchange="(findValue())" value="(ay,ay)">
+                                        <input type="checkbox" id="filterAgoutiAyay" name="agouti" onchange="(findValue())" value="(ay,ay)" checked>
                                         <label for="filterAgoutiAyay"> (ay/ay) </label><br>
-                                        <input type="checkbox" id="filterAgoutiAta" name="agouti" onchange="(findValue())" value="(at,a)">
+                                        <input type="checkbox" id="filterAgoutiAta" name="agouti" onchange="(findValue())" value="(at,a)" checked>
                                         <label for="filterAgoutiAta"> (at, a) </label><br>
-                                        <input type="checkbox" id="filterAgoutiAtat" name="agouti" onchange="(findValue())" value="(at,at)">
+                                        <input type="checkbox" id="filterAgoutiAtat" name="agouti" onchange="(findValue())" value="(at,at)" checked>
                                         <label for="filterAgoutiAtat"> (at, at) </label><br>
                                     </div>
 
                                     {{-- E(MCIR) --}}
-                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseEmcir' id="filterEmcir" name="Parentfilter" value="emcir">
+                                    <input type="checkbox" data-toggle='collapse' data-target='#collapseEmcir' id="filterEmcir" name="Parentfilter" value="emcir" checked>
                                     <label for="filterEmcir"> E(MCIR)</label><br>
-                                    <div id="collapseEmcir" class="collapse pl-4">
-                                        <input type="checkbox" id="filterEmcirEmem" name="emcir" onchange="(findValue())" value="(Em,Em)">
+                                    <div id="collapseEmcir" class="collapse pl-4 show">
+                                        <input type="checkbox" id="filterEmcirEmem" name="emcir" onchange="(findValue())" value="(Em,Em)" checked>
                                         <label for="filterEmcirEmem"> (Em, Em) </label><br>
-                                        <input type="checkbox" id="filterEmcirEmE" name="emcir" onchange="(findValue())" value="(Em,E)">
+                                        <input type="checkbox" id="filterEmcirEmE" name="emcir" onchange="(findValue())" value="(Em,E)" checked>
                                         <label for="filterEmcirEmE"> (Em, E) </label><br>
-                                        <input type="checkbox" id="filterEmcirEme" name="emcir" onchange="(findValue())" value="(Em,e)">
+                                        <input type="checkbox" id="filterEmcirEme" name="emcir" onchange="(findValue())" value="(Em,e)" checked>
                                         <label for="filterEmcirEme"> (Em, e) </label><br>
-                                        <input type="checkbox" id="filterEmcirEE" name="emcir" onchange="(findValue())" value="(E,E)">
+                                        <input type="checkbox" id="filterEmcirEE" name="emcir" onchange="(findValue())" value="(E,E)" checked>
                                         <label for="filterEmcirEE"> (E, E) </label><br>
-                                        <input type="checkbox" id="filterEmcirEe" name="emcir" onchange="(findValue())" value="(E,e)">
+                                        <input type="checkbox" id="filterEmcirEe" name="emcir" onchange="(findValue())" value="(E,e)" checked>
                                         <label for="filterEmcirEe"> (E, e) </label><br>
-                                        <input type="checkbox" id="filterEmciree" name="emcir" onchange="(findValue())" value="(e,e)">
+                                        <input type="checkbox" id="filterEmciree" name="emcir" onchange="(findValue())" value="(e,e)" checked>
                                         <label for="filterEmciree"> (e, e) </label><br>
                                     </div>
                                 @endif
@@ -578,8 +578,18 @@
 @include('components.sections.gf-contact-form')
 
     <script type="text/javascript">
+        $(document).ready(function (){
+            if($('#success').hasClass("show")){
+                $('#success').modal('show');
+            }
+        });
 
-        // To uncheck child elements when parent element is unchecked
+        function closeSuccessModal(){
+            $('#success').modal('hide');
+        }
+
+
+        // To uncheck/check child elements when parent element is unchecked/check
         $("#filterBlue").change(function() {
             if(!this.checked) {
                 $("#filterABlue2copy").prop('checked',false);
@@ -1141,7 +1151,6 @@
                     if (data.response == 200){
                         closeModal();
                     }
-
                     document.getElementById("primary-listing-data").style.display = "none";
                     $('#secondary-listing-data').html(data.html);
                     $('#secondary-recent-search').html(data.recentSearch);
@@ -1251,6 +1260,7 @@
                 DNAColors_Selected_without_coats = arrayRemove(DNAColors_Selected_without_coats, "emcir");
             }
 
+            // console.log(DNAColors_Selected_without_coats);
 
             $.ajax({
                 type:'POST',

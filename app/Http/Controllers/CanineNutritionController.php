@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Entities\Canine_Genetics;
 use App\Domain\Entities\Canine_Nutrition;
 use App\Domain\Entities\Enums\ListingsStatusEnum;
 use App\Domain\Services\Persistence\ICanine_NutritionRepository;
@@ -51,10 +52,12 @@ class CanineNutritionController extends Controller
         $totalListings = $this->canine_nutritionRepository->matching(
             $this->canine_nutritionRepository->criteria()
                 ->where(Canine_Nutrition::TRASHED, '=', false)
+                ->where(Canine_Nutrition::BREEDER, '=', Auth::user())
         );
         $Listings = $this->canine_nutritionRepository->matching(
             $this->canine_nutritionRepository->criteria()
                 ->where(Canine_Nutrition::TRASHED, '=', false)
+                ->where(Canine_Nutrition::BREEDER, '=', Auth::user())
                 ->orderByAsc(Canine_Nutrition::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
         );
@@ -143,7 +146,6 @@ class CanineNutritionController extends Controller
         $singleListings = $this->canine_nutritionRepository->matching(
             $this->canine_nutritionRepository->criteria()
                 ->where(Canine_Nutrition::SLUG,'=',$request->get('slug'))
-                ->orderByAsc(Canine_Nutrition::ID)
         )[0];
         if(empty($singleListings)){
 
@@ -218,11 +220,13 @@ class CanineNutritionController extends Controller
         $allTrashedCanineNutrition = $this->canine_nutritionRepository->matching(
             $this->canine_nutritionRepository->criteria()
                 ->where(Canine_Nutrition::TRASHED, '=', true)
+                ->where(Canine_Nutrition::BREEDER, '=', Auth::user())
         );
         $Listings = $this->canine_nutritionRepository->matching(
             $this->canine_nutritionRepository->criteria()
                 ->where(Canine_Nutrition::TRASHED, '=', true)
-                ->orderByAsc(Canine_Nutrition::ID)
+                ->where(Canine_Nutrition::BREEDER, '=', Auth::user())
+                ->orderByDesc(Canine_Nutrition::ID)
                 ->skip(((int) $page - 1) * 5)->limit(5)
         );
 

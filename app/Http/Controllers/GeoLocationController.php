@@ -99,7 +99,9 @@ class GeoLocationController extends Controller
                         );
 
                         if(!empty($newKennel)){
-                            array_push($kennels,$newKennel);
+                            foreach ($newKennel as $k){
+                                array_push($kennels,$k);
+                            }
                         }
                     }
 //            dd(count($formattedData['zip_codes']),$kennels);

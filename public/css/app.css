@@ -48,7 +48,7 @@ header.sticky .secondary-nav{
 }
 
 nav.gf-nav{
-    background-color: #a5cdea;
+    background-color: #85bce2;
     box-shadow: 0px 3px 3px 0px rgb(0 0 0 / 12%), inset 0px 0px 0px 0px rgb(218 220 224 / 0%);
 }
 
@@ -230,7 +230,7 @@ a#navbarDropdown img {
     height: auto;
 }
 
-.gf-login-wrapper .card, .gf-select-user-wrapper .card, .gf-customer-reg-wrapper .card, .gf-breeder-reg-wrapper .card, .gf-email-password-wrapper .card, #LoginModal .modal-content, #deleteListingModal .modal-content, .gf-reset-password-wrapper .card{
+.gf-login-wrapper .card, .gf-select-user-wrapper .card, .gf-customer-reg-wrapper .card, .gf-breeder-reg-wrapper .card, .gf-email-password-wrapper .card, #LoginModal .modal-content, #deleteListingModal .modal-content, .gf-reset-password-wrapper .card , #success .modal-content {
     border: none;
     background-color: #fbebd7;
     border-radius: 12px;
@@ -378,7 +378,7 @@ input.form-control:focus{
     max-width: fit-content;
     overflow: hidden;
     border-radius: 0.25rem;
-    
+
 }
 
 .fbd-sp-listing-img img {
@@ -509,7 +509,7 @@ input.form-control:focus{
 .gf-listing-card-social-icon{
     background-color: var(--blue);
     border-radius: 0px 0px 0.25rem 0.25rem;
-    
+
 }
 
 @media only screen and (min-width: 992px){
@@ -944,7 +944,7 @@ table.table .avatar {
 }
 
 .breeder-profile-info h4{
-    
+
 }
 
 .breeder-profile-info a{
@@ -1055,7 +1055,7 @@ table.table .avatar {
 /* Slick End */
 
 .fbd-single-listing-title {
-    
+
 }
 
 .fbd-single-listing-info .breeder-name h3{
@@ -1103,8 +1103,8 @@ table.table .avatar {
 }
 
 .fbd-single-listing-features span {
-    
-    
+
+
 }
 
 .fbd-single-listing-social i {
@@ -1179,7 +1179,7 @@ table.table .avatar {
 }
 
 .fbd-filter-area .card .card-body {
-    
+
     color: var(--blue);
 }
 
@@ -2041,7 +2041,7 @@ body a:hover {
 .captcha-textBox{
     width: 50% !important;
     padding: 6px !important;
-}   
+}
 
 .incorrectCaptcha {
     color: #BE202E;
@@ -2254,7 +2254,7 @@ body a:hover {
 }
 .btn-breadcrumb .btn{
 	border-color: transparent; border: 0px solid transparent;
-	border-right: 1px solid transparent !important; 
+	border-right: 1px solid transparent !important;
 }
 /* .btn-breadcrumb .btn:last-child {font-weight: bold; text-decoration: underline;} */
 .btn-breadcrumb .btn:last-child:after{margin-left: 0px;}
@@ -2334,7 +2334,7 @@ body a:hover {
     box-shadow: none !important;
 }
 
-#LoginModal.modal, #deleteListingModal.modal{
+#LoginModal.modal, #deleteListingModal.modal, #success.modal{
     top: 20%;
 }
 

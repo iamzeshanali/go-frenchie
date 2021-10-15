@@ -12,7 +12,7 @@
 <div class="main" style=" height: fit-content;  margin-inline: 5%;">
 
     <div class="header" style="background-color: #BE202E;">
-        <h1 style="text-align: center; color: #ffffff; margin: 0px;  padding: 4%;">Contact Form Notification</h1>
+        <h1 style="text-align: center; color: #ffffff; margin: 0px;  padding: 4%;">Breeder Contact Notification</h1>
     </div>
 
     <div class="content" style="padding: 2%;">

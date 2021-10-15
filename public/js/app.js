@@ -133,7 +133,7 @@ $(document).ready(function() {
     var kennelLogoReader = new FileReader();
     kennelLogoReader.onload = function(e) {
         // get loaded data and render thumbnail.
-        document.getElementById("preview-profile-image").src = e.target.result;
+        document.getElementById("gf-preview-kennel-logo").src = e.target.result;
         console.log("e.target.result");
     };
     // read the image file as a data URL.
