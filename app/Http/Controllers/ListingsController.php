@@ -560,8 +560,12 @@ class ListingsController extends Controller
             if ($file1 == null){
                 if ($request->get('photo1_name')){
                     $fullPath1 = $request->get('photo1_name');
-                    $fullPath1 = substr_replace($fullPath1, 'public/app/listings', 44, 6);
-//                    dd($fullPath1);
+
+                    $name = explode('/',$fullPath1);
+                    $temp = $name[count($name)-2];
+                    $name[count($name)-2] = $temp.'/app/listings';
+                    $fullPath1 = implode('/',$name);
+
                     $singleListing[0]->photo1 = new Image($fullPath1);
                 }else{
                     $singleListing[0]->photo1 = null;
@@ -576,7 +580,10 @@ class ListingsController extends Controller
             if ($file2 == null){
                 if ($request->get('photo2_name')) {
                     $fullPath2 = $request->get('photo2_name');
-                    $fullPath2 = substr_replace($fullPath2, 'public/app/listings', 44, 6);
+                    $name = explode('/',$fullPath2);
+                    $temp = $name[count($name)-2];
+                    $name[count($name)-2] = $temp.'/app/listings';
+                    $fullPath2 = implode('/',$name);
                     $singleListing[0]->photo2 = new Image($fullPath2);
                 }else{
                     $singleListing[0]->photo2 = null;
@@ -590,7 +597,12 @@ class ListingsController extends Controller
             if ($file3 == null){
                 if ($request->get('photo3_name')) {
                     $fullPath3 = $request->get('photo3_name');
-                    $fullPath3 = substr_replace($fullPath3, 'public/app/listings', 44, 6);
+
+                    $name = explode('/',$fullPath3);
+                    $temp = $name[count($name)-2];
+                    $name[count($name)-2] = $temp.'/app/listings';
+                    $fullPath3 = implode('/',$name);
+
                     $singleListing[0]->photo3 = new Image($fullPath3);
                 }else{
                     $singleListing[0]->photo3 = null;
@@ -604,7 +616,12 @@ class ListingsController extends Controller
             if ($file4 == null){
                 if ($request->get('photo4_name')) {
                     $fullPath4 = $request->get('photo4_name');
-                    $fullPath4 = substr_replace($fullPath4, 'public/app/listings', 44, 6);
+
+                    $name = explode('/',$fullPath4);
+                    $temp = $name[count($name)-2];
+                    $name[count($name)-2] = $temp.'/app/listings';
+                    $fullPath4 = implode('/',$name);
+
                     $singleListing[0]->photo4 = new Image($fullPath4);
                 }else{
                     $singleListing[0]->photo4 = null;
@@ -618,7 +635,12 @@ class ListingsController extends Controller
             if ($file5 == null){
                 if ($request->get('photo5_name')) {
                     $fullPath5 = $request->get('photo5_name');
-                    $fullPath5 = substr_replace($fullPath5, 'public/app/listings', 44, 6);
+
+                    $name = explode('/',$fullPath5);
+                    $temp = $name[count($name)-2];
+                    $name[count($name)-2] = $temp.'/app/listings';
+                    $fullPath5 = implode('/',$name);
+
                     $singleListing[0]->photo5 = new Image($fullPath5);
                 }else{
                     $singleListing[0]->photo5 = null;

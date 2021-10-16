@@ -165,7 +165,12 @@ class CanineGeneticsController extends Controller
             if ($file1 == null){
                 if ($request->get('photo1_name')){
                     $fullPath1 = $request->get('photo1_name');
-                    $fullPath1 = substr_replace($fullPath1, 'public/app/CanineGenetics', 44, 6);
+
+                    $name = explode('/',$fullPath1);
+                    $temp = $name[count($name)-2];
+                    $name[count($name)-2] = $temp.'/app/CanineGenetics';
+                    $fullPath1 = implode('/',$name);
+
                     $singleListings->logo = new Image($fullPath1);
                 }else{
                     $singleListings->logo = null;

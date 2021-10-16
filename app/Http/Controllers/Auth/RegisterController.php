@@ -94,7 +94,8 @@ class RegisterController extends Controller
 //            dd($customer);
             $this->userRepository->save($customer);
 
-            return redirect()->route('login');
+            Auth::login($customer);
+            return redirect()->route('breederProfile');
         }else{
             return redirect()->back()->with('error', 'Customer already exists.');
         }

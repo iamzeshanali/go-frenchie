@@ -48,6 +48,7 @@ class BreederSuppliesController extends Controller
                 ->where(Breeder_Supplies::BREEDER, '=', Auth::user())
                 ->where(Breeder_Supplies::TRASHED, '=', false)
         );
+//        dd($breederResources);
         return $breederResources;
     }
 
@@ -169,9 +170,12 @@ class BreederSuppliesController extends Controller
             if ($file1 == null){
                 if ($request->get('photo1_name')){
                     $fullPath1 = $request->get('photo1_name');
-//                    dd($fullPath1);
-                    $fullPath1 = substr_replace($fullPath1, 'public/app/BreederResources', 44, 6);
-//                    dd($fullPath1);
+
+                    $name = explode('/',$fullPath1);
+                    $temp = $name[count($name)-2];
+                    $name[count($name)-2] = $temp.'/app/BreederResources';
+                    $fullPath1 = implode('/',$name);
+
                     $singleBreederSupplies->logo = new Image($fullPath1);
                 }else{
                     $singleBreederSupplies->logo = null;

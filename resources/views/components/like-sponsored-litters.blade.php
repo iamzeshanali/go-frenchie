@@ -1,17 +1,18 @@
 
 @if(Auth::user())
     <?php
-    $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
+    $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllLitters();
     $matched = false;
-    //                                            dd($allSavedListings);
+//                                                dd($allSavedListings);
     ?>
 
     @if(count($allSavedListings) > 0)
         <?php
         foreach ($allSavedListings as $saved) {
+//            dd($saved);
             if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
             {
-                if(($saved->listings->slug == $sponsoredSlug)){
+                if(($saved->litters->slug == $sponsoredSlug)){
                     $matched = true;
                     break;
                 }else{

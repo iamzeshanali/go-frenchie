@@ -54,7 +54,7 @@
             @if(count($allSupplies) > 0)
                 <div>
                     <h3 class="gf-dark">Supplies</h3>
-                </div>0
+                </div>
                 <div class="breeder-profile-resources">
                     <div class="row breeder-resources-cards">
 
@@ -79,7 +79,7 @@
             @endif
 
 
-            <?php $allGenetics = app('App\Http\Controllers\CanineGeneticsController')->getCanineGenetics(); ?>
+            <?php $allGenetics = app('App\Http\Controllers\CanineGeneticsController')->getCurrentBreederCanineGenetics(); ?>
             @if(count($allGenetics) > 0)
                 <div>
                     <h3 class="gf-dark">Cannie Genetics</h3>
@@ -106,7 +106,7 @@
             </div>
             @endif
 
-            <?php $allNutritions = app('App\Http\Controllers\CanineNutritionController')->getCanineNutrition(); ?>
+            <?php $allNutritions = app('App\Http\Controllers\CanineNutritionController')->getCurrentBreederCanineNutrition();  ?>
             @if(count($allNutritions) > 0)
                 <div>
                     <h3 class="gf-dark">Cannie Nutrition</h3>

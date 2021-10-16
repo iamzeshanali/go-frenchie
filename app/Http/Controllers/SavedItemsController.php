@@ -45,13 +45,28 @@ class SavedItemsController extends Controller
     public function getAllListings(){
         return $this->savedListingsRepository->getAll();
     }
-    public function getAllLitters(){
-        $savedLitters = $this->savedLittersRepository->matching(
-            $this->savedLittersRepository->criteria()
-                ->where(SavedLitters::CUSTOMER, '=', Auth::user())
-                ->where(SavedLitters::TRASHED, '=', false)
+    public function getAllListingsofCurrentUser(){
+        $listings = $this->savedListingsRepository->matching(
+            $this->savedListingsRepository->criteria()
+                ->where(SavedListings::CUSTOMER,'=',Auth::user())
+                ->where(SavedListings::TRASHED,'=',false)
         );
-        return $savedLitters;
+        return $listings;
+    }
+
+    public function getAllLitters(){
+        return $this->savedLittersRepository->getAll();
+    }
+
+    public function getAllLittersofCurrentUser(){
+
+        $litters = $this->savedLittersRepository->matching(
+            $this->savedLittersRepository->criteria()
+                ->where(SavedLitters::CUSTOMER,'=',Auth::user())
+                ->where(SavedLitters::TRASHED,'=',false)
+        );
+//        dd($litters);
+        return $litters;
     }
 
     public function addToFavouriteWithUserLogin(Request $request){

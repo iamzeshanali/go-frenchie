@@ -1,6 +1,6 @@
 @if(Auth::user())
     <?php
-    $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllListings();
+    $allSavedListings = app('App\Http\Controllers\SavedItemsController')->getAllLitters();
     $matched = false;
     //                                            dd($allSavedListings);
     ?>
@@ -10,7 +10,7 @@
         foreach ($allSavedListings as $saved) {
             if ($saved->customer->username == \Illuminate\Support\Facades\Auth::user()->username)
             {
-                if(($saved->listings->slug == $standardSlug)){
+                if(($saved->litters->slug == $standardSlug)){
                     $matched = true;
                     break;
                 }else{
