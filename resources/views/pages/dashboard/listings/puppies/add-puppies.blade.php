@@ -80,7 +80,6 @@
                                         @endif
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <label for="listing-dob" class="col-sm-2 col-form-label">Date of Birth: *</label>
                                     <div class="col-sm-4">

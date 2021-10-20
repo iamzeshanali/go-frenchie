@@ -16,28 +16,18 @@ use App\Domain\Entities\Enums\MerleEnum;
 use App\Domain\Entities\Enums\PiedEnum;
 use App\Domain\Entities\Enums\TestableChocolateEnum;
 use App\Domain\Entities\Listings;
-use App\Domain\Entities\SavedSearch;
-use App\Domain\Entities\Users;
 use App\Domain\Services\Persistence\IApiConfigRepository;
 use App\Domain\Services\Persistence\IListingsRepository;
-use App\Domain\Services\Persistence\ISavedSearchRepository;
 use App\Domain\Services\Persistence\IUsersRepository;
 use Dms\Common\Structure\DateTime\Date;
 use Dms\Common\Structure\FileSystem\Image;
 use Dms\Common\Structure\Web\Html;
-use Dms\Core\Auth\IAdminRepository;
-use Dms\Core\Model\Object\Entity;
-use Dms\Core\Model\Object\Enum;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
-use Jorenvh\Share\Share;
 use Jorenvh\Share\ShareFacade;
-use phpDocumentor\Reflection\Types\True_;
-use function PHPUnit\Framework\isEmpty;
-use function PHPUnit\Framework\isTrue;
-
+use Stripe;
 
 class ListingsController extends Controller
 {
@@ -68,6 +58,7 @@ class ListingsController extends Controller
         );
         return $allFeatured;
     }
+
     public function allListingsofCurrentUser(){
         $totalListings = $this->listingsRepository->matching(
             $this->listingsRepository->criteria()
@@ -76,7 +67,6 @@ class ListingsController extends Controller
         );
         return $totalListings;
     }
-
 
     /**
      * Displays all the PUPPIES.
@@ -1540,6 +1530,22 @@ class ListingsController extends Controller
 //        return response()->json(['success'=>count($sponsoredPuppies)]);
         return response()->json(['success'=>'Form is successfully submitted!', 'html'=>$html, 'recentSearch'=>$recentSearch]);
     }
+
+    public function payWithStripe(Request $request){
+//        dd('done');
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+            "amount" => 100 * 150,
+            "currency" => "inr",
+            "source" => $request->stripeToken,
+            "description" => "Making test payment."
+        ]);
+
+        Session::flash('success', 'Payment has been successfully processed.');
+
+        return back();
+    }
+
     /**
      * It Soft Deletes the provided listing.
      *

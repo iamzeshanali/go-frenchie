@@ -183,6 +183,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('customersetting', function () {return view('pages/dashboard/customer_account_setting');})->name('customersetting');
     Route::get('email', function () {return view('layouts/reset-password-mail');})->name('email');
 
+    Route::get('/payment', function (){return view('pages/stripe_payment');});
+    Route::post('/stripe-payment', [\App\Http\Controllers\ListingsController::class, 'payWithStripe'])->name('stripe.payment');
+
 });
 
 
