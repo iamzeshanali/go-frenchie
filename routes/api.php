@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['prefix'=>'paypal'], function(){
+    Route::post('/order/create',[App\Http\Controllers\PaypalPaymentController::class,'create']);
+    Route::post('/order/capture/',[App\Http\Controllers\PaypalPaymentController::class,'capture']);
+});

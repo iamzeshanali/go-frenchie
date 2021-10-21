@@ -168,6 +168,7 @@ return [
         Dms\Web\Laravel\DmsServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -216,6 +217,7 @@ return [
         'Location' => 'Stevebauman\Location\Facades\Location',
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
