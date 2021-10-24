@@ -34,8 +34,8 @@ class AppCms extends Cms
     {
         $cms->packages([
             'admin'     => AdminPackage::class,
-            'documents' => PublicFilePackage::class,
-            'analytics' => AnalyticsPackage::class,
+            // 'documents' => PublicFilePackage::class,
+            // 'analytics' => AnalyticsPackage::class,
 
             // TODO: Register your application cms packages...
 //
@@ -43,10 +43,10 @@ class AppCms extends Cms
             'Resources' => ResourcesPackage::class,
             'SavedItems' => SavedItemsPackage::class,
             'Listings' => ListingsPackage::class,
-            'ApiConfig' => ApiConfigPackage::class,
+            // 'ApiConfig' => ApiConfigPackage::class,
             'Advertise' => AdvertisePackage::class,
             'PasswordToken' => PasswordTokenPackage::class,
-            'EmailLogs' => EmailLogsPackage::class,
+            // 'EmailLogs' => EmailLogsPackage::class,
 
         ]);
     }
